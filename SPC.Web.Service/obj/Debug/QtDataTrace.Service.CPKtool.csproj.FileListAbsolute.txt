@@ -1,0 +1,15 @@
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\bin\Debug\QtDataTrace.Service.CPKtool.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\bin\Debug\QtDataTrace.Service.CPKtool.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\bin\Debug\EAS.MicroKernel.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\bin\Debug\QtDataTrace.Interface.CPKtool.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\bin\Debug\QtDataTrace.Interface.CPKtool.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\obj\Debug\QtDataTrace.Service.CPKtool.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\obj\Debug\QtDataTrace.Service.CPKtool.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\obj\Debug\QtDataTrace.Service.CPKtool.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\bin\Debug\QtDataTrace.Service.CPKtool.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\bin\Debug\QtDataTrace.Service.CPKtool.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\bin\Debug\QtDataTrace.Interface.CPKtool.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\bin\Debug\QtDataTrace.Interface.CPKtool.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\obj\Debug\QtDataTrace.Service.CPKtool.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\obj\Debug\QtDataTrace.Service.CPKtool.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\obj\Debug\QtDataTrace.Service.CPKtool.pdb

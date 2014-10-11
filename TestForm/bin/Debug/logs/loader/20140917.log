@@ -1,0 +1,162 @@
+2014-09-17 09:36:55,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:09:47,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:09:49,Info - Load SPC.Web.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null Types Fail!
+
+[类型]:Error
+[线程]:9
+[内存]:4.47M
+[时间]:2014-09-17 14:09:49
+[内容]:无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+[来源]:mscorlib
+[目标]:System.RuntimeType[] GetTypes(System.Reflection.RuntimeModule)
+[堆栈]:   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 eUrYxLZRxbLayONfdB7.avIcj1ZLmardF5GHmWW.GAA077XEUL(Assembly )
+
+2014-09-17 14:11:26,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:11:27,Info - Load SPC.Web.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null Types Fail!
+
+[类型]:Error
+[线程]:9
+[内存]:8.72M
+[时间]:2014-09-17 14:11:27
+[内容]:无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+[来源]:mscorlib
+[目标]:System.RuntimeType[] GetTypes(System.Reflection.RuntimeModule)
+[堆栈]:   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 eUrYxLZRxbLayONfdB7.avIcj1ZLmardF5GHmWW.GAA077XEUL(Assembly )
+
+2014-09-17 14:14:02,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:14:03,Info - Load SPC.Web.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null Types Fail!
+
+[类型]:Error
+[线程]:9
+[内存]:8.60M
+[时间]:2014-09-17 14:14:03
+[内容]:无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+[来源]:mscorlib
+[目标]:System.RuntimeType[] GetTypes(System.Reflection.RuntimeModule)
+[堆栈]:   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 eUrYxLZRxbLayONfdB7.avIcj1ZLmardF5GHmWW.GAA077XEUL(Assembly )
+
+2014-09-17 14:15:10,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:15:11,Info - Load SPC.Web.Service, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null Types Fail!
+
+[类型]:Error
+[线程]:9
+[内存]:8.91M
+[时间]:2014-09-17 14:15:11
+[内容]:无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+[来源]:mscorlib
+[目标]:System.RuntimeType[] GetTypes(System.Reflection.RuntimeModule)
+[堆栈]:   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 eUrYxLZRxbLayONfdB7.avIcj1ZLmardF5GHmWW.GAA077XEUL(Assembly )
+
+2014-09-17 14:26:25,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:28:32,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:33:48,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:36:40,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:37:44,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:52:03,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 14:58:29,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 15:01:37,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 15:17:25,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 15:19:46,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 15:22:14,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 15:26:18,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 15:54:57,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:02:53,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:11:10,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:16:21,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:25:59,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:30:50,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:35:20,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:38:05,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:41:26,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:42:28,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:43:45,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:46:05,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:47:20,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:49:25,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:54:57,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:56:52,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:58:17,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 16:59:37,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:13:01,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:14:54,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:15:38,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:16:28,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:17:07,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:18:03,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:18:38,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:20:43,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:22:17,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:23:20,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:23:55,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:24:46,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:25:25,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:31:35,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:33:51,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:34:38,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:37:21,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+
+2014-09-17 17:48:45,Info - BaseDirectory:=C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\TestForm\bin\Debug
+

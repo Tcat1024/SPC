@@ -1,0 +1,9 @@
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\bin\Debug\QtDataTrace.UI.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\bin\Debug\QtDataTrace.UI.BaseControl.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\obj\Debug\QtDataTrace.UI.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\obj\Debug\QtDataTrace.UI.BaseControl.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\obj\Debug\QtDataTrace.UI.BaseControl.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\bin\Debug\QtDataTrace.UI.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\bin\Debug\QtDataTrace.UI.BaseControl.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\obj\Debug\QtDataTrace.UI.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\obj\Debug\QtDataTrace.UI.BaseControl.pdb

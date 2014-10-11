@@ -1,0 +1,14 @@
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\bin\Debug\SPC.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\bin\Debug\SPC.BaseControl.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\obj\Debug\SPC.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\QtDataTrace.UI.BaseControl\obj\Debug\SPC.BaseControl.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\SPC.BaseControl\bin\Debug\SPC.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\SPC.BaseControl\bin\Debug\SPC.BaseControl.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\SPC.BaseControl\obj\Debug\SPC.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.00\QtDataTrace.UI.CPKtool\SPC.BaseControl\obj\Debug\SPC.BaseControl.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.BaseControl\bin\Debug\SPC.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.BaseControl\bin\Debug\SPC.BaseControl.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.BaseControl\obj\Debug\SPC.BaseControl.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.BaseControl\obj\Debug\SPC.BaseControl.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.BaseControl\obj\Debug\SPC.BaseControl.csproj.GenerateResource.Cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.BaseControl\obj\Debug\SPC.BaseControl.Resource.resources

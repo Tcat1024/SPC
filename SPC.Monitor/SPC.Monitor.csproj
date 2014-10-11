@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{27F273B1-9845-4EE0-8007-4AB8277213EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SPC.Monitor</RootNamespace>
+    <AssemblyName>SPC.Monitor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v13.2.Core, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Data.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v13.2.UI, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v13.2.Wizard, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraLayout.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DrawBoards\AvgDataRunDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\AvgDataRunDrawBoard.Designer.cs">
+      <DependentUpon>AvgDataRunDrawBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawBoards\DataControlDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\DataControlDrawBoard.Designer.cs">
+      <DependentUpon>DataControlDrawBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawBoards\NormalityCheckDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\NormalityCheckDrawBoard.Designer.cs">
+      <DependentUpon>NormalityCheckDrawBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawBoards\SampleDataRunPointDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\SampleDataRunPointDrawBoard.Designer.cs">
+      <DependentUpon>SampleDataRunPointDrawBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MonitorControl.Designer.cs">
+      <DependentUpon>MonitorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorStructure.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="DrawBoards\SampleDataRunDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\SampleDataRunDrawBoard.Designer.cs">
+      <DependentUpon>SampleDataRunDrawBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SeriesType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DrawBoards\AvgDataRunDrawBoard.resx">
+      <DependentUpon>AvgDataRunDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawBoards\DataControlDrawBoard.resx">
+      <DependentUpon>DataControlDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawBoards\NormalityCheckDrawBoard.resx">
+      <DependentUpon>NormalityCheckDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawBoards\SampleDataRunPointDrawBoard.resx">
+      <DependentUpon>SampleDataRunPointDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MonitorControl.resx">
+      <DependentUpon>MonitorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawBoards\SampleDataRunDrawBoard.resx">
+      <DependentUpon>SampleDataRunDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPC.Base\SPC.Base.csproj">
+      <Project>{b8a9423b-8443-439b-ab89-f3a2ddd1d036}</Project>
+      <Name>SPC.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

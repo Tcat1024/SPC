@@ -1,0 +1,8 @@
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.Interface\bin\Debug\SPC.Web.Interface.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.Interface\bin\Debug\SPC.Web.Interface.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.Interface\obj\Debug\SPC.Web.Interface.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool.1.01\QtDataTrace.UI.CPKtool\SPC.Interface\obj\Debug\SPC.Web.Interface.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\SPC.Web.Interface\bin\Debug\SPC.Web.Interface.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\SPC.Web.Interface\bin\Debug\SPC.Web.Interface.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\SPC.Web.Interface\obj\Debug\SPC.Web.Interface.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\SPC.Web.Interface\obj\Debug\SPC.Web.Interface.pdb

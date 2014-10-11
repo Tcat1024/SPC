@@ -1,0 +1,21 @@
+[类型]:Error
+[线程]:10
+[内存]:4.30M
+[时间]:2014-09-24 15:35:53
+[内容]:未指定的错误
+ORA-03113: 通信通道的文件结尾
+[来源]:Microsoft OLE DB Provider for Oracle
+[目标]:Void ExecuteCommandTextErrorHandling(System.Data.OleDb.OleDbHResult)
+[堆栈]:   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 SPC.Web.Service.Service.DebugGetTable(String cmd, String conn) 位置 c:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\SPC.Web.Service\Service.cs:行号 21
+
+

@@ -1,0 +1,13 @@
+[类型]:Error
+[线程]:10
+[内存]:5.57M
+[时间]:2014-07-10 14:28:47
+[内容]:容器中没有类型为QtDataTrace.Interface.CPKtool.ICPKtool的组件
+[来源]:EAS.MicroKernel
+[目标]:System.Object GetComponentInstance(System.Type)
+[堆栈]:   在 REOWmjMfDUXHkBhZvva.khXgmqMAIhxduPDxFuB.GetComponentInstance(Type )
+   在 kKRoFhZO2SE3nMMqf8H.stbyiOZFQyG00hproVN.DCiltVEHsgINp22SRJw(Object , Type serviceType)
+   在 kKRoFhZO2SE3nMMqf8H.stbyiOZFQyG00hproVN.ImW04JRhbX(Type )
+   在 EAS.Services.DirectServiceBridger.InvokeMethod(Type serviceType, MethodBase method, Object[] args)
+
+

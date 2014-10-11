@@ -1,0 +1,21 @@
+[类型]:Error
+[线程]:8
+[内存]:5.38M
+[时间]:2014-07-11 15:15:58
+[内容]:在执行命令过程中，发生了一个或多个错误。
+ORA-00904: "O2_PRESS": invalid identifier
+[来源]:Microsoft OLE DB Provider for Oracle
+[目标]:Void ExecuteCommandTextErrorHandling(System.Data.OleDb.OleDbHResult)
+[堆栈]:   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextErrorHandling(OleDbHResult hr)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandTextForSingleResult(tagDBPARAMS dbParams, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommandText(Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteCommand(CommandBehavior behavior, Object& executeResult)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReaderInternal(CommandBehavior behavior, String method)
+   在 System.Data.OleDb.OleDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.OleDb.OleDbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.FillInternal(DataSet dataset, DataTable[] datatables, Int32 startRecord, Int32 maxRecords, String srcTable, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable[] dataTables, Int32 startRecord, Int32 maxRecords, IDbCommand command, CommandBehavior behavior)
+   在 System.Data.Common.DbDataAdapter.Fill(DataTable dataTable)
+   在 QtDataTrace.Service.CPKtool.Service.DebugGetTable(String cmd, String conn) 位置 c:\Users\Tcat\Desktop\WorkSpace\Program\QtDataTrace.UI.CPKtool\QtDataTrace.Service.CPKtool\Service.cs:行号 20
+
+
