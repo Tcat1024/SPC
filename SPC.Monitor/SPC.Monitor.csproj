@@ -42,6 +42,7 @@
     <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraPrinting.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeList.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -77,6 +78,12 @@
     <Compile Include="DrawBoards\SampleDataRunPointDrawBoard.Designer.cs">
       <DependentUpon>SampleDataRunPointDrawBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="DrawBoards\SpectralDistributionDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\SpectralDistributionDrawBoard.Designer.cs">
+      <DependentUpon>SpectralDistributionDrawBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="MonitorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawBoards\SampleDataRunPointDrawBoard.resx">
       <DependentUpon>SampleDataRunPointDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawBoards\SpectralDistributionDrawBoard.resx">
+      <DependentUpon>SpectralDistributionDrawBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonitorControl.resx">
       <DependentUpon>MonitorControl.cs</DependentUpon>

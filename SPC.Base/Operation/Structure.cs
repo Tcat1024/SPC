@@ -87,7 +87,7 @@ namespace SPC.Base.Operation
     public class BasicSeriesData
     {
         public string SeriesName;
-        public List<double> X = new List<double>();
+        public List<string> X = new List<string>();
         public List<double> Y = new List<double>();
         public BasicSeriesData()
         {

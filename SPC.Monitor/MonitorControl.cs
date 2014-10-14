@@ -30,8 +30,9 @@ namespace SPC.Monitor
             InitializeComponent();
             this.gridControl1.DataSource = this.DataBind;
             this.bindingNavigator1.BindingSource = this.DataBind;
-            this.bindingNavigator1.Items.Add(new ToolStripControlHost(this.comboBoxEdit1));
-            this.bindingNavigator1.Items.Add(new ToolStripControlHost(this.textEdit1));
+            this.bindingNavigator1.Items.Insert(10,new ToolStripControlHost(this.comboBoxEdit1));
+            this.bindingNavigator1.Items.Insert(11,new ToolStripControlHost(this.textEdit1));
+            this.bindingNavigator1.Items.Insert(13, new ToolStripControlHost(this.popUpEdit1));
             Colors = this.basicColorChart.GetPaletteEntries(MaxSeriesCount);
             this.InitDrawBoads();
         }
@@ -104,6 +105,7 @@ namespace SPC.Monitor
             {
                 var mouseposition = this.listBoxControl1.PointToClient(MousePosition);
                 int grouptype = Convert.ToInt32(this.textEdit1.EditValue);
+                string spectrumwith = this.popUpEdit1.Text.Trim() == "" ? "0" : this.popUpEdit1.Text.Trim();
                 if(this.comboBoxEdit1.SelectedIndex==1)
                 {
                     if(this.gridView1.GroupCount<1)
@@ -115,7 +117,7 @@ namespace SPC.Monitor
                 }
                 if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
                 {
-                    var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
+                    var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype,spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
                     this.AddListItem(temp);
                 }
                 else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
@@ -125,7 +127,7 @@ namespace SPC.Monitor
                     int index = targetlayout.Controls.IndexOf(targetchart);
                     if (index >= 0)
                     {
-                        var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
+                        var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype,spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
                         this.AddListItem(temp);
                     }
                 }
@@ -288,10 +290,9 @@ namespace SPC.Monitor
                     seriesManager.InitData(this.SourceData);
                 }
             }
-
-            public MonitorSeriesData(SPC.Base.Control.CanChooseDataGridView view, string param, int groupType, System.Drawing.Color color,List<DevExpress.XtraCharts.ChartControl> drawBoards)
+            public MonitorSeriesData(SPC.Base.Control.CanChooseDataGridView view, string param, int groupType, string spectrumWith, System.Drawing.Color color, List<DevExpress.XtraCharts.ChartControl> drawBoards)
             {
-                SourceData = new MonitorSourceDataType(view, param, groupType);
+                SourceData = new MonitorSourceDataType(view, param, groupType, spectrumWith);
                 this.Name = param + "_" + groupType.ToString() + "_" + DateTime.Now.ToBinary();
                 this.SeriesColor = color;
                 this.DrawBoards = drawBoards;
@@ -315,12 +316,6 @@ namespace SPC.Monitor
                     }
                 }
             }
-            //private void InitGroupAvgSeries()
-            //{
-            //    if(this.Serieses.Count<1)
-            //        this.Serieses.Add(new BasicSeriesData("平均值"));
-
-            //}
             public override string ToString()
             {
                 return this.Name.ToString();
@@ -343,6 +338,7 @@ namespace SPC.Monitor
                 this.SeriesManagers.Add(new GroupAvgDataRunSeriesManager() { DrawBoard = this.DrawBoards[3] });
                 this.SeriesManagers.Add(new SampleRunPointsManager() { DrawBoard = this.DrawBoards[3] });
                 this.SeriesManagers.Add(new NormalityCheckPointsManager() { DrawBoard = this.DrawBoards[4] });
+                this.SeriesManagers.Add(new SpectralDistributionPointsManager() { DrawBoard = this.DrawBoards[5] });
             }        
         }
         //在此添加新绘版
@@ -353,6 +349,7 @@ namespace SPC.Monitor
             this.DrawBoardTypes.Add(typeof(SampleDataRunDrawBoard));
             this.DrawBoardTypes.Add(typeof(AvgDataRunDrawBoard));
             this.DrawBoardTypes.Add(typeof(NormalityCheckDrawBoard));
+            this.DrawBoardTypes.Add(typeof(SpectralDistributionDrawBoard));
         }
 
         private void MonitorControl_SizeChanged(object sender, EventArgs e)
@@ -363,6 +360,57 @@ namespace SPC.Monitor
         {
             this.panelControl1.Height = (int)(this.Size.Height * 0.5);
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            string result = "";
+            foreach( DevExpress.XtraTreeList.Nodes.TreeListNode node in this.treeList1.Nodes)
+            {
+                if(node[0]!=null&&node[1]!=null&&node[0].ToString().Trim()!=""&&node[1].ToString().Trim()!="")
+                {
+                    result += node[0].ToString() + node[1].ToString();
+                }
+            }
+            if (result.Trim() != "")
+                this.popUpEdit1.Text = result;
+            else
+                this.popUpEdit1.Text = "0";
+            this.popUpEdit1.ClosePopup();
+        }
+
+        private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            if(this.treeList1.Nodes.Count>1)
+            {
+                this.treeList1.Nodes.Remove(this.treeList1.FocusedNode);
+            }
+            else
+            {
+                this.treeList1.FocusedNode[0] = "";
+                this.treeList1.FocusedNode[1] = "";
+            }
+        }
+
+        private void repositoryItemComboBox1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            if((e.OldValue==null||e.OldValue.ToString().Trim()=="")&&e.NewValue!=null&&e.NewValue.ToString().Trim()!="")
+                newNode = true;
+            newValue = e.NewValue;
+        }
+        private bool newNode=false;
+        private object newValue = null;
+        private void repositoryItemComboBox1_EditValueChanged(object sender, EventArgs e)
+        {
+            if (newNode)
+            {
+                var focused = this.treeList1.FocusedNode;
+                focused[0] = newValue;
+                this.treeList1.Nodes.Add("", "");
+                this.treeList1.FocusedNode = focused;
+                newNode = false;
+            }
+        }
+
 
     //    private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     //    {

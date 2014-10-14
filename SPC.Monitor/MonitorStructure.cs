@@ -13,11 +13,13 @@ namespace SPC.Monitor
         public SPC.Base.Control.CanChooseDataGridView View;
         public String Param;
         public int GroupType;
-        public MonitorSourceDataType(SPC.Base.Control.CanChooseDataGridView view, string param, int groupType)
+        public string SpectrumWith;
+        public MonitorSourceDataType(SPC.Base.Control.CanChooseDataGridView view, string param, int groupType, string spectrumWith)
         {
             this.View = view;
             this.Param = param;
             this.GroupType = groupType;
+            this.SpectrumWith = spectrumWith;
         }
     }
     public interface IDrawBoard
