@@ -330,4 +330,35 @@ namespace SPC.Base.Operation
             return !(o is DBNull || !(o is System.IConvertible));
         }
     }
+    public class BasicSort
+    {
+        public static void QuickSort<T>(int start, int end, T[] data, Func<T, T, bool> compare)
+        {
+            if (start >= end)
+                return;
+            int i = start, j = end;
+            var temp = data[i];
+            while (i < j)
+            {
+                if (compare(temp, data[j]))
+                {
+                    data[i] = data[j];
+                    i++;
+                    while (i < j)
+                    {
+                        if (compare(data[i], temp))
+                        {
+                            data[j] = data[i];
+                            break;
+                        }
+                        i++;
+                    }
+                }
+                j--;
+            }
+            data[i] = temp;
+            QuickSort<T>(start, i - 1, data, compare);
+            QuickSort<T>(i + 1, end, data, compare);
+        }
+    }
 }

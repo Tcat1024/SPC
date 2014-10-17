@@ -59,3 +59,14 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC1.03\SPC.CPKtool\obj\Debug\SPC.CP
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC1.03\SPC.CPKtool\obj\Debug\SPC.CPKtool.dll.licenses
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC1.03\SPC.CPKtool\obj\Debug\SPC.CPKtool.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC1.03\SPC.CPKtool\obj\Debug\SPC.CPKtool.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\SPC.CPKtool.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\SPC.CPKtool.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\SPC.Base.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\SPC.Base.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\obj\Debug\SPC.CPKtool.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\obj\Debug\SPC.CPKtool.CPKtoolControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\obj\Debug\SPC.CPKtool.Properties.Resources.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\obj\Debug\SPC.CPKtool.csproj.GenerateResource.Cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\obj\Debug\SPC.CPKtool.dll.licenses
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\obj\Debug\SPC.CPKtool.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\obj\Debug\SPC.CPKtool.pdb

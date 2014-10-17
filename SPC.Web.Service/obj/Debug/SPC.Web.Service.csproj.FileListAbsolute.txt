@@ -13,3 +13,10 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\SPC.Web.Service\obj\Debug\SP
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\SPC.Web.Service\obj\Debug\SPC.Web.Service.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\SPC.Web.Service\obj\Debug\SPC.Web.Service.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC1.02\SPC\SPC.Web.Service\bin\Debug\EAS.MicroKernel.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Debug\SPC.Web.Service.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Debug\SPC.Web.Service.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Debug\SPC.Web.Interface.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Debug\SPC.Web.Interface.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\obj\Debug\SPC.Web.Service.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\obj\Debug\SPC.Web.Service.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\obj\Debug\SPC.Web.Service.pdb

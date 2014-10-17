@@ -15,6 +15,7 @@ namespace SPC.Monitor.DrawBoards
         public SpectralDistributionDrawBoard()
         {
             InitializeComponent();
+            this.barEditItem1.EditValue = true;
         }
         public DevExpress.XtraCharts.ChartControl GetChart()
         {
@@ -22,7 +23,36 @@ namespace SPC.Monitor.DrawBoards
         }
         protected override void OnControlRemoved(ControlEventArgs e)
         {
-            this.Parent.Controls.Remove(this);
+            if(this.Parent!=null)
+                this.Parent.Controls.Remove(this);
         }
+
+        private void chartControl1_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button==MouseButtons.Right)
+            {
+                this.popupMenu1.ShowPopup(MousePosition);
+            }
+        }
+
+        private void repositoryItemCheckEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
+        {
+            if((bool)e.NewValue)
+            {
+                foreach(var s in chartControl1.Series)
+                {
+                    (s as DevExpress.XtraCharts.Series).LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                }
+            }
+            else
+            {
+                foreach (var s in chartControl1.Series)
+                {
+                    (s as DevExpress.XtraCharts.Series).LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
+                }
+            }
+        }
+
+
     }
 }

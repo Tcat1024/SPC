@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitorControl));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new SPC.Base.Control.CanChooseDataGridView();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
@@ -48,15 +47,6 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
-            this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.treeList1 = new DevExpress.XtraTreeList.TreeList();
-            this.treeListColumn1 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
-            this.treeListColumn2 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.treeListColumn3 = new DevExpress.XtraTreeList.Columns.TreeListColumn();
-            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.popUpEdit1 = new DevExpress.XtraEditors.PopupContainerEdit();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
@@ -75,12 +65,10 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
-            this.multiControlsVerticalLayout5 = new SPC.Base.Control.MultiControlsVerticalLayout();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.multiControlsVerticalLayout1 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.multiControlsVerticalLayout2 = new SPC.Base.Control.MultiControlsVerticalLayout();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.multiControlsVerticalLayout1 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.multiControlsVerticalLayout3 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
@@ -91,6 +79,7 @@
             this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.customGroupStringBuilder1 = new SPC.Base.Control.CustomGroupStringBuilder();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -98,12 +87,6 @@
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).BeginInit();
             this.popupContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
-            this.panelControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
@@ -113,9 +96,8 @@
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage5.SuspendLayout();
-            this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
+            this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
             this.xtraTabPage4.SuspendLayout();
             this.xtraTabPage6.SuspendLayout();
@@ -296,125 +278,11 @@
             // 
             // popupContainerControl1
             // 
-            this.popupContainerControl1.Controls.Add(this.panelControl4);
+            this.popupContainerControl1.Controls.Add(this.customGroupStringBuilder1);
             this.popupContainerControl1.Location = new System.Drawing.Point(427, 33);
             this.popupContainerControl1.Name = "popupContainerControl1";
             this.popupContainerControl1.Size = new System.Drawing.Size(253, 213);
             this.popupContainerControl1.TabIndex = 14;
-            // 
-            // panelControl4
-            // 
-            this.panelControl4.Controls.Add(this.simpleButton1);
-            this.panelControl4.Controls.Add(this.treeList1);
-            this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl4.Location = new System.Drawing.Point(0, 0);
-            this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(253, 213);
-            this.panelControl4.TabIndex = 2;
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.simpleButton1.Location = new System.Drawing.Point(89, 185);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "确定";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
-            // treeList1
-            // 
-            this.treeList1.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
-            this.treeListColumn1,
-            this.treeListColumn2,
-            this.treeListColumn3});
-            this.treeList1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.treeList1.Location = new System.Drawing.Point(2, 2);
-            this.treeList1.Name = "treeList1";
-            this.treeList1.BeginUnboundLoad();
-            this.treeList1.AppendNode(new object[] {
-            null,
-            null,
-            null}, -1);
-            this.treeList1.EndUnboundLoad();
-            this.treeList1.OptionsLayout.AddNewColumns = false;
-            this.treeList1.OptionsMenu.EnableColumnMenu = false;
-            this.treeList1.OptionsMenu.EnableFooterMenu = false;
-            this.treeList1.OptionsView.ShowButtons = false;
-            this.treeList1.OptionsView.ShowColumns = false;
-            this.treeList1.OptionsView.ShowHorzLines = false;
-            this.treeList1.OptionsView.ShowIndicator = false;
-            this.treeList1.OptionsView.ShowRoot = false;
-            this.treeList1.OptionsView.ShowVertLines = false;
-            this.treeList1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemTextEdit1,
-            this.repositoryItemButtonEdit1,
-            this.repositoryItemComboBox1});
-            this.treeList1.Size = new System.Drawing.Size(249, 179);
-            this.treeList1.TabIndex = 1;
-            // 
-            // treeListColumn1
-            // 
-            this.treeListColumn1.AppearanceCell.Options.UseTextOptions = true;
-            this.treeListColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.treeListColumn1.Caption = "treeListColumn1";
-            this.treeListColumn1.ColumnEdit = this.repositoryItemComboBox1;
-            this.treeListColumn1.FieldName = "treeListColumn1";
-            this.treeListColumn1.MinWidth = 34;
-            this.treeListColumn1.Name = "treeListColumn1";
-            this.treeListColumn1.Visible = true;
-            this.treeListColumn1.VisibleIndex = 0;
-            this.treeListColumn1.Width = 61;
-            // 
-            // repositoryItemComboBox1
-            // 
-            this.repositoryItemComboBox1.AutoHeight = false;
-            this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repositoryItemComboBox1.Items.AddRange(new object[] {
-            "<",
-            "<="});
-            this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
-            this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            this.repositoryItemComboBox1.EditValueChanged += new System.EventHandler(this.repositoryItemComboBox1_EditValueChanged);
-            this.repositoryItemComboBox1.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.repositoryItemComboBox1_EditValueChanging);
-            // 
-            // treeListColumn2
-            // 
-            this.treeListColumn2.Caption = "treeListColumn2";
-            this.treeListColumn2.ColumnEdit = this.repositoryItemTextEdit1;
-            this.treeListColumn2.FieldName = "treeListColumn2";
-            this.treeListColumn2.Name = "treeListColumn2";
-            this.treeListColumn2.Visible = true;
-            this.treeListColumn2.VisibleIndex = 1;
-            this.treeListColumn2.Width = 166;
-            // 
-            // repositoryItemTextEdit1
-            // 
-            this.repositoryItemTextEdit1.AutoHeight = false;
-            this.repositoryItemTextEdit1.Mask.EditMask = "(-?[0-9]+(.([0-9]+))?)";
-            this.repositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.repositoryItemTextEdit1.Mask.ShowPlaceHolders = false;
-            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
-            // 
-            // treeListColumn3
-            // 
-            this.treeListColumn3.Caption = "treeListColumn3";
-            this.treeListColumn3.ColumnEdit = this.repositoryItemButtonEdit1;
-            this.treeListColumn3.FieldName = "treeListColumn3";
-            this.treeListColumn3.Name = "treeListColumn3";
-            this.treeListColumn3.Visible = true;
-            this.treeListColumn3.VisibleIndex = 2;
-            this.treeListColumn3.Width = 20;
-            // 
-            // repositoryItemButtonEdit1
-            // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
-            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, DevExpress.XtraEditors.ImageLocation.MiddleCenter, ((System.Drawing.Image)(resources.GetObject("repositoryItemButtonEdit1.Buttons"))), new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, "", null, null, true)});
-            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
-            this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            this.repositoryItemButtonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryItemButtonEdit1_ButtonClick);
             // 
             // popUpEdit1
             // 
@@ -424,9 +292,6 @@
             this.popUpEdit1.Name = "popUpEdit1";
             this.popUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.popUpEdit1.Properties.Mask.EditMask = "([0-9]*)|(<=?(-?[0-9]+(.([0-9]+))?))*";
-            this.popUpEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.popUpEdit1.Properties.Mask.ShowPlaceHolders = false;
             this.popUpEdit1.Properties.PopupControl = this.popupContainerControl1;
             this.popUpEdit1.Properties.PopupSizeable = false;
             this.popUpEdit1.Properties.ShowPopupCloseButton = false;
@@ -460,7 +325,7 @@
             this.textEdit1.Name = "textEdit1";
             this.textEdit1.Properties.Appearance.Options.UseTextOptions = true;
             this.textEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.textEdit1.Properties.Mask.EditMask = "[2-9][0-9]*";
+            this.textEdit1.Properties.Mask.EditMask = "[1-9][0-9]*";
             this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.textEdit1.Properties.Mask.ShowPlaceHolders = false;
             this.textEdit1.Size = new System.Drawing.Size(29, 22);
@@ -572,7 +437,7 @@
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
             this.toolStripLabel2.Size = new System.Drawing.Size(68, 22);
-            this.toolStripLabel2.Text = "频谱宽度:";
+            this.toolStripLabel2.Text = "频度宽度:";
             // 
             // panelControl2
             // 
@@ -600,50 +465,15 @@
             this.xtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom;
             this.xtraTabControl1.Location = new System.Drawing.Point(159, 2);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage5;
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage2;
             this.xtraTabControl1.Size = new System.Drawing.Size(774, 310);
             this.xtraTabControl1.TabIndex = 14;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage5,
-            this.xtraTabPage1,
             this.xtraTabPage2,
+            this.xtraTabPage1,
             this.xtraTabPage3,
             this.xtraTabPage4,
             this.xtraTabPage6});
-            // 
-            // xtraTabPage5
-            // 
-            this.xtraTabPage5.Controls.Add(this.multiControlsVerticalLayout5);
-            this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(768, 278);
-            this.xtraTabPage5.Text = "样本散点图";
-            // 
-            // multiControlsVerticalLayout5
-            // 
-            this.multiControlsVerticalLayout5.AutoScroll = false;
-            this.multiControlsVerticalLayout5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.multiControlsVerticalLayout5.Location = new System.Drawing.Point(0, 0);
-            this.multiControlsVerticalLayout5.Name = "multiControlsVerticalLayout5";
-            this.multiControlsVerticalLayout5.Size = new System.Drawing.Size(768, 278);
-            this.multiControlsVerticalLayout5.SizeChangeStep = 50;
-            this.multiControlsVerticalLayout5.TabIndex = 0;
-            // 
-            // xtraTabPage1
-            // 
-            this.xtraTabPage1.Controls.Add(this.multiControlsVerticalLayout1);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(768, 278);
-            this.xtraTabPage1.Text = "控制图";
-            // 
-            // multiControlsVerticalLayout1
-            // 
-            this.multiControlsVerticalLayout1.AutoScroll = false;
-            this.multiControlsVerticalLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.multiControlsVerticalLayout1.Location = new System.Drawing.Point(0, 0);
-            this.multiControlsVerticalLayout1.Name = "multiControlsVerticalLayout1";
-            this.multiControlsVerticalLayout1.Size = new System.Drawing.Size(768, 278);
-            this.multiControlsVerticalLayout1.SizeChangeStep = 5;
-            this.multiControlsVerticalLayout1.TabIndex = 0;
             // 
             // xtraTabPage2
             // 
@@ -661,6 +491,23 @@
             this.multiControlsVerticalLayout2.Size = new System.Drawing.Size(768, 278);
             this.multiControlsVerticalLayout2.SizeChangeStep = 10;
             this.multiControlsVerticalLayout2.TabIndex = 0;
+            // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.multiControlsVerticalLayout1);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage1.Text = "控制图";
+            // 
+            // multiControlsVerticalLayout1
+            // 
+            this.multiControlsVerticalLayout1.AutoScroll = false;
+            this.multiControlsVerticalLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.multiControlsVerticalLayout1.Location = new System.Drawing.Point(0, 0);
+            this.multiControlsVerticalLayout1.Name = "multiControlsVerticalLayout1";
+            this.multiControlsVerticalLayout1.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout1.SizeChangeStep = 5;
+            this.multiControlsVerticalLayout1.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
@@ -701,7 +548,7 @@
             this.xtraTabPage6.Controls.Add(this.multiControlsVerticalLayout6);
             this.xtraTabPage6.Name = "xtraTabPage6";
             this.xtraTabPage6.Size = new System.Drawing.Size(768, 278);
-            this.xtraTabPage6.Text = "频谱分布";
+            this.xtraTabPage6.Text = "频度分布";
             // 
             // multiControlsVerticalLayout6
             // 
@@ -759,6 +606,16 @@
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
+            // customGroupStringBuilder1
+            // 
+            this.customGroupStringBuilder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customGroupStringBuilder1.Location = new System.Drawing.Point(0, 0);
+            this.customGroupStringBuilder1.Name = "customGroupStringBuilder1";
+            this.customGroupStringBuilder1.Size = new System.Drawing.Size(253, 213);
+            this.customGroupStringBuilder1.TabIndex = 0;
+            this.customGroupStringBuilder1.GroupStringDetermined += new System.EventHandler<SPC.Base.Control.CustomGroupStringBuilder.GroupStringDeterminedEventArgs>(this.customGroupStringBuilder1_GroupStringDetermined);
+            this.customGroupStringBuilder1.GroupStringCanceled += new System.EventHandler(this.customGroupStringBuilder1_GroupStringCanceled);
+            // 
             // MonitorControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -781,12 +638,6 @@
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popupContainerControl1)).EndInit();
             this.popupContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
-            this.panelControl4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.treeList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
@@ -797,9 +648,8 @@
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage5.ResumeLayout(false);
-            this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
+            this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
             this.xtraTabPage4.ResumeLayout(false);
             this.xtraTabPage6.ResumeLayout(false);
@@ -859,22 +709,12 @@
         private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout3;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
         private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout4;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
-        private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout5;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage6;
         private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout6;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private DevExpress.XtraEditors.PopupContainerControl popupContainerControl1;
-        private DevExpress.XtraTreeList.TreeList treeList1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private DevExpress.XtraEditors.PopupContainerEdit popUpEdit1;
-        private DevExpress.XtraEditors.PanelControl panelControl4;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn1;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn2;
-        private DevExpress.XtraTreeList.Columns.TreeListColumn treeListColumn3;
-        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
-        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox1;
+        private Base.Control.CustomGroupStringBuilder customGroupStringBuilder1;
 
 
     }

@@ -94,12 +94,12 @@
             this.chartControl1.TabIndex = 0;
             this.chartControl1.CustomDrawCrosshair += new DevExpress.XtraCharts.CustomDrawCrosshairEventHandler(this.chartControl1_CustomDrawCrosshair);
             // 
-            // DataControlViewChartControl
+            // DataControlDrawBoard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chartControl1);
-            this.Name = "DataControlViewChartControl";
+            this.Name = "DataControlDrawBoard";
             this.Size = new System.Drawing.Size(682, 334);
             ((System.ComponentModel.ISupportInitialize)(xyDiagramPane1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(swiftPlotDiagramSecondaryAxisY1)).EndInit();

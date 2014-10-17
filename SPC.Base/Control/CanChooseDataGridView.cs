@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Data;
 using System.Reflection;
+using SPC.Base.Operation;
 
 namespace SPC.Base.Control
 {
@@ -125,12 +126,16 @@ namespace SPC.Base.Control
         }
         public event EventHandler ChooseChanged;
         private ContextMenuStrip gridViewRightClickPopupMenu = new ContextMenuStrip();
+        private DevExpress.Utils.Menu.DXMenuItem GroupDetailConfigButton;
+        private Dictionary<DevExpress.XtraGrid.Columns.GridColumn,CustomGroupStringBuildForm> myGroupEditForms = new Dictionary<DevExpress.XtraGrid.Columns.GridColumn,CustomGroupStringBuildForm>();
         public CanChooseDataGridView():base()
         {
             this.AutoMode = true;
             this.AllowChooseGroup = true;
             this.AutoRefresh = true;
 
+            GroupDetailConfigButton = new DevExpress.Utils.Menu.DXMenuItem("GroupDetailConfig", GroupDetailConfigButtonClicked);
+            
             this.InitChooseRelationControls();
 
             this.DataSourceChanged -= DataSourceChangeEventMethod;
@@ -151,7 +156,127 @@ namespace SPC.Base.Control
 
             this.MouseDown -= MouseDownEventMethod;
             this.MouseDown += MouseDownEventMethod;
-            
+
+            this.PopupMenuShowing -= CanChooseDataGridView_PopupMenuShowing;
+            this.PopupMenuShowing += CanChooseDataGridView_PopupMenuShowing;
+
+
+        }
+
+        protected override void RaiseCustomColumnGroup(DevExpress.XtraGrid.Views.Base.CustomColumnSortEventArgs e)
+        {
+            CustomGroupStringBuildForm form;
+            if (myGroupEditForms.TryGetValue(e.Column, out form))
+            {
+                var format = form.Tag as List<Tuple<double, bool>>;
+                if (format != null)
+                {
+                    e.Result = Comparer<int>.Default.Compare(getIndexOfFormatBoarders(Convert.ToDouble(e.Value1), format), getIndexOfFormatBoarders(Convert.ToDouble(e.Value2), format));
+                    e.Handled = true;
+                }
+            }
+            base.RaiseCustomColumnGroup(e);
+        }
+        protected override void RaiseCustomColumnSort(DevExpress.XtraGrid.Views.Base.CustomColumnSortEventArgs e)
+        {
+            CustomGroupStringBuildForm form;
+            if (myGroupEditForms.TryGetValue(e.Column, out form))
+            {
+                var format = form.Tag as List<Tuple<double, bool>>;
+                if (format != null)
+                {
+                    e.Result = Comparer<int>.Default.Compare(getIndexOfFormatBoarders(Convert.ToDouble(e.Value1), format), getIndexOfFormatBoarders(Convert.ToDouble(e.Value2), format));
+                    e.Handled = true;
+                }
+            }
+            base.RaiseCustomColumnSort(e);
+        }
+        protected override void OnBeforeGrouping()
+        {
+            refreshGroupForms();
+            base.OnBeforeGrouping();
+        }
+        private void refreshGroupForms()
+        {
+            for(int i = this.myGroupEditForms.Count-1;i>=0;i--)
+            {
+                var key = myGroupEditForms.Keys.ElementAt(i);
+                if(!this.GroupedColumns.Contains(key))
+                {
+                    key.SortMode = DevExpress.XtraGrid.ColumnSortMode.Default;
+                    this.myGroupEditForms.Remove(key);
+                }
+            }
+        }
+        protected override void RaiseCustomDrawGroupRow(DevExpress.XtraGrid.Views.Base.RowObjectCustomDrawEventArgs e)
+        {
+            var info = e.Info as DevExpress.XtraGrid.Views.Grid.ViewInfo.GridGroupRowInfo;
+            if (info != null)
+            {
+                CustomGroupStringBuildForm form;
+                List<Tuple<double, bool>> format;
+                if (this.myGroupEditForms.TryGetValue(info.Column, out form) && (format = (form.Tag as List<Tuple<double, bool>>)) != null)
+                {
+                    string sumText = this.GetGroupSummaryText(info.RowHandle);
+                    string interval = "";
+                    int index = getIndexOfFormatBoarders(Convert.ToDouble(this.GetGroupRowValue(info.RowHandle)), format);
+                    if (index == 0)
+                        interval = " Value " + "<" + (format[index].Item2 ? "=" : "") + format[index].Item1;
+                    else if (index == format.Count)
+                        interval = format[index - 1].Item1 + "<" + (!format[index - 1].Item2 ? "=" : "") + " Value ";
+                    else
+                        interval = format[index - 1].Item1 + "<" + (!format[index - 1].Item2 ? "=" : "") + " Value " + "<" + (format[index].Item2 ? "=" : "") + format[index].Item1;
+                    info.GroupText = info.Column.FieldName + ": " + interval + " " + sumText;
+                }
+            }
+            base.RaiseCustomDrawGroupRow(e);
+        }
+        private int getIndexOfFormatBoarders(double input,List<Tuple<double,bool>> format)
+        {
+            int index = format.Count;
+            for (int i = 0; i < format.Count; i++)
+            {
+                if ((format[i].Item2 && Convert.ToDouble(input) <= format[i].Item1) || (!format[i].Item2 && Convert.ToDouble(input) < format[i].Item1))
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return index;
+        }
+        private void GroupDetailConfigButtonClicked(object sender,EventArgs e)
+        {
+            DevExpress.XtraGrid.Columns.GridColumn column = (sender as DevExpress.Utils.Menu.DXMenuItem).Tag as DevExpress.XtraGrid.Columns.GridColumn;
+            if(column==null)
+                return;
+            CustomGroupStringBuildForm form;
+            if(!this.myGroupEditForms.TryGetValue(column,out form))
+            {
+                form = new CustomGroupStringBuildForm();
+                form.StartPosition = FormStartPosition.WindowsDefaultLocation;
+                this.myGroupEditForms.Add(column,form);
+            }
+            if(form.ShowDialog()== DialogResult.Yes)
+            {
+                form.Tag = CustomGroupMaker.FormatBorder(form.result);
+                if (form.Tag == null)
+                    column.SortMode = DevExpress.XtraGrid.ColumnSortMode.Default;
+                else
+                    column.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom;
+                this.RefreshData();
+            }
+        }
+        private void CanChooseDataGridView_PopupMenuShowing(object sender, DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs e)
+        {
+            if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Column)
+            {
+                var col = this.CalcHitInfo(e.Point).Column;
+                if (col != null &&col.ColumnType!= typeof(string)&&col.ColumnType!=typeof(DateTime)&& col.GroupIndex >= 0)
+                {
+                    GroupDetailConfigButton.Tag = col;
+                    e.Menu.Items.Insert(7, GroupDetailConfigButton);
+                }
+            }
         }
         private void DataSourceChangeEventMethod(object sender,EventArgs e)
         {
@@ -199,6 +324,7 @@ namespace SPC.Base.Control
             //if (CurrentDataVector != null)
             //    CurrentDataVectorType.GetEvent(CurrentDataUpdateEventName).AddEventHandler(CurrentDataVector, new DataRowChangeEventHandler(DataValueChangedEventMethod));
         }
+
         private void GetDataVector(object target)
         {
             if(target==null)
@@ -329,7 +455,7 @@ namespace SPC.Base.Control
                     {
                         int start = this.GetDataRowHandleByGroupRowHandle(info.RowHandle);
                         int end = ((GroupSummaryDataType)this.GetGroupSummaryValue(info.RowHandle, GroupChooseNeedSummary)).end;
-                        int count = ((GroupSummaryDataType)this.GetGroupSummaryValue(info.RowHandle, GroupChooseNeedSummary)).count;
+                        int count = ((GroupSummaryDataType)this.GetGroupSummaryValue(info.RowHandle, GroupChooseNeedSummary)).choosecount;
                         if (count < end - start + 1)
                         {
                             this.BeginDataUpdate();
@@ -386,7 +512,7 @@ namespace SPC.Base.Control
                 var painter = repositoryCheck.CreatePainter() as DevExpress.XtraEditors.Drawing.CheckEditPainter;
                 int start = this.GetDataRowHandleByGroupRowHandle(e.RowHandle);
                 int end = ((GroupSummaryDataType)this.GetGroupSummaryValue(e.RowHandle,GroupChooseNeedSummary)).end;
-                int count = ((GroupSummaryDataType)this.GetGroupSummaryValue(e.RowHandle, GroupChooseNeedSummary)).count;
+                int count = ((GroupSummaryDataType)this.GetGroupSummaryValue(e.RowHandle, GroupChooseNeedSummary)).choosecount;
                 if (count == end - start + 1)
                     info.EditValue = true;
                 else if (count == 0)
@@ -403,6 +529,7 @@ namespace SPC.Base.Control
             e.Handled = true;
         }
         private int TotalCount = 0;
+        private int TempGroupChooseCount = 0;
         private int TempGroupCount = 0;
         private void ChooseSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
         {
@@ -410,15 +537,18 @@ namespace SPC.Base.Control
             {
                 if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Start)
                 {
+                    TempGroupChooseCount = 0;
                     TempGroupCount = 0;
                 }
-                else if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Calculate && Convert.ToBoolean(this.GetRowCellValue(e.RowHandle, ChooseColumnName)))
+                else if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Calculate)
                 {
                     TempGroupCount++;
+                    if(Convert.ToBoolean(this.GetRowCellValue(e.RowHandle, ChooseColumnName)))
+                        TempGroupChooseCount++;
                 }
                 else if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Finalize)
                 {
-                    e.TotalValue = new GroupSummaryDataType(TempGroupCount,e.RowHandle);
+                    e.TotalValue = new GroupSummaryDataType(TempGroupChooseCount,e.RowHandle,TempGroupCount);
                 }
             }
             else if(this.AllowChoose&&e.Item == this.ChooseNeedSummary)
@@ -440,16 +570,18 @@ namespace SPC.Base.Control
         }
         private struct GroupSummaryDataType
         {
-            public int count;
+            public int choosecount;
             public int end;
-            public GroupSummaryDataType(int c,int e)
+            public int count;
+            public GroupSummaryDataType(int cc,int e,int c)
             {
+                this.choosecount = cc;
                 this.count = c;
                 this.end = e;
             }
             public override string ToString()
             {
-                return count.ToString();
+                return choosecount.ToString()+"/"+count.ToString();
             }
         }
 

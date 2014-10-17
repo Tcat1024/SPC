@@ -34,8 +34,13 @@ namespace SPC.Monitor
             this.bindingNavigator1.Items.Insert(11,new ToolStripControlHost(this.textEdit1));
             this.bindingNavigator1.Items.Insert(13, new ToolStripControlHost(this.popUpEdit1));
             Colors = this.basicColorChart.GetPaletteEntries(MaxSeriesCount);
+            this.popUpEdit1.Properties.Mask.EditMask = "([0-9]*)|"+CustomGroupMaker.StandardMaskString;
+            this.popUpEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.popUpEdit1.Properties.Mask.ShowPlaceHolders = false;
             this.InitDrawBoads();
         }
+
+
         private object _DataSource;
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -334,19 +339,17 @@ namespace SPC.Monitor
                 this.SeriesManagers.Add(new SampleRunSeriesManager() { DrawBoard = this.DrawBoards[0] });
                 this.SeriesManagers.Add(new GroupAvgSeriesManager() { DrawBoard = this.DrawBoards[1] });
                 this.SeriesManagers.Add(new GroupRangeSeriesManager() { DrawBoard = this.DrawBoards[1] });
-                this.SeriesManagers.Add(new SampleRunSeriesManager() { DrawBoard = this.DrawBoards[2] });
-                this.SeriesManagers.Add(new GroupAvgDataRunSeriesManager() { DrawBoard = this.DrawBoards[3] });
-                this.SeriesManagers.Add(new SampleRunPointsManager() { DrawBoard = this.DrawBoards[3] });
-                this.SeriesManagers.Add(new NormalityCheckPointsManager() { DrawBoard = this.DrawBoards[4] });
-                this.SeriesManagers.Add(new SpectralDistributionPointsManager() { DrawBoard = this.DrawBoards[5] });
+                this.SeriesManagers.Add(new GroupAvgDataRunSeriesManager() { DrawBoard = this.DrawBoards[2] });
+                this.SeriesManagers.Add(new SampleRunPointsManager() { DrawBoard = this.DrawBoards[2] });
+                this.SeriesManagers.Add(new NormalityCheckPointsManager() { DrawBoard = this.DrawBoards[3] });
+                this.SeriesManagers.Add(new SpectralDistributionPointsManager() { DrawBoard = this.DrawBoards[4] });
             }        
         }
         //在此添加新绘版
         private void InitDrawBoads()
         {
-            this.DrawBoardTypes.Add(typeof(SampleDataRunPointDrawBoard));
-            this.DrawBoardTypes.Add(typeof(DataControlDrawBoard));
             this.DrawBoardTypes.Add(typeof(SampleDataRunDrawBoard));
+            this.DrawBoardTypes.Add(typeof(DataControlDrawBoard));
             this.DrawBoardTypes.Add(typeof(AvgDataRunDrawBoard));
             this.DrawBoardTypes.Add(typeof(NormalityCheckDrawBoard));
             this.DrawBoardTypes.Add(typeof(SpectralDistributionDrawBoard));
@@ -361,57 +364,19 @@ namespace SPC.Monitor
             this.panelControl1.Height = (int)(this.Size.Height * 0.5);
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
+        private void customGroupStringBuilder1_GroupStringDetermined(object sender, Base.Control.CustomGroupStringBuilder.GroupStringDeterminedEventArgs e)
         {
-            string result = "";
-            foreach( DevExpress.XtraTreeList.Nodes.TreeListNode node in this.treeList1.Nodes)
-            {
-                if(node[0]!=null&&node[1]!=null&&node[0].ToString().Trim()!=""&&node[1].ToString().Trim()!="")
-                {
-                    result += node[0].ToString() + node[1].ToString();
-                }
-            }
-            if (result.Trim() != "")
-                this.popUpEdit1.Text = result;
+            if (e.result.Trim() != "")
+                this.popUpEdit1.Text = e.result;
             else
                 this.popUpEdit1.Text = "0";
             this.popUpEdit1.ClosePopup();
         }
 
-        private void repositoryItemButtonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        private void customGroupStringBuilder1_GroupStringCanceled(object sender, EventArgs e)
         {
-            if(this.treeList1.Nodes.Count>1)
-            {
-                this.treeList1.Nodes.Remove(this.treeList1.FocusedNode);
-            }
-            else
-            {
-                this.treeList1.FocusedNode[0] = "";
-                this.treeList1.FocusedNode[1] = "";
-            }
+            this.popUpEdit1.ClosePopup();
         }
-
-        private void repositoryItemComboBox1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
-        {
-            if((e.OldValue==null||e.OldValue.ToString().Trim()=="")&&e.NewValue!=null&&e.NewValue.ToString().Trim()!="")
-                newNode = true;
-            newValue = e.NewValue;
-        }
-        private bool newNode=false;
-        private object newValue = null;
-        private void repositoryItemComboBox1_EditValueChanged(object sender, EventArgs e)
-        {
-            if (newNode)
-            {
-                var focused = this.treeList1.FocusedNode;
-                focused[0] = newValue;
-                this.treeList1.Nodes.Add("", "");
-                this.treeList1.FocusedNode = focused;
-                newNode = false;
-            }
-        }
-
-
     //    private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     //    {
     //        int index =this.listBoxControl1.SelectedIndex;

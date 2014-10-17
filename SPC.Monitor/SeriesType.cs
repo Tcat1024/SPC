@@ -625,7 +625,11 @@ namespace SPC.Monitor
                 {
                     width = max-min;
                     r = 1;
-                    result.X.Add(min + "-" + max);
+                    result.X.Add(min.ToString());
+                    result.Y.Add(count);
+                    result.X.Add(max.ToString());
+                    result.Y.Add(count);
+                    return result;
                 }
                 int[] y = new int[r];
                 for (int i = 0; i < view.DataRowCount; i++)
@@ -641,17 +645,17 @@ namespace SPC.Monitor
                         y[t<r?t:r-1]++;
                     }
                 }
-                for(int i = 0;i<r-1;i++)
+                for(int i = 0;i<r;i++)
                 {
-                    result.X.Add(string.Format("{0:F2}",(min+ i * width)) + "-" + string.Format("{0:F2}",(min + (i + 1) * width)));
+                    result.X.Add((min+ i * width).ToString());
                     result.Y.Add(y[i]);
                 }
-                result.X.Add(string.Format("{0:F2}",(min + (r - 1) * width)) + "-" + string.Format("{0:F2}",max));
-                result.Y.Add(y[r - 1]);
+                result.X.Add(max.ToString());
+                result.Y.Add(y[r-1]);
             }
             else
             {
-                var data = FormatBorder(spectrumWith);
+                var data = CustomGroupMaker.FormatBorder(spectrumWith);
                 int dcount = data.Count;
                 int[] y = new int[dcount+1];
                 for (int i = 0; i < view.DataRowCount; i++)
@@ -689,95 +693,26 @@ namespace SPC.Monitor
                         }
                     }
                 }
-                result.X.Add(" " + "<" + (data[0].Item2 ? "=" : "") + string.Format("{0:F2}", data[0].Item1));
+                //result.X.Add(" " + "<" + (data[0].Item2 ? "=" : "") + string.Format("{0:F2}", data[0].Item1));
+                //result.Y.Add(y[0]);
+                //for (int i = 1; i < dcount; i++)
+                //{
+                //    result.X.Add(string.Format("{0:F2}", data[i - 1].Item1) + "<" + (data[i - 1].Item2 ? "" : "=") + " " + "<" + (data[i].Item2 ? "=" : "") + string.Format("{0:F2}", data[i].Item1));
+                //    result.Y.Add(y[i]);
+                //}
+                //result.X.Add(string.Format("{0:F2}", data[dcount-1].Item1) + "<" + (data[dcount - 1].Item2 ? "" : "=")+ " ");
+                //result.Y.Add(y[dcount]);
+                result.X.Add(min.ToString());
                 result.Y.Add(y[0]);
-                for (int i = 1; i < dcount; i++)
+                for (int i = 1; i < dcount+1; i++)
                 {
-                    result.X.Add(string.Format("{0:F2}", data[i - 1].Item1) + "<" + (data[i - 1].Item2 ? "" : "=") + " " + "<" + (data[i].Item2 ? "=" : "") + string.Format("{0:F2}", data[i].Item1));
+                    result.X.Add(data[i - 1].Item1.ToString());
                     result.Y.Add(y[i]);
                 }
-                result.X.Add(string.Format("{0:F2}", data[dcount-1].Item1) + "<" + (data[dcount - 1].Item2 ? "" : "=")+ " ");
+                result.X.Add(max.ToString());
                 result.Y.Add(y[dcount]);
             }
             return result;
-        }
-        private List<Tuple<double,bool>> FormatBorder(string input)
-        {
-            List<Tuple<double, bool>> result = new List<Tuple<double, bool>>();
-            var tempresult = input.Split('<');
-            quickSort<string>(1, tempresult.Length - 1, tempresult, borderCompare);
-            if(tempresult[1][0]=='=')
-                result.Add(new Tuple<double,bool>(Convert.ToDouble(tempresult[1].Substring(1)),true));
-            else
-                result.Add(new Tuple<double, bool>(Convert.ToDouble(tempresult[1]), false));
-            for (int i = 2; i < tempresult.Length;i++)
-            {
-                if (tempresult[i] != tempresult[i - 1])
-                {
-                    if (tempresult[i][0] == '=')
-                        result.Add(new Tuple<double, bool>(Convert.ToDouble(tempresult[i].Substring(1)), true));
-                    else
-                        result.Add(new Tuple<double, bool>(Convert.ToDouble(tempresult[i]), false));
-                }
-            }
-            return result;
-        }
-        private bool borderCompare(string a,string b)
-        {
-            bool _a, _b;
-            double aa,bb;
-            if(a[0] == '=')
-            {
-                aa = Convert.ToDouble(a.Substring(1));
-                _a = true;
-            }
-            else
-            {
-                aa = Convert.ToDouble(a);
-                _a = false;
-            }
-            if (b[0] == '=')
-            {
-                bb = Convert.ToDouble(b.Substring(1));
-                _b = true;
-            }
-            else
-            {
-                bb = Convert.ToDouble(b);
-                _b = false;
-            }
-            if (aa > bb || (aa == bb && _a && !_b))
-                return true;
-            else
-                return false;
-        }
-        private void quickSort<T>(int start,int end,T[] data,Func<T,T,bool> compare)
-        {
-            if (start >= end)
-                return;
-            int i = start, j = end;
-            var temp = data[i];
-            while(i<j)
-            {
-                if(compare(temp,data[j]))
-                {
-                    data[i] = data[j];
-                    i++;
-                    while(i<j)
-                    {
-                        if(compare(data[i],temp))
-                        {
-                            data[j] = data[i];
-                            break;
-                        }
-                        i++;
-                    }
-                }
-                j--;
-            }
-            data[i] = temp;
-            quickSort<T>(start, i-1, data, compare);
-            quickSort<T>(i+1, end, data, compare);
         }
     }
     public class SpectralDistributionPointsDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
@@ -790,7 +725,12 @@ namespace SPC.Monitor
             Series = new DevExpress.XtraCharts.Series();
             Series.View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
             Series.View.Color = color;
-            Series.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            Series.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
+            Series.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            Series.Label.PointOptions.PointView = DevExpress.XtraCharts.PointView.Argument;
+            Series.Label.PointOptions.ArgumentNumericOptions.Format = DevExpress.XtraCharts.NumericFormat.Number;
+            Series.Label.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.JustifyAroundPoint;
+            Series.Label.TextOrientation = DevExpress.XtraCharts.TextOrientation.TopToBottom;
             DrawBoard.Series.Add(Series);
             Series.Points.BeginUpdate();
             Series.Points.Clear();
