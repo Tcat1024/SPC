@@ -69,12 +69,22 @@ namespace SPC.CPKtool
             this.repositoryItemComboBox3.Items.AddRange(new STDEVType[] { STDEVType.Std, STDEVType.Range });
             this.barEditItem4.EditValue = STDEVType.Std;
             this.barEditItem2.EditValue = 0;
-            this.Result.DataInitComplete += this.NewDataRefresh;
+            this.Result.DataInitComplete += Result_DataInitComplete;
             this.Result.ParamChanged += (sender,e) => { this.DrawData(); this.InitSD(); };
-            this.Result.ToleInitComplete += this.NewToleRefresh;
+            this.Result.ToleInitComplete += Result_ToleInitComplete;
             this.gridControl2.DataSource = this.DataBind;
             ResultBind.DataSource = this.Result;
             this.gridControl1.DataSource = this.ResultBind;
+        }
+
+        private void Result_ToleInitComplete(object sender, EventArgs e)
+        {
+            this.NewToleRefresh();
+        }
+
+        private void Result_DataInitComplete(object sender, EventArgs e)
+        {
+            this.NewDataRefresh();
         }
         private void CPKtoolControl_Load(object sender, EventArgs e)
         {

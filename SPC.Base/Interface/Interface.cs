@@ -62,7 +62,7 @@ namespace SPC.Base.Interface
     {
         BasicSeriesData Make(SourceDataType sourceData);
     }
-    public interface ISeriesDrawer<DrawBoardType>
+    public interface ISeriesDrawer<DrawBoardType>:IDisposable
     {
         void Draw(BasicSeriesData data, System.Drawing.Color color,DrawBoardType drawBoard);
         bool Clear();

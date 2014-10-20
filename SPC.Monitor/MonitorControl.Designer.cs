@@ -47,6 +47,7 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.popupContainerControl1 = new DevExpress.XtraEditors.PopupContainerControl();
+            this.customGroupStringBuilder1 = new SPC.Base.Control.CustomGroupStringBuilder();
             this.popUpEdit1 = new DevExpress.XtraEditors.PopupContainerEdit();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
@@ -65,21 +66,20 @@
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.multiControlsVerticalLayout2 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.multiControlsVerticalLayout1 = new SPC.Base.Control.MultiControlsVerticalLayout();
+            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.multiControlsVerticalLayout2 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.multiControlsVerticalLayout3 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.multiControlsVerticalLayout4 = new SPC.Base.Control.MultiControlsVerticalLayout();
-            this.xtraTabPage6 = new DevExpress.XtraTab.XtraTabPage();
-            this.multiControlsVerticalLayout6 = new SPC.Base.Control.MultiControlsVerticalLayout();
+            this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
+            this.multiControlsVerticalLayout5 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.customGroupStringBuilder1 = new SPC.Base.Control.CustomGroupStringBuilder();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -96,11 +96,11 @@
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
-            this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
+            this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
             this.xtraTabPage4.SuspendLayout();
-            this.xtraTabPage6.SuspendLayout();
+            this.xtraTabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
@@ -207,7 +207,7 @@
             this.standaloneBarDockControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl2.Location = new System.Drawing.Point(2, 2);
             this.standaloneBarDockControl2.Name = "standaloneBarDockControl2";
-            this.standaloneBarDockControl2.Size = new System.Drawing.Size(98, 32);
+            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 32);
             this.standaloneBarDockControl2.Text = "standaloneBarDockControl2";
             // 
             // barDockControlTop
@@ -283,6 +283,16 @@
             this.popupContainerControl1.Name = "popupContainerControl1";
             this.popupContainerControl1.Size = new System.Drawing.Size(253, 213);
             this.popupContainerControl1.TabIndex = 14;
+            // 
+            // customGroupStringBuilder1
+            // 
+            this.customGroupStringBuilder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.customGroupStringBuilder1.Location = new System.Drawing.Point(0, 0);
+            this.customGroupStringBuilder1.Name = "customGroupStringBuilder1";
+            this.customGroupStringBuilder1.Size = new System.Drawing.Size(253, 213);
+            this.customGroupStringBuilder1.TabIndex = 0;
+            this.customGroupStringBuilder1.GroupStringDetermined += new System.EventHandler<SPC.Base.Control.CustomGroupStringBuilder.GroupStringDeterminedEventArgs>(this.customGroupStringBuilder1_GroupStringDetermined);
+            this.customGroupStringBuilder1.GroupStringCanceled += new System.EventHandler(this.customGroupStringBuilder1_GroupStringCanceled);
             // 
             // popUpEdit1
             // 
@@ -465,39 +475,22 @@
             this.xtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom;
             this.xtraTabControl1.Location = new System.Drawing.Point(159, 2);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage2;
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
             this.xtraTabControl1.Size = new System.Drawing.Size(774, 310);
             this.xtraTabControl1.TabIndex = 14;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage2,
             this.xtraTabPage1,
+            this.xtraTabPage2,
             this.xtraTabPage3,
             this.xtraTabPage4,
-            this.xtraTabPage6});
-            // 
-            // xtraTabPage2
-            // 
-            this.xtraTabPage2.Controls.Add(this.multiControlsVerticalLayout2);
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(768, 278);
-            this.xtraTabPage2.Text = "样本运行图";
-            // 
-            // multiControlsVerticalLayout2
-            // 
-            this.multiControlsVerticalLayout2.AutoScroll = false;
-            this.multiControlsVerticalLayout2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.multiControlsVerticalLayout2.Location = new System.Drawing.Point(0, 0);
-            this.multiControlsVerticalLayout2.Name = "multiControlsVerticalLayout2";
-            this.multiControlsVerticalLayout2.Size = new System.Drawing.Size(768, 278);
-            this.multiControlsVerticalLayout2.SizeChangeStep = 10;
-            this.multiControlsVerticalLayout2.TabIndex = 0;
+            this.xtraTabPage5});
             // 
             // xtraTabPage1
             // 
             this.xtraTabPage1.Controls.Add(this.multiControlsVerticalLayout1);
             this.xtraTabPage1.Name = "xtraTabPage1";
             this.xtraTabPage1.Size = new System.Drawing.Size(768, 278);
-            this.xtraTabPage1.Text = "控制图";
+            this.xtraTabPage1.Text = "样本运行图";
             // 
             // multiControlsVerticalLayout1
             // 
@@ -506,8 +499,25 @@
             this.multiControlsVerticalLayout1.Location = new System.Drawing.Point(0, 0);
             this.multiControlsVerticalLayout1.Name = "multiControlsVerticalLayout1";
             this.multiControlsVerticalLayout1.Size = new System.Drawing.Size(768, 278);
-            this.multiControlsVerticalLayout1.SizeChangeStep = 5;
+            this.multiControlsVerticalLayout1.SizeChangeStep = 10;
             this.multiControlsVerticalLayout1.TabIndex = 0;
+            // 
+            // xtraTabPage2
+            // 
+            this.xtraTabPage2.Controls.Add(this.multiControlsVerticalLayout2);
+            this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage2.Text = "控制图";
+            // 
+            // multiControlsVerticalLayout2
+            // 
+            this.multiControlsVerticalLayout2.AutoScroll = false;
+            this.multiControlsVerticalLayout2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.multiControlsVerticalLayout2.Location = new System.Drawing.Point(0, 0);
+            this.multiControlsVerticalLayout2.Name = "multiControlsVerticalLayout2";
+            this.multiControlsVerticalLayout2.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout2.SizeChangeStep = 5;
+            this.multiControlsVerticalLayout2.TabIndex = 0;
             // 
             // xtraTabPage3
             // 
@@ -543,22 +553,22 @@
             this.multiControlsVerticalLayout4.SizeChangeStep = 10;
             this.multiControlsVerticalLayout4.TabIndex = 0;
             // 
-            // xtraTabPage6
+            // xtraTabPage5
             // 
-            this.xtraTabPage6.Controls.Add(this.multiControlsVerticalLayout6);
-            this.xtraTabPage6.Name = "xtraTabPage6";
-            this.xtraTabPage6.Size = new System.Drawing.Size(768, 278);
-            this.xtraTabPage6.Text = "频度分布";
+            this.xtraTabPage5.Controls.Add(this.multiControlsVerticalLayout5);
+            this.xtraTabPage5.Name = "xtraTabPage5";
+            this.xtraTabPage5.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage5.Text = "频度分布";
             // 
-            // multiControlsVerticalLayout6
+            // multiControlsVerticalLayout5
             // 
-            this.multiControlsVerticalLayout6.AutoScroll = false;
-            this.multiControlsVerticalLayout6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.multiControlsVerticalLayout6.Location = new System.Drawing.Point(0, 0);
-            this.multiControlsVerticalLayout6.Name = "multiControlsVerticalLayout6";
-            this.multiControlsVerticalLayout6.Size = new System.Drawing.Size(768, 278);
-            this.multiControlsVerticalLayout6.SizeChangeStep = 50;
-            this.multiControlsVerticalLayout6.TabIndex = 0;
+            this.multiControlsVerticalLayout5.AutoScroll = false;
+            this.multiControlsVerticalLayout5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.multiControlsVerticalLayout5.Location = new System.Drawing.Point(0, 0);
+            this.multiControlsVerticalLayout5.Name = "multiControlsVerticalLayout5";
+            this.multiControlsVerticalLayout5.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout5.SizeChangeStep = 50;
+            this.multiControlsVerticalLayout5.TabIndex = 0;
             // 
             // panelControl3
             // 
@@ -606,16 +616,6 @@
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
-            // customGroupStringBuilder1
-            // 
-            this.customGroupStringBuilder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customGroupStringBuilder1.Location = new System.Drawing.Point(0, 0);
-            this.customGroupStringBuilder1.Name = "customGroupStringBuilder1";
-            this.customGroupStringBuilder1.Size = new System.Drawing.Size(253, 213);
-            this.customGroupStringBuilder1.TabIndex = 0;
-            this.customGroupStringBuilder1.GroupStringDetermined += new System.EventHandler<SPC.Base.Control.CustomGroupStringBuilder.GroupStringDeterminedEventArgs>(this.customGroupStringBuilder1_GroupStringDetermined);
-            this.customGroupStringBuilder1.GroupStringCanceled += new System.EventHandler(this.customGroupStringBuilder1_GroupStringCanceled);
-            // 
             // MonitorControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -648,11 +648,11 @@
             this.panelControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
             this.xtraTabControl1.ResumeLayout(false);
-            this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
+            this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
             this.xtraTabPage4.ResumeLayout(false);
-            this.xtraTabPage6.ResumeLayout(false);
+            this.xtraTabPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
@@ -701,16 +701,16 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
         private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout2;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout3;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
         private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout4;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage6;
-        private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout6;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
+        private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout5;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private DevExpress.XtraEditors.PopupContainerControl popupContainerControl1;
         private DevExpress.XtraEditors.PopupContainerEdit popUpEdit1;

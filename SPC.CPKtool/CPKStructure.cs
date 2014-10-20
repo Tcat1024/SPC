@@ -227,8 +227,8 @@ namespace SPC.CPKtool
         public event EventHandler<PropertyChangeEventArgs> ParamChanging;
         public event EventHandler<PropertyChangeEventArgs> ToleChanging;
         public event EventHandler<PropertyChangeEventArgs> GroupChanging;
-        public event Action DataInitComplete;
-        public event Action ToleInitComplete;
+        public event EventHandler DataInitComplete;
+        public event EventHandler ToleInitComplete;
         //Constructors
         public CPKData(T data, string param)
         {
@@ -248,7 +248,7 @@ namespace SPC.CPKtool
             {
                 if (this.GetBasicStat())
                 {
-                    this.DataInitComplete();
+                    this.DataInitComplete(this,new EventArgs());
                     this.RefreshTole();
                 }
             }
@@ -260,7 +260,7 @@ namespace SPC.CPKtool
                 this.GetStdLt();
                 this.GetOffset();
                 this.GetSpOffset();
-                this.ToleInitComplete();
+                this.ToleInitComplete(this,new EventArgs());
             }
         }
         public void InitCount()

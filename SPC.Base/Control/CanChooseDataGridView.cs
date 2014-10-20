@@ -160,7 +160,6 @@ namespace SPC.Base.Control
             this.PopupMenuShowing -= CanChooseDataGridView_PopupMenuShowing;
             this.PopupMenuShowing += CanChooseDataGridView_PopupMenuShowing;
 
-
         }
 
         protected override void RaiseCustomColumnGroup(DevExpress.XtraGrid.Views.Base.CustomColumnSortEventArgs e)
@@ -298,15 +297,41 @@ namespace SPC.Base.Control
                     if(temp.Summary.IndexOf(ChooseNeedSummary)<0)
                         temp.Summary.Add(ChooseNeedSummary);
                 }
-                else if (!this.AutoMode)
+                else if (this.AutoMode)
                 {
-                    var choosecolumn = new DevExpress.XtraGrid.Columns.GridColumn();
-                    choosecolumn.Name = ChooseColumnName;
-                    choosecolumn.FieldName = ChooseColumnName;
-                    choosecolumn.VisibleIndex = 0;
-                    choosecolumn.OptionsColumn.AllowEdit = false;
-                    this.Columns.Insert(0, choosecolumn);
-                    choosecolumn.Summary.Add(ChooseNeedSummary);
+                    DataTable table;
+                    object source = this.DataSource;
+                    while(!(source is DataTable))
+                    {
+                        if (source is BindingSource)
+                        {
+                            var bs = (source as BindingSource);
+                            if (bs.DataSource is DataSet)
+                            {
+                                source = (bs.DataSource as DataSet).Tables[bs.DataMember];
+                            }
+                            else
+                            {
+                                source = bs.DataSource;
+                            }
+                        }
+                        else
+                            return;
+                    }
+                    table = source as DataTable;
+                    if (table != null)
+                    {
+                        var nc = table.Columns.Add(ChooseColumnName, typeof(bool));
+                        for(int i=0;i<table.Rows.Count;i++)
+                            table.Rows[i][ChooseColumnName] = true;
+                        var choosecolumn = new DevExpress.XtraGrid.Columns.GridColumn();
+                        choosecolumn.Name = ChooseColumnName;
+                        choosecolumn.FieldName = ChooseColumnName;
+                        choosecolumn.VisibleIndex = 0;
+                        choosecolumn.OptionsColumn.AllowEdit = false;
+                        this.Columns.Insert(0, choosecolumn);
+                        choosecolumn.Summary.Add(ChooseNeedSummary);
+                    }
                 }
             }
             if (AllowChooseGroup && this.GroupSummary.IndexOf(GroupChooseNeedSummary) < 0)

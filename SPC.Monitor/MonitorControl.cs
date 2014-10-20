@@ -39,7 +39,19 @@ namespace SPC.Monitor
             this.popUpEdit1.Properties.Mask.ShowPlaceHolders = false;
             this.InitDrawBoads();
         }
-
+        private int _SelectedTabPageIndex = 0;
+        public int SelectedTabPageIndex
+        {
+            get
+            {
+                return this._SelectedTabPageIndex;
+            }
+            set
+            {
+                this._SelectedTabPageIndex = value;
+                this.xtraTabControl1.SelectedTabPageIndex = value;
+            }
+        }
 
         private object _DataSource;
         [Category("Data")]
@@ -90,16 +102,16 @@ namespace SPC.Monitor
                 MessageBox.Show("数据集为空");
                 return;
             }
-            if (!this.Data.Columns.Contains(ChooseColumnName))
-            {
-                var choosecolumn = new DataColumn(ChooseColumnName, typeof(bool));
-                this.Data.Columns.Add(choosecolumn);
-            }
-            int co = this.Data.Rows.Count;
-            for (int i = 0; i < co; i++)
-            {
-                this.Data.Rows[i][ChooseColumnName] = true;
-            }
+            //if (!this.Data.Columns.Contains(ChooseColumnName))
+            //{
+            //    var choosecolumn = new DataColumn(ChooseColumnName, typeof(string));
+            //    this.Data.Columns.Add(choosecolumn);
+            //}
+            //int co = this.Data.Rows.Count;
+            //for (int i = 0; i < co; i++)
+            //{
+            //    this.Data.Rows[i][ChooseColumnName] = true;
+            //}
             this.gridView1.Columns.Clear();
             this.DataBind.DataSource = this.Data;
         }

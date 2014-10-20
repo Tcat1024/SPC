@@ -246,7 +246,7 @@ namespace SPC.Base.Operation
         }
         public static decimal GetP(double b)
         {
-            if (b == double.NaN)
+            if (double.IsNaN(b))
                 throw new Exception("正态分布输入数据错误，为\""+b.ToString()+"\"");
             int S = 2;
             double Q = 0;

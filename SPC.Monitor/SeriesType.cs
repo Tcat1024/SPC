@@ -125,6 +125,11 @@ namespace SPC.Monitor
             else
                 return false;
         }
+
+        public void Dispose()
+        {
+            Series.Dispose();
+        }
     }
     public class GroupAvgSeriesManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
     {
@@ -268,6 +273,11 @@ namespace SPC.Monitor
             else
                 return false;
         }
+
+        public void Dispose()
+        {
+            this.Series.Dispose();
+        }
     }
     public class GroupRangeSeriesManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
     {
@@ -339,6 +349,11 @@ namespace SPC.Monitor
             else
                 return false;
         }
+
+        public void Dispose()
+        {
+            this.Series.Dispose();
+        }
     }
     public class SampleRunSeriesManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
     {
@@ -380,6 +395,11 @@ namespace SPC.Monitor
                 return true;
             else
                 return false;
+        }
+
+        public void Dispose()
+        {
+            this.Series.Dispose();
         }
     }
     public class GroupAvgDataRunSeriesManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -499,6 +519,11 @@ namespace SPC.Monitor
             else
                 return false;
         }
+
+        public void Dispose()
+        {
+            this.Series.Dispose();
+        }
     }
     public class SampleRunPointsManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
     {
@@ -572,6 +597,11 @@ namespace SPC.Monitor
                 return true;
             else
                 return false;
+        }
+
+        public void Dispose()
+        {
+            this.Series.Dispose();
         }
     }
     public class NormalityCheckPointsManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -749,6 +779,11 @@ namespace SPC.Monitor
                 return true;
             else
                 return false;
+        }
+
+        public void Dispose()
+        {
+            this.Series.Dispose();
         }
     }
     public class SpectralDistributionPointsManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
