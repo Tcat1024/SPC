@@ -20,23 +20,20 @@ namespace SPC.Base.Control
             {
                 if (value == null)
                     this.Cursor = System.Windows.Forms.Cursors.Arrow;
-                else if (value.Name == "X")
-                    this.Cursor = System.Windows.Forms.Cursors.SizeWE;
                 else if (value.Name == "Y")
                     this.Cursor = System.Windows.Forms.Cursors.SizeNS;
                 this._targetLine = value;
             }
         }
-        private DevExpress.XtraCharts.CrosshairElement currentElement;
+        private bool Inited = false;
         private DevExpress.XtraBars.PopupMenu RightClickPopupMenu = new DevExpress.XtraBars.PopupMenu();
         private DevExpress.XtraBars.BarEditItem popupMenuEditItem = new DevExpress.XtraBars.BarEditItem();
         private DevExpress.XtraBars.BarButtonItem popupMenuButtonItem = new DevExpress.XtraBars.BarButtonItem();
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit popupMenuTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
         private DevExpress.XtraCharts.ConstantLine upLine = new DevExpress.XtraCharts.ConstantLine() {Name = "Y",Visible = false};
         private DevExpress.XtraCharts.ConstantLine downLine = new DevExpress.XtraCharts.ConstantLine() { Name = "Y", Visible = false };
-        private DevExpress.XtraCharts.ConstantLine leftLine = new DevExpress.XtraCharts.ConstantLine() { Name = "X", Visible = false };
-        private DevExpress.XtraCharts.ConstantLine rightLine = new DevExpress.XtraCharts.ConstantLine() { Name = "Y", Visible = false };
-        private DevExpress.XtraCharts.Strip XStrip = new DevExpress.XtraCharts.Strip() { Visible = false};
-        private DevExpress.XtraCharts.Strip YStrip = new DevExpress.XtraCharts.Strip() { Visible = false };
+        private DevExpress.XtraCharts.ConstantLineCollection yLineCollection;
+        private DevExpress.XtraBars.BarManager mybarmanager = new DevExpress.XtraBars.BarManager();
 
         public event EventHandler<ShowRightClickPopupMenuEventArgs> CustomShowRightClickPopupMenu;
         public class ShowRightClickPopupMenuEventArgs:EventArgs
@@ -55,195 +52,233 @@ namespace SPC.Base.Control
         public AdvChartControl()
         {
             InitializeComponent();
-            InitConstantLines();
             InitPopupMenu();
+            popupMenuButtonItem.ItemClick += popupMenuButtonItem_ItemClick;
+            popupMenuEditItem.EditValueChanged += popupMenuEditItem_EditValueChanged;
+            this.RuntimeHitTesting = true;
+            this.RightClickPopupMenu.Manager = mybarmanager;
+            this.popupMenuEditItem.Edit = this.popupMenuTextEdit;
+            this.mybarmanager.Form = this;
+        }
+        private void popupMenuEditItem_EditValueChanged(object sender, EventArgs e)
+        {
+            var t = ((sender as DevExpress.XtraBars.BarEditItem).Tag as DevExpress.XtraCharts.ConstantLine);
+            string s = (sender as DevExpress.XtraBars.BarEditItem).EditValue.ToString();
+            if (t!=null&&t.Name == "Y")
+            {
+                t.AxisValue = s;
+                t.Title.Text = t.AxisValue.ToString();
+            }
         }
         private void InitPopupMenu()
         {
             this.RightClickPopupMenu.ClearLinks();
         }
-        private void InitConstantLines()
+        public void Init()
         {
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisX.ConstantLines.Add(leftLine);
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisX.ConstantLines.Add(rightLine);
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisY.ConstantLines.Add(upLine);
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisY.ConstantLines.Add(downLine);
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisX.Strips.Add(XStrip);
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisY.Strips.Add(YStrip);
+            if (this.Diagram is DevExpress.XtraCharts.XYDiagram)
+                this.yLineCollection = (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisY.ConstantLines;
+            else
+                this.yLineCollection = (this.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisY.ConstantLines;
+            yLineCollection.AddRange(new DevExpress.XtraCharts.ConstantLine[]{upLine,downLine});
+            this.Inited = true;
+        }
+        private void popupMenuButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            (e.Item.Tag as DevExpress.XtraCharts.ConstantLine).Visible = false;
         }
         protected override void OnMouseDown(System.Windows.Forms.MouseEventArgs e)
         {
-            if (this.Series.Count > 0)
+            base.OnMouseDown(e);
+            if (!DesignMode&&Inited)
             {
-                var info = this.CalcHitInfo(e.Location);
-                if (info.Diagram != null)
+                if (this.Series.Count > 0)
                 {
-                    string x = this.currentElement.SeriesPoint.Argument;
-                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                    var info = this.CalcHitInfo(e.Location);
+                    if (info.Diagram != null)
                     {
-                        if (info.InConstantLine && info.ConstantLine.Title.Visible)
+                        if (e.Button == System.Windows.Forms.MouseButtons.Left && info.InConstantLine)
                         {
                             this.targetLine = info.ConstantLine;
                         }
-                        else if ( !leftLine.Visible&& !rightLine.Visible)
+                        else if (e.Button == System.Windows.Forms.MouseButtons.Right)
                         {
-                            leftLine.AxisValue = x;
-                            leftLine.Title.Text = leftLine.AxisValue.ToString();
-                            this.targetLine = leftLine;
-                            leftLine.Visible = true;
-                        }
-                        else if (!rightLine.Visible || !leftLine.Visible)
-                        {
-                            var temp = rightLine.Visible ? leftLine : rightLine;
-                            temp.AxisValue = x;
-                            temp.Title.Text = temp.AxisValue.ToString();
-                            this.targetLine = temp;
-                            temp.Visible = true;
-                            RefreshXStrip();
+                            InitPopupMenu();
+                            if (info.InConstantLine && info.ConstantLine.Visible)
+                            {
+                                popupMenuEditItem.Caption = info.ConstantLine.Name + "轴边界";
+                                popupMenuEditItem.EditValue = info.ConstantLine.AxisValue;
+                                popupMenuEditItem.Tag = info.ConstantLine;
+                                this.RightClickPopupMenu.AddItem(popupMenuEditItem);
+                                popupMenuButtonItem.Tag = info.ConstantLine;
+                                popupMenuButtonItem.Caption = "删除" + info.ConstantLine.Name + "轴边界";
+                                this.RightClickPopupMenu.AddItem(popupMenuButtonItem);
+                                var eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, info.ConstantLine, true);
+                                CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
+                                if (eventarg.Handle)
+                                    this.RightClickPopupMenu.ShowPopup(MousePosition);
+                                //InitPopupMenu();
+                            }
+                            else
+                            {
+                                var eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, null, false);
+                                CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
+                                if (eventarg.Handle)
+                                    this.RightClickPopupMenu.ShowPopup(MousePosition);
+                                //InitPopupMenu();
+                            }
                         }
                     }
-                    else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                    else
                     {
-                        if (info.InConstantLine && info.ConstantLine.Visible && info.ConstantLine.Title.Visible)
+                        if (this.Diagram is DevExpress.XtraCharts.XYDiagram)
                         {
-                            this.RightClickPopupMenu.AddItem(popupMenuEditItem);
-                            this.RightClickPopupMenu.AddItem(popupMenuButtonItem);
-                            popupMenuEditItem.Caption = info.ConstantLine.Name + "轴边界";
-                            popupMenuEditItem.EditValue = info.ConstantLine.AxisValue;
-                            popupMenuEditItem.Tag = info.ConstantLine;
-                            popupMenuButtonItem.Tag = info.ConstantLine;
-                            popupMenuButtonItem.Caption = "删除" + info.ConstantLine.Name + "轴边界";
-                            var eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu,info.ConstantLine,true);
-                            CustomShowRightClickPopupMenu(RightClickPopupMenu,eventarg);
-                            if(eventarg.Handle)
-                                this.RightClickPopupMenu.ShowPopup(MousePosition);
-                            InitPopupMenu();
+                            var yInfo = (this.Diagram as DevExpress.XtraCharts.XYDiagram).PointToDiagram(new System.Drawing.Point(this.Width/2, e.Y));
+                            if (yInfo.AxisY != null)
+                            {
+                                double y = yInfo.NumericalValue;
+                                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                                {
+                                    if (!downLine.Visible && !upLine.Visible)
+                                    {
+                                        downLine.AxisValue = y;
+                                        downLine.Title.Text = String.Format("{0:N3}", downLine.AxisValue); ;
+                                        this.targetLine = downLine;
+                                        downLine.Visible = true;
+                                    }
+                                    else if (!upLine.Visible || !downLine.Visible)
+                                    {
+                                        var temp = upLine.Visible ? downLine : upLine;
+                                        temp.AxisValue = y;
+                                        temp.Title.Text = String.Format("{0:N3}", temp.AxisValue);
+                                        this.targetLine = temp;
+                                        temp.Visible = true;
+                                    }
+                                }
+                            }
                         }
                         else
                         {
-                            var eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, null, false);
-                            CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
-                            if (eventarg.Handle)
-                                this.RightClickPopupMenu.ShowPopup(MousePosition);
-                            InitPopupMenu();
-                        }
-                    }
-                }
-                else
-                {
-                    var yInfo = (this.Diagram as DevExpress.XtraCharts.XYDiagram).PointToDiagram(new System.Drawing.Point(35, e.Y));
-                    if (yInfo.AxisY != null)
-                    {
-                        double y = yInfo.NumericalValue;
-                        if (e.Button == System.Windows.Forms.MouseButtons.Left)
-                        {
-                            if (!downLine.Visible && !upLine.Visible)
+                            var yInfo = (this.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).PointToDiagram(new System.Drawing.Point(this.Width/2, e.Y));
+                            if (yInfo.AxisY != null)
                             {
-                                downLine.AxisValue = y;
-                                downLine.Title.Text = downLine.AxisValue.ToString();
-                                this.targetLine = downLine;
-                                downLine.Visible = true;
-                            }
-                            else if (!upLine.Visible || !downLine.Visible)
-                            {
-                                var temp = upLine.Visible ? downLine : upLine;
-                                temp.AxisValue = y;
-                                temp.Title.Text = temp.AxisValue.ToString();
-                                this.targetLine = temp;
-                                temp.Visible = true;
-                                RefreshYStrip();
+                                double y = yInfo.NumericalValue;
+                                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                                {
+                                    if (!downLine.Visible && !upLine.Visible)
+                                    {
+                                        downLine.AxisValue = y;
+                                        downLine.Title.Text = downLine.AxisValue.ToString();
+                                        this.targetLine = downLine;
+                                        downLine.Visible = true;
+                                    }
+                                    else if (!upLine.Visible || !downLine.Visible)
+                                    {
+                                        var temp = upLine.Visible ? downLine : upLine;
+                                        temp.AxisValue = y;
+                                        temp.Title.Text = temp.AxisValue.ToString();
+                                        this.targetLine = temp;
+                                        temp.Visible = true;
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
-            base.OnMouseDown(e);
         }
         protected override void OnMouseUp(System.Windows.Forms.MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left && this.targetLine != null)
-            {
-                var info = (this.Diagram as DevExpress.XtraCharts.XYDiagram).PointToDiagram(e.Location);
-                if (targetLine.Name == "X" && !info.IsEmpty && targetLine.AxisValue.ToString() != this.currentElement.SeriesPoint.Argument)
-                {
-                    targetLine.AxisValue = this.currentElement.SeriesPoint.Argument;
-                    targetLine.Title.Text = targetLine.AxisValue.ToString();
-                    RefreshXStrip();
-                }
-                else if (targetLine.Name == "Y" && !info.IsEmpty && Convert.ToDouble(targetLine.AxisValue) != info.NumericalValue)
-                {
-                    targetLine.AxisValue = info.NumericalValue;
-                    targetLine.Title.Text = targetLine.AxisValue.ToString();
-                    RefreshYStrip();
-                }
-            }
-            this.targetLine = null;
             base.OnMouseUp(e);
+            if (!DesignMode && Inited)
+            {
+                if (this.targetLine != null)
+                {
+                    if (this.Diagram is DevExpress.XtraCharts.XYDiagram)
+                    {
+                        var info = (this.Diagram as DevExpress.XtraCharts.XYDiagram).PointToDiagram(e.Location);
+                        if (targetLine.Name == "Y" && !info.IsEmpty)
+                        {
+                            targetLine.AxisValue = info.NumericalValue;
+                            targetLine.Title.Text = String.Format("{0:N3}", targetLine.AxisValue);
+                        }
+                    }
+                    else
+                    {
+                        var info = (this.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).PointToDiagram(e.Location);
+                        if (targetLine.Name == "Y" && !info.IsEmpty)
+                        {
+                            targetLine.AxisValue = info.NumericalValue;
+                            targetLine.Title.Text = String.Format("{0:N3}", targetLine.AxisValue);
+                        }
+                    }
+                }
+                this.targetLine = null;
+            }
         }
+        private int lastY = 0;
         protected override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
         {
-            if (this.targetLine == null)
-                this.Cursor = System.Windows.Forms.Cursors.Arrow;
-            if (this.Series.Count > 0)
-            {
-                var info = this.CalcHitInfo(e.Location);
-                if (info.ConstantLine != null && info.ConstantLine.Title.Visible && info.ConstantLine.Name == "X")
-                {
-                    this.Cursor = System.Windows.Forms.Cursors.SizeWE;
-                }
-                else if (info.ConstantLine != null && info.ConstantLine.Title.Visible && info.ConstantLine.Name == "Y")
-                {
-                    this.Cursor = System.Windows.Forms.Cursors.SizeNS;
-                }
-            }
             base.OnMouseMove(e);
-        }
-        private void RefreshXStrip()
-        {
-            if (leftLine.Visible && rightLine.Visible)
+            if (!DesignMode && Inited)
             {
-                if (int.Parse(leftLine.AxisValue.ToString()) < int.Parse(rightLine.AxisValue.ToString()))
+                if (this.targetLine == null)
+                    this.Cursor = System.Windows.Forms.Cursors.Arrow;
+                if (this.Series.Count > 0)
                 {
-                    XStrip.MaxLimit.AxisValue = rightLine.AxisValue;
-                    XStrip.MinLimit.AxisValue = leftLine.AxisValue;
+                    var info = this.CalcHitInfo(e.Location);
+                    if (info.ConstantLine != null && info.ConstantLine.Name == "Y")
+                    {
+                        this.Cursor = System.Windows.Forms.Cursors.SizeNS;
+                    }
                 }
-                else
+                if (this.targetLine != null&&Math.Abs(lastY-e.Y)<3)
                 {
-                    XStrip.MaxLimit.AxisValue = leftLine.AxisValue;
-                    XStrip.MinLimit.AxisValue = rightLine.AxisValue;
+                    if (this.Diagram is DevExpress.XtraCharts.XYDiagram)
+                    {
+                        var info = (this.Diagram as DevExpress.XtraCharts.XYDiagram).PointToDiagram(e.Location);
+                        if (targetLine.Name == "Y" && !info.IsEmpty)
+                        {
+                            targetLine.AxisValue = info.NumericalValue;
+                            targetLine.Title.Text = String.Format("{0:N3}", targetLine.AxisValue);
+                        }
+                    }
+                    else
+                    {
+                        var info = (this.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).PointToDiagram(e.Location);
+                        if (targetLine.Name == "Y" && !info.IsEmpty)
+                        {
+                            targetLine.AxisValue = info.NumericalValue;
+                            targetLine.Title.Text = String.Format("{0:N3}", targetLine.AxisValue);
+                        }
+                    }
                 }
-                XStrip.Visible = true;
+                
+            }
+            lastY = e.Y;
+        }
+        public new DevExpress.XtraCharts.Diagram Diagram
+        {
+            get { return base.Diagram; }
+            set { base.Diagram = value; this.Init(); }
+        }
+    }
+    public static class AddExtention
+    {
+        public static int Add(this DevExpress.XtraCharts.ConstantLineCollection col,DevExpress.XtraCharts.ConstantLine target)
+        {
+            int result;
+            if(col.Count>0&&(col[col.Count].Name=="X"))
+            {
+                DevExpress.XtraCharts.ConstantLine[] temp = new DevExpress.XtraCharts.ConstantLine[] { col[col.Count - 1], col[col.Count] };
+                col.RemoveAt(col.Count);
+                col.RemoveAt(col.Count - 1);
+                result = col.Add(target);
+                col.AddRange(temp);
             }
             else
-                XStrip.Visible = false;
-        }
-        private void RefreshYStrip()
-        {
-            if (downLine.Visible && upLine.Visible)
-            {
-                if (Convert.ToDouble(downLine.AxisValue) < Convert.ToDouble(upLine.AxisValue))
-                {
-                    YStrip.MaxLimit.AxisValue = upLine.AxisValue;
-                    YStrip.MinLimit.AxisValue = downLine.AxisValue;
-                }
-                else
-                {
-                    YStrip.MaxLimit.AxisValue = downLine.AxisValue;
-                    YStrip.MinLimit.AxisValue = upLine.AxisValue;
-                }
-                YStrip.Visible = true;
-            }
-            else
-                YStrip.Visible = false;
-        }
-        public void ClearBound()
-        {
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisX.Strips[0].Visible = false;
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisY.Strips[0].Visible = false;
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisX.ConstantLines[0].Visible = false;
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisX.ConstantLines[1].Visible = false;
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisY.ConstantLines[0].Visible = false;
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram).AxisY.ConstantLines[1].Visible = false;
+                result = col.Add(target);
+            return result;
         }
     }
 }

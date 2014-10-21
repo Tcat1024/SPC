@@ -26,19 +26,15 @@ namespace SPC.Monitor.DrawBoards
                 this.Parent.Controls.Remove(this);
         }
 
-
-        private void barEditItem1_EditValueChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void repositoryItemToggleSwitch1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
             if ((bool)e.NewValue)
             {
                 foreach (DevExpress.XtraCharts.Series s in this.chartControl1.Series)
                 {
-                    s.ChangeView(DevExpress.XtraCharts.ViewType.SwiftPlot);
+                    s.ChangeView(DevExpress.XtraCharts.ViewType.Line);
+
+                    (s.View as DevExpress.XtraCharts.LineSeriesView).LineStyle.Thickness = 1;
                     this.barEditItem1.Caption = "折线";
                 }
             }
@@ -53,12 +49,11 @@ namespace SPC.Monitor.DrawBoards
             }
         }
 
-        private void chartControl1_MouseClick(object sender, MouseEventArgs e)
+
+        private void chartControl1_CustomShowRightClickPopupMenu(object sender, Base.Control.AdvChartControl.ShowRightClickPopupMenuEventArgs e)
         {
-            if(e.Button==MouseButtons.Right)
-            {
-                this.popupMenu1.ShowPopup(MousePosition);
-            }
+            e.RightClickPopupMenu.AddItem(this.barEditItem1);
+            e.Handle = true;
         }
 
     }

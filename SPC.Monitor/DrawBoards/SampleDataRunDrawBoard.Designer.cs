@@ -30,11 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.ConstantLine constantLine1 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine2 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine3 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine4 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine5 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine6 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine7 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine8 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine9 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine10 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine11 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine12 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine13 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine14 = new DevExpress.XtraCharts.ConstantLine();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.PointSeriesView pointSeriesView1 = new DevExpress.XtraCharts.PointSeriesView();
             DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView1 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
-            this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.chartControl1 = new SPC.Base.Control.AdvChartControl();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
@@ -47,20 +60,80 @@
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(pointSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // chartControl1
             // 
+            this.chartControl1.CrosshairOptions.HighlightPoints = false;
+            this.chartControl1.Cursor = System.Windows.Forms.Cursors.Arrow;
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            constantLine1.AxisValueSerializable = "1";
+            constantLine1.Name = "Y";
+            constantLine1.Visible = false;
+            constantLine2.AxisValueSerializable = "1";
+            constantLine2.Name = "Y";
+            constantLine2.Visible = false;
+            constantLine3.AxisValueSerializable = "1";
+            constantLine3.Name = "Y";
+            constantLine3.Visible = false;
+            constantLine4.AxisValueSerializable = "1";
+            constantLine4.Name = "Y";
+            constantLine4.Visible = false;
+            constantLine5.AxisValueSerializable = "1";
+            constantLine5.Name = "Y";
+            constantLine5.Visible = false;
+            constantLine6.AxisValueSerializable = "1";
+            constantLine6.Name = "Y";
+            constantLine6.Visible = false;
+            constantLine7.AxisValueSerializable = "1";
+            constantLine7.Name = "Y";
+            constantLine7.Visible = false;
+            constantLine8.AxisValueSerializable = "1";
+            constantLine8.Name = "Y";
+            constantLine8.Visible = false;
+            constantLine9.AxisValueSerializable = "1";
+            constantLine9.Name = "Y";
+            constantLine9.Visible = false;
+            constantLine10.AxisValueSerializable = "1";
+            constantLine10.Name = "Y";
+            constantLine10.Visible = false;
+            constantLine11.AxisValueSerializable = "1";
+            constantLine11.Name = "Y";
+            constantLine11.Visible = false;
+            constantLine12.AxisValueSerializable = "1";
+            constantLine12.Name = "Y";
+            constantLine12.Visible = false;
+            constantLine13.AxisValueSerializable = "1";
+            constantLine13.Name = "Y";
+            constantLine13.Visible = false;
+            constantLine14.AxisValueSerializable = "1";
+            constantLine14.Name = "Y";
+            constantLine14.Visible = false;
+            xyDiagram1.AxisY.ConstantLines.AddRange(new DevExpress.XtraCharts.ConstantLine[] {
+            constantLine1,
+            constantLine2,
+            constantLine3,
+            constantLine4,
+            constantLine5,
+            constantLine6,
+            constantLine7,
+            constantLine8,
+            constantLine9,
+            constantLine10,
+            constantLine11,
+            constantLine12,
+            constantLine13,
+            constantLine14});
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
             this.chartControl1.Diagram = xyDiagram1;
             this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartControl1.Legend.Visible = false;
             this.chartControl1.Location = new System.Drawing.Point(0, 0);
             this.chartControl1.Name = "chartControl1";
+            this.chartControl1.RuntimeHitTesting = true;
             series1.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
             series1.Name = "Series 1";
             pointSeriesView1.PointMarkerOptions.Size = 4;
@@ -70,14 +143,7 @@
             this.chartControl1.SeriesTemplate.View = swiftPlotSeriesView1;
             this.chartControl1.Size = new System.Drawing.Size(696, 342);
             this.chartControl1.TabIndex = 0;
-            this.chartControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.chartControl1_MouseClick);
-            // 
-            // popupMenu1
-            // 
-            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barEditItem1)});
-            this.popupMenu1.Manager = this.barManager1;
-            this.popupMenu1.Name = "popupMenu1";
+            this.chartControl1.CustomShowRightClickPopupMenu += new System.EventHandler<SPC.Base.Control.AdvChartControl.ShowRightClickPopupMenuEventArgs>(this.chartControl1_CustomShowRightClickPopupMenu);
             // 
             // barEditItem1
             // 
@@ -152,7 +218,6 @@
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             this.ResumeLayout(false);
@@ -161,8 +226,6 @@
 
         #endregion
 
-        private DevExpress.XtraCharts.ChartControl chartControl1;
-        private DevExpress.XtraBars.PopupMenu popupMenu1;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch repositoryItemToggleSwitch1;
         private DevExpress.XtraBars.BarManager barManager1;
@@ -170,5 +233,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
+        private Base.Control.AdvChartControl chartControl1;
     }
 }
