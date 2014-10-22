@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Reflection;
 using SPC.Base.Operation;
+using System.Reflection;
 
 namespace SPC.Base.Control
 {
@@ -299,9 +300,12 @@ namespace SPC.Base.Control
                 }
                 else if (this.AutoMode)
                 {
-                    DataTable table;
+                    DataTable table = null;
+                    System.Collections.IList list = null;
+                    Type rowType = null;
                     object source = this.DataSource;
-                    while(!(source is DataTable))
+                    int type = 0;
+                    while(true)
                     {
                         if (source is BindingSource)
                         {
@@ -314,23 +318,59 @@ namespace SPC.Base.Control
                             {
                                 source = bs.DataSource;
                             }
+                            continue;
+                        }
+                        else if (source is DataTable)
+                        {
+                            table = source as DataTable;
+                            type = 1;
+                            break;
+                        }
+                        else if (source is System.Collections.IList)
+                        {
+                            list = source as System.Collections.IList;
+                            type = 2;
+                            break;
                         }
                         else
                             return;
                     }
-                    table = source as DataTable;
-                    if (table != null)
+                    if (type == 1)
                     {
-                        var nc = table.Columns.Add(ChooseColumnName, typeof(bool));
-                        for(int i=0;i<table.Rows.Count;i++)
-                            table.Rows[i][ChooseColumnName] = true;
-                        var choosecolumn = new DevExpress.XtraGrid.Columns.GridColumn();
-                        choosecolumn.Name = ChooseColumnName;
-                        choosecolumn.FieldName = ChooseColumnName;
-                        choosecolumn.VisibleIndex = 0;
-                        choosecolumn.OptionsColumn.AllowEdit = false;
-                        this.Columns.Insert(0, choosecolumn);
-                        choosecolumn.Summary.Add(ChooseNeedSummary);
+                        if (table != null)
+                        {
+                            if (!table.Columns.Contains(ChooseColumnName))
+                            {
+                                table.Columns.Add(ChooseColumnName, typeof(bool));
+                                for (int i = 0; i < table.Rows.Count; i++)
+                                    table.Rows[i][ChooseColumnName] = true;
+                            }
+                            var choosecolumn = new DevExpress.XtraGrid.Columns.GridColumn();
+                            choosecolumn.Name = ChooseColumnName;
+                            choosecolumn.FieldName = ChooseColumnName;
+                            choosecolumn.VisibleIndex = 0;
+                            choosecolumn.OptionsColumn.AllowEdit = false;
+                            this.Columns.Insert(0, choosecolumn);
+                            choosecolumn.Summary.Add(ChooseNeedSummary);
+                        }
+                    }
+                    else if(type==2)
+                    {
+                        if(list!=null&&list.Count>0)
+                        {
+                            rowType = list[0].GetType();
+                            var c = rowType.GetProperty(ChooseColumnName);
+                            if(c!=null)
+                            {
+                                var choosecolumn = new DevExpress.XtraGrid.Columns.GridColumn();
+                                choosecolumn.Name = ChooseColumnName;
+                                choosecolumn.FieldName = ChooseColumnName;
+                                choosecolumn.VisibleIndex = 0;
+                                choosecolumn.OptionsColumn.AllowEdit = false;
+                                this.Columns.Insert(0, choosecolumn);
+                                choosecolumn.Summary.Add(ChooseNeedSummary);
+                            }
+                        }
                     }
                 }
             }
