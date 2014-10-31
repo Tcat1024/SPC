@@ -10,26 +10,26 @@ using DevExpress.XtraEditors;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class SpectralDistributionDrawBoard : DevExpress.XtraEditors.XtraUserControl,IDrawBoard
+    public partial class SpectralDistributionDrawBoard : DevExpress.XtraEditors.XtraUserControl, IDrawBoard
     {
         public SpectralDistributionDrawBoard()
         {
             InitializeComponent();
             this.barEditItem1.EditValue = true;
         }
-        public DevExpress.XtraCharts.ChartControl GetChart()
+        public Control GetChart()
         {
             return this.chartControl1;
         }
         protected override void OnControlRemoved(ControlEventArgs e)
         {
-            if(this.Parent!=null)
+            if (this.Parent != null)
                 this.Parent.Controls.Remove(this);
         }
 
         private void chartControl1_MouseClick(object sender, MouseEventArgs e)
         {
-            if(e.Button==MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
                 this.popupMenu1.ShowPopup(MousePosition);
             }
@@ -37,18 +37,20 @@ namespace SPC.Monitor.DrawBoards
 
         private void repositoryItemCheckEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
-            if((bool)e.NewValue)
+            if ((bool)e.NewValue)
             {
-                foreach(var s in chartControl1.Series)
+                foreach (var s in chartControl1.Series)
                 {
-                    (s as DevExpress.XtraCharts.Series).LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+                    if ((s as DevExpress.XtraCharts.Series).View is DevExpress.XtraCharts.StepAreaSeriesView)
+                        (s as DevExpress.XtraCharts.Series).LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
                 }
             }
             else
             {
                 foreach (var s in chartControl1.Series)
                 {
-                    (s as DevExpress.XtraCharts.Series).LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
+                    if ((s as DevExpress.XtraCharts.Series).View is DevExpress.XtraCharts.StepAreaSeriesView)
+                        (s as DevExpress.XtraCharts.Series).LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
                 }
             }
         }

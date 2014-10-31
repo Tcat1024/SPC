@@ -40,11 +40,14 @@
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
             this.monitorControl1 = new SPC.Monitor.MonitorControl();
+            this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.xyRelationControl1 = new SPC.Monitor.XYRelationControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
+            this.xtraTabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // cpKtoolControl1
@@ -130,7 +133,8 @@
             this.xtraTabControl1.TabIndex = 5;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
-            this.xtraTabPage2});
+            this.xtraTabPage2,
+            this.xtraTabPage3});
             // 
             // xtraTabPage1
             // 
@@ -153,8 +157,27 @@
             this.monitorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.monitorControl1.Location = new System.Drawing.Point(0, 0);
             this.monitorControl1.Name = "monitorControl1";
+            this.monitorControl1.SelectedTabPageIndex = 0;
             this.monitorControl1.Size = new System.Drawing.Size(1257, 622);
             this.monitorControl1.TabIndex = 0;
+            // 
+            // xtraTabPage3
+            // 
+            this.xtraTabPage3.Controls.Add(this.xyRelationControl1);
+            this.xtraTabPage3.Name = "xtraTabPage3";
+            this.xtraTabPage3.Size = new System.Drawing.Size(1257, 622);
+            this.xtraTabPage3.Text = "xtraTabPage3";
+            // 
+            // xyRelationControl1
+            // 
+            this.xyRelationControl1.DataMember = null;
+            this.xyRelationControl1.DataSource = null;
+            this.xyRelationControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xyRelationControl1.Location = new System.Drawing.Point(0, 0);
+            this.xyRelationControl1.Name = "xyRelationControl1";
+            this.xyRelationControl1.SelectedTabPageIndex = 0;
+            this.xyRelationControl1.Size = new System.Drawing.Size(1257, 622);
+            this.xyRelationControl1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -173,6 +196,7 @@
             this.xtraTabControl1.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage2.ResumeLayout(false);
+            this.xtraTabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -191,6 +215,8 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private SPC.Monitor.MonitorControl monitorControl1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
+        private SPC.Monitor.XYRelationControl xyRelationControl1;
     }
 }
 

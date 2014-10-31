@@ -147,6 +147,11 @@ namespace SPC.Monitor
                         var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype,spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
                         this.AddListItem(temp);
                     }
+                    else
+                    {
+                        var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
+                        this.AddListItem(temp);
+                    }
                 }
             }
         }
@@ -352,9 +357,10 @@ namespace SPC.Monitor
                 this.SeriesManagers.Add(new GroupAvgSeriesManager() { DrawBoard = this.DrawBoards[1] });
                 this.SeriesManagers.Add(new GroupRangeSeriesManager() { DrawBoard = this.DrawBoards[1] });
                 this.SeriesManagers.Add(new GroupAvgDataRunSeriesManager() { DrawBoard = this.DrawBoards[2] });
-                this.SeriesManagers.Add(new SampleRunPointsManager() { DrawBoard = this.DrawBoards[2] });
+                this.SeriesManagers.Add(new SampleRunGroupPointsManager() { DrawBoard = this.DrawBoards[2] });
                 this.SeriesManagers.Add(new NormalityCheckPointsManager() { DrawBoard = this.DrawBoards[3] });
                 this.SeriesManagers.Add(new SpectralDistributionPointsManager() { DrawBoard = this.DrawBoards[4] });
+                this.SeriesManagers.Add(new BoxPlotSeriesManager() { DrawBoard = this.DrawBoards[5]});
             }        
         }
         //在此添加新绘版
@@ -365,6 +371,7 @@ namespace SPC.Monitor
             this.DrawBoardTypes.Add(typeof(AvgDataRunDrawBoard));
             this.DrawBoardTypes.Add(typeof(NormalityCheckDrawBoard));
             this.DrawBoardTypes.Add(typeof(SpectralDistributionDrawBoard));
+            this.DrawBoardTypes.Add(typeof(BoxPlotDrawBoard));
         }
 
         private void MonitorControl_SizeChanged(object sender, EventArgs e)
@@ -441,17 +448,5 @@ namespace SPC.Monitor
     //            this.listBoxControl1.SelectedIndex = index + 1;
     //        }
     //    }
-    }
-    public static class CanGetChartMethod
-    {
-        public static DevExpress.XtraCharts.ChartControl getChart(this object input)
-        {
-            if (input is DevExpress.XtraCharts.ChartControl)
-                return input as DevExpress.XtraCharts.ChartControl;
-            else if (input is IDrawBoard)
-                return (input as IDrawBoard).GetChart();
-            else
-                return null;
-        }
     }
 }

@@ -123,7 +123,6 @@ namespace SPC.Base.Operation
                 throw new Exception("子组容量过大");
             ArrayVector std = new ArrayVector(a);
             int s = start;
-            double bgstd = 0;
             double result = 0;
             ArrayVector gavg = new ArrayVector(a);
             for (int i = 0; i < a; i++)

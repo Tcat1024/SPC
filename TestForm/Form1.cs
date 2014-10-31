@@ -38,8 +38,9 @@ namespace TestForm
                     MessageBox.Show(ex.Message);
                     return;
                 }
-                //this.cpKtoolControl1.DataSource = this.Data;
+                this.cpKtoolControl1.DataSource = this.Data;
                 this.monitorControl1.DataSource = this.Data;
+                this.xyRelationControl1.DataSource = this.Data;
             }
         }
 

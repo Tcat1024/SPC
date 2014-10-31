@@ -22,8 +22,46 @@ namespace SPC.Monitor
             this.SpectrumWith = spectrumWith;
         }
     }
+    public class XYRelationSourceDataType
+    {
+        public SPC.Base.Control.CanChooseDataGridView View;
+        public String ParamX;
+        public String ParamY;
+        public XYRelationSourceDataType(SPC.Base.Control.CanChooseDataGridView view, string paramX, string paramY)
+        {
+            this.View = view;
+            this.ParamX = paramX;
+            this.ParamY = paramY;
+        }
+    }
+    public class XYZRelationSourceDataType
+    {
+        public SPC.Base.Control.CanChooseDataGridView View;
+        public String ParamX;
+        public String ParamY;
+        public String ParamZ;
+        public XYZRelationSourceDataType(SPC.Base.Control.CanChooseDataGridView view, string paramX, string paramY, string paramZ)
+        {
+            this.View = view;
+            this.ParamX = paramX;
+            this.ParamY = paramY;
+            this.ParamZ = paramZ;
+        }
+    }
     public interface IDrawBoard
     {
-        DevExpress.XtraCharts.ChartControl GetChart();
+        System.Windows.Forms.Control GetChart();
+    }
+    public static class CanGetChartMethod
+    {
+        public static DevExpress.XtraCharts.ChartControl getChart(this object input)
+        {
+            if (input is DevExpress.XtraCharts.ChartControl)
+                return input as DevExpress.XtraCharts.ChartControl;
+            else if (input is IDrawBoard)
+                return (input as IDrawBoard).GetChart() as DevExpress.XtraCharts.ChartControl;
+            else
+                return null;
+        }
     }
 }

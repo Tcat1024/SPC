@@ -58,3 +58,6 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.cs
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.dll.licenses
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DrawBoards.SampleXYRelationDrawBoard.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.XYRelationControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DrawBoards.BoxPlotDrawBoard.resources

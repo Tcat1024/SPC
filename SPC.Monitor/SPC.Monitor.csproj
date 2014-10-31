@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DrawBoards\BoxPlotDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\BoxPlotDrawBoard.Designer.cs">
+      <DependentUpon>BoxPlotDrawBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="DrawBoards\AvgDataRunDrawBoard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -71,6 +77,12 @@
     </Compile>
     <Compile Include="DrawBoards\NormalityCheckDrawBoard.Designer.cs">
       <DependentUpon>NormalityCheckDrawBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawBoards\SampleXYRelationDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\SampleXYRelationDrawBoard.Designer.cs">
+      <DependentUpon>SampleXYRelationDrawBoard.cs</DependentUpon>
     </Compile>
     <Compile Include="DrawBoards\SampleDataRunPointDrawBoard.cs">
       <SubType>UserControl</SubType>
@@ -103,9 +115,18 @@
     <Compile Include="DrawBoards\SampleDataRunDrawBoard.Designer.cs">
       <DependentUpon>SampleDataRunDrawBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="XYRelationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XYRelationControl.Designer.cs">
+      <DependentUpon>XYRelationControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="SeriesType.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="DrawBoards\BoxPlotDrawBoard.resx">
+      <DependentUpon>BoxPlotDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DrawBoards\AvgDataRunDrawBoard.resx">
       <DependentUpon>AvgDataRunDrawBoard.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawBoards\NormalityCheckDrawBoard.resx">
       <DependentUpon>NormalityCheckDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawBoards\SampleXYRelationDrawBoard.resx">
+      <DependentUpon>SampleXYRelationDrawBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DrawBoards\SampleDataRunPointDrawBoard.resx">
       <DependentUpon>SampleDataRunPointDrawBoard.cs</DependentUpon>
@@ -131,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawBoards\SampleDataRunDrawBoard.resx">
       <DependentUpon>SampleDataRunDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XYRelationControl.resx">
+      <DependentUpon>XYRelationControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

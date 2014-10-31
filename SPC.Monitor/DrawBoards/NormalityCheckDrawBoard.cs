@@ -16,7 +16,7 @@ namespace SPC.Monitor.DrawBoards
         {
             InitializeComponent();
         }
-        public DevExpress.XtraCharts.ChartControl GetChart()
+        public Control GetChart()
         {
             return this.chartControl1;
         }

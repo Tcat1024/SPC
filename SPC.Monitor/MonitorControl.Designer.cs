@@ -76,6 +76,8 @@
             this.multiControlsVerticalLayout4 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
             this.multiControlsVerticalLayout5 = new SPC.Base.Control.MultiControlsVerticalLayout();
+            this.xtraTabPage6 = new DevExpress.XtraTab.XtraTabPage();
+            this.multiControlsVerticalLayout6 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
@@ -101,6 +103,7 @@
             this.xtraTabPage3.SuspendLayout();
             this.xtraTabPage4.SuspendLayout();
             this.xtraTabPage5.SuspendLayout();
+            this.xtraTabPage6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
@@ -483,7 +486,8 @@
             this.xtraTabPage2,
             this.xtraTabPage3,
             this.xtraTabPage4,
-            this.xtraTabPage5});
+            this.xtraTabPage5,
+            this.xtraTabPage6});
             // 
             // xtraTabPage1
             // 
@@ -570,6 +574,23 @@
             this.multiControlsVerticalLayout5.SizeChangeStep = 50;
             this.multiControlsVerticalLayout5.TabIndex = 0;
             // 
+            // xtraTabPage6
+            // 
+            this.xtraTabPage6.Controls.Add(this.multiControlsVerticalLayout6);
+            this.xtraTabPage6.Name = "xtraTabPage6";
+            this.xtraTabPage6.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage6.Text = "箱型图";
+            // 
+            // multiControlsVerticalLayout6
+            // 
+            this.multiControlsVerticalLayout6.AutoScroll = false;
+            this.multiControlsVerticalLayout6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.multiControlsVerticalLayout6.Location = new System.Drawing.Point(0, 0);
+            this.multiControlsVerticalLayout6.Name = "multiControlsVerticalLayout6";
+            this.multiControlsVerticalLayout6.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout6.SizeChangeStep = 50;
+            this.multiControlsVerticalLayout6.TabIndex = 0;
+            // 
             // panelControl3
             // 
             this.panelControl3.Controls.Add(this.buttonEdit1);
@@ -653,6 +674,7 @@
             this.xtraTabPage3.ResumeLayout(false);
             this.xtraTabPage4.ResumeLayout(false);
             this.xtraTabPage5.ResumeLayout(false);
+            this.xtraTabPage6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
@@ -715,6 +737,8 @@
         private DevExpress.XtraEditors.PopupContainerControl popupContainerControl1;
         private DevExpress.XtraEditors.PopupContainerEdit popUpEdit1;
         private Base.Control.CustomGroupStringBuilder customGroupStringBuilder1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage6;
+        private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout6;
 
 
     }

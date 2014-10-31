@@ -17,7 +17,7 @@ namespace SPC.Monitor.DrawBoards
             InitializeComponent();
         }
 
-        public DevExpress.XtraCharts.ChartControl GetChart()
+        public Control GetChart()
         {
             return this.chartControl1;
         }
@@ -34,6 +34,5 @@ namespace SPC.Monitor.DrawBoards
             public double x;
             public double y;
         }
-        public event EventHandler<SeriesPointClickEventArgs> SeriesPointClicked;
     }
 }

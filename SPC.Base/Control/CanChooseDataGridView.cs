@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Reflection;
 using SPC.Base.Operation;
-using System.Reflection;
 
 namespace SPC.Base.Control
 {
