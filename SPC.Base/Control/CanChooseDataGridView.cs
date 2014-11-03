@@ -23,7 +23,7 @@ namespace SPC.Base.Control
             }
             set
             {
-                if(this._ChooseColumnName!=value)
+                if (this._ChooseColumnName != value)
                 {
                     this._ChooseColumnName = value;
                     InitSummary();
@@ -127,15 +127,16 @@ namespace SPC.Base.Control
         public event EventHandler ChooseChanged;
         private ContextMenuStrip gridViewRightClickPopupMenu = new ContextMenuStrip();
         private DevExpress.Utils.Menu.DXMenuItem GroupDetailConfigButton;
-        private Dictionary<DevExpress.XtraGrid.Columns.GridColumn,CustomGroupStringBuildForm> myGroupEditForms = new Dictionary<DevExpress.XtraGrid.Columns.GridColumn,CustomGroupStringBuildForm>();
-        public CanChooseDataGridView():base()
+        private Dictionary<DevExpress.XtraGrid.Columns.GridColumn, CustomGroupStringBuildForm> myGroupEditForms = new Dictionary<DevExpress.XtraGrid.Columns.GridColumn, CustomGroupStringBuildForm>();
+        public CanChooseDataGridView()
+            : base()
         {
             this.AutoMode = true;
             this.AllowChooseGroup = true;
             this.AutoRefresh = true;
 
             GroupDetailConfigButton = new DevExpress.Utils.Menu.DXMenuItem("GroupDetailConfig", GroupDetailConfigButtonClicked);
-            
+
             this.InitChooseRelationControls();
 
             this.DataSourceChanged -= DataSourceChangeEventMethod;
@@ -197,10 +198,10 @@ namespace SPC.Base.Control
         }
         private void refreshGroupForms()
         {
-            for(int i = this.myGroupEditForms.Count-1;i>=0;i--)
+            for (int i = this.myGroupEditForms.Count - 1; i >= 0; i--)
             {
                 var key = myGroupEditForms.Keys.ElementAt(i);
-                if(!this.GroupedColumns.Contains(key))
+                if (!this.GroupedColumns.Contains(key))
                 {
                     key.SortMode = DevExpress.XtraGrid.ColumnSortMode.Default;
                     this.myGroupEditForms.Remove(key);
@@ -230,7 +231,7 @@ namespace SPC.Base.Control
             }
             base.RaiseCustomDrawGroupRow(e);
         }
-        private int getIndexOfFormatBoarders(double input,List<Tuple<double,bool>> format)
+        private int getIndexOfFormatBoarders(double input, List<Tuple<double, bool>> format)
         {
             int index = format.Count;
             for (int i = 0; i < format.Count; i++)
@@ -243,19 +244,19 @@ namespace SPC.Base.Control
             }
             return index;
         }
-        private void GroupDetailConfigButtonClicked(object sender,EventArgs e)
+        private void GroupDetailConfigButtonClicked(object sender, EventArgs e)
         {
             DevExpress.XtraGrid.Columns.GridColumn column = (sender as DevExpress.Utils.Menu.DXMenuItem).Tag as DevExpress.XtraGrid.Columns.GridColumn;
-            if(column==null)
+            if (column == null)
                 return;
             CustomGroupStringBuildForm form;
-            if(!this.myGroupEditForms.TryGetValue(column,out form))
+            if (!this.myGroupEditForms.TryGetValue(column, out form))
             {
                 form = new CustomGroupStringBuildForm();
                 form.StartPosition = FormStartPosition.WindowsDefaultLocation;
-                this.myGroupEditForms.Add(column,form);
+                this.myGroupEditForms.Add(column, form);
             }
-            if(form.ShowDialog()== DialogResult.Yes)
+            if (form.ShowDialog() == DialogResult.Yes)
             {
                 form.Tag = CustomGroupMaker.FormatBorder(form.result);
                 if (form.Tag == null)
@@ -270,21 +271,21 @@ namespace SPC.Base.Control
             if (e.MenuType == DevExpress.XtraGrid.Views.Grid.GridMenuType.Column)
             {
                 var col = this.CalcHitInfo(e.Point).Column;
-                if (col != null &&col.ColumnType!= typeof(string)&&col.ColumnType!=typeof(DateTime)&& col.GroupIndex >= 0)
+                if (col != null && col.ColumnType != typeof(string) && col.ColumnType != typeof(DateTime) && col.GroupIndex >= 0)
                 {
                     GroupDetailConfigButton.Tag = col;
                     e.Menu.Items.Insert(7, GroupDetailConfigButton);
                 }
             }
         }
-        private void DataSourceChangeEventMethod(object sender,EventArgs e)
+        private void DataSourceChangeEventMethod(object sender, EventArgs e)
         {
             this.InitData(sender);
         }
         private object CurrentDataVector;
         public Type CurrentDataVectorType;
         public string CurrentDataUpdateEventName;
-        
+
         public void InitData(object sender)
         {
             DevExpress.XtraGrid.Columns.GridColumn temp;
@@ -294,7 +295,7 @@ namespace SPC.Base.Control
                 {
                     temp.VisibleIndex = 0;
                     temp.OptionsColumn.AllowEdit = false;
-                    if(temp.Summary.IndexOf(ChooseNeedSummary)<0)
+                    if (temp.Summary.IndexOf(ChooseNeedSummary) < 0)
                         temp.Summary.Add(ChooseNeedSummary);
                 }
                 else if (this.AutoMode)
@@ -304,7 +305,7 @@ namespace SPC.Base.Control
                     Type rowType = null;
                     object source = this.DataSource;
                     int type = 0;
-                    while(true)
+                    while (true)
                     {
                         if (source is BindingSource)
                         {
@@ -321,7 +322,13 @@ namespace SPC.Base.Control
                         }
                         else if (source is DataTable)
                         {
-                            table = source as DataTable;
+                            table = (source as DataTable);
+                            type = 1;
+                            break;
+                        }
+                        else if (source is DataView)
+                        {
+                            table = (source as DataView).Table;
                             type = 1;
                             break;
                         }
@@ -353,13 +360,13 @@ namespace SPC.Base.Control
                             choosecolumn.Summary.Add(ChooseNeedSummary);
                         }
                     }
-                    else if(type==2)
+                    else if (type == 2)
                     {
-                        if(list!=null&&list.Count>0)
+                        if (list != null && list.Count > 0)
                         {
                             rowType = list[0].GetType();
                             var c = rowType.GetProperty(ChooseColumnName);
-                            if(c!=null)
+                            if (c != null)
                             {
                                 var choosecolumn = new DevExpress.XtraGrid.Columns.GridColumn();
                                 choosecolumn.Name = ChooseColumnName;
@@ -391,23 +398,23 @@ namespace SPC.Base.Control
 
         private void GetDataVector(object target)
         {
-            if(target==null)
+            if (target == null)
                 return;
-            if(target is DataTable)
+            if (target is DataTable)
             {
                 this.CurrentDataVector = target;
                 this.CurrentDataVectorType = typeof(DataTable);
                 this.CurrentDataUpdateEventName = "RowChanged";
             }
-            else 
+            else
             {
-                var datasource = target.GetType().GetProperty("DataSource").GetValue(target,null);
-                var datamember = target.GetType().GetProperty("DataMember").GetValue(target,null);
-                if (datasource != null && datamember != null && datamember.ToString().Trim() != "" && datasource.GetType().GetProperty("Tables")!=null)
-                    GetDataVector(datasource.GetType().GetProperty("Tables").GetValue(datasource,new object[]{datamember}));
+                var datasource = target.GetType().GetProperty("DataSource").GetValue(target, null);
+                var datamember = target.GetType().GetProperty("DataMember").GetValue(target, null);
+                if (datasource != null && datamember != null && datamember.ToString().Trim() != "" && datasource.GetType().GetProperty("Tables") != null)
+                    GetDataVector(datasource.GetType().GetProperty("Tables").GetValue(datasource, new object[] { datamember }));
                 else if (datasource != null)
                     GetDataVector(datasource);
-            } 
+            }
         }
         private void InitChooseRelationControls()
         {
@@ -428,20 +435,20 @@ namespace SPC.Base.Control
         }
         private void DataValueChangedEventMethod(object sender, EventArgs e)
         {
-            if(this.AutoRefresh)
+            if (this.AutoRefresh)
                 this.RefreshChoose();
         }
         public void RefreshChoose()
         {
             this.UpdateSummary();
         }
-        private void MultiChooseButtonClick(object sender,EventArgs e)
+        private void MultiChooseButtonClick(object sender, EventArgs e)
         {
             int[] index = this.GetSelectedRows();
             this.BeginDataUpdate();
-            foreach(var i in index)
+            foreach (var i in index)
             {
-                this.SetChooseRow(i,true);
+                this.SetChooseRow(i, true);
             }
             this.EndDataUpdate();
         }
@@ -451,11 +458,11 @@ namespace SPC.Base.Control
             this.BeginDataUpdate();
             foreach (var i in index)
             {
-                this.SetChooseRow(i,false);
+                this.SetChooseRow(i, false);
             }
             this.EndDataUpdate();
         }
-        public void SetChooseRow(int index,bool result)
+        public void SetChooseRow(int index, bool result)
         {
             this.SetRowCellValue(index, ChooseColumnName, result);
         }
@@ -472,7 +479,7 @@ namespace SPC.Base.Control
                 repositoryCheck.Caption = "";
                 var info = repositoryCheck.CreateViewInfo() as DevExpress.XtraEditors.ViewInfo.CheckEditViewInfo;
                 var painter = repositoryCheck.CreatePainter() as DevExpress.XtraEditors.Drawing.CheckEditPainter;
-                if (this.ChooseCount==this.DataRowCount)
+                if (this.ChooseCount == this.DataRowCount)
                     info.EditValue = true;
                 else if (this.ChooseCount > 0)
                     info.EditValue = null;
@@ -505,9 +512,10 @@ namespace SPC.Base.Control
                     info = this.CalcHitInfo(pt);
                     if (info.InColumn && info.Column != null && info.Column.FieldName == ChooseColumnName)
                     {
-                        bool re = !(this.ChooseCount==this.DataRowCount);
+                        bool re = !(this.ChooseCount == this.DataRowCount);
                         this.BeginDataUpdate();
-                        /*Parallel.For(0, this.DataRowCount, (i) => */for(int i = 0; i < this.DataRowCount; i++)
+                        /*Parallel.For(0, this.DataRowCount, (i) => */
+                        for (int i = 0; i < this.DataRowCount; i++)
                         {
                             this.SetChooseRow(i, re);
                         };
@@ -527,7 +535,7 @@ namespace SPC.Base.Control
                             {
                                 bool re = Convert.ToBoolean(this.GetRowCellValue(i, ChooseColumnName));
                                 if (!re)
-                                    this.SetChooseRow(i,true);
+                                    this.SetChooseRow(i, true);
                             }
                             this.EndDataUpdate();
                             if (ChooseChanged != null)
@@ -537,7 +545,7 @@ namespace SPC.Base.Control
                         {
                             this.BeginDataUpdate();
                             for (int i = start; i <= end; i++)
-                                this.SetChooseRow(i,false);
+                                this.SetChooseRow(i, false);
                             this.EndDataUpdate();
                             if (ChooseChanged != null)
                                 this.ChooseChanged(this, new EventArgs());
@@ -548,12 +556,12 @@ namespace SPC.Base.Control
                         this.BeginDataUpdate();
                         bool re = Convert.ToBoolean(this.GetRowCellValue(info.RowHandle, ChooseColumnName));
                         if (re)
-                            this.SetChooseRow(info.RowHandle,false);
+                            this.SetChooseRow(info.RowHandle, false);
                         else
-                            this.SetChooseRow(info.RowHandle,true);
+                            this.SetChooseRow(info.RowHandle, true);
                         this.EndDataUpdate();
-                        if (ChooseChanged != null) 
-                            this.ChooseChanged(this,new EventArgs());
+                        if (ChooseChanged != null)
+                            this.ChooseChanged(this, new EventArgs());
                     }
                 }
                 else if (this.OptionsSelection.MultiSelect && this.OptionsSelection.MultiSelectMode == DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.RowSelect && this.currentGridViewMouseButton == System.Windows.Forms.MouseButtons.Right && this.SelectedRowsCount > 0)
@@ -575,7 +583,7 @@ namespace SPC.Base.Control
                 var info = repositoryCheck.CreateViewInfo() as DevExpress.XtraEditors.ViewInfo.CheckEditViewInfo;
                 var painter = repositoryCheck.CreatePainter() as DevExpress.XtraEditors.Drawing.CheckEditPainter;
                 int start = this.GetDataRowHandleByGroupRowHandle(e.RowHandle);
-                int end = ((GroupSummaryDataType)this.GetGroupSummaryValue(e.RowHandle,GroupChooseNeedSummary)).end;
+                int end = ((GroupSummaryDataType)this.GetGroupSummaryValue(e.RowHandle, GroupChooseNeedSummary)).end;
                 int count = ((GroupSummaryDataType)this.GetGroupSummaryValue(e.RowHandle, GroupChooseNeedSummary)).choosecount;
                 if (count == end - start + 1)
                     info.EditValue = true;
@@ -597,7 +605,7 @@ namespace SPC.Base.Control
         private int TempGroupCount = 0;
         private void ChooseSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
         {
-            if (this.AllowChooseGroup&& e.Item == this.GroupChooseNeedSummary)
+            if (this.AllowChooseGroup && e.Item == this.GroupChooseNeedSummary)
             {
                 if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Start)
                 {
@@ -607,15 +615,15 @@ namespace SPC.Base.Control
                 else if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Calculate)
                 {
                     TempGroupCount++;
-                    if(Convert.ToBoolean(this.GetRowCellValue(e.RowHandle, ChooseColumnName)))
+                    if (Convert.ToBoolean(this.GetRowCellValue(e.RowHandle, ChooseColumnName)))
                         TempGroupChooseCount++;
                 }
                 else if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Finalize)
                 {
-                    e.TotalValue = new GroupSummaryDataType(TempGroupChooseCount,e.RowHandle,TempGroupCount);
+                    e.TotalValue = new GroupSummaryDataType(TempGroupChooseCount, e.RowHandle, TempGroupCount);
                 }
             }
-            else if(this.AllowChoose&&e.Item == this.ChooseNeedSummary)
+            else if (this.AllowChoose && e.Item == this.ChooseNeedSummary)
             {
                 if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Start)
                 {
@@ -637,7 +645,7 @@ namespace SPC.Base.Control
             public int choosecount;
             public int end;
             public int count;
-            public GroupSummaryDataType(int cc,int e,int c)
+            public GroupSummaryDataType(int cc, int e, int c)
             {
                 this.choosecount = cc;
                 this.count = c;
@@ -645,7 +653,7 @@ namespace SPC.Base.Control
             }
             public override string ToString()
             {
-                return choosecount.ToString()+"/"+count.ToString();
+                return choosecount.ToString() + "/" + count.ToString();
             }
         }
 
