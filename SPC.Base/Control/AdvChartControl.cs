@@ -20,10 +20,20 @@ namespace SPC.Base.Control
             {
                 if (value == null)
                     this.Cursor = System.Windows.Forms.Cursors.Arrow;
-                else if (value.Name == "X")
-                    this.Cursor = System.Windows.Forms.Cursors.SizeWE;
-                else if (value.Name == "Y")
-                    this.Cursor = System.Windows.Forms.Cursors.SizeNS;
+                else if (!(this.Diagram as DevExpress.XtraCharts.XYDiagram).Rotated)
+                {
+                    if (value.Name == "X")
+                        this.Cursor = System.Windows.Forms.Cursors.SizeWE;
+                    else if (value.Name == "Y")
+                        this.Cursor = System.Windows.Forms.Cursors.SizeNS;
+                }
+                else
+                {
+                    if (value.Name == "X")
+                        this.Cursor = System.Windows.Forms.Cursors.SizeNS;
+                    else if (value.Name == "Y")
+                        this.Cursor = System.Windows.Forms.Cursors.SizeWE;
+                }
                 this._targetLine = value;
             }
         }
@@ -141,12 +151,14 @@ namespace SPC.Base.Control
                                 popupMenuDeleteButtonItem.Caption = "删除" + info.ConstantLine.Name + "轴边界线";
                                 this.RightClickPopupMenu.AddItem(popupMenuDeleteButtonItem);
                                 eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, info.ConstantLine, true);
-                                CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
+                                if (CustomShowRightClickPopupMenu != null)
+                                    CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
                             }
                             else
                             {
                                 eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, null, true);
-                                CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
+                                if (CustomShowRightClickPopupMenu != null)
+                                    CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
                             }
                             if (eventarg.Handle)
                                 this.RightClickPopupMenu.ShowPopup(MousePosition);
@@ -189,10 +201,20 @@ namespace SPC.Base.Control
                     var info = this.CalcHitInfo(e.Location);
                     if (info.ConstantLine != null)
                     {
-                        if (info.ConstantLine.Name == "Y")
-                            this.Cursor = System.Windows.Forms.Cursors.SizeNS;
-                        else if (info.ConstantLine.Name == "X")
-                            this.Cursor = System.Windows.Forms.Cursors.SizeWE;
+                        if (!(this.Diagram as DevExpress.XtraCharts.XYDiagram).Rotated)
+                        {
+                            if (info.ConstantLine.Name == "Y")
+                                this.Cursor = System.Windows.Forms.Cursors.SizeNS;
+                            else if (info.ConstantLine.Name == "X")
+                                this.Cursor = System.Windows.Forms.Cursors.SizeWE;
+                        }
+                        else
+                        {
+                            if (info.ConstantLine.Name == "Y")
+                                this.Cursor = System.Windows.Forms.Cursors.SizeWE;
+                            else if (info.ConstantLine.Name == "X")
+                                this.Cursor = System.Windows.Forms.Cursors.SizeNS;
+                        }
                     }
                 }
                 if (this.targetLine != null)

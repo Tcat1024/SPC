@@ -81,6 +81,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Control\TriStateTreeView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Control\TriStateTreeView.designer.cs">
+      <DependentUpon>TriStateTreeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Operation\BasicOperation.cs" />
     <Compile Include="Operation\Group.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -98,6 +104,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\TriStateTreeView.resx">
+      <DependentUpon>TriStateTreeView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>

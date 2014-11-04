@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CPKtoolControl));
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
             DevExpress.XtraCharts.ConstantLine constantLine8 = new DevExpress.XtraCharts.ConstantLine();
@@ -55,7 +56,7 @@
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView1 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
             DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView2 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
-            this.barManager1 = new DevExpress.XtraBars.BarManager();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
@@ -179,9 +180,9 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new SPC.Base.Control.CanChooseDataGridView();
-            this.chartPointRightClickPopupMenu = new DevExpress.XtraBars.PopupMenu();
-            this.ChartBoundRightClickPopupMenu = new DevExpress.XtraBars.PopupMenu();
-            this.gridViewRightClickPopupMenu = new DevExpress.XtraBars.PopupMenu();
+            this.chartPointRightClickPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.ChartBoundRightClickPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.gridViewRightClickPopupMenu = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splitter1 = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
