@@ -40,7 +40,7 @@
             DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SplineSeriesView splineSeriesView2 = new DevExpress.XtraCharts.SplineSeriesView();
             DevExpress.XtraCharts.StepAreaSeriesView stepAreaSeriesView2 = new DevExpress.XtraCharts.StepAreaSeriesView();
-            this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
+            this.chartControl1 = new SPC.Base.Control.AdvChartControl();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -93,6 +93,7 @@
             this.chartControl1.Legend.Visible = false;
             this.chartControl1.Location = new System.Drawing.Point(0, 0);
             this.chartControl1.Name = "chartControl1";
+            this.chartControl1.RuntimeHitTesting = true;
             series1.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
             pointSeriesLabel1.Angle = 42;
             pointSeriesLabel1.Antialiasing = true;
@@ -218,7 +219,7 @@
 
         #endregion
 
-        private DevExpress.XtraCharts.ChartControl chartControl1;
+        private Base.Control.AdvChartControl chartControl1;
         private DevExpress.XtraBars.PopupMenu popupMenu1;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;

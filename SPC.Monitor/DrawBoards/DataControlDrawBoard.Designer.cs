@@ -36,7 +36,7 @@
             DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView2 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
             DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView3 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
-            this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
+            this.chartControl1 = new SPC.Base.Control.AdvChartControl();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(swiftPlotDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagramPane1)).BeginInit();
@@ -56,6 +56,7 @@
             swiftPlotDiagram1.AxisY.Title.Visible = true;
             swiftPlotDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             swiftPlotDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
+            swiftPlotDiagram1.PaneDistance = 1;
             xyDiagramPane1.Name = "Pane 1";
             xyDiagramPane1.PaneID = 0;
             swiftPlotDiagram1.Panes.AddRange(new DevExpress.XtraCharts.XYDiagramPane[] {
@@ -75,6 +76,7 @@
             this.chartControl1.Legend.Visible = false;
             this.chartControl1.Location = new System.Drawing.Point(0, 0);
             this.chartControl1.Name = "chartControl1";
+            this.chartControl1.RuntimeHitTesting = true;
             series1.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
             series1.Name = "Series 1";
             swiftPlotSeriesView1.LineStyle.Thickness = 2;
@@ -116,6 +118,6 @@
 
         #endregion
 
-        private DevExpress.XtraCharts.ChartControl chartControl1;
+        private Base.Control.AdvChartControl chartControl1;
     }
 }

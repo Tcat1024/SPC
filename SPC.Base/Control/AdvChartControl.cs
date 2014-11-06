@@ -20,19 +20,19 @@ namespace SPC.Base.Control
             {
                 if (value == null)
                     this.Cursor = System.Windows.Forms.Cursors.Arrow;
-                else if (!(this.Diagram as DevExpress.XtraCharts.XYDiagram).Rotated)
+                else if (this.Diagram is DevExpress.XtraCharts.XYDiagram&&(this.Diagram as DevExpress.XtraCharts.XYDiagram).Rotated)
                 {
                     if (value.Name == "X")
-                        this.Cursor = System.Windows.Forms.Cursors.SizeWE;
-                    else if (value.Name == "Y")
                         this.Cursor = System.Windows.Forms.Cursors.SizeNS;
+                    else if (value.Name == "Y")
+                        this.Cursor = System.Windows.Forms.Cursors.SizeWE;
                 }
                 else
                 {
                     if (value.Name == "X")
-                        this.Cursor = System.Windows.Forms.Cursors.SizeNS;
-                    else if (value.Name == "Y")
                         this.Cursor = System.Windows.Forms.Cursors.SizeWE;
+                    else if (value.Name == "Y")
+                        this.Cursor = System.Windows.Forms.Cursors.SizeNS;
                 }
                 this._targetLine = value;
             }
@@ -76,16 +76,16 @@ namespace SPC.Base.Control
 
         private void popupMenuYAddButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var line = new DevExpress.XtraCharts.ConstantLine("Y", e.Item.Tag.ToString());
+            var line = new DevExpress.XtraCharts.ConstantLine("Y", (e.Item.Tag as object[])[0].ToString());
+            ((e.Item.Tag as object[])[1] as DevExpress.XtraCharts.Axis2D).ConstantLines.Add(line);
             line.Title.Text = String.Format("{0:N3}", line.AxisValue);
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[0].ConstantLines.Add(line);
         }
 
         private void popupMenuXAddButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var line = new DevExpress.XtraCharts.ConstantLine("X", e.Item.Tag.ToString());
-            line.Title.Text = line.AxisValue.ToString();
-            (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesX()[0].ConstantLines.Add(line);
+            var line = new DevExpress.XtraCharts.ConstantLine("X", (e.Item.Tag as object[])[0].ToString());
+            ((e.Item.Tag as object[])[1] as DevExpress.XtraCharts.Axis2D).ConstantLines.Add(line);
+            line.Title.Text = String.Format("{0:N3}", line.AxisValue); ;
         }
         private void popupMenuEditItem_EditValueChanged(object sender, EventArgs e)
         {
@@ -94,7 +94,7 @@ namespace SPC.Base.Control
             if (t != null)
             {
                 t.AxisValue = s;
-                t.Title.Text = t.AxisValue.ToString();
+                t.Title.Text = String.Format("{0:N3}", t.AxisValue);
             }
         }
         private void InitPopupMenu()
@@ -103,15 +103,8 @@ namespace SPC.Base.Control
         }
         private void popupMenuDeleteButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var line = (e.Item.Tag as DevExpress.XtraCharts.ConstantLine);
-            if (line.Name == "X")
-            {
-                (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesX()[0].ConstantLines.Remove(line);
-            }
-            else if (line.Name == "Y")
-            {
-                (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[0].ConstantLines.Remove(line);
-            }
+            var line = ((e.Item.Tag as object[])[0] as DevExpress.XtraCharts.ConstantLine);
+            ((e.Item.Tag as object[])[1] as DevExpress.XtraCharts.Axis2D).ConstantLines.Remove(line);
         }
         protected override void OnMouseDown(System.Windows.Forms.MouseEventArgs e)
         {
@@ -132,11 +125,16 @@ namespace SPC.Base.Control
                         {
                             var pointinfo = (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).PointToDiagram(e.Location);
                             InitPopupMenu();
-                            popupMenuStaticItem.Caption = string.Format("X:{0} Y:{1:N3}", pointinfo.QualitativeArgument, pointinfo.NumericalValue);
+                            object argument;
+                            if (pointinfo.ArgumentScaleType == DevExpress.XtraCharts.ScaleType.Numerical)
+                                argument = pointinfo.NumericalArgument;
+                            else
+                                argument = pointinfo.QualitativeArgument;
+                            popupMenuStaticItem.Caption = string.Format("X:{0} Y:{1:N3}", argument, pointinfo.NumericalValue);
                             this.RightClickPopupMenu.AddItem(popupMenuStaticItem);
-                            popupMenuXAddButtonItem.Tag = pointinfo.QualitativeArgument;
+                            popupMenuXAddButtonItem.Tag = new object[]{argument,pointinfo.AxisX};
                             this.RightClickPopupMenu.AddItem(popupMenuXAddButtonItem);
-                            popupMenuYAddButtonItem.Tag = pointinfo.NumericalValue;
+                            popupMenuYAddButtonItem.Tag = new object[]{pointinfo.NumericalValue,pointinfo.AxisY};
                             this.RightClickPopupMenu.AddItem(popupMenuYAddButtonItem);
                             ShowRightClickPopupMenuEventArgs eventarg;
                             if (info.InConstantLine)
@@ -147,7 +145,7 @@ namespace SPC.Base.Control
                                 popupMenuEditItem.EditValue = info.ConstantLine.AxisValue;
                                 popupMenuEditItem.EndUpdate();
                                 this.RightClickPopupMenu.AddItem(popupMenuEditItem);
-                                popupMenuDeleteButtonItem.Tag = info.ConstantLine;
+                                popupMenuDeleteButtonItem.Tag = new object[]{info.ConstantLine,info.ConstantLine.Name=="X"?pointinfo.AxisX:pointinfo.AxisY};
                                 popupMenuDeleteButtonItem.Caption = "删除" + info.ConstantLine.Name + "轴边界线";
                                 this.RightClickPopupMenu.AddItem(popupMenuDeleteButtonItem);
                                 eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, info.ConstantLine, true);
@@ -182,8 +180,13 @@ namespace SPC.Base.Control
                     }
                     else if (targetLine.Name == "X" && !info.IsEmpty)
                     {
-                        targetLine.AxisValue = info.QualitativeArgument;
-                        targetLine.Title.Text = targetLine.AxisValue.ToString();
+                        object argument;
+                        if (info.ArgumentScaleType == DevExpress.XtraCharts.ScaleType.Qualitative)
+                            argument = info.QualitativeArgument;
+                        else
+                            argument = info.NumericalArgument;
+                        targetLine.AxisValue = argument;
+                        targetLine.Title.Text = String.Format("{0:N3}", targetLine.AxisValue);
                     }
                 }
                 this.targetLine = null;
@@ -201,19 +204,19 @@ namespace SPC.Base.Control
                     var info = this.CalcHitInfo(e.Location);
                     if (info.ConstantLine != null)
                     {
-                        if (!(this.Diagram as DevExpress.XtraCharts.XYDiagram).Rotated)
+                        if (this.Diagram is DevExpress.XtraCharts.XYDiagram&&(this.Diagram as DevExpress.XtraCharts.XYDiagram).Rotated)
                         {
-                            if (info.ConstantLine.Name == "Y")
-                                this.Cursor = System.Windows.Forms.Cursors.SizeNS;
-                            else if (info.ConstantLine.Name == "X")
+                                                        if (info.ConstantLine.Name == "Y")
                                 this.Cursor = System.Windows.Forms.Cursors.SizeWE;
+                            else if (info.ConstantLine.Name == "X")
+                                this.Cursor = System.Windows.Forms.Cursors.SizeNS;
                         }
                         else
                         {
                             if (info.ConstantLine.Name == "Y")
-                                this.Cursor = System.Windows.Forms.Cursors.SizeWE;
-                            else if (info.ConstantLine.Name == "X")
                                 this.Cursor = System.Windows.Forms.Cursors.SizeNS;
+                            else if (info.ConstantLine.Name == "X")
+                                this.Cursor = System.Windows.Forms.Cursors.SizeWE;
                         }
                     }
                 }
@@ -227,8 +230,13 @@ namespace SPC.Base.Control
                     }
                     else if (targetLine.Name == "X" && !info.IsEmpty)
                     {
-                        targetLine.AxisValue = info.QualitativeArgument;
-                        targetLine.Title.Text = targetLine.AxisValue.ToString();
+                        object argument;
+                        if (info.ArgumentScaleType == DevExpress.XtraCharts.ScaleType.Qualitative)
+                            argument = info.QualitativeArgument;
+                        else
+                            argument = info.NumericalArgument;
+                        targetLine.AxisValue = argument;
+                        targetLine.Title.Text = String.Format("{0:N3}", targetLine.AxisValue);
                     }
 
                 }

@@ -34,7 +34,7 @@
             DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.PointSeriesView pointSeriesView1 = new DevExpress.XtraCharts.PointSeriesView();
             DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView1 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
-            this.chartControl1 = new DevExpress.XtraCharts.ChartControl();
+            this.chartControl1 = new Base.Control.AdvChartControl();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
@@ -89,6 +89,6 @@
 
         #endregion
 
-        private DevExpress.XtraCharts.ChartControl chartControl1;
+        private Base.Control.AdvChartControl chartControl1;
     }
 }

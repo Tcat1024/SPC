@@ -42,6 +42,7 @@
             this.monitorControl1 = new SPC.Monitor.MonitorControl();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.xyRelationControl1 = new SPC.Monitor.XYRelationControl();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -58,7 +59,7 @@
             this.cpKtoolControl1.Location = new System.Drawing.Point(0, 0);
             this.cpKtoolControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cpKtoolControl1.Name = "cpKtoolControl1";
-            this.cpKtoolControl1.Size = new System.Drawing.Size(1257, 622);
+            this.cpKtoolControl1.Size = new System.Drawing.Size(1261, 621);
             this.cpKtoolControl1.TabIndex = 0;
             this.cpKtoolControl1.Load += new System.EventHandler(this.cpKtoolControl1_Load);
             // 
@@ -100,7 +101,7 @@
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1263, 27);
+            this.barDockControlTop.Size = new System.Drawing.Size(1263, 29);
             // 
             // barDockControlBottom
             // 
@@ -113,23 +114,23 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 27);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 653);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 29);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 651);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1263, 27);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 653);
+            this.barDockControlRight.Location = new System.Drawing.Point(1263, 29);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 651);
             // 
             // xtraTabControl1
             // 
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 27);
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 29);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1263, 653);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1263, 651);
             this.xtraTabControl1.TabIndex = 5;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -140,7 +141,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.cpKtoolControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1257, 622);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1261, 621);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // xtraTabPage2
@@ -178,6 +179,10 @@
             this.xyRelationControl1.SelectedTabPageIndex = 0;
             this.xyRelationControl1.Size = new System.Drawing.Size(1257, 622);
             this.xyRelationControl1.TabIndex = 0;
+            // 
+            // defaultLookAndFeel1
+            // 
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             // 
             // Form1
             // 
@@ -217,6 +222,7 @@
         private SPC.Monitor.MonitorControl monitorControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
         private SPC.Monitor.XYRelationControl xyRelationControl1;
+        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
     }
 }
 

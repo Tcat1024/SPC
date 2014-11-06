@@ -188,7 +188,6 @@
             // 
             // barButtonItem1
             // 
-            this.barButtonItem1.Caption = "barButtonItem1";
             this.barButtonItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.Glyph")));
             this.barButtonItem1.Id = 17;
             this.barButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.LargeGlyph")));
@@ -210,7 +209,7 @@
             this.standaloneBarDockControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl2.Location = new System.Drawing.Point(2, 2);
             this.standaloneBarDockControl2.Name = "standaloneBarDockControl2";
-            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 32);
+            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 29);
             this.standaloneBarDockControl2.Text = "standaloneBarDockControl2";
             // 
             // barDockControlTop
@@ -493,7 +492,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.multiControlsVerticalLayout1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage1.Size = new System.Drawing.Size(772, 279);
             this.xtraTabPage1.Text = "样本运行图";
             // 
             // multiControlsVerticalLayout1
@@ -502,7 +501,7 @@
             this.multiControlsVerticalLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.multiControlsVerticalLayout1.Location = new System.Drawing.Point(0, 0);
             this.multiControlsVerticalLayout1.Name = "multiControlsVerticalLayout1";
-            this.multiControlsVerticalLayout1.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout1.Size = new System.Drawing.Size(772, 279);
             this.multiControlsVerticalLayout1.SizeChangeStep = 10;
             this.multiControlsVerticalLayout1.TabIndex = 0;
             // 
@@ -621,9 +620,9 @@
             // listBoxControl1
             // 
             this.listBoxControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxControl1.Location = new System.Drawing.Point(2, 34);
+            this.listBoxControl1.Location = new System.Drawing.Point(2, 31);
             this.listBoxControl1.Name = "listBoxControl1";
-            this.listBoxControl1.Size = new System.Drawing.Size(153, 274);
+            this.listBoxControl1.Size = new System.Drawing.Size(153, 277);
             this.listBoxControl1.TabIndex = 3;
             this.listBoxControl1.DrawItem += new DevExpress.XtraEditors.ListBoxDrawItemEventHandler(this.listBoxControl1_DrawItem);
             this.listBoxControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBoxControl1_MouseClick);
