@@ -15,8 +15,9 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\bin\Debug\SPC.Base.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.Control.CustomGroupStringBuilder.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.Control.CustomGroupStringBuildForm.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.Control.Resource.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.Control.TriStateTreeView.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.csproj.GenerateResource.Cache
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.dll.licenses
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.pdb
-C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.Control.TriStateTreeView.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.csprojResolveAssemblyReference.cache

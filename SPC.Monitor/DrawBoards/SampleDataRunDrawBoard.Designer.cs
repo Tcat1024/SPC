@@ -128,6 +128,12 @@
             constantLine14});
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
+            xyDiagram1.EnableAxisXScrolling = true;
+            xyDiagram1.EnableAxisXZooming = true;
+            xyDiagram1.ScrollingOptions.UseKeyboard = false;
+            xyDiagram1.ScrollingOptions.UseMouse = false;
+            xyDiagram1.ScrollingOptions.UseTouchDevice = false;
+            xyDiagram1.ZoomingOptions.UseMouseWheel = false;
             this.chartControl1.Diagram = xyDiagram1;
             this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartControl1.Legend.Visible = false;

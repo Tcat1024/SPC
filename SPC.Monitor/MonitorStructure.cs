@@ -48,6 +48,24 @@ namespace SPC.Monitor
             this.ParamZ = paramZ;
         }
     }
+    public class SPCDetermineDataType
+    {
+        public SPC.Base.Control.CanChooseDataGridView View;
+        public String Param;
+        public double UCL;
+        public double LCL;
+        public double Standard;
+        public List<SPCCommandbase> Commands;
+        public SPCDetermineDataType(SPC.Base.Control.CanChooseDataGridView view, string param, double ucl, double lcl, double standard, List<SPCCommandbase> commands)
+        {
+            this.View = view;
+            this.Param = param;
+            this.UCL = ucl;
+            this.LCL = lcl;
+            this.Standard = standard;
+            this.Commands = commands;
+        }
+    }
     public interface IDrawBoard
     {
         System.Windows.Forms.Control GetChart();

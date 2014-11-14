@@ -56,11 +56,16 @@
             swiftPlotDiagram1.AxisY.Title.Visible = true;
             swiftPlotDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             swiftPlotDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
+            swiftPlotDiagram1.EnableAxisXScrolling = true;
+            swiftPlotDiagram1.EnableAxisXZooming = true;
             swiftPlotDiagram1.PaneDistance = 1;
             xyDiagramPane1.Name = "Pane 1";
             xyDiagramPane1.PaneID = 0;
             swiftPlotDiagram1.Panes.AddRange(new DevExpress.XtraCharts.XYDiagramPane[] {
             xyDiagramPane1});
+            swiftPlotDiagram1.ScrollingOptions.UseKeyboard = false;
+            swiftPlotDiagram1.ScrollingOptions.UseMouse = false;
+            swiftPlotDiagram1.ScrollingOptions.UseTouchDevice = false;
             swiftPlotDiagramSecondaryAxisY1.Alignment = DevExpress.XtraCharts.AxisAlignment.Near;
             swiftPlotDiagramSecondaryAxisY1.AxisID = 0;
             swiftPlotDiagramSecondaryAxisY1.GridLines.Visible = true;
@@ -71,6 +76,7 @@
             swiftPlotDiagramSecondaryAxisY1.WholeRange.AlwaysShowZeroLevel = false;
             swiftPlotDiagram1.SecondaryAxesY.AddRange(new DevExpress.XtraCharts.SwiftPlotDiagramSecondaryAxisY[] {
             swiftPlotDiagramSecondaryAxisY1});
+            swiftPlotDiagram1.ZoomingOptions.UseMouseWheel = false;
             this.chartControl1.Diagram = swiftPlotDiagram1;
             this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartControl1.Legend.Visible = false;

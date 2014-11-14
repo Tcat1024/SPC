@@ -41,6 +41,7 @@ namespace TestForm
                 this.cpKtoolControl1.DataSource = this.Data;
                 this.monitorControl1.DataSource = this.Data;
                 this.xyRelationControl1.DataSource = this.Data;
+                this.determineControl1.DataSource = this.Data;
             }
         }
 

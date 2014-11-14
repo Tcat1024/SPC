@@ -11,6 +11,21 @@
     <AssemblyName>SPC.Monitor</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,6 +51,7 @@
     <Reference Include="DevExpress.Utils.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v13.2.Extensions, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v13.2.UI, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v13.2.Wizard, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -90,6 +106,12 @@
     <Compile Include="DrawBoards\SampleDataRunPointDrawBoard.Designer.cs">
       <DependentUpon>SampleDataRunPointDrawBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="DrawBoards\SPCDetermineDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\SPCDetermineDrawBoard.Designer.cs">
+      <DependentUpon>SPCDetermineDrawBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="DrawBoards\SpectralDistributionDrawBoard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -114,6 +136,13 @@
     </Compile>
     <Compile Include="DrawBoards\SampleDataRunDrawBoard.Designer.cs">
       <DependentUpon>SampleDataRunDrawBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SPCDetermineMethod.cs" />
+    <Compile Include="DetermineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetermineControl.Designer.cs">
+      <DependentUpon>DetermineControl.cs</DependentUpon>
     </Compile>
     <Compile Include="XYRelationControl.cs">
       <SubType>UserControl</SubType>
@@ -142,6 +171,9 @@
     <EmbeddedResource Include="DrawBoards\SampleDataRunPointDrawBoard.resx">
       <DependentUpon>SampleDataRunPointDrawBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DrawBoards\SPCDetermineDrawBoard.resx">
+      <DependentUpon>SPCDetermineDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DrawBoards\SpectralDistributionDrawBoard.resx">
       <DependentUpon>SpectralDistributionDrawBoard.cs</DependentUpon>
     </EmbeddedResource>
@@ -156,6 +188,9 @@
     <EmbeddedResource Include="DrawBoards\SampleDataRunDrawBoard.resx">
       <DependentUpon>SampleDataRunDrawBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DetermineControl.resx">
+      <DependentUpon>DetermineControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="XYRelationControl.resx">
       <DependentUpon>XYRelationControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +200,28 @@
       <Project>{b8a9423b-8443-439b-ab89-f3a2ddd1d036}</Project>
       <Name>SPC.Base</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

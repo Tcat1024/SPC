@@ -802,7 +802,7 @@ namespace SPC.Monitor
         {
             if (Series != null && DrawBoard != null)
             {
-                for (int i = 2; i >= 0; i--)
+                for (int i = Series.Length - 1; i >= 0; i--)
                     this.DrawBoard.Series.Remove(Series[i]);
             }
             if (this.DrawBoard.Series.Count == 3)
@@ -813,7 +813,7 @@ namespace SPC.Monitor
 
         public void Dispose()
         {
-            for (int i = 2; i >= 0; i--)
+            for (int i = Series.Length - 1; i >= 0; i--)
                 Series[i].Dispose();
         }
     }
@@ -1073,8 +1073,8 @@ namespace SPC.Monitor
             }
             result.X.Add(ylc.ToString());
             result.X.Add(y0c.ToString());
-            result.X.Add(y4c.ToString());
             result.X.Add(yuc.ToString());
+            result.X.Add(y4c.ToString());
             return true;
         }
         public BasicSeriesData Make(MonitorSourceDataType sourcedata)
@@ -1134,14 +1134,24 @@ namespace SPC.Monitor
     {
         private DevExpress.XtraCharts.Series[] Series;
         private DevExpress.XtraCharts.ChartControl DrawBoard;
+        private int index;
         public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
+            int q;
             DrawBoard = drawBoard;
-            Series = new DevExpress.XtraCharts.Series[3];
-            for (int i = 0; i < 3; i++)
+            Series = new DevExpress.XtraCharts.Series[4];
+            int seriescount =  drawBoard.Series.Count;
+            if (seriescount < 5)
+                index = 1;
+            else
+            {
+                index =Convert.ToInt32(drawBoard.Series[(seriescount/4-1)*4].Points[0].Argument.Split('-')[0])+1;
+            }
+            for (int i = 0; i < 4; i++)
             {
                 Series[i] = new DevExpress.XtraCharts.Series();
                 Series[i].View = DrawBoard.Series[i].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+                Series[i].CrosshairLabelPattern = DrawBoard.Series[i].CrosshairLabelPattern;
                 Series[i].View.Color = color;
                 Series[i].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
                 DrawBoard.Series.Add(Series[i]);
@@ -1154,28 +1164,29 @@ namespace SPC.Monitor
                 int temp = Convert.ToInt32(data.X[i - 4]);
                 for (int k = 0; k < temp; k++)
                 {
-                    Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint(x, data.Y[j++]));
+                    Series[3].Points.Add(new DevExpress.XtraCharts.SeriesPoint(index + "-" + x, data.Y[j++]));
                 }
                 temp = Convert.ToInt32(data.X[i - 3]);
                 for (int k = 0; k < temp; k++)
                 {
-                    Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint(x, data.Y[j++]));
+                    Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint(index + "-" + x, data.Y[j++]));
                 }
-                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(x, new object[] { (object)data.Y[j], (object)data.Y[j + 3], (object)data.Y[j + 1], (object)data.Y[j + 3] }));
-                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(x, new object[] { (object)data.Y[j + 2], (object)data.Y[j + 4], (object)data.Y[j + 2], (object)data.Y[j + 3] }));
-                j += 5;
+                q = j;
+                j += 4;
                 temp = Convert.ToInt32(data.X[i - 2]);
                 for (int k = 0; k < temp;k++)
                 {
-                    Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint(x, data.Y[j++]));
+                    Series[3].Points.Add(new DevExpress.XtraCharts.SeriesPoint(index + "-" + x, data.Y[j++]));
                 }
                 temp = Convert.ToInt32(data.X[i - 1]);
                 for (int k = 0; k < temp;k++)
                 {
-                    Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint(x, data.Y[j++]));
+                    Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint(index + "-" + x, data.Y[j++]));
                 }
+                Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint(index+"-"+x, new object[] { (object)data.Y[q], (object)data.Y[q + 2], (object)data.Y[q + 1], (object)data.Y[q + 2] }));
+                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(index + "-" + x, new object[] { (object)data.Y[q + 2], (object)data.Y[j++], (object)data.Y[q + 2], (object)data.Y[q + 3] }));
             }
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 Series[i].Points.EndUpdate();
             }
@@ -1185,10 +1196,10 @@ namespace SPC.Monitor
         {
             if (Series != null && DrawBoard != null)
             {
-                for (int i =2; i >=0;i-- )
+                for (int i =Series.Length-1; i >=0;i-- )
                     this.DrawBoard.Series.Remove(Series[i]);
             }
-            if (this.DrawBoard.Series.Count == 3)
+            if (this.DrawBoard.Series.Count == 4)
                 return true;
             else
                 return false;
@@ -1196,7 +1207,7 @@ namespace SPC.Monitor
 
         public void Dispose()
         {
-            for (int i = 2; i >= 0; i--)
+            for (int i = Series.Length - 1; i >= 0; i--)
                 Series[i].Dispose();
         }
     }
@@ -1206,6 +1217,118 @@ namespace SPC.Monitor
         {
             this.SeriesMaker = new BoxPlotSeriesMaker();
             this.SeriesDrawer = new BoxPlotSeriesDrawer();
+        }
+    }
+    #endregion
+
+    #region SPCDetermineSeries
+    public class SPCDetermineSeriesMaker : ISeriesMaker<SPCDetermineDataType>
+    {
+        public BasicSeriesData Make(SPCDetermineDataType sourcedata)
+        {
+            var view = sourcedata.View;
+            var param = sourcedata.Param;
+            BasicSeriesData result = new BasicSeriesData();
+            SPCDetermineMethod method = new SPCDetermineMethod(sourcedata.UCL, sourcedata.LCL, sourcedata.Standard, sourcedata.Commands);
+            result.Y.Add(sourcedata.Standard + sourcedata.UCL);
+            result.Y.Add(sourcedata.Standard);
+            result.Y.Add(sourcedata.Standard + sourcedata.LCL);
+            result.X.Add(null);
+            result.X.Add(null);
+            result.X.Add(null);
+            List<SPCCommandbase> excuteresult;
+            double x = 0, y = 0;
+            for (int i = 0; i < view.DataRowCount; i++)
+            {
+                var rowtemp = view.GetDataRow(i);
+                if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                {
+                    var temp = rowtemp[param];
+                    if (!CheckMethod.checkDoubleCanConvert(temp))
+                        y = 0;
+                    else
+                        y = Convert.ToDouble(temp);
+                    excuteresult = method.Excute(y); 
+                    x++;
+                    result.X.Add(x.ToString());
+                    result.Y.Add(y);
+                    foreach (var command in excuteresult)
+                    {
+                        result.X.Add(null);
+                        result.Y.Add(command.ID);
+                    }
+                }
+            }
+            return result;
+        }
+    }
+    public class SPCDetermineSeriesDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    {
+        private DevExpress.XtraCharts.Series[] Series;
+        private DevExpress.XtraCharts.ChartControl DrawBoard;
+        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        {
+            DrawBoard = drawBoard;
+            Series = new DevExpress.XtraCharts.Series[2];
+            string pre = "";
+            for (int i = 0; i <2; i++)
+            {
+                Series[i] = new DevExpress.XtraCharts.Series();
+                Series[i].View = DrawBoard.Series[i].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+                Series[i].CrosshairLabelPattern = DrawBoard.Series[i].CrosshairLabelPattern;
+                Series[i].View.Color = color;
+                Series[i].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+                DrawBoard.Series.Add(Series[i]);
+                Series[i].Points.BeginUpdate();
+                Series[i].Points.Clear();
+            }
+             (drawBoard.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[0].ConstantLines.Add(new DevExpress.XtraCharts.ConstantLine("UCL", data.Y[0]) { Color = color });
+             (drawBoard.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[0].ConstantLines.Add(new DevExpress.XtraCharts.ConstantLine("STD", data.Y[1]) { Color = color });
+             (drawBoard.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[0].ConstantLines.Add(new DevExpress.XtraCharts.ConstantLine("LCL", data.Y[2]) { Color = color });
+
+            for (int i = 3; i < data.X.Count; i ++)
+            {
+                var x = data.X[i];
+                if(x==null)
+                {
+                    Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint(pre, data.Y[i]));
+                }
+                else
+                {
+                    Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(x, data.Y[i]));
+                    pre = x;
+                }
+            }
+            for (int i = 0; i < 2; i++)
+            {
+                Series[i].Points.EndUpdate();
+            }
+        }
+
+        public bool Clear()
+        {
+            if (Series != null && DrawBoard != null)
+            {
+                for (int i = Series.Length - 1; i >= 0; i--)
+                    this.DrawBoard.Series.Remove(Series[i]);
+            }
+            if (this.DrawBoard.Series.Count == 2)
+                return true;
+            else
+                return false;
+        }
+        public void Dispose()
+        {
+            for (int i = Series.Length - 1; i >= 0; i--)
+                Series[i].Dispose();
+        }
+    }
+    public class SPCDetermineSeriesManager : SingleSeriesManager<SPCDetermineDataType, DevExpress.XtraCharts.ChartControl>
+    {
+        protected override void Init()
+        {
+            this.SeriesMaker = new SPCDetermineSeriesMaker();
+            this.SeriesDrawer = new SPCDetermineSeriesDrawer();
         }
     }
     #endregion
