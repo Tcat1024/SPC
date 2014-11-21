@@ -32,5 +32,7 @@ namespace SPC.Monitor.DrawBoards
             if (this.Parent != null)
                 this.Parent.Controls.Remove(this);
         }
+
+
     }
 }

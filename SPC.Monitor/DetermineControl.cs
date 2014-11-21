@@ -51,7 +51,13 @@ namespace SPC.Monitor
                 this.xtraTabControl1.SelectedTabPageIndex = value;
             }
         }
-
+        public object DataView
+        {
+            get
+            {
+                return this.gridView1;
+            }
+        }
         private object _DataSource;
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -113,23 +119,51 @@ namespace SPC.Monitor
                 
                 if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
                 {
-                    var temp = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.textEdit1.Text), Convert.ToDouble(this.textEdit2.Text), Convert.ToDouble(this.textEdit3.Text), this.getSeletedCommands(), this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
-                    this.AddListItem(temp);
+                    var commands = this.getSeletedCommands();
+                    if (this.textEdit1.Text == "" || this.textEdit2.Text == "" || textEdit3.Text == "" || commands.Count < 1)
+                    {
+                        MessageBox.Show("条件输入不完整");
+                        return;
+                    }
+                    try
+                    {
+                        var temp = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.textEdit1.Text), Convert.ToDouble(this.textEdit2.Text), Convert.ToDouble(this.textEdit3.Text), commands, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
+                        this.AddListItem(temp);
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
                 }
                 else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
                 {
                     var targetlayout = this.xtraTabControl1.SelectedTabPage.Controls[0];
                     var targetchart = targetlayout.GetChildAtPoint(targetlayout.PointToClient(MousePosition));
                     int index = targetlayout.Controls.IndexOf(targetchart);
-                    if (index >= 0)
+                    var commands = this.getSeletedCommands();
+                    if (this.textEdit1.Text == "" || this.textEdit2.Text == "" || textEdit3.Text == "" || commands.Count < 1)
                     {
-                        var temp = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.textEdit1.Text), Convert.ToDouble(this.textEdit2.Text), Convert.ToDouble(this.textEdit3.Text), this.getSeletedCommands(), this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
-                        this.AddListItem(temp);
+                        MessageBox.Show("条件输入不完整");
+                        return;
                     }
-                    else
+                    try
                     {
-                        var temp = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.textEdit1.Text), Convert.ToDouble(this.textEdit2.Text), Convert.ToDouble(this.textEdit3.Text), this.getSeletedCommands(), this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
-                        this.AddListItem(temp);
+                        if (index >= 0)
+                        {
+                            var temp = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.textEdit1.Text), Convert.ToDouble(this.textEdit2.Text), Convert.ToDouble(this.textEdit3.Text), commands, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
+                            this.AddListItem(temp);
+                        }
+                        else
+                        {
+                            var temp = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.textEdit1.Text), Convert.ToDouble(this.textEdit2.Text), Convert.ToDouble(this.textEdit3.Text), commands, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
+                            this.AddListItem(temp);
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return;
                     }
                 }
             }

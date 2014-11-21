@@ -89,7 +89,6 @@ namespace SPC.CPKtool
                         RefreshTole();
                     if (this.ToleChanged != null)
                         this.ToleChanged(this, new PropertyChangeEventArgs(value));
-
                 }
             }
         }
@@ -248,7 +247,8 @@ namespace SPC.CPKtool
             {
                 if (this.GetBasicStat())
                 {
-                    this.DataInitComplete(this,new EventArgs());
+                    if(this.DataInitComplete!=null)
+                        this.DataInitComplete(this,new EventArgs());
                     this.RefreshTole();
                 }
             }
@@ -260,7 +260,8 @@ namespace SPC.CPKtool
                 this.GetStdLt();
                 this.GetOffset();
                 this.GetSpOffset();
-                this.ToleInitComplete(this,new EventArgs());
+                if (this.ToleInitComplete != null)
+                    this.ToleInitComplete(this, new EventArgs());
             }
         }
         public void InitCount()

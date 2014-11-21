@@ -53,6 +53,7 @@
             this.chartControl1.CrosshairOptions.ShowOnlyInFocusedPane = false;
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
             xyDiagram1.EnableAxisXScrolling = true;
             xyDiagram1.EnableAxisXZooming = true;
             xyDiagram1.PaneDistance = 0;

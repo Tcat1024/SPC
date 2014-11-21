@@ -38,11 +38,20 @@ namespace TestForm
                     MessageBox.Show(ex.Message);
                     return;
                 }
-                this.cpKtoolControl1.DataSource = this.Data;
+                //this.cpKtoolControl1.DataSource = this.Data;
                 this.monitorControl1.DataSource = this.Data;
-                this.xyRelationControl1.DataSource = this.Data;
-                this.determineControl1.DataSource = this.Data;
+
             }
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.cpKtoolControl1.DataSource = this.Data;
+            (this.cpKtoolControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
+            this.xyRelationControl1.DataSource = this.Data;
+            (this.xyRelationControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
+            this.determineControl1.DataSource = this.Data;
+            (this.determineControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
         }
 
 

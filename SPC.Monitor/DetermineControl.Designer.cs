@@ -282,6 +282,7 @@
             this.textEdit3.Name = "textEdit3";
             this.textEdit3.Properties.Mask.EditMask = "(-?[0-9]+(.([0-9]+))?)";
             this.textEdit3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.textEdit3.Properties.Mask.ShowPlaceHolders = false;
             this.textEdit3.Size = new System.Drawing.Size(75, 22);
             this.textEdit3.TabIndex = 9;
             // 
@@ -290,8 +291,9 @@
             this.textEdit2.Location = new System.Drawing.Point(477, 3);
             this.textEdit2.MenuManager = this.barManager1;
             this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Mask.EditMask = "(-?[0-9]+(.([0-9]+))?)";
+            this.textEdit2.Properties.Mask.EditMask = "0|(-[0-9]+(.([0-9]+))?)";
             this.textEdit2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.textEdit2.Properties.Mask.ShowPlaceHolders = false;
             this.textEdit2.Size = new System.Drawing.Size(73, 22);
             this.textEdit2.TabIndex = 8;
             // 
@@ -300,7 +302,7 @@
             this.textEdit1.Location = new System.Drawing.Point(407, 3);
             this.textEdit1.MenuManager = this.barManager1;
             this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Mask.EditMask = "(-?[0-9]+(.([0-9]+))?)";
+            this.textEdit1.Properties.Mask.EditMask = "([0-9]+(.([0-9]+))?)";
             this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
             this.textEdit1.Properties.Mask.ShowPlaceHolders = false;
             this.textEdit1.Size = new System.Drawing.Size(64, 22);

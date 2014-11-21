@@ -329,6 +329,16 @@ namespace SPC.Base.Operation
             return !(o is DBNull || !(o is System.IConvertible));
         }
     }
+    public static class DataConvertExtern
+    {
+        public static double ConvertToDouble(this object o)
+        {
+            if (o is DBNull)
+                return 0;
+            else
+                return Convert.ToDouble(o);
+        }
+    }
     public class BasicSort
     {
         public static void QuickSort<T>(int start, int end, T[] data, Func<T, T, bool> compare)

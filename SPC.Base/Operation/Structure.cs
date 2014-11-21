@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using SPC.Base.Interface;
 
 namespace SPC.Base.Operation
@@ -9,7 +10,7 @@ namespace SPC.Base.Operation
     public struct STDEVType
     {
         public string Description { get; set; }
-        private static STDEVType _Std = new STDEVType("标准差",STDEV.stdGetGroup);
+        private static STDEVType _Std = new STDEVType("标准差", STDEV.stdGetGroup);
         public static STDEVType Std
         {
             get
@@ -33,8 +34,8 @@ namespace SPC.Base.Operation
                 return STDEVType._Range;
             }
         }
-        public Func<ICanGetProperty, double, int,int,int,double> Get;
-        public STDEVType(string de,Func<ICanGetProperty, double, int,int,int,double> g)
+        public Func<ICanGetProperty, double, int, int, int, double> Get;
+        public STDEVType(string de, Func<ICanGetProperty, double, int, int, int, double> g)
             : this()
         {
             this.Description = de;
@@ -64,7 +65,7 @@ namespace SPC.Base.Operation
             return this.Description.GetHashCode();
         }
     }
-    
+
     public static class StandardConst
     {
         private static double[] _D2 = new double[] { double.NaN, 1, 1.128, 1.693, 2.059, 2.326, 2.543, 2.704, 2.847, 2.970, 3.078, 3.173, 3.258, 3.336, 3.407, 3.472, 3.532, 3.588, 3.640, 3.689, 3.735, 3.778, 3.819, 3.858, 3.895, 3.931 };
@@ -110,4 +111,329 @@ namespace SPC.Base.Operation
             return base.GetHashCode();
         }
     }
+    public class ViewData : IEnumerator<DataRow>
+    {
+        SPC.Base.Control.CanChooseDataGridView View;
+        DataTable sourceTable;
+        public ViewData(SPC.Base.Control.CanChooseDataGridView view)
+        {
+            this.View = view;
+            this.sourceTable = (view.DataSource as DataView).Table;
+            view.GridControl.Invoke(new Action(() => { this.View.ActiveFilter.Add(view.Columns[view.ChooseColumnName], new DevExpress.XtraGrid.Columns.ColumnFilterInfo(view.ChooseColumnName + " = true")); }));
+        }
+        public DataRow this[int index]
+        {
+            get
+            {
+                return this.View.GetDataRow(index);
+            }
+        }
+        public object this[int rowindex, int columnindex]
+        {
+            get
+            {
+                return this.View.GetRowCellValue(rowindex, this.View.VisibleColumns[columnindex]);
+            }
+            set
+            {
+                this.View.SetRowCellValue(rowindex, this.View.VisibleColumns[columnindex], value);
+            }
+        }
+
+        public object this[int rowindex, string columnname]
+        {
+            get
+            {
+                return this.View.GetRowCellValue(rowindex, columnname);
+            }
+            set
+            {
+                this.View.SetRowCellValue(rowindex, columnname, value);
+            }
+        }
+        public int RowCount
+        {
+            get
+            {
+                return this.View.DataRowCount;
+            }
+        }
+        public int ColumnCount
+        {
+            get
+            {
+                return this.View.VisibleColumns.Count;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return this.sourceTable.TableName;
+            }
+            set
+            {
+                this.sourceTable.TableName = value;
+            }
+        }
+        public object[] GetGroup(int index)
+        {
+            throw new NotImplementedException();
+        }
+        public int GetSourceIndex(int i)
+        {
+            return this.View.GetDataSourceRowIndex(i);
+        }
+        public DataRow GetSourceRowbySourceIndex(int i)
+        {
+            return sourceTable.Rows[i];
+        }
+        public string[] GetColumnsList()
+        {
+            var columnlist = this.View.VisibleColumns;
+            int columncount = columnlist.Count;
+            string[] columns = new string[columncount];
+            for (int i = 0; i < columncount; i++)
+            {
+                columns[i] = columnlist[i].FieldName;
+            }
+            return columns;
+        }
+        public string[] GetColumnsList(bool equal = true, params Type[] ttype)
+        {
+            var columnlist = this.View.VisibleColumns;
+            int columncount = columnlist.Count;
+            List<string> columns = new List<string>();
+            int typecount = ttype.Length;
+            if (equal)
+            {
+                for (int i = 0; i < columncount; i++)
+                {
+                    for (int j = 0; j < typecount; j++)
+                    {
+                        if (columnlist[i].ColumnType == ttype[j])
+                        {
+                            columns.Add(columnlist[i].FieldName);
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < columncount; i++)
+                {
+                    bool hav = false;
+                    for (int j = 0; j < typecount; j++)
+                    {
+                        if (columnlist[i].ColumnType == ttype[j])
+                        {
+                            hav = true;
+                            break;
+                        }
+                    }
+                    if (!hav)
+                        columns.Add(columnlist[i].FieldName);
+                }
+            }
+            return columns.ToArray();
+        }
+
+        public Type GetColumnType(int index)
+        {
+            return this.sourceTable.Columns[index].DataType;
+        }
+
+        public Type GetColumnType(string name)
+        {
+            return this.sourceTable.Columns[name].DataType;
+        }
+
+        public bool ContainsColumn(string name)
+        {
+            return this.sourceTable.Columns.Contains(name); ;
+        }
+
+        public void AddColumn(string name)
+        {
+            this.sourceTable.Columns.Add(name);
+            this.View.Columns.AddVisible(name);
+        }
+        public void AddColumn(string name, Type datatype)
+        {
+            this.sourceTable.Columns.Add(name, datatype);
+            this.View.Columns.AddVisible(name);
+        }
+
+        public object Copy()
+        {
+            DataTable result = this.sourceTable.Clone();
+            result.TableName = this.sourceTable.TableName + " - 副本";
+            var rowcount = this.View.RowCount;
+            for (int j = 0; j < rowcount; j++)
+                result.Rows.Add(this.View.GetDataRow(j).ItemArray);
+            var columns = this.View.VisibleColumns;
+            var columncount = columns.Count;
+            var totalcolumncount = columns.Count;
+            int i;
+            for (i = 0; i < columncount; i++)
+                result.Columns[columns[i].FieldName].SetOrdinal(i);
+            for (; i < totalcolumncount; i++)
+                result.Columns.RemoveAt(i);
+            return result;
+            //object[] t = new object[3];
+            //t[0] = this.sourceTable.TableName + " - 副本";
+            //t[1] = false;
+            //string[] temp = new string[columncount];
+            //for (i = 0; i < columncount; i++)
+            //    temp[i] = View.VisibleColumns[i].FieldName;
+            //t[2] = temp;
+            //return typeof(DataView).GetMethod("ToTable", new Type[] { typeof(string), typeof(bool), typeof(string[]) }).Invoke(this.dataView, t);
+        }
+        public bool SetColumnVisible(string name)
+        {
+            DevExpress.XtraGrid.Columns.GridColumn target;
+            if (this.sourceTable.Columns.Contains(name) && (target = this.View.Columns.ColumnByFieldName(name)) != null && target.Visible == false)
+            {
+                target.Visible = true;
+                return true;
+            }
+            return false;
+        }
+
+        public bool SetColumnUnvisible(string name)
+        {
+            DevExpress.XtraGrid.Columns.GridColumn target;
+            if (this.sourceTable.Columns.Contains(name) && (target = this.View.Columns.ColumnByFieldName(name)) != null && target.Visible == true)
+            {
+                target.Visible = false;
+                return true;
+            }
+            return false;
+        }
+        public DataRow NewRow()
+        {
+            return this.sourceTable.NewRow();
+        }
+
+
+        private int index = -1;
+
+
+        public DataRow Current
+        {
+            get { return this.View.GetDataRow(index); }
+        }
+
+        public void Dispose()
+        {
+            index = -1;
+        }
+
+        object System.Collections.IEnumerator.Current
+        {
+            get { return this.View.GetDataRow(index); }
+        }
+
+        public bool MoveNext()
+        {
+            if (index == this.RowCount - 1)
+                return false;
+            index++;
+            return true;
+        }
+
+        public void Reset()
+        {
+            index = -1;
+        }
+
+    }
+    public class DoubleCompare : IComparer<double>
+    {
+        public int Compare(double x, double y)
+        {
+            if (x < y)
+                return -1;
+            return 1;
+        }
+    }
+    public class DPoint
+    {
+        public double X;
+        public double Y;
+        public DPoint(double x, double y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+        public override bool Equals(object obj)
+        {
+            DPoint target;
+            if ((target = obj as DPoint) == null)
+                return false;
+            if (this.X == target.X && this.Y == target.Y)
+                return true;
+            return false;
+        }
+        public static bool operator ==(DPoint a, DPoint b)
+        {
+            return a.Equals(b);
+        }
+        public static bool operator !=(DPoint a, DPoint b)
+        {
+            return !a.Equals(b);
+        }
+    }
+    public class DPointValue :DPoint
+    {
+        private int i = 1;
+        private double _Value;
+        public double Value
+        {
+            get
+            {
+                return _Value / i;
+            }
+            set
+            {
+                this._Value = value;
+                i = 1;
+            }
+        }
+        public void AddValue(double value)
+        {
+            i++;
+            this._Value += value;
+        }
+        public DPointValue(double x, double y,double value) :base(x,y)
+        {
+            this.Value = value;
+        }
+    }
+    public class DPointCompare : IComparer<DPoint>
+    {
+        public int Compare(DPoint x, DPoint y)
+        {
+            if (x.X < y.X)
+                return -1;
+            else if (x.X == y.X && x.Y < y.Y)
+                return -1;
+            else
+                return 1;
+        }
+    }
+    public class DPointCompareY : IComparer<DPoint>
+    {
+        public int Compare(DPoint x, DPoint y)
+        {
+            if (x.Y < y.Y)
+                return -1;
+            else if (x.Y == y.Y && x.X < y.X)
+                return -1;
+            else
+                return 1;
+        }
+    }
+
 }

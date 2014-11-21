@@ -131,7 +131,7 @@ namespace SPC.Monitor
             }
             public override string Title
             {
-                get { return "判定规则1"; }
+                get { return "规则1"; }
             }
 
             public override string Description
@@ -158,7 +158,7 @@ namespace SPC.Monitor
             }
             public override string Title
             {
-                get { return "判定规则2"; }
+                get { return "规则2"; }
             }
 
             public override string Description
@@ -202,7 +202,7 @@ namespace SPC.Monitor
             }
             public override string Title
             {
-                get { return "判定规则3"; }
+                get { return "规则3"; }
             }
 
             public override string Description
@@ -250,7 +250,7 @@ namespace SPC.Monitor
             }
             public override string Title
             {
-                get { return "判定规则4"; }
+                get { return "规则4"; }
             }
 
             public override string Description
@@ -299,7 +299,7 @@ namespace SPC.Monitor
             }
             public override string Title
             {
-                get { return "判定规则5"; }
+                get { return "规则5"; }
             }
 
             public override string Description
@@ -345,7 +345,7 @@ namespace SPC.Monitor
             }
             public override string Title
             {
-                get { return "判定规则6"; }
+                get { return "规则6"; }
             }
 
             public override string Description
@@ -391,7 +391,7 @@ namespace SPC.Monitor
             }
             public override string Title
             {
-                get { return "判定规则7"; }
+                get { return "规则7"; }
             }
 
             public override string Description
@@ -424,7 +424,7 @@ namespace SPC.Monitor
             }
             public override string Title
             {
-                get { return "判定规则8"; }
+                get { return "规则8"; }
             }
 
             public override string Description

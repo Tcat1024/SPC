@@ -52,14 +52,14 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.Dr
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DrawBoards.NormalityCheckDrawBoard.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DrawBoards.SampleXYRelationDrawBoard.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DrawBoards.SampleDataRunPointDrawBoard.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DrawBoards.SPCDetermineDrawBoard.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DrawBoards.SpectralDistributionDrawBoard.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.MonitorControl.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.Properties.Resources.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DrawBoards.SampleDataRunDrawBoard.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DetermineControl.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.XYRelationControl.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.csproj.GenerateResource.Cache
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.dll.licenses
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.pdb
-C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DetermineControl.resources
-C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Monitor\obj\Debug\SPC.Monitor.DrawBoards.SPCDetermineDrawBoard.resources

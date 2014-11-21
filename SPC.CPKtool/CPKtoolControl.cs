@@ -16,12 +16,19 @@ namespace SPC.CPKtool
     public partial class CPKtoolControl : DevExpress.XtraEditors.XtraUserControl
     {
         DataTable Data;
-        CPKCanChooseTableData Result = new CPKCanChooseTableData();
+        CPKCanChooseViewData Result = new CPKCanChooseViewData();
         BindingSource ResultBind = new BindingSource();
         BindingSource DataBind = new BindingSource();
         DevExpress.XtraCharts.CrosshairElement currentElement;
         int MemberGroupCount = 0;
         public string ChooseColumnName = "choose";
+        public object DataView
+        {
+            get
+            {
+                return this.gridView1;
+            }
+        }
         private object _DataSource;
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -255,7 +262,7 @@ namespace SPC.CPKtool
         }
         private void NewToleRefresh()
         {
-            layoutView1.Refresh();
+            //layoutView1.RefreshData();
             (this.DataChart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisY.ConstantLines[0].Visible = true;
             (this.DataChart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisY.ConstantLines[0].AxisValue = this.Result.UpTole + this.Result.Standard;
             (this.DataChart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisY.ConstantLines[1].Visible = true;
@@ -338,20 +345,9 @@ namespace SPC.CPKtool
                 MessageBox.Show("数据集为空");
                 return;
             }
-            if (!this.Data.Columns.Contains(ChooseColumnName))
-            {
-                var choosecolumn = new DataColumn(ChooseColumnName, typeof(bool));
-                this.Data.Columns.Add(choosecolumn);
-            }
-            int co = this.Data.Rows.Count;
-            for (int i = 0; i < co; i++)
-            {
-                this.Data.Rows[i][ChooseColumnName] = true;
-            }
-            this.GetProperties();
-            Result.Data = this.Data;
             this.gridView1.Columns.Clear();
             this.DataBind.DataSource = this.Data;
+            Result.Data = this.gridView1;
         }
         private DevExpress.XtraCharts.ConstantLine _targetLine = null;
         private DevExpress.XtraCharts.ConstantLine targetLine

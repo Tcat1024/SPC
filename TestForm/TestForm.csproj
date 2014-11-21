@@ -97,6 +97,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPC.Base\SPC.Base.csproj">
+      <Project>{b8a9423b-8443-439b-ab89-f3a2ddd1d036}</Project>
+      <Name>SPC.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPC.CPKtool\SPC.CPKtool.csproj">
       <Project>{02b6bdb0-c6b5-4b1d-bbdb-1fdceab84cd7}</Project>
       <Name>SPC.CPKtool</Name>

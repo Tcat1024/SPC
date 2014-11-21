@@ -14,7 +14,9 @@ namespace SPC.Base.Control
 {
     public class CanChooseDataGridView : DevExpress.XtraGrid.Views.Grid.GridView
     {
+        private DevExpress.XtraGrid.Columns.GridColumn chooseColumn;
         private string _ChooseColumnName = "choose";
+        private bool innerChange = false;
         public string ChooseColumnName
         {
             get
@@ -160,9 +162,49 @@ namespace SPC.Base.Control
 
             this.PopupMenuShowing -= CanChooseDataGridView_PopupMenuShowing;
             this.PopupMenuShowing += CanChooseDataGridView_PopupMenuShowing;
-
         }
-
+        protected override void OnSummaryCollectionChanged(object sender, CollectionChangeEventArgs e)
+        {
+            Type a = sender.GetType();
+            if (innerChange)
+                base.OnSummaryCollectionChanged(sender, e);
+            else
+            {
+                var summary = e.Element as DevExpress.XtraGrid.GridSummaryItem;
+                if (!innerChange && summary != null && summary.FieldName == this.ChooseColumnName)
+                    return;
+                base.OnSummaryCollectionChanged(sender, e);
+                if (AllowChoose && sender is DevExpress.XtraGrid.GridGroupSummaryItemCollection)
+                    checkGroupSummary();
+            }
+        }
+        private void checkColumnSummary()
+        {
+            innerChange = true;
+            this.chooseColumn.Summary.Clear();
+            this.chooseColumn.Summary.Add(this.ChooseNeedSummary);
+            innerChange = false;
+        }
+        private void checkGroupSummary()
+        {
+            innerChange = true;
+            for (int i = GroupSummary.Count - 1; i >= 0; i--)
+            {
+                if (GroupSummary[i].FieldName == ChooseColumnName)
+                    GroupSummary.RemoveAt(i);
+            }
+            GroupSummary.Add(this.GroupChooseNeedSummary);
+            innerChange = false;
+        }
+        protected override void OnColumnSummaryCollectionChanged(DevExpress.XtraGrid.Columns.GridColumn column, CollectionChangeEventArgs e)
+        {      
+            if (!innerChange && column.FieldName == ChooseColumnName)
+            {
+                chooseColumn = column;
+                checkColumnSummary();
+            }
+            base.OnColumnSummaryCollectionChanged(column, e);
+        }
         protected override void RaiseCustomColumnGroup(DevExpress.XtraGrid.Views.Base.CustomColumnSortEventArgs e)
         {
             CustomGroupStringBuildForm form;
@@ -288,15 +330,18 @@ namespace SPC.Base.Control
 
         public void InitData(object sender)
         {
-            DevExpress.XtraGrid.Columns.GridColumn temp;
             if (this.AutoMode || this.AllowChoose)
             {
-                if ((temp = this.Columns.ColumnByFieldName(ChooseColumnName)) != null)
+                if ((chooseColumn = this.Columns.ColumnByFieldName(ChooseColumnName)) != null)
                 {
-                    temp.VisibleIndex = 0;
-                    temp.OptionsColumn.AllowEdit = false;
-                    if (temp.Summary.IndexOf(ChooseNeedSummary) < 0)
-                        temp.Summary.Add(ChooseNeedSummary);
+                    chooseColumn.VisibleIndex = 0;
+                    chooseColumn.OptionsColumn.AllowEdit = false;
+                    if (chooseColumn.Summary.IndexOf(ChooseNeedSummary) < 0)
+                    {
+                        this.innerChange = true;
+                        chooseColumn.Summary.Add(ChooseNeedSummary);
+                        this.innerChange = false;
+                    }
                 }
                 else if (this.AutoMode)
                 {
@@ -351,13 +396,7 @@ namespace SPC.Base.Control
                                 for (int i = 0; i < table.Rows.Count; i++)
                                     table.Rows[i][ChooseColumnName] = true;
                             }
-                            var choosecolumn = new DevExpress.XtraGrid.Columns.GridColumn();
-                            choosecolumn.Name = ChooseColumnName;
-                            choosecolumn.FieldName = ChooseColumnName;
-                            choosecolumn.VisibleIndex = 0;
-                            choosecolumn.OptionsColumn.AllowEdit = false;
-                            this.Columns.Insert(0, choosecolumn);
-                            choosecolumn.Summary.Add(ChooseNeedSummary);
+                            addChooseColumn();
                         }
                     }
                     else if (type == 2)
@@ -368,32 +407,38 @@ namespace SPC.Base.Control
                             var c = rowType.GetProperty(ChooseColumnName);
                             if (c != null)
                             {
-                                var choosecolumn = new DevExpress.XtraGrid.Columns.GridColumn();
-                                choosecolumn.Name = ChooseColumnName;
-                                choosecolumn.FieldName = ChooseColumnName;
-                                choosecolumn.VisibleIndex = 0;
-                                choosecolumn.OptionsColumn.AllowEdit = false;
-                                this.Columns.Insert(0, choosecolumn);
-                                choosecolumn.Summary.Add(ChooseNeedSummary);
+                                addChooseColumn();
                             }
                         }
                     }
                 }
             }
             if (AllowChooseGroup && this.GroupSummary.IndexOf(GroupChooseNeedSummary) < 0)
+            {
+                this.innerChange = true;
                 this.GroupSummary.Add(GroupChooseNeedSummary);
+                this.innerChange = false;
+            }
             else if (!AllowChooseGroup && this.GroupSummary.IndexOf(GroupChooseNeedSummary) >= 0)
+            {
+                this.innerChange = true;
                 this.GroupSummary.Remove(GroupChooseNeedSummary);
-            //if(this.CurrentDataVector!=null)
-            //{
-            //    CurrentDataVectorType.GetEvent(CurrentDataUpdateEventName).RemoveEventHandler(CurrentDataVector, new DataRowChangeEventHandler(DataValueChangedEventMethod));
-            //    CurrentDataVectorType = null;
-            //    CurrentDataVector = null;
-            //    CurrentDataUpdateEventName = null;
-            //}
-            //GetDataVector(this.GridControl);
-            //if (CurrentDataVector != null)
-            //    CurrentDataVectorType.GetEvent(CurrentDataUpdateEventName).AddEventHandler(CurrentDataVector, new DataRowChangeEventHandler(DataValueChangedEventMethod));
+                this.innerChange = false;
+            }
+        }
+        private void addChooseColumn()
+        {
+            chooseColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            chooseColumn.Name = ChooseColumnName;
+            chooseColumn.FieldName = ChooseColumnName;
+            chooseColumn.VisibleIndex = 0;
+            chooseColumn.OptionsColumn.AllowEdit = false;
+            this.Columns.Insert(0, chooseColumn);
+
+            this.innerChange = true;
+            chooseColumn.Summary.Add(ChooseNeedSummary);
+            this.innerChange = false;
+
         }
 
         private void GetDataVector(object target)
@@ -430,7 +475,7 @@ namespace SPC.Base.Control
         }
         public void InitSummary()
         {
-            GroupChooseNeedSummary = new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, ChooseColumnName, null, "Count:{0}");
+            GroupChooseNeedSummary = new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, ChooseColumnName, null, "Count:{0}") { Tag = "GroupChooseNeedSummary" };
             ChooseNeedSummary = new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "", "{0}");
         }
         private void DataValueChangedEventMethod(object sender, EventArgs e)

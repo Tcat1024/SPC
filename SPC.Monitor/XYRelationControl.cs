@@ -47,7 +47,13 @@ namespace SPC.Monitor
                 this.xtraTabControl1.SelectedTabPageIndex = value;
             }
         }
-
+        public object DataView
+        {
+            get
+            {
+                return this.gridView1;
+            }
+        }
         private object _DataSource;
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]

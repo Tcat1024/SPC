@@ -148,4 +148,52 @@ namespace SPC.CPKtool
             //this.Data.GetDataRowHandleByGroupRowHandle
         }
     }
+    public class CPKCanChooseViewData : CPKData<SPC.Base.Control.CanChooseDataGridView>
+    {
+        public string ChooseColumnName = "choose";
+        private int _ChooseCount = 0;
+        public int ChooseCount
+        {
+            get
+            {
+                this._ChooseCount = 0;
+                for (int i = 0; i < this.Data.RowCount; i++)
+                {
+                    if (Convert.ToBoolean(this.Data.GetDataRow(i)[ChooseColumnName]) == true)
+                        this._ChooseCount++;
+                }
+                return this._ChooseCount;
+            }
+        }
+        //Method
+        public override double? GetProperty(int index)
+        {
+            try
+            {
+                DataRow rowtemp = this.Data.GetDataRow(index);
+                if (rowtemp[ChooseColumnName].ToString() == false.ToString())
+                    return null;
+                var temp = rowtemp[Param];
+                if (!CheckMethod.checkDoubleCanConvert(temp))
+                    return 0;
+                return Convert.ToDouble(temp);
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        public override bool ContainParam(string param)
+        {
+            return this.Data.Columns.ColumnByFieldName(param)!=null && this.Data.Columns.ColumnByFieldName(ChooseColumnName)!=null;
+        }
+        public CPKCanChooseViewData()
+            : base()
+        {
+        }
+        protected override int GetCount()
+        {
+            return this.ChooseCount;
+        }
+    }
 }

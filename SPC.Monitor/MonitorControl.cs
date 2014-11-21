@@ -52,7 +52,13 @@ namespace SPC.Monitor
                 this.xtraTabControl1.SelectedTabPageIndex = value;
             }
         }
-
+        public object DataView
+        {
+            get
+            {
+                return this.gridView1;
+            }
+        }
         private object _DataSource;
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -117,42 +123,46 @@ namespace SPC.Monitor
         }
         private void gridView1_DragObjectDrop(object sender, DevExpress.XtraGrid.Views.Base.DragObjectDropEventArgs e)
         {
-            var col = (e.DragObject as DevExpress.XtraGrid.Columns.GridColumn);
-            if (col.FieldName != this.ChooseColumnName && this.Data.Columns[col.FieldName].DataType != typeof(string) && this.Data.Columns[col.FieldName].DataType!=typeof(DateTime))
+            try
             {
-                var mouseposition = this.listBoxControl1.PointToClient(MousePosition);
-                int grouptype = Convert.ToInt32(this.textEdit1.EditValue);
-                string spectrumwith = this.popUpEdit1.Text.Trim() == "" ? "0" : this.popUpEdit1.Text.Trim();
-                if(this.comboBoxEdit1.SelectedIndex==1)
+                var col = (e.DragObject as DevExpress.XtraGrid.Columns.GridColumn);
+                if (col.FieldName != this.ChooseColumnName && this.Data.Columns[col.FieldName].DataType != typeof(string) && this.Data.Columns[col.FieldName].DataType != typeof(DateTime))
                 {
-                    if(this.gridView1.GroupCount<1)
+                    var mouseposition = this.listBoxControl1.PointToClient(MousePosition);
+                    int grouptype = Convert.ToInt32(this.textEdit1.EditValue);
+                    string spectrumwith = this.popUpEdit1.Text.Trim() == "" ? "0" : this.popUpEdit1.Text.Trim();
+                    if (this.comboBoxEdit1.SelectedIndex == 1)
                     {
-                        MessageBox.Show("Group模式下请先对数据进行分组");
-                        return;
+                        if (this.gridView1.GroupCount < 1)
+                            throw new Exception("Group模式下请先对数据进行分组");
+                        grouptype = 0;
                     }
-                    grouptype = 0;
-                }
-                if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
-                {
-                    var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype,spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
-                    this.AddListItem(temp);
-                }
-                else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
-                {
-                    var targetlayout = this.xtraTabControl1.SelectedTabPage.Controls[0];
-                    var targetchart = targetlayout.GetChildAtPoint(targetlayout.PointToClient(MousePosition));
-                    int index = targetlayout.Controls.IndexOf(targetchart);
-                    if (index >= 0)
-                    {
-                        var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype,spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
-                        this.AddListItem(temp);
-                    }
-                    else
+                    if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
                     {
                         var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
                         this.AddListItem(temp);
                     }
+                    else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
+                    {
+                        var targetlayout = this.xtraTabControl1.SelectedTabPage.Controls[0];
+                        var targetchart = targetlayout.GetChildAtPoint(targetlayout.PointToClient(MousePosition));
+                        int index = targetlayout.Controls.IndexOf(targetchart);
+                        if (index >= 0)
+                        {
+                            var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
+                            this.AddListItem(temp);
+                        }
+                        else
+                        {
+                            var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
+                            this.AddListItem(temp);
+                        }
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         private void AddListItem(MonitorSeriesData lt)
