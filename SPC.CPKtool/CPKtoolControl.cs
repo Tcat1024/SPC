@@ -348,6 +348,7 @@ namespace SPC.CPKtool
             this.gridView1.Columns.Clear();
             this.DataBind.DataSource = this.Data;
             Result.Data = this.gridView1;
+            GetProperties();
         }
         private DevExpress.XtraCharts.ConstantLine _targetLine = null;
         private DevExpress.XtraCharts.ConstantLine targetLine
