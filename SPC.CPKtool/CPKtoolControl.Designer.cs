@@ -777,6 +777,8 @@
             // layoutViewColumn3
             // 
             this.layoutViewColumn3.Caption = "样本均值";
+            this.layoutViewColumn3.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn3.FieldName = "Avg";
             this.layoutViewColumn3.LayoutViewField = this.layoutViewField_layoutViewColumn3;
             this.layoutViewColumn3.Name = "layoutViewColumn3";
@@ -898,6 +900,8 @@
             // layoutViewColumn6
             // 
             this.layoutViewColumn6.Caption = "上规范限";
+            this.layoutViewColumn6.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn6.FieldName = "UpStdLt";
             this.layoutViewColumn6.LayoutViewField = this.layoutViewField_layoutViewColumn6;
             this.layoutViewColumn6.Name = "layoutViewColumn6";
@@ -915,6 +919,8 @@
             // layoutViewColumn7
             // 
             this.layoutViewColumn7.Caption = "下规范限";
+            this.layoutViewColumn7.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn7.FieldName = "LowStdLt";
             this.layoutViewColumn7.LayoutViewField = this.layoutViewField_layoutViewColumn7;
             this.layoutViewColumn7.Name = "layoutViewColumn7";
@@ -932,6 +938,8 @@
             // layoutViewColumn8
             // 
             this.layoutViewColumn8.Caption = "技术公差幅度";
+            this.layoutViewColumn8.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn8.FieldName = "TOffsetWidth";
             this.layoutViewColumn8.LayoutViewField = this.layoutViewField_layoutViewColumn8;
             this.layoutViewColumn8.Name = "layoutViewColumn8";
@@ -949,6 +957,8 @@
             // layoutViewColumn9
             // 
             this.layoutViewColumn9.Caption = "公差中心值";
+            this.layoutViewColumn9.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn9.FieldName = "OffsetMid";
             this.layoutViewColumn9.LayoutViewField = this.layoutViewField_layoutViewColumn9;
             this.layoutViewColumn9.Name = "layoutViewColumn9";
@@ -966,6 +976,8 @@
             // layoutViewColumn11
             // 
             this.layoutViewColumn11.Caption = "样本偏移量";
+            this.layoutViewColumn11.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn11.FieldName = "SpOffset";
             this.layoutViewColumn11.LayoutViewField = this.layoutViewField_layoutViewColumn11;
             this.layoutViewColumn11.Name = "layoutViewColumn11";
@@ -983,6 +995,8 @@
             // layoutViewColumn12
             // 
             this.layoutViewColumn12.Caption = "样本偏移度";
+            this.layoutViewColumn12.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn12.FieldName = "SpOffsetD";
             this.layoutViewColumn12.LayoutViewField = this.layoutViewField_layoutViewColumn12;
             this.layoutViewColumn12.Name = "layoutViewColumn12";
@@ -1000,6 +1014,8 @@
             // layoutViewColumn16
             // 
             this.layoutViewColumn16.Caption = "PPM Total entirety";
+            this.layoutViewColumn16.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn16.FieldName = "SumBdRate_E";
             this.layoutViewColumn16.LayoutViewField = this.layoutViewField_layoutViewColumn16;
             this.layoutViewColumn16.Name = "layoutViewColumn16";
@@ -1019,6 +1035,8 @@
             // layoutViewColumn17
             // 
             this.layoutViewColumn17.Caption = "PPM>USL entirety";
+            this.layoutViewColumn17.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn17.FieldName = "UpBdRate_E";
             this.layoutViewColumn17.LayoutViewField = this.layoutViewField_layoutViewColumn17;
             this.layoutViewColumn17.Name = "layoutViewColumn17";
@@ -1038,6 +1056,8 @@
             // layoutViewColumn18
             // 
             this.layoutViewColumn18.Caption = "PPM<LSL entirety";
+            this.layoutViewColumn18.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn18.FieldName = "LowBdRate_E";
             this.layoutViewColumn18.LayoutViewField = this.layoutViewField_layoutViewColumn18;
             this.layoutViewColumn18.Name = "layoutViewColumn18";
@@ -1057,6 +1077,8 @@
             // layoutViewColumn19
             // 
             this.layoutViewColumn19.Caption = "Cp entirety";
+            this.layoutViewColumn19.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn19.FieldName = "CP_E";
             this.layoutViewColumn19.LayoutViewField = this.layoutViewField_layoutViewColumn19;
             this.layoutViewColumn19.Name = "layoutViewColumn19";
@@ -1076,6 +1098,8 @@
             // layoutViewColumn20
             // 
             this.layoutViewColumn20.Caption = "Cpk entirety";
+            this.layoutViewColumn20.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn20.FieldName = "CPK_E";
             this.layoutViewColumn20.LayoutViewField = this.layoutViewField_layoutViewColumn20;
             this.layoutViewColumn20.Name = "layoutViewColumn20";
@@ -1126,6 +1150,8 @@
             // layoutViewColumn22
             // 
             this.layoutViewColumn22.Caption = "+3Sigma";
+            this.layoutViewColumn22.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn22.FieldName = "P3Sigma";
             this.layoutViewColumn22.LayoutViewField = this.layoutViewField_layoutViewColumn22;
             this.layoutViewColumn22.Name = "layoutViewColumn22";
@@ -1142,6 +1168,8 @@
             // layoutViewColumn23
             // 
             this.layoutViewColumn23.Caption = "-3Sigma";
+            this.layoutViewColumn23.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn23.FieldName = "N3Sigma";
             this.layoutViewColumn23.LayoutViewField = this.layoutViewField_layoutViewColumn23;
             this.layoutViewColumn23.Name = "layoutViewColumn23";
@@ -1158,6 +1186,8 @@
             // layoutViewColumn24
             // 
             this.layoutViewColumn24.Caption = "CPL entirety";
+            this.layoutViewColumn24.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn24.FieldName = "CPL_E";
             this.layoutViewColumn24.LayoutViewField = this.layoutViewField_layoutViewColumn24;
             this.layoutViewColumn24.Name = "layoutViewColumn24";
@@ -1175,6 +1205,8 @@
             // layoutViewColumn25
             // 
             this.layoutViewColumn25.Caption = "CPU entirety";
+            this.layoutViewColumn25.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn25.FieldName = "CPU_E";
             this.layoutViewColumn25.LayoutViewField = this.layoutViewField_layoutViewColumn25;
             this.layoutViewColumn25.Name = "layoutViewColumn25";
@@ -1192,6 +1224,8 @@
             // layoutViewColumn26
             // 
             this.layoutViewColumn26.Caption = "PPM>USL";
+            this.layoutViewColumn26.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn26.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn26.FieldName = "UpBdRate_G";
             this.layoutViewColumn26.LayoutViewField = this.layoutViewField_layoutViewColumn26;
             this.layoutViewColumn26.Name = "layoutViewColumn26";
@@ -1208,6 +1242,8 @@
             // layoutViewColumn27
             // 
             this.layoutViewColumn27.Caption = "PPM<LSL";
+            this.layoutViewColumn27.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn27.FieldName = "LowBdRate_G";
             this.layoutViewColumn27.LayoutViewField = this.layoutViewField_layoutViewColumn27;
             this.layoutViewColumn27.Name = "layoutViewColumn27";
@@ -1224,6 +1260,8 @@
             // layoutViewColumn28
             // 
             this.layoutViewColumn28.Caption = "PPM Total";
+            this.layoutViewColumn28.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn28.FieldName = "SumBdRate_G";
             this.layoutViewColumn28.LayoutViewField = this.layoutViewField_layoutViewColumn28;
             this.layoutViewColumn28.Name = "layoutViewColumn28";
@@ -1240,6 +1278,8 @@
             // layoutViewColumn29
             // 
             this.layoutViewColumn29.Caption = "Cp";
+            this.layoutViewColumn29.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn29.FieldName = "CP_G";
             this.layoutViewColumn29.LayoutViewField = this.layoutViewField_layoutViewColumn29;
             this.layoutViewColumn29.Name = "layoutViewColumn29";
@@ -1256,6 +1296,8 @@
             // layoutViewColumn30
             // 
             this.layoutViewColumn30.Caption = "Cpk";
+            this.layoutViewColumn30.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn30.FieldName = "CPK_G";
             this.layoutViewColumn30.LayoutViewField = this.layoutViewField_layoutViewColumn30;
             this.layoutViewColumn30.Name = "layoutViewColumn30";
@@ -1272,6 +1314,8 @@
             // layoutViewColumn31
             // 
             this.layoutViewColumn31.Caption = "CPL";
+            this.layoutViewColumn31.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn31.FieldName = "CPL_G";
             this.layoutViewColumn31.LayoutViewField = this.layoutViewField_layoutViewColumn31;
             this.layoutViewColumn31.Name = "layoutViewColumn31";
@@ -1288,6 +1332,8 @@
             // layoutViewColumn32
             // 
             this.layoutViewColumn32.Caption = "CPU";
+            this.layoutViewColumn32.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn32.FieldName = "CPU_G";
             this.layoutViewColumn32.LayoutViewField = this.layoutViewField_layoutViewColumn32;
             this.layoutViewColumn32.Name = "layoutViewColumn32";
@@ -1304,6 +1350,8 @@
             // layoutViewColumn2
             // 
             this.layoutViewColumn2.Caption = "STDEV";
+            this.layoutViewColumn2.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn2.FieldName = "STDev_G";
             this.layoutViewColumn2.LayoutViewField = this.layoutViewField_layoutViewColumn2;
             this.layoutViewColumn2.Name = "layoutViewColumn2";
@@ -1320,6 +1368,8 @@
             // layoutViewColumn10
             // 
             this.layoutViewColumn10.Caption = "STDEV entirety";
+            this.layoutViewColumn10.DisplayFormat.FormatString = "0.####";
+            this.layoutViewColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.layoutViewColumn10.FieldName = "STDev_E";
             this.layoutViewColumn10.LayoutViewField = this.layoutViewField_layoutViewColumn10;
             this.layoutViewColumn10.Name = "layoutViewColumn10";
@@ -1720,6 +1770,7 @@
             this.gridView1.ChooseColumnName = "choose";
             this.gridView1.GridControl = this.gridControl2;
             this.gridView1.Name = "gridView1";
+            this.gridView1.NumberDisplayFormat = "";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.Editable = false;

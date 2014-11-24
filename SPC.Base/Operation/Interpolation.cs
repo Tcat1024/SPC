@@ -10,8 +10,8 @@ namespace SPC.Base.Operation
     {
         public Tuple<double[,],double,double,double,double> Start(ViewData data,string xp,string yp,string zp,int countperaxis)
         {
-            int i,j,k,rowid,index;
-            double x,y,z,tempx,tempy;
+            int i,j,index;
+            double x,y;
             int rowcount = data.RowCount;
             List<DPointValue> sortlist = new List<DPointValue>();
             List<DPointValue> sortlisty = new List<DPointValue>();

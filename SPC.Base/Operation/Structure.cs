@@ -384,6 +384,10 @@ namespace SPC.Base.Operation
         {
             return !a.Equals(b);
         }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
     public class DPointValue :DPoint
     {

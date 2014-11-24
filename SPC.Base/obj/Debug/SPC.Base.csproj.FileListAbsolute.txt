@@ -20,4 +20,3 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.csproj.G
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.dll.licenses
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.pdb
-C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.csprojResolveAssemblyReference.cache

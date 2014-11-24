@@ -44,6 +44,18 @@ namespace SPC.Base.Control
                 this._ChooseCount = value;
             }
         }
+        private string _NumberDisplayFormat = "0.####";
+        public string NumberDisplayFormat
+        {
+            get
+            {
+                return this._NumberDisplayFormat;
+            }
+            set
+            {
+                this._NumberDisplayFormat = value;
+            }
+        }
         private bool _AllowChoose;
         [DefaultValue(true)]
         public bool AllowChoose
@@ -162,6 +174,24 @@ namespace SPC.Base.Control
 
             this.PopupMenuShowing -= CanChooseDataGridView_PopupMenuShowing;
             this.PopupMenuShowing += CanChooseDataGridView_PopupMenuShowing;
+        }
+        protected override void OnColumnAdded(DevExpress.XtraGrid.Columns.GridColumn column)
+        {
+            if ((column.ColumnType == typeof(double) || column.ColumnType == typeof(decimal) || column.ColumnType == typeof(float)) && this._NumberDisplayFormat != "")
+            {
+                column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                column.DisplayFormat.FormatString = this._NumberDisplayFormat;
+            }
+            base.OnColumnAdded(column);
+        }
+        protected override void OnColumnChanged(DevExpress.XtraGrid.Columns.GridColumn column)
+        {
+            if ((column.ColumnType == typeof(double) || column.ColumnType == typeof(decimal) || column.ColumnType == typeof(float)) && this._NumberDisplayFormat != "")
+            {
+                column.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+                column.DisplayFormat.FormatString = this._NumberDisplayFormat;
+            }
+            base.OnColumnChanged(column);
         }
         protected override void OnSummaryCollectionChanged(object sender, CollectionChangeEventArgs e)
         {
