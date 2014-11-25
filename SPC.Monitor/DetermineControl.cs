@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using SPC.Base.Interface;
 using SPC.Base.Operation;
+using SPC.Base.Control;
 using SPC.Monitor.DrawBoards;
 
 
@@ -180,7 +181,8 @@ namespace SPC.Monitor
         }
         private void AddListItem(SPCDetermineData lt)
         {
-            this.listBoxControl1.Items.Insert(0,lt);
+            this.listBoxControl1.Items.Insert(0, lt);
+            this.listBoxControl1.SelectedIndex = 0;
             lt.DrawSerieses();
         }
 
@@ -228,27 +230,27 @@ namespace SPC.Monitor
                 focusItem = null;
             }
         }
-        private List<DevExpress.XtraCharts.ChartControl> AddDrawBoards()
+        private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> AddDrawBoards()
         {
-            List<DevExpress.XtraCharts.ChartControl> drawBoards = new List<DevExpress.XtraCharts.ChartControl>();
+            List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards = new List<IDrawBoard<DevExpress.XtraCharts.ChartControl>>();
             for (int i = 0; i < this.xtraTabControl1.TabPages.Count; i++)
             {
                 if (xtraTabControl1.TabPages[i].Controls.Count > 0&&this.DrawBoardTypes.Count>i)
                 {
                     var temp = Activator.CreateInstance(this.DrawBoardTypes[i], null);
                     this.xtraTabControl1.TabPages[i].Controls[0].Controls.Add(temp as UserControl);
-                    drawBoards.Add(temp.getChart());
+                    drawBoards.Add(temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
                 }
             }
             return drawBoards;
         }
-        private List<DevExpress.XtraCharts.ChartControl> GetDrawBoards(int Index)
+        private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> GetDrawBoards(int Index)
         {
-            List<DevExpress.XtraCharts.ChartControl> drawBoards = new List<DevExpress.XtraCharts.ChartControl>();
+            List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards = new List<IDrawBoard<DevExpress.XtraCharts.ChartControl>>();
             for (int i = 0; i < this.xtraTabControl1.TabPages.Count; i++)
             {
                 if (xtraTabControl1.TabPages[i].Controls.Count > 0 && xtraTabControl1.TabPages[i].Controls[0].Controls.Count>0)
-                    drawBoards.Add(xtraTabControl1.TabPages[i].Controls[0].Controls[Index].getChart());
+                    drawBoards.Add(xtraTabControl1.TabPages[i].Controls[0].Controls[Index] as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
             }
             return drawBoards;
         }
@@ -289,14 +291,14 @@ namespace SPC.Monitor
         {
             foreach (var drawboard in target.DrawBoards)
             {
-                drawboard.Focus();
-                drawboard.BackColor = SystemColors.ActiveCaption;
+                drawboard.GetChart().Focus();
+                drawboard.GetChart().BackColor = SystemColors.ActiveCaption;
             }
         }
         private void DFocusSeries(SPCDetermineData target)
         {
             foreach (var drawboard in target.DrawBoards)
-                drawboard.BackColor = default(Color);
+                drawboard.GetChart().BackColor = default(Color);
         }
 
         private void listBoxControl1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -314,7 +316,7 @@ namespace SPC.Monitor
         public class SPCDetermineData
         {
             private List<SingleSeriesManager<SPCDetermineDataType, DevExpress.XtraCharts.ChartControl>> SeriesManagers = new List<SingleSeriesManager<SPCDetermineDataType, DevExpress.XtraCharts.ChartControl>>();
-            public List<DevExpress.XtraCharts.ChartControl> DrawBoards;
+            public List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> DrawBoards;
             private SPCDetermineDataType SourceData;
             public string Name;
             public System.Drawing.Color SeriesColor;
@@ -325,7 +327,7 @@ namespace SPC.Monitor
                     seriesManager.InitData(this.SourceData);
                 }
             }
-            public SPCDetermineData(SPC.Base.Control.CanChooseDataGridView view, string param, double ucl,double lcl,double standard,List<SPCCommandbase> commands, System.Drawing.Color color, List<DevExpress.XtraCharts.ChartControl> drawBoards)
+            public SPCDetermineData(SPC.Base.Control.CanChooseDataGridView view, string param, double ucl, double lcl, double standard, List<SPCCommandbase> commands, System.Drawing.Color color, List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards)
             {
                 SourceData = new SPCDetermineDataType(view, param, ucl,lcl,standard,commands);
                 this.Name =param + "_" + DateTime.Now.ToBinary();
@@ -343,11 +345,13 @@ namespace SPC.Monitor
             }
             public void ClearSerieses()
             {
-                foreach (var seriesManager in SeriesManagers)
+                for (int i = SeriesManagers.Count - 1; i >= 0; i--)
                 {
-                    if (seriesManager.RemoveSeries())
+                    var seriesManager = SeriesManagers[i];
+                    seriesManager.RemoveSeries();
+                    if (seriesManager.DrawBoard.CheckCanRemove())
                     {
-                        seriesManager.DrawBoard.Parent.Controls.Remove(seriesManager.DrawBoard);
+                        seriesManager.DrawBoard.Parent.Controls.Remove(seriesManager.DrawBoard as Control);
                     }
                 }
             }
@@ -366,7 +370,7 @@ namespace SPC.Monitor
             //在此添加新需求
             private void InitSeriesManagers()
             {
-                this.SeriesManagers.Add(new SPCDetermineSeriesManager() { DrawBoard = this.DrawBoards[0] });
+                this.SeriesManagers.Add(new SPCDetermineSeriesManager() { DrawBoard = this.DrawBoards[0]});
 
             }        
         }

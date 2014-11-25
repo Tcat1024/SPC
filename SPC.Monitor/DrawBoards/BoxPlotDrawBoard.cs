@@ -6,31 +6,27 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class BoxPlotDrawBoard : DevExpress.XtraEditors.XtraUserControl, IDrawBoard
+    public partial class BoxPlotDrawBoard : DevExpress.XtraEditors.XtraUserControl,IDrawBoard<DevExpress.XtraCharts.ChartControl>
     {
         public BoxPlotDrawBoard()
         {
             InitializeComponent();
         }
-        public Control GetChart()
+        public DevExpress.XtraCharts.ChartControl GetChart()
         {
             return this.chartControl1;
         }
-        protected override void OnControlRemoved(ControlEventArgs e)
+        public bool CheckCanRemove()
         {
-            this.Parent.Controls.Remove(this);
+            if(this.GetChart().Series.Count==4)
+            {
+                return true;
+            }
+            return false;
         }
-
-        private void chartControl1_CustomDrawCrosshair(object sender, DevExpress.XtraCharts.CustomDrawCrosshairEventArgs e)
-        {
-            //foreach(var g in e.CrosshairElements)
-            //{
-            //    g.LabelElement.Text = "test";
-            //}
-        }
-
     }
 }

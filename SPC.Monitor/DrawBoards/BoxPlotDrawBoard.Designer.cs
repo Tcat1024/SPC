@@ -95,7 +95,6 @@
             this.chartControl1.SeriesTemplate.View = candleStickSeriesView3;
             this.chartControl1.Size = new System.Drawing.Size(656, 358);
             this.chartControl1.TabIndex = 0;
-            this.chartControl1.CustomDrawCrosshair += new DevExpress.XtraCharts.CustomDrawCrosshairEventHandler(this.chartControl1_CustomDrawCrosshair);
             // 
             // BoxPlotDrawBoard
             // 

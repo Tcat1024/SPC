@@ -109,6 +109,7 @@
             this.gridView1.ChooseColumnName = "choose";
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
+            this.gridView1.NumberDisplayFormat = "0.####";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.False;
             this.gridView1.OptionsBehavior.Editable = false;
@@ -186,7 +187,7 @@
             this.standaloneBarDockControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl2.Location = new System.Drawing.Point(2, 2);
             this.standaloneBarDockControl2.Name = "standaloneBarDockControl2";
-            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 29);
+            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 32);
             this.standaloneBarDockControl2.Text = "standaloneBarDockControl2";
             // 
             // barDockControlTop
@@ -400,7 +401,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.multiControlsVerticalLayout1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(772, 279);
+            this.xtraTabPage1.Size = new System.Drawing.Size(768, 278);
             this.xtraTabPage1.Text = "相关性散点图";
             // 
             // multiControlsVerticalLayout1
@@ -409,7 +410,7 @@
             this.multiControlsVerticalLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.multiControlsVerticalLayout1.Location = new System.Drawing.Point(0, 0);
             this.multiControlsVerticalLayout1.Name = "multiControlsVerticalLayout1";
-            this.multiControlsVerticalLayout1.Size = new System.Drawing.Size(772, 279);
+            this.multiControlsVerticalLayout1.Size = new System.Drawing.Size(768, 278);
             this.multiControlsVerticalLayout1.SizeChangeStep = 10;
             this.multiControlsVerticalLayout1.TabIndex = 0;
             // 
@@ -443,9 +444,9 @@
             // listBoxControl1
             // 
             this.listBoxControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxControl1.Location = new System.Drawing.Point(2, 31);
+            this.listBoxControl1.Location = new System.Drawing.Point(2, 34);
             this.listBoxControl1.Name = "listBoxControl1";
-            this.listBoxControl1.Size = new System.Drawing.Size(153, 277);
+            this.listBoxControl1.Size = new System.Drawing.Size(153, 274);
             this.listBoxControl1.TabIndex = 3;
             this.listBoxControl1.DrawItem += new DevExpress.XtraEditors.ListBoxDrawItemEventHandler(this.listBoxControl1_DrawItem);
             this.listBoxControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBoxControl1_MouseClick);

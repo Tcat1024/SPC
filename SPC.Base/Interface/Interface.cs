@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using SPC.Base.Operation;
+using SPC.Base.Control;
 
 namespace SPC.Base.Interface
 {
@@ -39,7 +40,7 @@ namespace SPC.Base.Interface
         protected ISeriesMaker<SourceDataType> SeriesMaker;
         protected ISeriesDrawer<DrawBoardType> SeriesDrawer;
         private BasicSeriesData SeriesData;
-        public DrawBoardType DrawBoard;
+        public IDrawBoard<DrawBoardType> DrawBoard;
         protected abstract void Init();
         public SingleSeriesManager()
         {
@@ -51,11 +52,11 @@ namespace SPC.Base.Interface
         }
         public void DrawSeries(System.Drawing.Color color)
         {
-            this.SeriesDrawer.Draw(SeriesData, color, this.DrawBoard);
+            this.SeriesDrawer.Draw(SeriesData, color, this.DrawBoard.GetChart());
         }
-        public bool RemoveSeries()
+        public void RemoveSeries()
         {
-            return this.SeriesDrawer.Clear();
+            this.SeriesDrawer.Clear();
         }
     }
     public interface ISeriesMaker<SourceDataType>
@@ -65,6 +66,12 @@ namespace SPC.Base.Interface
     public interface ISeriesDrawer<DrawBoardType>:IDisposable
     {
         void Draw(BasicSeriesData data, System.Drawing.Color color,DrawBoardType drawBoard);
-        bool Clear();
+        void Clear();
+    }
+    public interface IDrawBoard<ChartType>
+    {
+        ChartType GetChart();
+        System.Windows.Forms.Control Parent { get; }
+        bool CheckCanRemove();
     }
 }

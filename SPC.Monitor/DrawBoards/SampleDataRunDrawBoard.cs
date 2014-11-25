@@ -7,24 +7,21 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class SampleDataRunDrawBoard : DevExpress.XtraEditors.XtraUserControl,IDrawBoard
+    public partial class SampleDataRunDrawBoard : DevExpress.XtraEditors.XtraUserControl, IDrawBoard<DevExpress.XtraCharts.ChartControl>
     {
         public SampleDataRunDrawBoard()
         {
             InitializeComponent();
         }
-        public Control GetChart()
+        public DevExpress.XtraCharts.ChartControl GetChart()
         {
             return this.chartControl1;
         }
-        protected override void OnControlRemoved(ControlEventArgs e)
-        {
-            if (this.Parent!=null)
-                this.Parent.Controls.Remove(this);
-        }
+
 
         private void repositoryItemToggleSwitch1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
@@ -35,8 +32,8 @@ namespace SPC.Monitor.DrawBoards
                     s.ChangeView(DevExpress.XtraCharts.ViewType.Line);
 
                     (s.View as DevExpress.XtraCharts.LineSeriesView).LineStyle.Thickness = 1;
-                    this.barEditItem1.Caption = "折线";
                 }
+                this.barEditItem1.Caption = "折线";
             }
             else
             {
@@ -44,8 +41,8 @@ namespace SPC.Monitor.DrawBoards
                 {
                     s.ChangeView(DevExpress.XtraCharts.ViewType.Point);
                     (s.View as DevExpress.XtraCharts.PointSeriesView).PointMarkerOptions.Size = 4;
-                    this.barEditItem1.Caption = "散点";
                 }
+                this.barEditItem1.Caption = "散点";
             }
         }
 
@@ -55,6 +52,11 @@ namespace SPC.Monitor.DrawBoards
             e.RightClickPopupMenu.AddItem(this.barEditItem1);
             e.Handle = true;
         }
-
+        public bool CheckCanRemove()
+        {
+            if (this.GetChart().Series.Count == 1)
+                return true;
+            return false;
+        }
     }
 }

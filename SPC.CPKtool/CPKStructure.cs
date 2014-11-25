@@ -240,7 +240,7 @@ namespace SPC.CPKtool
         //Method
         public abstract double? GetProperty(int index);
         public abstract bool ContainParam(string param);
-        protected abstract int GetCount();
+        public abstract int ChooseCount { get; }
         public virtual void RefreshData()
         {
             if (this.Param != null && this.Data != null && this.ContainParam(this.Param))
@@ -266,7 +266,7 @@ namespace SPC.CPKtool
         }
         public void InitCount()
         {
-            int temp = this.GetCount();
+            int temp = this.ChooseCount;
             if (GroupLength > temp)
                 GroupLength = temp;
             if (GroupLength < 1)

@@ -7,25 +7,22 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class SampleXYRelationDrawBoard : DevExpress.XtraEditors.XtraUserControl,IDrawBoard
+    public partial class SampleXYRelationDrawBoard : DevExpress.XtraEditors.XtraUserControl, IDrawBoard<DevExpress.XtraCharts.ChartControl>
     {
         public SampleXYRelationDrawBoard()
         {
             InitializeComponent();
             this.barCheckItem1.Checked = true;
         }
-        public Control GetChart()
+        public DevExpress.XtraCharts.ChartControl GetChart()
         {
             return this.chartControl1;
         }
-        protected override void OnControlRemoved(ControlEventArgs e)
-        {
-            if (this.Parent!=null)
-                this.Parent.Controls.Remove(this);
-        }
+
 
         private void repositoryItemToggleSwitch1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
@@ -65,6 +62,11 @@ namespace SPC.Monitor.DrawBoards
             else
                 this.chartControl1.Legend.Visible = false;
         }
-
+        public bool CheckCanRemove()
+        {
+            if (this.GetChart().Series.Count == 1)
+                return true;
+            return false;
+        }
     }
 }

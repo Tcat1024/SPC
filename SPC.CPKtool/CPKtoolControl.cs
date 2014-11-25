@@ -419,7 +419,7 @@ namespace SPC.CPKtool
                 }
                 else
                 {
-                    var yInfo = (chart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).PointToDiagram(new Point(35, e.Y));
+                    var yInfo = (chart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).PointToDiagram(new Point(chart.Width/2, e.Y));
                     if(yInfo.AxisY!=null)
                     {
                         double y = yInfo.NumericalValue;
@@ -543,7 +543,7 @@ namespace SPC.CPKtool
         }
         private void DeleteSinglePointFromData(int index)
         {
-            this.Data.Rows[index][ChooseColumnName] = false;
+            this.gridView1.SetRowCellValue(index,ChooseColumnName,false);
         }
         private void barEditItem3_EditValueChanged(object sender, EventArgs e)
         {
@@ -613,6 +613,15 @@ namespace SPC.CPKtool
             else
                 ystrip.Visible = false;
         }
+        private void initStrip()
+        {
+            (DataChart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisX.Strips[0].Visible = false;
+            (DataChart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisY.Strips[0].Visible = false;
+            (DataChart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisX.ConstantLines[0].Visible = false;
+            (DataChart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisX.ConstantLines[1].Visible = false;
+            (DataChart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisY.ConstantLines[3].Visible = false;
+            (DataChart.Diagram as DevExpress.XtraCharts.SwiftPlotDiagram).AxisY.ConstantLines[4].Visible = false;
+        }
         private void ConfigPopMenu(DevExpress.XtraBars.PopupMenu temp, string x, double pointy,object btn2tag,string type)
         {
             temp.LinksPersistInfo[0].Item.Caption = String.Format("X:{0:0.00} Y:{1:0.0000}", x, pointy);
@@ -656,13 +665,13 @@ namespace SPC.CPKtool
                 down = Convert.ToDouble(ystrip.MinLimit.AxisValue);
                 up = Convert.ToDouble(ystrip.MaxLimit.AxisValue);
             }
-            this.gridView1.BeginDataUpdate();
+            this.gridView1.BeginUpdate();
             this.chooseDataFromBound(left, right, up, down);
-            this.gridView1.EndDataUpdate();
+            this.gridView1.EndUpdate();
         }
         private void chooseDataFromBound(int? left,int? right,double? up,double? down)
         {
-            int count = this.Data.Rows.Count;
+            int count = this.gridView1.DataRowCount;
             if(left==null||right==null)
             {
                 left = 0;
@@ -684,6 +693,7 @@ namespace SPC.CPKtool
             for (int i = (int)right+1; i < count; i++)
                 DeleteSinglePointFromData(i);
             RefreshResult();
+            
         }
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -700,43 +710,5 @@ namespace SPC.CPKtool
             chartSizeInit();
         }
 
-        //private void repositoryItemTextEdit4_EditValueChanged(object sender, EventArgs e)
-        //{
-        //    this.Result.GroupLength = Convert.ToInt32((this.layoutView1.ActiveEditor as DevExpress.XtraEditors.TextEdit).EditValue);
-        //}
-
-        //private void repositoryItemTextEdit5_EditValueChanged(object sender, EventArgs e)
-        //{
-        //    this.Result.Standard = Convert.ToDouble((this.layoutView1.ActiveEditor as DevExpress.XtraEditors.TextEdit).EditValue);
-        //}
-
-        //private void repositoryItemTextEdit6_EditValueChanged(object sender, EventArgs e)
-        //{
-        //    this.Result.UpTole = Convert.ToDouble((this.layoutView1.ActiveEditor as DevExpress.XtraEditors.TextEdit).EditValue);
-        //}
-
-        //private void repositoryItemTextEdit7_EditValueChanged(object sender, EventArgs e)
-        //{
-        //    this.Result.LowTole = Convert.ToDouble((this.layoutView1.ActiveEditor as DevExpress.XtraEditors.TextEdit).EditValue);
-        //}
-
-        //private void gridView1_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
-        //{
-        //    if (e.IsGroupSummary)
-        //    {
-        //        if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Start)
-        //        {
-        //            TempGroupCount = 0;
-        //        }
-        //        else if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Calculate && Convert.ToBoolean(this.GetRowCellValue(e.RowHandle, ChooseColumnName)))
-        //        {
-        //            TempGroupCount++;
-        //        }
-        //        else if (e.SummaryProcess == DevExpress.Data.CustomSummaryProcess.Finalize)
-        //        {
-        //            e.TotalValue = new GroupSummaryDataType(TempGroupCount, e.RowHandle);
-        //        }
-        //    }
-        //}
     }
 }

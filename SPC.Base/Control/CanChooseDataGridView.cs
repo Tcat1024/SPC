@@ -715,6 +715,10 @@ namespace SPC.Base.Control
                 }
             }
         }
+        public int GetChoosedCount()
+        {
+            return Convert.ToInt32(this.ChooseNeedSummary.SummaryValue);
+        }
         private struct GroupSummaryDataType
         {
             public int choosecount;

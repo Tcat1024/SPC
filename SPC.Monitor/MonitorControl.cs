@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using SPC.Base.Interface;
 using SPC.Base.Operation;
+using SPC.Base.Control;
 using SPC.Monitor.DrawBoards;
 
 
@@ -108,21 +109,13 @@ namespace SPC.Monitor
                 MessageBox.Show("数据集为空");
                 return;
             }
-            //if (!this.Data.Columns.Contains(ChooseColumnName))
-            //{
-            //    var choosecolumn = new DataColumn(ChooseColumnName, typeof(string));
-            //    this.Data.Columns.Add(choosecolumn);
-            //}
-            //int co = this.Data.Rows.Count;
-            //for (int i = 0; i < co; i++)
-            //{
-            //    this.Data.Rows[i][ChooseColumnName] = true;
-            //}
             this.gridView1.Columns.Clear();
             this.DataBind.DataSource = this.Data;
         }
         private void gridView1_DragObjectDrop(object sender, DevExpress.XtraGrid.Views.Base.DragObjectDropEventArgs e)
         {
+            MonitorSeriesData data = null;
+            List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawboards = null;
             try
             {
                 var col = (e.DragObject as DevExpress.XtraGrid.Columns.GridColumn);
@@ -139,8 +132,8 @@ namespace SPC.Monitor
                     }
                     if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
                     {
-                        var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
-                        this.AddListItem(temp);
+                        data = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, drawboards = this.AddDrawBoards());
+                        this.AddListItem(data);
                     }
                     else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
                     {
@@ -149,13 +142,13 @@ namespace SPC.Monitor
                         int index = targetlayout.Controls.IndexOf(targetchart);
                         if (index >= 0)
                         {
-                            var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
-                            this.AddListItem(temp);
+                            data = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,drawboards = this.GetDrawBoards(index));
+                            this.AddListItem(data);
                         }
                         else
                         {
-                            var temp = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
-                            this.AddListItem(temp);
+                            data = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,drawboards = this.AddDrawBoards());
+                            this.AddListItem(data);
                         }
                     }
                 }
@@ -163,37 +156,42 @@ namespace SPC.Monitor
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                foreach(var drawboard in drawboards)
+                {
+                    if (drawboard.CheckCanRemove())
+                        drawboard.Parent.Controls.Remove(drawboard as Control);
+                }
+                RemoveListItem(data);
             }
         }
         private void AddListItem(MonitorSeriesData lt)
         {
-            this.listBoxControl1.Items.Insert(0,lt);
+            this.listBoxControl1.Items.Insert(0, lt);
+            this.listBoxControl1.SelectedIndex = 0;
             lt.DrawSerieses();
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             var temp = this.listBoxControl1.SelectedItem as MonitorSeriesData;
-            if(temp!=null)
-            {
-                temp.ClearSerieses();
-                this.listBoxControl1.Items.Remove(temp);
-            }
+            RemoveListItem(temp as MonitorSeriesData);
         }
 
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            foreach(var item in this.listBoxControl1.Items)
+            for(int i = this.listBoxControl1.Items.Count-1;i>=0;i--)
             {
-                var temp = item as MonitorSeriesData;
-                if (temp != null)
-                {
-                    temp.ClearSerieses();
-                }
+                RemoveListItem(this.listBoxControl1.Items[i] as MonitorSeriesData);
             }
-            this.listBoxControl1.Items.Clear();
         }
-
+        private void RemoveListItem(MonitorSeriesData lt)
+        {
+            if (lt != null)
+            {
+                lt.ClearSerieses();
+                this.listBoxControl1.Items.Remove(lt);
+            }
+        }
         private void listBoxControl1_DrawItem(object sender, ListBoxDrawItemEventArgs e)
         {
             e.Appearance.ForeColor = (e.Item as MonitorSeriesData).SeriesColor;
@@ -215,27 +213,27 @@ namespace SPC.Monitor
                 focusItem = null;
             }
         }
-        private List<DevExpress.XtraCharts.ChartControl> AddDrawBoards()
+        private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> AddDrawBoards()
         {
-            List<DevExpress.XtraCharts.ChartControl> drawBoards = new List<DevExpress.XtraCharts.ChartControl>();
+            List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards = new List<IDrawBoard<DevExpress.XtraCharts.ChartControl>>();
             for (int i = 0; i < this.xtraTabControl1.TabPages.Count; i++)
             {
                 if (xtraTabControl1.TabPages[i].Controls.Count > 0&&this.DrawBoardTypes.Count>i)
                 {
                     var temp = Activator.CreateInstance(this.DrawBoardTypes[i], null);
                     this.xtraTabControl1.TabPages[i].Controls[0].Controls.Add(temp as UserControl);
-                    drawBoards.Add(temp.getChart());
+                    drawBoards.Add(temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
                 }
             }
             return drawBoards;
         }
-        private List<DevExpress.XtraCharts.ChartControl> GetDrawBoards(int Index)
+        private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> GetDrawBoards(int Index)
         {
-            List<DevExpress.XtraCharts.ChartControl> drawBoards = new List<DevExpress.XtraCharts.ChartControl>();
+            List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards = new List<IDrawBoard<DevExpress.XtraCharts.ChartControl>>();
             for (int i = 0; i < this.xtraTabControl1.TabPages.Count; i++)
             {
                 if (xtraTabControl1.TabPages[i].Controls.Count > 0 && xtraTabControl1.TabPages[i].Controls[0].Controls.Count>0)
-                    drawBoards.Add(xtraTabControl1.TabPages[i].Controls[0].Controls[Index].getChart());
+                    drawBoards.Add(xtraTabControl1.TabPages[i].Controls[0].Controls[Index] as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
             }
             return drawBoards;
         }
@@ -276,14 +274,14 @@ namespace SPC.Monitor
         {
             foreach (var drawboard in target.DrawBoards)
             {
-                drawboard.Focus();
-                drawboard.BackColor = SystemColors.ActiveCaption;
+                drawboard.GetChart().Focus();
+                drawboard.GetChart().BackColor = SystemColors.ActiveCaption;
             }
         }
         private void DFocusSeries(MonitorSeriesData target)
         {
             foreach (var drawboard in target.DrawBoards)
-                drawboard.BackColor = default(Color);
+                drawboard.GetChart().BackColor = default(Color);
         }
 
         private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
@@ -311,7 +309,7 @@ namespace SPC.Monitor
         public class MonitorSeriesData
         {
             private List<SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>> SeriesManagers = new List<SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>>();
-            public List<DevExpress.XtraCharts.ChartControl> DrawBoards;
+            public List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> DrawBoards;
             private MonitorSourceDataType SourceData;
             public string Name;
             public System.Drawing.Color SeriesColor;
@@ -322,7 +320,7 @@ namespace SPC.Monitor
                     seriesManager.InitData(this.SourceData);
                 }
             }
-            public MonitorSeriesData(SPC.Base.Control.CanChooseDataGridView view, string param, int groupType, string spectrumWith, System.Drawing.Color color, List<DevExpress.XtraCharts.ChartControl> drawBoards)
+            public MonitorSeriesData(SPC.Base.Control.CanChooseDataGridView view, string param, int groupType, string spectrumWith, System.Drawing.Color color, List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards)
             {
                 SourceData = new MonitorSourceDataType(view, param, groupType, spectrumWith);
                 this.Name = param + "_" + groupType.ToString() + "_" + DateTime.Now.ToBinary();
@@ -340,11 +338,13 @@ namespace SPC.Monitor
             }
             public void ClearSerieses()
             {
-                foreach (var seriesManager in SeriesManagers)
+                for (int i = SeriesManagers.Count-1; i >= 0;i-- )
                 {
-                    if (seriesManager.RemoveSeries())
+                    var seriesManager = SeriesManagers[i];
+                    seriesManager.RemoveSeries();
+                    if(seriesManager.DrawBoard.CheckCanRemove())
                     {
-                        seriesManager.DrawBoard.Parent.Controls.Remove(seriesManager.DrawBoard);
+                        seriesManager.DrawBoard.Parent.Controls.Remove(seriesManager.DrawBoard as Control);
                     }
                 }
             }
@@ -365,12 +365,12 @@ namespace SPC.Monitor
             {
                 this.SeriesManagers.Add(new SampleRunSeriesManager() { DrawBoard = this.DrawBoards[0] });
                 this.SeriesManagers.Add(new GroupAvgSeriesManager() { DrawBoard = this.DrawBoards[1] });
-                this.SeriesManagers.Add(new GroupRangeSeriesManager() { DrawBoard = this.DrawBoards[1] });
+                this.SeriesManagers.Add(new GroupRangeSeriesManager() { DrawBoard = this.DrawBoards[1]});
                 this.SeriesManagers.Add(new GroupAvgDataRunSeriesManager() { DrawBoard = this.DrawBoards[2] });
                 this.SeriesManagers.Add(new SampleRunGroupPointsManager() { DrawBoard = this.DrawBoards[2] });
                 this.SeriesManagers.Add(new NormalityCheckPointsManager() { DrawBoard = this.DrawBoards[3] });
                 this.SeriesManagers.Add(new SpectralDistributionPointsManager() { DrawBoard = this.DrawBoards[4] });
-                this.SeriesManagers.Add(new BoxPlotSeriesManager() { DrawBoard = this.DrawBoards[5]});
+                this.SeriesManagers.Add(new BoxPlotSeriesManager() { DrawBoard = this.DrawBoards[5] });
             }        
         }
         //在此添加新绘版

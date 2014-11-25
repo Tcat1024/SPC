@@ -7,10 +7,11 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class SPCDetermineDrawBoard : DevExpress.XtraEditors.XtraUserControl, IDrawBoard
+    public partial class SPCDetermineDrawBoard : DevExpress.XtraEditors.XtraUserControl, IDrawBoard<DevExpress.XtraCharts.ChartControl>
     {
         public SPCDetermineDrawBoard()
         {
@@ -23,16 +24,15 @@ namespace SPC.Monitor.DrawBoards
                 secondY.CustomLabels.Add(new DevExpress.XtraCharts.CustomAxisLabel(command.Title, command.ID.ToString()));
             }
         }
-        public Control GetChart()
+        public DevExpress.XtraCharts.ChartControl GetChart()
         {
             return this.chartControl1;
         }
-        protected override void OnControlRemoved(ControlEventArgs e)
+        public bool CheckCanRemove()
         {
-            if (this.Parent != null)
-                this.Parent.Controls.Remove(this);
+            if (this.GetChart().Series.Count == 2)
+                return true;
+            return false;
         }
-
-
     }
 }

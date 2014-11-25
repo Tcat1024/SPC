@@ -114,16 +114,12 @@ namespace SPC.Monitor
             Series.Points.EndUpdate();
         }
 
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 this.DrawBoard.Series.Remove(Series);
             }
-            if (this.DrawBoard.Series.Count == 2)
-                return true;
-            else
-                return false;
         }
 
         public void Dispose()
@@ -262,16 +258,12 @@ namespace SPC.Monitor
             Series.Points.EndUpdate();
         }
 
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 this.DrawBoard.Series.Remove(Series);
             }
-            if (this.DrawBoard.Series.Count == 2)
-                return true;
-            else
-                return false;
         }
 
         public void Dispose()
@@ -338,16 +330,12 @@ namespace SPC.Monitor
             Series.Points.EndUpdate();
         }
 
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 this.DrawBoard.Series.Remove(Series);
             }
-            if (this.DrawBoard.Series.Count == 1)
-                return true;
-            else
-                return false;
         }
 
         public void Dispose()
@@ -385,16 +373,12 @@ namespace SPC.Monitor
             Series.Points.EndUpdate();
         }
 
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 this.DrawBoard.Series.Remove(Series);
             }
-            if (this.DrawBoard.Series.Count == 2)
-                return true;
-            else
-                return false;
         }
 
         public void Dispose()
@@ -508,16 +492,12 @@ namespace SPC.Monitor
             Series.Points.EndUpdate();
         }
 
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 this.DrawBoard.Series.Remove(Series);
             }
-            if (this.DrawBoard.Series.Count == 2)
-                return true;
-            else
-                return false;
         }
 
         public void Dispose()
@@ -587,16 +567,12 @@ namespace SPC.Monitor
             Series.Points.EndUpdate();
         }
 
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 this.DrawBoard.Series.Remove(Series);
             }
-            if (this.DrawBoard.Series.Count == 1)
-                return true;
-            else
-                return false;
         }
 
         public void Dispose()
@@ -723,15 +699,6 @@ namespace SPC.Monitor
                         }
                     }
                 }
-                //result.X.Add(" " + "<" + (data[0].Item2 ? "=" : "") + string.Format("{0:F2}", data[0].Item1));
-                //result.Y.Add(y[0]);
-                //for (int i = 1; i < dcount; i++)
-                //{
-                //    result.X.Add(string.Format("{0:F2}", data[i - 1].Item1) + "<" + (data[i - 1].Item2 ? "" : "=") + " " + "<" + (data[i].Item2 ? "=" : "") + string.Format("{0:F2}", data[i].Item1));
-                //    result.Y.Add(y[i]);
-                //}
-                //result.X.Add(string.Format("{0:F2}", data[dcount-1].Item1) + "<" + (data[dcount - 1].Item2 ? "" : "=")+ " ");
-                //result.Y.Add(y[dcount]);
                 result.X.Add(min.ToString());
                 result.Y.Add(y[0]);
                 for (int i = 1; i < dcount+1; i++)
@@ -751,6 +718,7 @@ namespace SPC.Monitor
         private DevExpress.XtraCharts.ChartControl DrawBoard;
         public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
+            int i;
             DrawBoard = drawBoard;
             Series = new DevExpress.XtraCharts.Series[3];
             Series[0] = new DevExpress.XtraCharts.Series();
@@ -767,7 +735,7 @@ namespace SPC.Monitor
             Series[0].Points.Clear();
             double f = 0.5;
             var newColor = System.Drawing.Color.FromArgb((int)color.A,(int)(color.R + (255 - color.R) * f), (int)(color.G + (255 - color.G) * f), (int)(color.B + (255 - color.B) * f));
-            for (int i = 1; i < 3; i++)
+            for (i = 1; i < 3; i++)
             {
                 Series[i] = new DevExpress.XtraCharts.Series();
                 Series[i].View = DrawBoard.Series[i].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
@@ -778,37 +746,35 @@ namespace SPC.Monitor
                 Series[i].Points.Clear();
             }
             double sum = 0;
-            for (int i = 0; i < data.Y.Count; i++)
+            for (i = 0; i < data.Y.Count; i++)
             {
                 Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
                 sum += data.Y[i];
             }
+            sum -= data.Y[i - 1];
             Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[0], 0));
             Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[0], 0));
             double y2 = 0;
-            for (int i = 0; i < data.Y.Count - 1; i++)
+            double y1 = 0;
+            for (i = 0; i < data.Y.Count - 1; i++)
             {
-                double y1 = data.Y[i] * 100 / sum;
-                Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint((Convert.ToDouble(data.X[i]) + Convert.ToDouble(data.X[i + 1])) / 2, y1));
+                y1 = data.Y[i] * 100 ;
+                Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint((Convert.ToDouble(data.X[i]) + Convert.ToDouble(data.X[i + 1])) / 2, y1/ sum));
                 y2 += y1;
-                Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint((Convert.ToDouble(data.X[i]) + Convert.ToDouble(data.X[i + 1])) / 2, y2));
+                Series[2].Points.Add(new DevExpress.XtraCharts.SeriesPoint((Convert.ToDouble(data.X[i]) + Convert.ToDouble(data.X[i + 1])) / 2, y2/sum));
             }
-            for (int i = 0; i < 3; i++)
+            for (i = 0; i < 3; i++)
             {
                 Series[i].Points.EndUpdate();
             }
         }
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 for (int i = Series.Length - 1; i >= 0; i--)
                     this.DrawBoard.Series.Remove(Series[i]);
             }
-            if (this.DrawBoard.Series.Count == 3)
-                return true;
-            else
-                return false;
         }
 
         public void Dispose()
@@ -916,16 +882,12 @@ namespace SPC.Monitor
             Series.Points.EndUpdate();
         }
 
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 this.DrawBoard.Series.Remove(Series);
             }
-            if (this.DrawBoard.Series.Count == 1)
-                return true;
-            else
-                return false;
         }
 
         public void Dispose()
@@ -1192,17 +1154,13 @@ namespace SPC.Monitor
             }
         }
 
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 for (int i =Series.Length-1; i >=0;i-- )
                     this.DrawBoard.Series.Remove(Series[i]);
             }
-            if (this.DrawBoard.Series.Count == 4)
-                return true;
-            else
-                return false;
         }
 
         public void Dispose()
@@ -1305,17 +1263,13 @@ namespace SPC.Monitor
             }
         }
 
-        public bool Clear()
+        public void Clear()
         {
             if (Series != null && DrawBoard != null)
             {
                 for (int i = Series.Length - 1; i >= 0; i--)
                     this.DrawBoard.Series.Remove(Series[i]);
             }
-            if (this.DrawBoard.Series.Count == 2)
-                return true;
-            else
-                return false;
         }
         public void Dispose()
         {

@@ -7,22 +7,25 @@ using System.Text;
 using System.Linq;
 using System.Windows.Forms;
 using DevExpress.XtraEditors;
+using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class NormalityCheckDrawBoard : DevExpress.XtraEditors.XtraUserControl,IDrawBoard
+    public partial class NormalityCheckDrawBoard :DevExpress.XtraEditors.XtraUserControl,IDrawBoard<DevExpress.XtraCharts.ChartControl>
     {
         public NormalityCheckDrawBoard()
         {
             InitializeComponent();
         }
-        public Control GetChart()
+        public DevExpress.XtraCharts.ChartControl GetChart()
         {
             return this.chartControl1;
         }
-        protected override void OnControlRemoved(ControlEventArgs e)
+        public bool CheckCanRemove()
         {
-            this.Parent.Controls.Remove(this);
+            if (this.GetChart().Series.Count == 1)
+                return true;
+            return false;
         }
     }
 }

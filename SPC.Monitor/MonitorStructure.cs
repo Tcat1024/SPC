@@ -66,20 +66,17 @@ namespace SPC.Monitor
             this.Commands = commands;
         }
     }
-    public interface IDrawBoard
-    {
-        System.Windows.Forms.Control GetChart();
-    }
-    public static class CanGetChartMethod
-    {
-        public static DevExpress.XtraCharts.ChartControl getChart(this object input)
-        {
-            if (input is DevExpress.XtraCharts.ChartControl)
-                return input as DevExpress.XtraCharts.ChartControl;
-            else if (input is IDrawBoard)
-                return (input as IDrawBoard).GetChart() as DevExpress.XtraCharts.ChartControl;
-            else
-                return null;
-        }
-    }
+
+    //public static class CanGetChartMethod
+    //{
+    //    public static DevExpress.XtraCharts.ChartControl getChart(this object input)
+    //    {
+    //        if (input is DevExpress.XtraCharts.ChartControl)
+    //            return input as DevExpress.XtraCharts.ChartControl;
+    //        else if (input is IDrawBoard)
+    //            return (input as IDrawBoard).GetChart() as DevExpress.XtraCharts.ChartControl;
+    //        else
+    //            return null;
+    //    }
+    //}
 }
