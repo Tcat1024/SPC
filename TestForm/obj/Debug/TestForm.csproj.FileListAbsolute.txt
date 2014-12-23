@@ -117,3 +117,5 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\obj\Debug\TestForm.csproj.G
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\obj\Debug\TestForm.exe.licenses
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\obj\Debug\TestForm.exe
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\obj\Debug\TestForm.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Analysis.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Analysis.pdb

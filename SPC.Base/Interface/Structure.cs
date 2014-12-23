@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using SPC.Base.Interface;
+using SPC.Base.Operation;
 
-namespace SPC.Base.Operation
+namespace SPC.Base.Interface
 {
     public struct STDEVType
     {
@@ -111,14 +111,14 @@ namespace SPC.Base.Operation
             return base.GetHashCode();
         }
     }
-    public class ViewData : IEnumerator<DataRow>
+    public class ViewData :IDataTable<DataRow>
     {
         SPC.Base.Control.CanChooseDataGridView View;
         DataTable sourceTable;
         public ViewData(SPC.Base.Control.CanChooseDataGridView view)
         {
             this.View = view;
-            this.sourceTable = (view.DataSource as DataView).Table;
+            this.sourceTable = view.TableTypeData;
             view.GridControl.Invoke(new Action(() => { this.View.ActiveFilter.Add(view.Columns[view.ChooseColumnName], new DevExpress.XtraGrid.Columns.ColumnFilterInfo(view.ChooseColumnName + " = true")); }));
         }
         public DataRow this[int index]
@@ -346,8 +346,7 @@ namespace SPC.Base.Operation
         public void Reset()
         {
             index = -1;
-        }
-
+        }       
     }
     public class DoubleCompare : IComparer<double>
     {

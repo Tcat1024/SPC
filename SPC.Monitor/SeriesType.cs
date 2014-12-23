@@ -23,7 +23,7 @@ namespace SPC.Monitor
             for (int i = s; i < e; i++)
             {
                 var rowtemp = view.GetDataRow(i);
-                if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                 {
                     var temp = rowtemp[param];
                     if (!CheckMethod.checkDoubleCanConvert(temp))
@@ -73,7 +73,7 @@ namespace SPC.Monitor
                 for (int i = 0, j = 0; i < view.DataRowCount; i++)
                 {
                     var rowtemp = view.GetDataRow(i);
-                    if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                     {
                         var temp = rowtemp[param];
                         if (!CheckMethod.checkDoubleCanConvert(temp))
@@ -153,7 +153,7 @@ namespace SPC.Monitor
             for (int i = s; i < e; i++)
             {
                 var rowtemp = view.GetDataRow(i);
-                if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                 {
                     var temp = rowtemp[param];
                     double y = 0;
@@ -210,7 +210,7 @@ namespace SPC.Monitor
                 for (int i = 0, j = 0; i < view.DataRowCount; i++)
                 {
                     var rowtemp = view.GetDataRow(i);
-                    if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                     {
                         var temp = rowtemp[param];
                         if (!CheckMethod.checkDoubleCanConvert(temp))
@@ -295,7 +295,7 @@ namespace SPC.Monitor
             for (int i = 0; i < view.DataRowCount; i++)
             {
                 var rowtemp = view.GetDataRow(i);
-                if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                 {
                     var temp = rowtemp[param];
                     if (!CheckMethod.checkDoubleCanConvert(temp))
@@ -420,7 +420,7 @@ namespace SPC.Monitor
                         for (int j = start; j < end; j++)
                         {
                             var rowtemp = view.GetDataRow(j);
-                            if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                            if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                             {
                                 var temp = rowtemp[param];
                                 if (!CheckMethod.checkDoubleCanConvert(temp))
@@ -446,7 +446,7 @@ namespace SPC.Monitor
                 for (int i = 0; i < view.DataRowCount; i++)
                 {
                     var rowtemp = view.GetDataRow(i);
-                    if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                     {
                         var temp = rowtemp[param];
                         if (!CheckMethod.checkDoubleCanConvert(temp))
@@ -528,7 +528,7 @@ namespace SPC.Monitor
             for (int i = 0; i < view.DataRowCount; i++)
             {
                 var rowtemp = view.GetDataRow(i);
-                if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                 {
                     var temp = rowtemp[param];
                     if (!CheckMethod.checkDoubleCanConvert(temp))
@@ -607,7 +607,7 @@ namespace SPC.Monitor
             for (int i = 0; i < view.DataRowCount; i++)
             {
                 var rowtemp = view.GetDataRow(i);
-                if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                 {
                     var temp = rowtemp[param];
                     double tempy = 0;
@@ -641,7 +641,7 @@ namespace SPC.Monitor
                 for (int i = 0; i < view.DataRowCount; i++)
                 {
                     var rowtemp = view.GetDataRow(i);
-                    if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                     {
                         var temp = rowtemp[param];
                         double tempy = 0;
@@ -667,7 +667,7 @@ namespace SPC.Monitor
                 for (int i = 0; i < view.DataRowCount; i++)
                 {
                     var rowtemp = view.GetDataRow(i);
-                    if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                     {
                         var temp = rowtemp[param];
                         double tempy = 0;
@@ -809,7 +809,7 @@ namespace SPC.Monitor
                 for (int i = 0; i < view.DataRowCount; i++)
                 {
                     var rowtemp = view.GetDataRow(i);
-                    if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                     {
                         var tempy = rowtemp[paramY];
                         if (!CheckMethod.checkDoubleCanConvert(tempy))
@@ -828,7 +828,7 @@ namespace SPC.Monitor
                 for (int i = 0; i < view.DataRowCount; i++)
                 {
                     var rowtemp = view.GetDataRow(i);
-                    if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                     {
                         var tempy = rowtemp[paramY];
                         if (!CheckMethod.checkDoubleCanConvert(tempy))
@@ -919,7 +919,7 @@ namespace SPC.Monitor
             for (int i = s; i < e; i++)
             {
                 var rowtemp = view.GetDataRow(i);
-                if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                 {
                     var temp = rowtemp[param];
                     if (!CheckMethod.checkDoubleCanConvert(temp))
@@ -1071,7 +1071,7 @@ namespace SPC.Monitor
                 for (int i = 0, j = 0; i < view.DataRowCount; i++)
                 {
                     var rowtemp = view.GetDataRow(i);
-                    if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                     {
                         var temp = rowtemp[param];
                         if (!CheckMethod.checkDoubleCanConvert(temp))
@@ -1199,7 +1199,7 @@ namespace SPC.Monitor
             for (int i = 0; i < view.DataRowCount; i++)
             {
                 var rowtemp = view.GetDataRow(i);
-                if (rowtemp[view.ChooseColumnName].ToString() == true.ToString())
+                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
                 {
                     var temp = rowtemp[param];
                     if (!CheckMethod.checkDoubleCanConvert(temp))

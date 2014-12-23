@@ -209,7 +209,7 @@ namespace SPC.Monitor
             }
             else if (focusItem != null)
             {
-                DFocusSeries(focusItem);
+                DFocusDrawBoard(focusItem);
                 focusItem = null;
             }
         }
@@ -270,7 +270,7 @@ namespace SPC.Monitor
                 this.buttonEdit1.Visible = false;
             }
         }
-        private void FocusSeries(MonitorSeriesData target)
+        private void FocusDrawBoard(MonitorSeriesData target)
         {
             foreach (var drawboard in target.DrawBoards)
             {
@@ -278,7 +278,7 @@ namespace SPC.Monitor
                 drawboard.GetChart().BackColor = SystemColors.ActiveCaption;
             }
         }
-        private void DFocusSeries(MonitorSeriesData target)
+        private void DFocusDrawBoard(MonitorSeriesData target)
         {
             foreach (var drawboard in target.DrawBoards)
                 drawboard.GetChart().BackColor = default(Color);
@@ -301,9 +301,9 @@ namespace SPC.Monitor
                 if (e.Button == System.Windows.Forms.MouseButtons.Left)
                 {
                     if (focusItem != null)
-                        DFocusSeries(focusItem);
+                        DFocusDrawBoard(focusItem);
                     focusItem = (this.listBoxControl1.Items[index] as MonitorSeriesData);
-                    FocusSeries(focusItem);
+                    FocusDrawBoard(focusItem);
                 }
         }
         public class MonitorSeriesData

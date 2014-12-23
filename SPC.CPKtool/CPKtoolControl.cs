@@ -9,6 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Data.OleDb;
+using SPC.Base.Interface;
 using SPC.Base.Operation;
 
 namespace SPC.CPKtool

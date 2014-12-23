@@ -53,6 +53,21 @@ namespace TestForm
             this.determineControl1.DataSource = this.Data;
             (this.determineControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
         }
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var data = new SPC.Base.Interface.ViewData(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView);
+            var columns =data.GetColumnsList(false,typeof(DateTime),typeof(string),typeof(bool));
+            Form configform = new Form();
+            var con = new SPC.Analysis.ConfigControls.CCTConfigControl(){Dock = DockStyle.Fill};
+            configform.Controls.Add(con);
+            if(configform.ShowDialog()==DialogResult.OK)
+            {
+                Form resultform = new Form();
+                var res = new SPC.Analysis.ResultControls.CCTResultControl() { Dock = DockStyle.Fill };
+                resultform.Controls.Add(res);
+                resultform.Show();
+            }
+        }
 
 
     }

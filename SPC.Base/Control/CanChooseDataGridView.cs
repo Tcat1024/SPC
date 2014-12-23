@@ -17,6 +17,7 @@ namespace SPC.Base.Control
         private DevExpress.XtraGrid.Columns.GridColumn chooseColumn;
         private string _ChooseColumnName = "choose";
         private bool innerChange = false;
+        public DataTable TableTypeData = null;
         public string ChooseColumnName
         {
             get
@@ -70,10 +71,11 @@ namespace SPC.Base.Control
                 {
                     if (value)
                         this._AllowChoose = true;
-                    else if (!this.AutoMode)
+                    else
                     {
                         this._AllowChoose = false;
-                        this.AllowChooseGroup = false;
+                        this._AllowChooseGroup = false;
+                        this._AutoMode = false;
                     }
                 }
             }
@@ -92,10 +94,8 @@ namespace SPC.Base.Control
                 {
                     if (value)
                     {
-                        if (AllowChoose)
-                        {
-                            this._AllowChooseGroup = true;
-                        }
+                        this._AllowChooseGroup = true;
+                        this._AllowChoose = true;
                     }
                     else
                     {
@@ -118,7 +118,7 @@ namespace SPC.Base.Control
                 {
                     this._AutoMode = value;
                     if (value)
-                        this.AllowChoose = true;
+                        this._AllowChoose = true;
                 }
             }
         }
@@ -227,7 +227,7 @@ namespace SPC.Base.Control
             innerChange = false;
         }
         protected override void OnColumnSummaryCollectionChanged(DevExpress.XtraGrid.Columns.GridColumn column, CollectionChangeEventArgs e)
-        {      
+        {
             if (!innerChange && column.FieldName == ChooseColumnName)
             {
                 chooseColumn = column;
@@ -375,7 +375,7 @@ namespace SPC.Base.Control
                 }
                 else if (this.AutoMode)
                 {
-                    DataTable table = null;
+                    TableTypeData = null;
                     System.Collections.IList list = null;
                     Type rowType = null;
                     object source = this.DataSource;
@@ -397,13 +397,13 @@ namespace SPC.Base.Control
                         }
                         else if (source is DataTable)
                         {
-                            table = (source as DataTable);
+                            TableTypeData = (source as DataTable);
                             type = 1;
                             break;
                         }
                         else if (source is DataView)
                         {
-                            table = (source as DataView).Table;
+                            TableTypeData = (source as DataView).Table;
                             type = 1;
                             break;
                         }
@@ -418,13 +418,13 @@ namespace SPC.Base.Control
                     }
                     if (type == 1)
                     {
-                        if (table != null)
+                        if (TableTypeData != null)
                         {
-                            if (!table.Columns.Contains(ChooseColumnName))
+                            if (!TableTypeData.Columns.Contains(ChooseColumnName))
                             {
-                                table.Columns.Add(ChooseColumnName, typeof(bool));
-                                for (int i = 0; i < table.Rows.Count; i++)
-                                    table.Rows[i][ChooseColumnName] = true;
+                                TableTypeData.Columns.Add(ChooseColumnName, typeof(bool));
+                                for (int i = 0; i < TableTypeData.Rows.Count; i++)
+                                    TableTypeData.Rows[i][ChooseColumnName] = true;
                             }
                             addChooseColumn();
                         }
@@ -735,7 +735,27 @@ namespace SPC.Base.Control
                 return choosecount.ToString() + "/" + count.ToString();
             }
         }
-
+        public int[] GetChoosedRowIndexs()
+        {
+            if (this._AllowChoose)
+            {
+                List<int> result = new List<int>();
+                if (TableTypeData != null)
+                {
+                    int count = TableTypeData.Rows.Count;
+                    for (int i = 0; i < count; i++)
+                    {
+                        if (TableTypeData.Rows[i][ChooseColumnName].ToString() == Boolean.TrueString)
+                        {
+                            result.Add(i);
+                        }
+                    }
+                }
+                return result.ToArray();
+            }
+            else
+                return null;
+        }
     }
 
 }

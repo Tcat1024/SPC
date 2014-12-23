@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetermineControl));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new SPC.Base.Control.CanChooseDataGridView();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -50,7 +49,7 @@
             this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -72,8 +71,8 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.toolTipController1 = new DevExpress.Utils.ToolTipController(this.components);
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
+            this.toolTipController1 = new DevExpress.Utils.ToolTipController();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -197,7 +196,7 @@
             this.standaloneBarDockControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl2.Location = new System.Drawing.Point(2, 2);
             this.standaloneBarDockControl2.Name = "standaloneBarDockControl2";
-            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 32);
+            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 29);
             this.standaloneBarDockControl2.Text = "standaloneBarDockControl2";
             // 
             // barDockControlTop
@@ -468,7 +467,7 @@
             // 
             this.xtraTabPage1.Controls.Add(this.multiControlsVerticalLayout1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage1.Size = new System.Drawing.Size(772, 279);
             this.xtraTabPage1.Text = "SPC分析";
             // 
             // multiControlsVerticalLayout1
@@ -477,7 +476,7 @@
             this.multiControlsVerticalLayout1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.multiControlsVerticalLayout1.Location = new System.Drawing.Point(0, 0);
             this.multiControlsVerticalLayout1.Name = "multiControlsVerticalLayout1";
-            this.multiControlsVerticalLayout1.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout1.Size = new System.Drawing.Size(772, 279);
             this.multiControlsVerticalLayout1.SizeChangeStep = 10;
             this.multiControlsVerticalLayout1.TabIndex = 0;
             // 
@@ -511,9 +510,9 @@
             // listBoxControl1
             // 
             this.listBoxControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxControl1.Location = new System.Drawing.Point(2, 34);
+            this.listBoxControl1.Location = new System.Drawing.Point(2, 31);
             this.listBoxControl1.Name = "listBoxControl1";
-            this.listBoxControl1.Size = new System.Drawing.Size(153, 274);
+            this.listBoxControl1.Size = new System.Drawing.Size(153, 277);
             this.listBoxControl1.TabIndex = 3;
             this.listBoxControl1.DrawItem += new DevExpress.XtraEditors.ListBoxDrawItemEventHandler(this.listBoxControl1_DrawItem);
             this.listBoxControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBoxControl1_MouseClick);

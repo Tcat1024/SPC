@@ -1,0 +1,12 @@
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Analysis.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Analysis.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ConfigControls.CCTConfigControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.Properties.Resources.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ResultControls.CCTResultControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.csproj.GenerateResource.Cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.dll.licenses
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Base.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Base.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.csprojResolveAssemblyReference.cache
