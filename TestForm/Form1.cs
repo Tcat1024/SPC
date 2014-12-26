@@ -55,16 +55,20 @@ namespace TestForm
         }
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var data = new SPC.Base.Interface.ViewData(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView);
+            var data = new SPC.Base.Interface.ChoosedData(this.Data,(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView).GetChoosedRowIndexs());
             var columns =data.GetColumnsList(false,typeof(DateTime),typeof(string),typeof(bool));
             Form configform = new Form();
             var con = new SPC.Analysis.ConfigControls.CCTConfigControl(){Dock = DockStyle.Fill};
             configform.Controls.Add(con);
+            con.OKEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.OK; };
+            con.CancelEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.Cancel; };
+            con.Init(columns);
             if(configform.ShowDialog()==DialogResult.OK)
             {
                 Form resultform = new Form();
                 var res = new SPC.Analysis.ResultControls.CCTResultControl() { Dock = DockStyle.Fill };
                 resultform.Controls.Add(res);
+                res.Init(con.Columns, SPC.Base.Operation.Relations.GetCCTs(data, con.TargetColumn, con.Columns, 0));
                 resultform.Show();
             }
         }

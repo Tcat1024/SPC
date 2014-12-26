@@ -348,6 +348,208 @@ namespace SPC.Base.Interface
             index = -1;
         }       
     }
+    public class ChoosedData : IDataTable<DataRow>
+    {
+        DataTable sourceTable;
+        int[] choosedRows;
+        public ChoosedData(DataTable data,int[] choosedrows)
+        {
+            this.sourceTable = data;
+            this.choosedRows = choosedrows;
+        }
+        public DataRow this[int index]
+        {
+            get
+            {
+                return this.sourceTable.Rows[choosedRows[index]];
+            }
+        }
+        public object this[int rowindex, int columnindex]
+        {
+            get
+            {
+                return this[rowindex][columnindex];
+            }
+            set
+            {
+                this[rowindex][columnindex] = value;
+            }
+        }
+
+        public object this[int rowindex, string columnname]
+        {
+            get
+            {
+                return this[rowindex][columnname];
+            }
+            set
+            {
+                this[rowindex][columnname] = value;
+            }
+        }
+        public int RowCount
+        {
+            get
+            {
+                return this.choosedRows.Length;
+            }
+        }
+        public int ColumnCount
+        {
+            get
+            {
+                return this.sourceTable.Columns.Count;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return this.sourceTable.TableName;
+            }
+            set
+            {
+                this.sourceTable.TableName = value;
+            }
+        }
+        public object[] GetGroup(int index)
+        {
+            throw new NotImplementedException();
+        }
+        public int GetSourceIndex(int i)
+        {
+            return this.choosedRows[i];
+        }
+        public DataRow GetSourceRowbySourceIndex(int i)
+        {
+            return sourceTable.Rows[i];
+        }
+        public string[] GetColumnsList()
+        {
+            int columncount = this.ColumnCount;
+            string[] columns = new string[columncount];
+            for (int i = 0; i < columncount; i++)
+            {
+                columns[i] = sourceTable.Columns[i].ColumnName;
+            }
+            return columns;
+        }
+        public string[] GetColumnsList(bool equal = true, params Type[] ttype)
+        {
+            int columncount = this.ColumnCount;
+            List<string> columns = new List<string>();
+            int typecount = ttype.Length;
+            if (equal)
+            {
+                for (int i = 0; i < columncount; i++)
+                {
+                    for (int j = 0; j < typecount; j++)
+                    {
+                        if (sourceTable.Columns[i].DataType == ttype[j])
+                        {
+                            columns.Add(sourceTable.Columns[i].ColumnName);
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < columncount; i++)
+                {
+                    bool hav = false;
+                    for (int j = 0; j < typecount; j++)
+                    {
+                        if (sourceTable.Columns[i].DataType == ttype[j])
+                        {
+                            hav = true;
+                            break;
+                        }
+                    }
+                    if (!hav)
+                        columns.Add(sourceTable.Columns[i].ColumnName);
+                }
+            }
+            return columns.ToArray();
+        }
+
+        public Type GetColumnType(int index)
+        {
+            return this.sourceTable.Columns[index].DataType;
+        }
+
+        public Type GetColumnType(string name)
+        {
+            return this.sourceTable.Columns[name].DataType;
+        }
+
+        public bool ContainsColumn(string name)
+        {
+            return this.sourceTable.Columns.Contains(name); ;
+        }
+
+        public void AddColumn(string name)
+        {
+            this.sourceTable.Columns.Add(name);
+        }
+        public void AddColumn(string name, Type datatype)
+        {
+            this.sourceTable.Columns.Add(name, datatype);
+        }
+
+        public object Copy()
+        {
+            DataTable result = this.sourceTable.Clone();
+            result.TableName = this.sourceTable.TableName + " - 副本";
+            var rowcount = this.RowCount;
+            for (int j = 0; j < rowcount; j++)
+                result.Rows.Add(this[j].ItemArray);
+            return result;
+        }
+        public bool SetColumnVisible(string name)
+        {
+            return false;
+        }
+
+        public bool SetColumnUnvisible(string name)
+        {
+            return false;
+        }
+        public DataRow NewRow()
+        {
+            return this.sourceTable.NewRow();
+        }
+        private int index = -1;
+
+
+        public DataRow Current
+        {
+            get { return this[index]; }
+        }
+
+        public void Dispose()
+        {
+            index = -1;
+        }
+
+        object System.Collections.IEnumerator.Current
+        {
+            get { return this[index]; }
+        }
+
+        public bool MoveNext()
+        {
+            if (index == this.RowCount - 1)
+                return false;
+            index++;
+            return true;
+        }
+
+        public void Reset()
+        {
+            index = -1;
+        }
+    }
     public class DoubleCompare : IComparer<double>
     {
         public int Compare(double x, double y)

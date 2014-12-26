@@ -113,6 +113,7 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.checkedListBoxControl1);
             this.Controls.Add(this.comboBoxEdit1);
+            this.MinimumSize = new System.Drawing.Size(178, 269);
             this.Name = "CCTConfigControl";
             this.Size = new System.Drawing.Size(178, 269);
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();

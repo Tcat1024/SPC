@@ -32,11 +32,9 @@ namespace SPC.Analysis.ResultControls
             this.chartControl1.Series[0].Points.BeginUpdate();
             this.chartControl1.Series[0].Points.Clear();
             int count = this.gridView1.DataRowCount;
-            DataRow temp;
             for (int i = 0; i < count; i++)
             {
-                temp = this.gridView1.GetDataRow(i);
-                this.chartControl1.Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(temp["ColumnName"],temp["CCT"]));
+                this.chartControl1.Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(this.gridView1.GetRowCellValue(i, "ColumnName"),this.gridView1.GetRowCellValue(i, "CCT")));
             }
             this.chartControl1.Series[0].Points.EndUpdate();
         }

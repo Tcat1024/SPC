@@ -9,7 +9,7 @@ namespace SPC.Base.Operation
 {
     public class Interpolation
     {
-        public Tuple<double[,],double,double,double,double> Start(ViewData data,string xp,string yp,string zp,int countperaxis)
+        public Tuple<double[,],double,double,double,double> Start(IDataTable<DataRow> data,string xp,string yp,string zp,int countperaxis)
         {
             int i,j,index;
             double x,y;

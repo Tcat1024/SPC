@@ -132,6 +132,7 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.chartControl1);
             this.Controls.Add(this.panelControl1);
+            this.MinimumSize = new System.Drawing.Size(531, 356);
             this.Name = "CCTResultControl";
             this.Size = new System.Drawing.Size(531, 356);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
