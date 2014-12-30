@@ -10,7 +10,7 @@ using DevExpress.XtraEditors;
 
 namespace SPC.Analysis.ConfigControls
 {
-    public partial class CCTConfigControl : DevExpress.XtraEditors.XtraUserControl
+    public partial class CCTConfigControl : ConfigControlBase
     {
         public string TargetColumn = "";
         public string[] Columns;
@@ -25,8 +25,8 @@ namespace SPC.Analysis.ConfigControls
             this.checkedListBoxControl1.DataSource = sourceColumns;
             this.comboBoxEdit1.Properties.Items.AddRange(sourceColumns);
         }
-        public event EventHandler OKEvent;
-        public event EventHandler CancelEvent;
+        public override event EventHandler OKEvent;
+        public override event EventHandler CancelEvent;
         private void btnOK_Click(object sender, EventArgs e)
         {
             if (this.checkedListBoxControl1.SelectedItems.Count == 0)

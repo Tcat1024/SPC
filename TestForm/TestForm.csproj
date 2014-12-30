@@ -97,6 +97,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPC.Algorithm\SPC.Algorithm.csproj">
+      <Project>{141191df-6e20-47a1-9a1e-ed3f3ae86fa6}</Project>
+      <Name>SPC.Algorithm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPC.Analysis\SPC.Analysis.csproj">
       <Project>{24313f22-dc40-4a53-b690-154793634bc5}</Project>
       <Name>SPC.Analysis</Name>

@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using SPC.Base.Interface;
+using SPC.Base.Operation;
 
-namespace SPC.Base.Operation
+namespace SPC.Algorithm
 {
     public static class Relations
     {
@@ -34,6 +35,14 @@ namespace SPC.Base.Operation
             }
             return (xyS * count - xS * yS) / (Math.Pow((x2S * count - xS * xS), 0.5) * Math.Pow((y2S * count - yS * yS), 0.5));
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="target"></param>
+        /// <param name="f"></param>
+        /// <param name="flag">Max is rowcount * f's count</param>
+        /// <returns></returns>
         public static double[] GetCCTs(IDataTable<DataRow> data, string target, string[] f,int flag)
         {
             int count = data.RowCount;

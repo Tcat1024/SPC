@@ -640,5 +640,4 @@ namespace SPC.Base.Interface
                 return 1;
         }
     }
-
 }

@@ -756,6 +756,44 @@ namespace SPC.Base.Control
             else
                 return null;
         }
+        public string[] GetVisibleColumnNames(bool equal = true, params Type[] ttype)
+        {
+            int columncount = this.VisibleColumns.Count;
+            List<string> columns = new List<string>();
+            int typecount = ttype.Length;
+            if (equal)
+            {
+                for (int i = 0; i < columncount; i++)
+                {
+                    for (int j = 0; j < typecount; j++)
+                    {
+                        if (this.VisibleColumns[i].ColumnType == ttype[j])
+                        {
+                            columns.Add(this.VisibleColumns[i].FieldName);
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < columncount; i++)
+                {
+                    bool hav = false;
+                    for (int j = 0; j < typecount; j++)
+                    {
+                        if (this.VisibleColumns[i].ColumnType == ttype[j])
+                        {
+                            hav = true;
+                            break;
+                        }
+                    }
+                    if (!hav)
+                        columns.Add(this.VisibleColumns[i].FieldName);
+                }
+            }
+            return columns.ToArray();
+        }
     }
 
 }

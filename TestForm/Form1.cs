@@ -68,7 +68,7 @@ namespace TestForm
                 Form resultform = new Form();
                 var res = new SPC.Analysis.ResultControls.CCTResultControl() { Dock = DockStyle.Fill };
                 resultform.Controls.Add(res);
-                res.Init(con.Columns, SPC.Base.Operation.Relations.GetCCTs(data, con.TargetColumn, con.Columns, 0));
+                res.Init(con.Columns, SPC.Algorithm.Relations.GetCCTs(data, con.TargetColumn, con.Columns, 0));
                 resultform.Show();
             }
         }
