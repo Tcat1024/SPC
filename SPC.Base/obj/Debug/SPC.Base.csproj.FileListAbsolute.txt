@@ -21,4 +21,3 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.dll.lice
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.Control.WaitPanel.resources
-C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.csprojResolveAssemblyReference.cache

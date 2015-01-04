@@ -10,3 +10,5 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Base.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Base.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ConfigControls.KMeansConfigControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ResultControls.KMeansResultControl.resources

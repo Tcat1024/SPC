@@ -65,6 +65,12 @@
     <Compile Include="ConfigControls\ConfigControlBase.Designer.cs">
       <DependentUpon>ConfigControlBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigControls\KMeansConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigControls\KMeansConfigControl.designer.cs">
+      <DependentUpon>KMeansConfigControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -77,10 +83,19 @@
     <Compile Include="ResultControls\CCTResultControl.Designer.cs">
       <DependentUpon>CCTResultControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResultControls\KMeansResultControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResultControls\KMeansResultControl.designer.cs">
+      <DependentUpon>KMeansResultControl.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ConfigControls\CCTConfigControl.resx">
       <DependentUpon>CCTConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigControls\KMeansConfigControl.resx">
+      <DependentUpon>KMeansConfigControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -89,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResultControls\CCTResultControl.resx">
       <DependentUpon>CCTResultControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultControls\KMeansResultControl.resx">
+      <DependentUpon>KMeansResultControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

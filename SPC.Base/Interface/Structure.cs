@@ -640,4 +640,20 @@ namespace SPC.Base.Interface
                 return 1;
         }
     }
+    public class WaitObject
+    {
+        public int[] Flags = null;
+        public int Max = -1;
+        public int GetProgress()
+        {
+            if (Flags == null||Max==-1)
+                return 0;
+            int progress = 0;
+            foreach(var flag in Flags)
+            {
+                progress += flag;
+            }
+            return progress * 100 / Max;
+        }
+    }
 }

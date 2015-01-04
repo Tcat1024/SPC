@@ -10,7 +10,7 @@ namespace SPC.Algorithm
 {
     public static class Relations
     {
-        public static double GetCCT(IDataTable<DataRow> data,string a,string b,int flag)
+        public static double GetCCT(IDataTable<DataRow> data, string a, string b, WaitObject flag)
         {
             int count = data.RowCount;
             double xyS = 0;
@@ -21,6 +21,8 @@ namespace SPC.Algorithm
             double tempx = 0;
             double tempy = 0;
             DataRow temprow;
+            flag.Flags = new int[1];
+            flag.Max = count;
             for (int i = 0; i < count; i++)
             {
                 temprow = data[i];
@@ -31,19 +33,11 @@ namespace SPC.Algorithm
                 yS += tempy;
                 x2S += tempx * tempx;
                 y2S += tempy * tempy;
-                flag++;
+                flag.Flags[0]++;
             }
             return (xyS * count - xS * yS) / (Math.Pow((x2S * count - xS * xS), 0.5) * Math.Pow((y2S * count - yS * yS), 0.5));
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="target"></param>
-        /// <param name="f"></param>
-        /// <param name="flag">Max is rowcount * f's count</param>
-        /// <returns></returns>
-        public static double[] GetCCTs(IDataTable<DataRow> data, string target, string[] f,int flag)
+        public static double[] GetCCTs(IDataTable<DataRow> data, string target, string[] f,WaitObject flag)
         {
             int count = data.RowCount;
             int length = f.Length;
@@ -57,6 +51,8 @@ namespace SPC.Algorithm
             double tempx = 0;
             double tempy = 0;
             DataRow temprow;
+            flag.Flags = new int[1];
+            flag.Max = count * length;
             for (int i = 0; i < count; i++)
             {
                 temprow = data[i];
@@ -69,7 +65,7 @@ namespace SPC.Algorithm
                     xfs[j] += tempx * tempy;
                     fs[j] += tempy;
                     f2s[j] += tempy * tempy;
-                    flag++;
+                    flag.Flags[0]++;
                 }
             } 
             double down;
