@@ -154,7 +154,7 @@ namespace SPC.Algorithm
                 int num = i;
                 var temp = new Task(() =>
                 {
-                    this.ThreadMethod(MinClusterCount + (int)i * clustercount / threadcount, MinClusterCount + ((int)i + 1) * clustercount / threadcount, MinClusterCount);
+                    this.ThreadMethod(MinClusterCount + (int)num * clustercount / threadcount, MinClusterCount + ((int)num + 1) * clustercount / threadcount, MinClusterCount);
                 },cancelToken.Token) ;
                 temp.Start();
             }

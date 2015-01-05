@@ -79,6 +79,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxControl1.Location = new System.Drawing.Point(5, 33);
             this.listBoxControl1.Name = "listBoxControl1";
+            this.listBoxControl1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxControl1.Size = new System.Drawing.Size(157, 254);
             this.listBoxControl1.TabIndex = 0;
             // 
@@ -89,6 +90,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxControl2.Location = new System.Drawing.Point(76, 33);
             this.listBoxControl2.Name = "listBoxControl2";
+            this.listBoxControl2.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxControl2.Size = new System.Drawing.Size(157, 254);
             this.listBoxControl2.TabIndex = 1;
             // 
