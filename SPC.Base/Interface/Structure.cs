@@ -111,7 +111,7 @@ namespace SPC.Base.Interface
             return base.GetHashCode();
         }
     }
-    public class ViewData :IDataTable<DataRow>
+    public class ViewData : IDataTable<DataRow>
     {
         SPC.Base.Control.CanChooseDataGridView View;
         DataTable sourceTable;

@@ -73,6 +73,29 @@ namespace TestForm
             }
         }
 
-
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var data = new SPC.Base.Interface.ChoosedData(this.Data, (this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView).GetChoosedRowIndexs());
+            var columns = data.GetColumnsList(false, typeof(DateTime), typeof(string), typeof(bool));
+            Form configform = new Form();
+            var con = new SPC.Analysis.ConfigControls.ContourPlotConfigControl() { Dock = DockStyle.Fill };
+            configform.Controls.Add(con);
+            con.OKEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.OK; };
+            con.CancelEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.Cancel; };
+            con.Init(columns);
+            if (configform.ShowDialog() == DialogResult.OK)
+            {
+                Form resultform = new Form();
+                var res = new SPC.Analysis.ResultControls.ContourPlotResultControl() { Dock = DockStyle.Fill };
+                resultform.Controls.Add(res);
+                res.Init(SPC.Rnet.Methods.DrawContourPlot(data,con.X,con.Y,con.Z));
+                resultform.Show();
+            }
+        }
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var re = SPC.Rnet.Methods.RunScript("111.txt", new List<object>() {2,10 });
+            MessageBox.Show(re[0].ToString());
+        }
     }
 }

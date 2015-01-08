@@ -117,6 +117,10 @@
       <Project>{27F273B1-9845-4EE0-8007-4AB8277213EC}</Project>
       <Name>SPC.Monitor</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SPC.Rnet\SPC.Rnet.csproj">
+      <Project>{6ce1e724-e276-4314-9c5a-5a1180452f7d}</Project>
+      <Name>SPC.Rnet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPC.Web.Interface\SPC.Web.Interface.csproj">
       <Project>{e06947f1-7d0a-48cd-8178-ff44bcda2c5a}</Project>
       <Name>SPC.Web.Interface</Name>

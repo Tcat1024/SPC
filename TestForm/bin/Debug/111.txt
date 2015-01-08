@@ -1,0 +1,5 @@
+SetSymbol(x,0)
+SetSymbol(y,1)
+x<-x+y
+GetSymbol(x)
+GetSymbol(y)

@@ -65,6 +65,12 @@
     <Compile Include="ConfigControls\ConfigControlBase.Designer.cs">
       <DependentUpon>ConfigControlBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigControls\ContourPlotConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigControls\ContourPlotConfigControl.Designer.cs">
+      <DependentUpon>ContourPlotConfigControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigControls\KMeansConfigControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,6 +89,12 @@
     <Compile Include="ResultControls\CCTResultControl.Designer.cs">
       <DependentUpon>CCTResultControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResultControls\ContourPlotResultControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResultControls\ContourPlotResultControl.Designer.cs">
+      <DependentUpon>ContourPlotResultControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ResultControls\KMeansResultControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +106,9 @@
     <EmbeddedResource Include="ConfigControls\CCTConfigControl.resx">
       <DependentUpon>CCTConfigControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfigControls\ContourPlotConfigControl.resx">
+      <DependentUpon>ContourPlotConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigControls\KMeansConfigControl.resx">
       <DependentUpon>KMeansConfigControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -104,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResultControls\CCTResultControl.resx">
       <DependentUpon>CCTResultControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultControls\ContourPlotResultControl.resx">
+      <DependentUpon>ContourPlotResultControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResultControls\KMeansResultControl.resx">
       <DependentUpon>KMeansResultControl.cs</DependentUpon>

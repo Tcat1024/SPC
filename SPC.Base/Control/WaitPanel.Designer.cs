@@ -45,7 +45,7 @@
             this.progressPanel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.progressPanel1.Caption = "Please Wait, Loading ...";
             this.progressPanel1.Description = "";
-            this.progressPanel1.Location = new System.Drawing.Point(34, 12);
+            this.progressPanel1.Location = new System.Drawing.Point(33, 12);
             this.progressPanel1.Name = "progressPanel1";
             this.progressPanel1.Size = new System.Drawing.Size(277, 37);
             this.progressPanel1.TabIndex = 7;

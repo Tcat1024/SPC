@@ -28,6 +28,7 @@ namespace SPC.Analysis.ConfigControls
         public void Init(string[] columns, int count)
         {
             this.originalColumns = columns;
+            this.listBoxControl1.Items.Clear();
             this.listBoxControl1.Items.AddRange(columns);
             this.textEdit4.Text = ((int)Math.Pow(count, 0.5)).ToString();
         }

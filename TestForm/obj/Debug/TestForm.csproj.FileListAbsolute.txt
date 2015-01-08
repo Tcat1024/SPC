@@ -121,3 +121,6 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Analysis.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Analysis.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Algorithm.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Algorithm.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Rnet.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\Interop.STATCONNECTORSRVLib.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Rnet.pdb
