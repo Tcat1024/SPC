@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XYRelationControl));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new SPC.Base.Control.CanChooseDataGridView();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
@@ -47,7 +46,7 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -64,6 +63,7 @@
             this.btnHdown = new System.Windows.Forms.ToolStripButton();
             this.btnHup = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnRe = new System.Windows.Forms.ToolStripButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
@@ -72,8 +72,7 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.btnRe = new System.Windows.Forms.ToolStripButton();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -194,7 +193,7 @@
             this.standaloneBarDockControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl2.Location = new System.Drawing.Point(2, 2);
             this.standaloneBarDockControl2.Name = "standaloneBarDockControl2";
-            this.standaloneBarDockControl2.Size = new System.Drawing.Size(98, 29);
+            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 29);
             this.standaloneBarDockControl2.Text = "standaloneBarDockControl2";
             // 
             // barDockControlTop
@@ -439,6 +438,18 @@
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(6, 25);
             // 
+            // btnRe
+            // 
+            this.btnRe.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnRe.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRe.Enabled = false;
+            this.btnRe.Image = ((System.Drawing.Image)(resources.GetObject("btnRe.Image")));
+            this.btnRe.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRe.Name = "btnRe";
+            this.btnRe.Size = new System.Drawing.Size(23, 22);
+            this.btnRe.Text = "toolStripButton1";
+            this.btnRe.Click += new System.EventHandler(this.btnRe_Click);
+            // 
             // panelControl2
             // 
             this.panelControl2.Controls.Add(this.splitter2);
@@ -533,18 +544,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
-            // 
-            // btnRe
-            // 
-            this.btnRe.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnRe.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRe.Enabled = false;
-            this.btnRe.Image = ((System.Drawing.Image)(resources.GetObject("btnRe.Image")));
-            this.btnRe.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRe.Name = "btnRe";
-            this.btnRe.Size = new System.Drawing.Size(23, 22);
-            this.btnRe.Text = "toolStripButton1";
-            this.btnRe.Click += new System.EventHandler(this.btnRe_Click);
             // 
             // XYRelationControl
             // 

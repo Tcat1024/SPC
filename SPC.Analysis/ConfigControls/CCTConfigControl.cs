@@ -41,7 +41,7 @@ namespace SPC.Analysis.ConfigControls
                 return;
             }
             this.TargetColumn = this.comboBoxEdit1.Text;
-            this.Columns = new string[this.checkedListBoxControl1.CheckedItemsCount];
+            this.Columns = new string[this.checkedListBoxControl1.CheckedItems.Count];
             int i = 0;
             foreach (var item in this.checkedListBoxControl1.CheckedItems)
                 this.Columns[i++] = item.ToString();

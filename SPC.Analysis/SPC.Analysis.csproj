@@ -132,6 +132,10 @@
       <Project>{b8a9423b-8443-439b-ab89-f3a2ddd1d036}</Project>
       <Name>SPC.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SPC.Monitor\SPC.Monitor.csproj">
+      <Project>{27F273B1-9845-4EE0-8007-4AB8277213EC}</Project>
+      <Name>SPC.Monitor</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

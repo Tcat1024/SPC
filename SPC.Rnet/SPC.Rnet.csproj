@@ -63,7 +63,7 @@
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="STATCONNECTORSRVLib">
       <Guid>{18C8B661-81A2-11D3-9254-00E09812F727}</Guid>

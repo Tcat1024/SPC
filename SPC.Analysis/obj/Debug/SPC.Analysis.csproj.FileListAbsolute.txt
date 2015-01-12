@@ -14,3 +14,5 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ResultControls.KMeansResultControl.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ConfigControls.ContourPlotConfigControl.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ResultControls.ContourPlotResultControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Monitor.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Monitor.pdb

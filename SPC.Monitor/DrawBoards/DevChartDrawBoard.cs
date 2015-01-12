@@ -34,23 +34,17 @@ namespace SPC.Monitor.DrawBoards
 
         void _mainChart_LostFocus(object sender, EventArgs e)
         {
-            if (this.LostFocus != null)
-                this.LostFocus(this, new EventArgs());
+            InvokeLostFocus(this, e);
         }
         protected int baseSeriesCount;
         public DevChartDrawBoard()
         {
             InitializeComponent();
         }
-
         void mainChart_GotFocus(object sender, EventArgs e)
         {
-            if (this.GotFocus != null)
-                this.GotFocus(this, new EventArgs());
+            InvokeGotFocus(this, e);
         }
-        public new event EventHandler GotFocus;
-
-        public new event EventHandler LostFocus;
         public event EventHandler Removed;
         public DevExpress.XtraCharts.ChartControl GetChart()
         {

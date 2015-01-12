@@ -19,6 +19,9 @@ namespace SPC.Analysis.ResultControls
         public void Init(Image pic)
         {
             this.pictureEdit1.Image = pic;
+            this.splitContainerControl2.Panel1.MinSize = pic.Size.Height;
+            this.splitContainerControl1.Panel1.MinSize = pic.Size.Width;
+            this.MinimumSize = pic.Size;
         }
     }
 }

@@ -37,7 +37,7 @@ namespace SPC.Rnet
             AppDomain domain = AppDomain.CreateDomain(Guid.NewGuid().ToString());
             string name = Guid.NewGuid() + ".png";
             string root = Environment.CurrentDirectory;
-            (domain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(Graphics).FullName) as Graphics).DrawContourPlot(root,name,x,y,z);
+            (domain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(Graphics).FullName) as Graphics).DrawContourPlot(root,name,xs,ys,zs,x,y,z);
             AppDomain.Unload(domain);
             FileStream fs = new FileStream(name, FileMode.Open);
             byte[] buffer = new byte[fs.Length];

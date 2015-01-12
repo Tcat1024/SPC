@@ -20,11 +20,6 @@ namespace TestForm
             DataForm = new QtDataTrace.UI.CPKtool.DebugDataSelectForm();
         }
 
-        private void cpKtoolControl1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (this.DataForm.ShowDialog() == DialogResult.Yes)

@@ -29,32 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CPKtoolControl));
-            DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.ConstantLine constantLine8 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine9 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine10 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine11 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine12 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine13 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.SecondaryAxisY secondaryAxisY1 = new DevExpress.XtraCharts.SecondaryAxisY();
-            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SplineSeriesView splineSeriesView1 = new DevExpress.XtraCharts.SplineSeriesView();
-            DevExpress.XtraCharts.Series series4 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SplineSeriesView splineSeriesView2 = new DevExpress.XtraCharts.SplineSeriesView();
-            DevExpress.XtraCharts.SwiftPlotDiagram swiftPlotDiagram1 = new DevExpress.XtraCharts.SwiftPlotDiagram();
-            DevExpress.XtraCharts.ConstantLine constantLine1 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine2 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.Strip strip1 = new DevExpress.XtraCharts.Strip();
-            DevExpress.XtraCharts.ConstantLine constantLine3 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine4 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine5 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine6 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.ConstantLine constantLine7 = new DevExpress.XtraCharts.ConstantLine();
-            DevExpress.XtraCharts.Strip strip2 = new DevExpress.XtraCharts.Strip();
-            DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView1 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
-            DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView2 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
+            DevExpress.XtraCharts.XYDiagram xyDiagram20 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.ConstantLine constantLine255 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine256 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine257 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine258 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine259 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine260 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.SecondaryAxisY secondaryAxisY20 = new DevExpress.XtraCharts.SecondaryAxisY();
+            DevExpress.XtraCharts.Series series78 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.Series series79 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SplineSeriesView splineSeriesView39 = new DevExpress.XtraCharts.SplineSeriesView();
+            DevExpress.XtraCharts.Series series80 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SplineSeriesView splineSeriesView40 = new DevExpress.XtraCharts.SplineSeriesView();
+            DevExpress.XtraCharts.SwiftPlotDiagram swiftPlotDiagram20 = new DevExpress.XtraCharts.SwiftPlotDiagram();
+            DevExpress.XtraCharts.ConstantLine constantLine248 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine249 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.Strip strip39 = new DevExpress.XtraCharts.Strip();
+            DevExpress.XtraCharts.ConstantLine constantLine250 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine251 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine252 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine253 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.ConstantLine constantLine254 = new DevExpress.XtraCharts.ConstantLine();
+            DevExpress.XtraCharts.Strip strip40 = new DevExpress.XtraCharts.Strip();
+            DevExpress.XtraCharts.Series series77 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView39 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
+            DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView40 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
             this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
@@ -192,13 +192,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series78)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series79)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(splineSeriesView39)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series80)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(splineSeriesView40)).BeginInit();
             this.xtraScrollableControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutView1)).BeginInit();
@@ -257,12 +257,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(swiftPlotDiagram1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(strip1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(strip2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(swiftPlotDiagram20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(strip39)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(strip40)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series77)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView39)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView40)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl2)).BeginInit();
@@ -545,64 +545,64 @@
             // 
             // chartControl2
             // 
-            xyDiagram1.AxisX.Alignment = DevExpress.XtraCharts.AxisAlignment.Zero;
-            constantLine8.AxisValueSerializable = "1";
-            constantLine8.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            constantLine8.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
-            constantLine8.Name = "Constant Line 1";
-            constantLine8.Title.Visible = false;
-            constantLine8.Visible = false;
-            constantLine9.AxisValueSerializable = "1";
-            constantLine9.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            constantLine9.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
-            constantLine9.Name = "Constant Line 2";
-            constantLine9.Title.Visible = false;
-            constantLine9.Visible = false;
-            constantLine10.AxisValueSerializable = "1";
-            constantLine10.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            constantLine10.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
-            constantLine10.Name = "Constant Line 3";
-            constantLine10.Title.Visible = false;
-            constantLine10.Visible = false;
-            constantLine11.AxisValueSerializable = "1";
-            constantLine11.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            constantLine11.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
-            constantLine11.Name = "Constant Line 4";
-            constantLine11.Title.Visible = false;
-            constantLine11.Visible = false;
-            constantLine12.AxisValueSerializable = "1";
-            constantLine12.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            constantLine12.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
-            constantLine12.Name = "Constant Line 5";
-            constantLine12.Title.Visible = false;
-            constantLine12.Visible = false;
-            constantLine13.AxisValueSerializable = "1";
-            constantLine13.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            constantLine13.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
-            constantLine13.Name = "Constant Line 6";
-            constantLine13.Title.Visible = false;
-            constantLine13.Visible = false;
-            xyDiagram1.AxisX.ConstantLines.AddRange(new DevExpress.XtraCharts.ConstantLine[] {
-            constantLine8,
-            constantLine9,
-            constantLine10,
-            constantLine11,
-            constantLine12,
-            constantLine13});
-            xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram1.EnableAxisXScrolling = true;
-            xyDiagram1.EnableAxisXZooming = true;
-            xyDiagram1.Margins.Bottom = 0;
-            xyDiagram1.Margins.Left = 0;
-            xyDiagram1.Margins.Right = 0;
-            xyDiagram1.Margins.Top = 0;
-            secondaryAxisY1.AxisID = 0;
-            secondaryAxisY1.Name = "Secondary AxisY 1";
-            secondaryAxisY1.VisibleInPanesSerializable = "-1";
-            xyDiagram1.SecondaryAxesY.AddRange(new DevExpress.XtraCharts.SecondaryAxisY[] {
-            secondaryAxisY1});
-            this.chartControl2.Diagram = xyDiagram1;
+            xyDiagram20.AxisX.Alignment = DevExpress.XtraCharts.AxisAlignment.Zero;
+            constantLine255.AxisValueSerializable = "1";
+            constantLine255.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            constantLine255.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
+            constantLine255.Name = "Constant Line 1";
+            constantLine255.Title.Visible = false;
+            constantLine255.Visible = false;
+            constantLine256.AxisValueSerializable = "1";
+            constantLine256.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            constantLine256.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
+            constantLine256.Name = "Constant Line 2";
+            constantLine256.Title.Visible = false;
+            constantLine256.Visible = false;
+            constantLine257.AxisValueSerializable = "1";
+            constantLine257.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            constantLine257.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
+            constantLine257.Name = "Constant Line 3";
+            constantLine257.Title.Visible = false;
+            constantLine257.Visible = false;
+            constantLine258.AxisValueSerializable = "1";
+            constantLine258.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            constantLine258.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
+            constantLine258.Name = "Constant Line 4";
+            constantLine258.Title.Visible = false;
+            constantLine258.Visible = false;
+            constantLine259.AxisValueSerializable = "1";
+            constantLine259.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            constantLine259.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
+            constantLine259.Name = "Constant Line 5";
+            constantLine259.Title.Visible = false;
+            constantLine259.Visible = false;
+            constantLine260.AxisValueSerializable = "1";
+            constantLine260.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            constantLine260.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
+            constantLine260.Name = "Constant Line 6";
+            constantLine260.Title.Visible = false;
+            constantLine260.Visible = false;
+            xyDiagram20.AxisX.ConstantLines.AddRange(new DevExpress.XtraCharts.ConstantLine[] {
+            constantLine255,
+            constantLine256,
+            constantLine257,
+            constantLine258,
+            constantLine259,
+            constantLine260});
+            xyDiagram20.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram20.AxisY.VisibleInPanesSerializable = "-1";
+            xyDiagram20.EnableAxisXScrolling = true;
+            xyDiagram20.EnableAxisXZooming = true;
+            xyDiagram20.Margins.Bottom = 0;
+            xyDiagram20.Margins.Left = 0;
+            xyDiagram20.Margins.Right = 0;
+            xyDiagram20.Margins.Top = 0;
+            secondaryAxisY20.AxisID = 0;
+            secondaryAxisY20.Name = "Secondary AxisY 1";
+            secondaryAxisY20.VisibleInPanesSerializable = "-1";
+            xyDiagram20.SecondaryAxesY.AddRange(new DevExpress.XtraCharts.SecondaryAxisY[] {
+            secondaryAxisY20});
+            this.chartControl2.Diagram = xyDiagram20;
             this.chartControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartControl2.Legend.Visible = false;
             this.chartControl2.Location = new System.Drawing.Point(2, 2);
@@ -613,25 +613,25 @@
             this.chartControl2.Padding.Left = 0;
             this.chartControl2.Padding.Right = 0;
             this.chartControl2.Padding.Top = 0;
-            series2.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
-            series2.LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
-            series2.Name = "Series 1";
-            series3.LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
-            series3.Name = "Series 2";
-            splineSeriesView1.AxisYName = "Secondary AxisY 1";
-            splineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            splineSeriesView1.LineStyle.Thickness = 1;
-            series3.View = splineSeriesView1;
-            series4.LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
-            series4.Name = "Series 3";
-            splineSeriesView2.AxisYName = "Secondary AxisY 1";
-            splineSeriesView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            splineSeriesView2.LineStyle.Thickness = 1;
-            series4.View = splineSeriesView2;
+            series78.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
+            series78.LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
+            series78.Name = "Series 1";
+            series79.LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
+            series79.Name = "Series 2";
+            splineSeriesView39.AxisYName = "Secondary AxisY 1";
+            splineSeriesView39.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            splineSeriesView39.LineStyle.Thickness = 1;
+            series79.View = splineSeriesView39;
+            series80.LabelsVisibility = DevExpress.Utils.DefaultBoolean.False;
+            series80.Name = "Series 3";
+            splineSeriesView40.AxisYName = "Secondary AxisY 1";
+            splineSeriesView40.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            splineSeriesView40.LineStyle.Thickness = 1;
+            series80.View = splineSeriesView40;
             this.chartControl2.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series2,
-        series3,
-        series4};
+        series78,
+        series79,
+        series80};
             this.chartControl2.Size = new System.Drawing.Size(617, 199);
             this.chartControl2.TabIndex = 9;
             // 
@@ -1637,78 +1637,78 @@
             // 
             this.DataChart.AllowDrop = true;
             this.DataChart.BorderOptions.Visible = false;
-            constantLine1.AxisValueSerializable = "B";
-            constantLine1.Name = "X";
-            constantLine1.Title.Text = "X";
-            constantLine1.Visible = false;
-            constantLine2.AxisValueSerializable = "B";
-            constantLine2.Name = "X";
-            constantLine2.Title.Text = "X";
-            constantLine2.Visible = false;
-            swiftPlotDiagram1.AxisX.ConstantLines.AddRange(new DevExpress.XtraCharts.ConstantLine[] {
-            constantLine1,
-            constantLine2});
-            swiftPlotDiagram1.AxisX.MinorCount = 1;
-            strip1.MaxLimit.AxisValueSerializable = "B";
-            strip1.MinLimit.AxisValueSerializable = "A";
-            strip1.Name = "XStrip";
-            strip1.Visible = false;
-            swiftPlotDiagram1.AxisX.Strips.AddRange(new DevExpress.XtraCharts.Strip[] {
-            strip1});
-            swiftPlotDiagram1.AxisX.VisibleInPanesSerializable = "-1";
-            swiftPlotDiagram1.AxisX.WholeRange.AutoSideMargins = false;
-            swiftPlotDiagram1.AxisX.WholeRange.SideMarginsValue = 0D;
-            constantLine3.AxisValueSerializable = "0";
-            constantLine3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            constantLine3.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Solid;
-            constantLine3.Name = "up";
-            constantLine3.ShowInLegend = false;
-            constantLine3.Title.Visible = false;
-            constantLine3.Visible = false;
-            constantLine4.AxisValueSerializable = "0";
-            constantLine4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            constantLine4.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
-            constantLine4.Name = "std";
-            constantLine4.ShowInLegend = false;
-            constantLine4.Title.Visible = false;
-            constantLine4.Visible = false;
-            constantLine5.AxisValueSerializable = "0";
-            constantLine5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            constantLine5.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Solid;
-            constantLine5.Name = "low";
-            constantLine5.ShowInLegend = false;
-            constantLine5.Title.Visible = false;
-            constantLine5.Visible = false;
-            constantLine6.AxisValueSerializable = "1";
-            constantLine6.Name = "Y";
-            constantLine6.Title.Text = "Y";
-            constantLine6.Visible = false;
-            constantLine7.AxisValueSerializable = "1";
-            constantLine7.Name = "Y";
-            constantLine7.Title.Text = "Y";
-            constantLine7.Visible = false;
-            swiftPlotDiagram1.AxisY.ConstantLines.AddRange(new DevExpress.XtraCharts.ConstantLine[] {
-            constantLine3,
-            constantLine4,
-            constantLine5,
-            constantLine6,
-            constantLine7});
-            strip2.MaxLimit.AxisValueSerializable = "1";
-            strip2.MinLimit.AxisValueSerializable = "0";
-            strip2.Name = "YStrip";
-            strip2.Visible = false;
-            swiftPlotDiagram1.AxisY.Strips.AddRange(new DevExpress.XtraCharts.Strip[] {
-            strip2});
-            swiftPlotDiagram1.AxisY.VisibleInPanesSerializable = "-1";
-            swiftPlotDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
-            swiftPlotDiagram1.EnableAxisXScrolling = true;
-            swiftPlotDiagram1.EnableAxisXZooming = true;
-            swiftPlotDiagram1.Margins.Bottom = 0;
-            swiftPlotDiagram1.Margins.Left = 0;
-            swiftPlotDiagram1.Margins.Right = 0;
-            swiftPlotDiagram1.Margins.Top = 0;
-            swiftPlotDiagram1.ScrollingOptions.UseMouse = false;
-            this.DataChart.Diagram = swiftPlotDiagram1;
+            constantLine248.AxisValueSerializable = "B";
+            constantLine248.Name = "X";
+            constantLine248.Title.Text = "X";
+            constantLine248.Visible = false;
+            constantLine249.AxisValueSerializable = "B";
+            constantLine249.Name = "X";
+            constantLine249.Title.Text = "X";
+            constantLine249.Visible = false;
+            swiftPlotDiagram20.AxisX.ConstantLines.AddRange(new DevExpress.XtraCharts.ConstantLine[] {
+            constantLine248,
+            constantLine249});
+            swiftPlotDiagram20.AxisX.MinorCount = 1;
+            strip39.MaxLimit.AxisValueSerializable = "B";
+            strip39.MinLimit.AxisValueSerializable = "A";
+            strip39.Name = "XStrip";
+            strip39.Visible = false;
+            swiftPlotDiagram20.AxisX.Strips.AddRange(new DevExpress.XtraCharts.Strip[] {
+            strip39});
+            swiftPlotDiagram20.AxisX.VisibleInPanesSerializable = "-1";
+            swiftPlotDiagram20.AxisX.WholeRange.AutoSideMargins = false;
+            swiftPlotDiagram20.AxisX.WholeRange.SideMarginsValue = 0D;
+            constantLine250.AxisValueSerializable = "0";
+            constantLine250.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            constantLine250.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Solid;
+            constantLine250.Name = "up";
+            constantLine250.ShowInLegend = false;
+            constantLine250.Title.Visible = false;
+            constantLine250.Visible = false;
+            constantLine251.AxisValueSerializable = "0";
+            constantLine251.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            constantLine251.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Dash;
+            constantLine251.Name = "std";
+            constantLine251.ShowInLegend = false;
+            constantLine251.Title.Visible = false;
+            constantLine251.Visible = false;
+            constantLine252.AxisValueSerializable = "0";
+            constantLine252.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            constantLine252.LineStyle.DashStyle = DevExpress.XtraCharts.DashStyle.Solid;
+            constantLine252.Name = "low";
+            constantLine252.ShowInLegend = false;
+            constantLine252.Title.Visible = false;
+            constantLine252.Visible = false;
+            constantLine253.AxisValueSerializable = "1";
+            constantLine253.Name = "Y";
+            constantLine253.Title.Text = "Y";
+            constantLine253.Visible = false;
+            constantLine254.AxisValueSerializable = "1";
+            constantLine254.Name = "Y";
+            constantLine254.Title.Text = "Y";
+            constantLine254.Visible = false;
+            swiftPlotDiagram20.AxisY.ConstantLines.AddRange(new DevExpress.XtraCharts.ConstantLine[] {
+            constantLine250,
+            constantLine251,
+            constantLine252,
+            constantLine253,
+            constantLine254});
+            strip40.MaxLimit.AxisValueSerializable = "1";
+            strip40.MinLimit.AxisValueSerializable = "0";
+            strip40.Name = "YStrip";
+            strip40.Visible = false;
+            swiftPlotDiagram20.AxisY.Strips.AddRange(new DevExpress.XtraCharts.Strip[] {
+            strip40});
+            swiftPlotDiagram20.AxisY.VisibleInPanesSerializable = "-1";
+            swiftPlotDiagram20.AxisY.WholeRange.AlwaysShowZeroLevel = false;
+            swiftPlotDiagram20.EnableAxisXScrolling = true;
+            swiftPlotDiagram20.EnableAxisXZooming = true;
+            swiftPlotDiagram20.Margins.Bottom = 0;
+            swiftPlotDiagram20.Margins.Left = 0;
+            swiftPlotDiagram20.Margins.Right = 0;
+            swiftPlotDiagram20.Margins.Top = 0;
+            swiftPlotDiagram20.ScrollingOptions.UseMouse = false;
+            this.DataChart.Diagram = swiftPlotDiagram20;
             this.DataChart.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DataChart.Legend.Visible = false;
             this.DataChart.Location = new System.Drawing.Point(2, 2);
@@ -1718,13 +1718,13 @@
             this.DataChart.Padding.Right = 0;
             this.DataChart.Padding.Top = 0;
             this.DataChart.RuntimeHitTesting = true;
-            series1.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
-            series1.Name = "Series 1";
-            series1.View = swiftPlotSeriesView1;
+            series77.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            series77.Name = "Series 1";
+            series77.View = swiftPlotSeriesView39;
             this.DataChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1};
-            swiftPlotSeriesView2.LineStyle.Thickness = 2;
-            this.DataChart.SeriesTemplate.View = swiftPlotSeriesView2;
+        series77};
+            swiftPlotSeriesView40.LineStyle.Thickness = 2;
+            this.DataChart.SeriesTemplate.View = swiftPlotSeriesView40;
             this.DataChart.Size = new System.Drawing.Size(734, 102);
             this.DataChart.TabIndex = 16;
             this.DataChart.CustomDrawCrosshair += new DevExpress.XtraCharts.CustomDrawCrosshairEventHandler(this.chartControl1_CustomDrawCrosshair);
@@ -1838,13 +1838,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series78)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(splineSeriesView39)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series79)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(splineSeriesView40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series80)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl2)).EndInit();
             this.xtraScrollableControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
@@ -1903,12 +1903,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.Group7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(strip1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(strip2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(swiftPlotDiagram1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(strip39)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(strip40)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(swiftPlotDiagram20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView39)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series77)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView40)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
