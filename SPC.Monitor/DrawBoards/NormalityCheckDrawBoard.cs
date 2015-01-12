@@ -11,21 +11,13 @@ using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class NormalityCheckDrawBoard :DevExpress.XtraEditors.XtraUserControl,IDrawBoard<DevExpress.XtraCharts.ChartControl>
+    public partial class NormalityCheckDrawBoard : DevChartDrawBoard
     {
         public NormalityCheckDrawBoard()
         {
             InitializeComponent();
-        }
-        public DevExpress.XtraCharts.ChartControl GetChart()
-        {
-            return this.chartControl1;
-        }
-        public bool CheckCanRemove()
-        {
-            if (this.GetChart().Series.Count == 1)
-                return true;
-            return false;
+            this.mainChart = chartControl1;
+            this.baseSeriesCount = 1;
         }
     }
 }

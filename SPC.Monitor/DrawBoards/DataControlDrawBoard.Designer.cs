@@ -57,7 +57,6 @@
             swiftPlotDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             swiftPlotDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
             swiftPlotDiagram1.EnableAxisXScrolling = true;
-            swiftPlotDiagram1.EnableAxisXZooming = true;
             swiftPlotDiagram1.PaneDistance = 1;
             xyDiagramPane1.Name = "Pane 1";
             xyDiagramPane1.PaneID = 0;

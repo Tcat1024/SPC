@@ -88,6 +88,12 @@
     <Compile Include="DrawBoards\DataControlDrawBoard.Designer.cs">
       <DependentUpon>DataControlDrawBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="DrawBoards\DevChartDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\DevChartDrawBoard.Designer.cs">
+      <DependentUpon>DevChartDrawBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="DrawBoards\NormalityCheckDrawBoard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -161,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DrawBoards\DataControlDrawBoard.resx">
       <DependentUpon>DataControlDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DrawBoards\DevChartDrawBoard.resx">
+      <DependentUpon>DevChartDrawBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DrawBoards\NormalityCheckDrawBoard.resx">
       <DependentUpon>NormalityCheckDrawBoard.cs</DependentUpon>

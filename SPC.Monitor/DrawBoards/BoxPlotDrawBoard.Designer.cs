@@ -58,7 +58,6 @@
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
             xyDiagram1.EnableAxisYScrolling = true;
-            xyDiagram1.EnableAxisYZooming = true;
             xyDiagram1.ScrollingOptions.UseKeyboard = false;
             xyDiagram1.ScrollingOptions.UseMouse = false;
             xyDiagram1.ScrollingOptions.UseTouchDevice = false;

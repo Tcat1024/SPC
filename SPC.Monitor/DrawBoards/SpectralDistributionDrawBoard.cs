@@ -11,18 +11,15 @@ using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class SpectralDistributionDrawBoard : DevExpress.XtraEditors.XtraUserControl, IDrawBoard<DevExpress.XtraCharts.ChartControl>
+    public partial class SpectralDistributionDrawBoard : DevChartDrawBoard
     {
         public SpectralDistributionDrawBoard()
         {
             InitializeComponent();
             this.barEditItem1.EditValue = true;
+            this.mainChart = chartControl1;
+            this.baseSeriesCount = 3;
         }
-        public DevExpress.XtraCharts.ChartControl GetChart()
-        {
-            return this.chartControl1;
-        }
-
         private void repositoryItemCheckEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {
             if ((bool)e.NewValue)
@@ -76,12 +73,6 @@ namespace SPC.Monitor.DrawBoards
                 }
                 this.barEditItem2.Caption = "填充";
             }
-        }
-        public bool CheckCanRemove()
-        {
-            if (this.GetChart().Series.Count == 3)
-                return true;
-            return false;
         }
     }
 }

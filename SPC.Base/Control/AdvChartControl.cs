@@ -9,6 +9,22 @@ namespace SPC.Base.Control
 {
     public partial class AdvChartControl : DevExpress.XtraCharts.ChartControl
     {
+        private DevExpress.XtraCharts.Axis2D _targetAxis = null;
+        private DevExpress.XtraCharts.Axis2D targetAxis
+        {
+            get
+            {
+                return this._targetAxis;
+            }
+            set
+            {
+                if (value == null)
+                    this.Cursor = System.Windows.Forms.Cursors.Arrow;
+                else
+                    this.Cursor = System.Windows.Forms.Cursors.Hand;
+                this._targetAxis = value;
+            }
+        }
         private DevExpress.XtraCharts.ConstantLine _targetLine = null;
         private DevExpress.XtraCharts.ConstantLine targetLine
         {
@@ -45,7 +61,6 @@ namespace SPC.Base.Control
         private DevExpress.XtraBars.BarButtonItem popupMenuYAddButtonItem = new DevExpress.XtraBars.BarButtonItem() { Caption = "添加Y轴边界" };
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit popupMenuTextEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
         private DevExpress.XtraBars.BarManager mybarmanager = new DevExpress.XtraBars.BarManager();
-
         public event EventHandler<ShowRightClickPopupMenuEventArgs> CustomShowRightClickPopupMenu;
         public class ShowRightClickPopupMenuEventArgs : EventArgs
         {
@@ -57,7 +72,6 @@ namespace SPC.Base.Control
                 this.RightClickPopupMenu = menu;
                 this.ConstantLine = line;
                 this.Handle = handle;
-
             }
         }
         public AdvChartControl()
@@ -103,65 +117,82 @@ namespace SPC.Base.Control
         }
         private void popupMenuDeleteButtonItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var line = ((e.Item.Tag as object[])[0] as DevExpress.XtraCharts.ConstantLine);
-            ((e.Item.Tag as object[])[1] as DevExpress.XtraCharts.Axis2D).ConstantLines.Remove(line);
+            var line = (e.Item.Tag as DevExpress.XtraCharts.ConstantLine);
+            foreach(var axis in (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesX().Union((this.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()))
+            {
+                axis.ConstantLines.Remove(line);
+            }
         }
         protected override void OnMouseDown(System.Windows.Forms.MouseEventArgs e)
         {
             base.OnMouseDown(e);
             if (!DesignMode)
             {
-                if (this.Series.Count > 0)
+                var info = this.CalcHitInfo(e.Location);
+                if (info.Diagram != null)
                 {
-                    var info = this.CalcHitInfo(e.Location);
-                    if (info.Diagram != null)
-                    {
 
-                        if (e.Button == System.Windows.Forms.MouseButtons.Left && info.InConstantLine)
-                        {
-                            this.targetLine = info.ConstantLine;
-                        }
-                        else if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                        {
-                            var pointinfo = (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).PointToDiagram(e.Location);
-                            InitPopupMenu();
-                            object argument;
-                            if (pointinfo.ArgumentScaleType == DevExpress.XtraCharts.ScaleType.Numerical)
-                                argument = pointinfo.NumericalArgument;
-                            else
-                                argument = pointinfo.QualitativeArgument;
-                            popupMenuStaticItem.Caption = string.Format("X:{0} Y:{1:N3}", argument, pointinfo.NumericalValue);
-                            this.RightClickPopupMenu.AddItem(popupMenuStaticItem);
-                            popupMenuXAddButtonItem.Tag = new object[]{argument,pointinfo.AxisX};
-                            this.RightClickPopupMenu.AddItem(popupMenuXAddButtonItem);
-                            popupMenuYAddButtonItem.Tag = new object[]{pointinfo.NumericalValue,pointinfo.AxisY};
-                            this.RightClickPopupMenu.AddItem(popupMenuYAddButtonItem);
-                            ShowRightClickPopupMenuEventArgs eventarg;
-                            if (info.InConstantLine)
-                            {
-                                popupMenuEditItem.BeginUpdate();
-                                popupMenuEditItem.Caption = info.ConstantLine.Name + "轴边界线";
-                                popupMenuEditItem.Tag = info.ConstantLine;
-                                popupMenuEditItem.EditValue = info.ConstantLine.AxisValue;
-                                popupMenuEditItem.EndUpdate();
-                                this.RightClickPopupMenu.AddItem(popupMenuEditItem);
-                                popupMenuDeleteButtonItem.Tag = new object[]{info.ConstantLine,info.ConstantLine.Name=="X"?pointinfo.AxisX:pointinfo.AxisY};
-                                popupMenuDeleteButtonItem.Caption = "删除" + info.ConstantLine.Name + "轴边界线";
-                                this.RightClickPopupMenu.AddItem(popupMenuDeleteButtonItem);
-                                eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, info.ConstantLine, true);
-                                if (CustomShowRightClickPopupMenu != null)
-                                    CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
-                            }
-                            else
-                            {
-                                eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, null, true);
-                                if (CustomShowRightClickPopupMenu != null)
-                                    CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
-                            }
-                            if (eventarg.Handle)
-                                this.RightClickPopupMenu.ShowPopup(MousePosition);
-                        }
+                    if (e.Button == System.Windows.Forms.MouseButtons.Left && info.InConstantLine)
+                    {
+                        this.targetLine = info.ConstantLine;
                     }
+                    else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                    {
+                        var pointinfo = (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).PointToDiagram(e.Location);
+                        InitPopupMenu();
+                        object argument;
+                        if (pointinfo.ArgumentScaleType == DevExpress.XtraCharts.ScaleType.Numerical)
+                            argument = pointinfo.NumericalArgument;
+                        else
+                            argument = pointinfo.QualitativeArgument;
+                        popupMenuStaticItem.Caption = string.Format("X:{0} Y:{1:N3}", argument, pointinfo.NumericalValue);
+                        this.RightClickPopupMenu.AddItem(popupMenuStaticItem);
+                        popupMenuXAddButtonItem.Tag = new object[] { argument, pointinfo.AxisX };
+                        this.RightClickPopupMenu.AddItem(popupMenuXAddButtonItem);
+                        ShowRightClickPopupMenuEventArgs eventarg;
+                        if (info.InConstantLine)
+                        {
+                            popupMenuEditItem.BeginUpdate();
+                            popupMenuEditItem.Caption = info.ConstantLine.Name + "轴边界线";
+                            popupMenuEditItem.Tag = info.ConstantLine;
+                            popupMenuEditItem.EditValue = info.ConstantLine.AxisValue;
+                            popupMenuEditItem.EndUpdate();
+                            this.RightClickPopupMenu.AddItem(popupMenuEditItem);
+                            popupMenuDeleteButtonItem.Tag = info.ConstantLine;
+                            popupMenuDeleteButtonItem.Caption = "删除" + info.ConstantLine.Name + "轴边界线";
+                            this.RightClickPopupMenu.AddItem(popupMenuDeleteButtonItem);
+
+                        }
+                        eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, info.ConstantLine, true);
+                        if (CustomShowRightClickPopupMenu != null)
+                            CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
+                        if (eventarg.Handle)
+                            this.RightClickPopupMenu.ShowPopup(MousePosition);
+                    }
+                }
+                else if (info.Axis != null && (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY().Contains(info.Axis))
+                {
+                    if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                    {
+                        this.targetAxis = (info.Axis as DevExpress.XtraCharts.Axis2D);
+                    }
+                    else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                    {
+                        var pointinfo = (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).PointToDiagram(new System.Drawing.Point(this.Width / 2, e.Location.Y));
+                        InitPopupMenu();
+                        var value = pointinfo.GetAxisValue(info.Axis).NumericalValue;
+                        popupMenuStaticItem.Caption = string.Format("X: Y:{0:N3}", value);
+                        this.RightClickPopupMenu.AddItem(popupMenuStaticItem);
+                        popupMenuYAddButtonItem.Tag = new object[] { value, info.Axis };
+                        this.RightClickPopupMenu.AddItem(popupMenuYAddButtonItem);
+                        ShowRightClickPopupMenuEventArgs eventarg;
+                        eventarg = new ShowRightClickPopupMenuEventArgs(RightClickPopupMenu, info.ConstantLine, true);
+                        if (CustomShowRightClickPopupMenu != null)
+                            CustomShowRightClickPopupMenu(RightClickPopupMenu, eventarg);
+                        if (eventarg.Handle)
+                            this.RightClickPopupMenu.ShowPopup(MousePosition);
+                    }
+
                 }
             }
         }
@@ -189,7 +220,28 @@ namespace SPC.Base.Control
                         targetLine.Title.Text = String.Format("{0:N3}", targetLine.AxisValue);
                     }
                 }
+                else if (this.targetAxis != null)
+                {
+                    var info = this.CalcHitInfo(e.Location);
+                    if (info.Axis != null && (this.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY().Contains(info.Axis))
+                    {
+                        DevExpress.XtraCharts.XYDiagramSeriesViewBase sv;
+                        DevExpress.XtraCharts.SwiftPlotSeriesViewBase spv;
+                        foreach (DevExpress.XtraCharts.Series s in this.Series)
+                        {
+                            if ((sv = s.View as DevExpress.XtraCharts.XYDiagramSeriesViewBase) != null && sv.AxisY == targetAxis &&(info.Axis as DevExpress.XtraCharts.AxisY).GetVisibilityInPane(sv.Pane))
+                                sv.AxisY = info.Axis as DevExpress.XtraCharts.AxisY;
+                            else if ((spv = s.View as DevExpress.XtraCharts.SwiftPlotSeriesViewBase) != null && spv.AxisY == targetAxis && (info.Axis as DevExpress.XtraCharts.SwiftPlotDiagramAxisYBase).GetVisibilityInPane(spv.Pane))
+                                spv.AxisY = info.Axis as DevExpress.XtraCharts.SwiftPlotDiagramAxisYBase;
+                        }
+                    }
+                    else if (e.Location.X > this.Width / 2)
+                        this.targetAxis.Alignment = DevExpress.XtraCharts.AxisAlignment.Far;
+                    else
+                        this.targetAxis.Alignment = DevExpress.XtraCharts.AxisAlignment.Near;
+                }
                 this.targetLine = null;
+                this.targetAxis = null;
             }
         }
         protected override void OnMouseMove(System.Windows.Forms.MouseEventArgs e)
@@ -197,7 +249,7 @@ namespace SPC.Base.Control
             base.OnMouseMove(e);
             if (!DesignMode)
             {
-                if (this.targetLine == null)
+                if (this.targetLine == null&&this.targetAxis==null)
                     this.Cursor = System.Windows.Forms.Cursors.Arrow;
                 if (this.Series.Count > 0)
                 {
@@ -243,11 +295,6 @@ namespace SPC.Base.Control
 
             }
         }
-        //public new DevExpress.XtraCharts.Diagram Diagram
-        //{
-        //    get { return base.Diagram; }
-        //    set { base.Diagram = value; this.Init(); }
-        //}
     }
     //public static class AddExtention
     //{

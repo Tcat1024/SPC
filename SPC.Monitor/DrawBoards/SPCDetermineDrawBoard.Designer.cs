@@ -55,7 +55,6 @@
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.WholeRange.AlwaysShowZeroLevel = false;
             xyDiagram1.EnableAxisXScrolling = true;
-            xyDiagram1.EnableAxisXZooming = true;
             xyDiagram1.PaneDistance = 0;
             xyDiagramPane1.Name = "Pane 1";
             xyDiagramPane1.PaneID = 0;

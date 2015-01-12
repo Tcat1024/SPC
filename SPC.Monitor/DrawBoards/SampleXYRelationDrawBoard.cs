@@ -11,16 +11,14 @@ using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class SampleXYRelationDrawBoard : DevExpress.XtraEditors.XtraUserControl, IDrawBoard<DevExpress.XtraCharts.ChartControl>
+    public partial class SampleXYRelationDrawBoard : DevChartDrawBoard
     {
         public SampleXYRelationDrawBoard()
         {
             InitializeComponent();
             this.barCheckItem1.Checked = true;
-        }
-        public DevExpress.XtraCharts.ChartControl GetChart()
-        {
-            return this.chartControl1;
+            this.mainChart = chartControl1;
+            this.baseSeriesCount = 1;
         }
 
 
@@ -61,12 +59,6 @@ namespace SPC.Monitor.DrawBoards
                 this.chartControl1.Legend.Visible = true;
             else
                 this.chartControl1.Legend.Visible = false;
-        }
-        public bool CheckCanRemove()
-        {
-            if (this.GetChart().Series.Count == 1)
-                return true;
-            return false;
         }
     }
 }

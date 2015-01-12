@@ -73,5 +73,13 @@ namespace SPC.Base.Interface
         ChartType GetChart();
         System.Windows.Forms.Control Parent { get; }
         bool CheckCanRemove();
+        event EventHandler GotFocus;
+        event EventHandler LostFocus;
+        event EventHandler Removed;
+        void Hup();
+        void Vup();
+        void Hdown();
+        void Vdown();
+        void Re();
     }
 }

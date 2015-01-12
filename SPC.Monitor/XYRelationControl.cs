@@ -217,10 +217,49 @@ namespace SPC.Monitor
                 {
                     var temp = Activator.CreateInstance(this.DrawBoardTypes[i], null);
                     this.xtraTabControl1.TabPages[i].Controls[0].Controls.Add(temp as UserControl);
+                    (temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>).GotFocus += DrawBoard_GotFocus;
+                    (temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>).Removed += DrawBoard_Removed;
                     drawBoards.Add(temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
                 }
             }
             return drawBoards;
+        }
+        void DrawBoard_Removed(object sender, EventArgs e)
+        {
+            if (this.FocusedDrawBoard == sender)
+                this.FocusedDrawBoard = null;
+        }
+        void DrawBoard_GotFocus(object sender, EventArgs e)
+        {
+            this.FocusedDrawBoard = sender as IDrawBoard<DevExpress.XtraCharts.ChartControl>;
+        }
+        private IDrawBoard<DevExpress.XtraCharts.ChartControl> _FocusedDrawBoard = null;
+        private IDrawBoard<DevExpress.XtraCharts.ChartControl> FocusedDrawBoard
+        {
+            get
+            {
+                return this._FocusedDrawBoard;
+            }
+            set
+            {
+                this._FocusedDrawBoard = value;
+                if (value != null)
+                {
+                    this.btnHdown.Enabled = true;
+                    this.btnHup.Enabled = true;
+                    this.btnVdown.Enabled = true;
+                    this.btnVup.Enabled = true;
+                    this.btnRe.Enabled = true;
+                }
+                else
+                {
+                    this.btnHdown.Enabled = false;
+                    this.btnHup.Enabled = false;
+                    this.btnVdown.Enabled = false;
+                    this.btnVup.Enabled = false;
+                    this.btnRe.Enabled = false;
+                }
+            }
         }
         private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> GetDrawBoards(int Index)
         {
@@ -365,6 +404,35 @@ namespace SPC.Monitor
         private void chartSizeInit()
         {
             this.panelControl1.Height = (int)(this.Size.Height * 0.5);
+        }
+        private void btnHup_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Hup();
+        }
+
+        private void btnHdown_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Hdown();
+        }
+
+        private void btnVup_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Vup();
+        }
+
+        private void btnVdown_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Vdown();
+        }
+
+        private void btnRe_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Re();
         }
     }
 }

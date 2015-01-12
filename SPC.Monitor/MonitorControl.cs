@@ -115,7 +115,7 @@ namespace SPC.Monitor
         private void gridView1_DragObjectDrop(object sender, DevExpress.XtraGrid.Views.Base.DragObjectDropEventArgs e)
         {
             MonitorSeriesData data = null;
-            List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawboards = null;
+            List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> DrawBoards = null;
             try
             {
                 var col = (e.DragObject as DevExpress.XtraGrid.Columns.GridColumn);
@@ -132,7 +132,7 @@ namespace SPC.Monitor
                     }
                     if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
                     {
-                        data = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, drawboards = this.AddDrawBoards());
+                        data = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, DrawBoards = this.AddDrawBoards());
                         this.AddListItem(data);
                     }
                     else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
@@ -142,12 +142,12 @@ namespace SPC.Monitor
                         int index = targetlayout.Controls.IndexOf(targetchart);
                         if (index >= 0)
                         {
-                            data = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,drawboards = this.GetDrawBoards(index));
+                            data = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,DrawBoards = this.GetDrawBoards(index));
                             this.AddListItem(data);
                         }
                         else
                         {
-                            data = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,drawboards = this.AddDrawBoards());
+                            data = new MonitorSeriesData(this.gridView1, col.FieldName, grouptype, spectrumwith, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,DrawBoards = this.AddDrawBoards());
                             this.AddListItem(data);
                         }
                     }
@@ -156,10 +156,10 @@ namespace SPC.Monitor
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                foreach(var drawboard in drawboards)
+                foreach(var DrawBoard in DrawBoards)
                 {
-                    if (drawboard.CheckCanRemove())
-                        drawboard.Parent.Controls.Remove(drawboard as Control);
+                    if (DrawBoard.CheckCanRemove())
+                        DrawBoard.Parent.Controls.Remove(DrawBoard as Control);
                 }
                 RemoveListItem(data);
             }
@@ -222,10 +222,50 @@ namespace SPC.Monitor
                 {
                     var temp = Activator.CreateInstance(this.DrawBoardTypes[i], null);
                     this.xtraTabControl1.TabPages[i].Controls[0].Controls.Add(temp as UserControl);
+                    (temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>).GotFocus+=DrawBoard_GotFocus;
+                    (temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>).Removed += DrawBoard_Removed;
                     drawBoards.Add(temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
                 }
             }
             return drawBoards;
+        }
+
+        void DrawBoard_Removed(object sender, EventArgs e)
+        {
+            if (this.FocusedDrawBoard == sender)
+                this.FocusedDrawBoard = null;
+        }
+        void DrawBoard_GotFocus(object sender, EventArgs e)
+        {
+            this.FocusedDrawBoard = sender as IDrawBoard<DevExpress.XtraCharts.ChartControl>;
+        }
+        private IDrawBoard<DevExpress.XtraCharts.ChartControl> _FocusedDrawBoard = null;
+        private IDrawBoard<DevExpress.XtraCharts.ChartControl> FocusedDrawBoard
+        {
+            get
+            {
+                return this._FocusedDrawBoard;
+            }
+            set
+            {
+                this._FocusedDrawBoard = value;
+                if(value!=null)
+                {
+                    this.btnHdown.Enabled = true;
+                    this.btnHup.Enabled = true;
+                    this.btnVdown.Enabled = true;
+                    this.btnVup.Enabled = true;
+                    this.btnRe.Enabled = true;
+                }
+                else
+                {
+                    this.btnHdown.Enabled = false;
+                    this.btnHup.Enabled = false;
+                    this.btnVdown.Enabled = false;
+                    this.btnVup.Enabled = false;
+                    this.btnRe.Enabled = false;
+                }
+            }
         }
         private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> GetDrawBoards(int Index)
         {
@@ -272,16 +312,16 @@ namespace SPC.Monitor
         }
         private void FocusDrawBoard(MonitorSeriesData target)
         {
-            foreach (var drawboard in target.DrawBoards)
+            foreach (var DrawBoard in target.DrawBoards)
             {
-                drawboard.GetChart().Focus();
-                drawboard.GetChart().BackColor = SystemColors.ActiveCaption;
+                DrawBoard.GetChart().Focus();
+                DrawBoard.GetChart().BackColor = SystemColors.ActiveCaption;
             }
         }
         private void DFocusDrawBoard(MonitorSeriesData target)
         {
-            foreach (var drawboard in target.DrawBoards)
-                drawboard.GetChart().BackColor = default(Color);
+            foreach (var DrawBoard in target.DrawBoards)
+                DrawBoard.GetChart().BackColor = default(Color);
         }
 
         private void comboBoxEdit1_SelectedIndexChanged(object sender, EventArgs e)
@@ -406,57 +446,41 @@ namespace SPC.Monitor
         {
             this.popUpEdit1.ClosePopup();
         }
-    //    private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-    //    {
-    //        int index =this.listBoxControl1.SelectedIndex;
-    //        if(index>0)
-    //        {
-    //            var temp = this.listBoxControl1.SelectedItem;
-    //            this.listBoxControl1.Items.Remove(temp);
-    //            this.listBoxControl1.Items.Insert(index - 1, temp);
-    //            this.listBoxControl1.SelectedIndex = index - 1;
-    //            int count = (temp as MonitorSeriesData).DrawBoards.Count;
-    //            for(int i = 0;i<count;i++)
-    //            {
-    //                if((temp as MonitorSeriesData).DrawBoards[i].Parent is IDrawBoard)
-    //                {
-    //                    var precontrol = (temp as MonitorSeriesData).DrawBoards[i].Parent;
-    //                    Control tarcontrol;
-    //                    if((this.listBoxControl1.Items[index] as MonitorSeriesData).DrawBoards[i].Parent is IDrawBoard)
-    //                        tarcontrol = (this.listBoxControl1.Items[index] as MonitorSeriesData).DrawBoards[i].Parent;
-    //                    else
-    //                        tarcontrol = (this.listBoxControl1.Items[index] as MonitorSeriesData).DrawBoards[i];
 
-    //                    int x = precontrol.Location.X;
-    //                    int y = precontrol.Location.Y;
-    //                    precontrol.Dock = DockStyle.None;
-    //                    tarcontrol.Dock = DockStyle.None;
-    //                    precontrol.Location = new Point(tarcontrol.Location.X,tarcontrol.Location.Y);
-    //                    tarcontrol.Location = new Point(x, y);
-    //                    tarcontrol.Dock = DockStyle.Top;
-    //                    precontrol.Parent.Refresh();
-    //                    precontrol.Dock = DockStyle.Top;
+        private void btnHup_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Hup();
+        }
+
+        private void btnHdown_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Hdown();
+        }
+
+        private void btnVup_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Vup();
+        }
+
+        private void btnVdown_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Vdown();
+        }
+        private void btnRe_Click(object sender, EventArgs e)
+        {
+            if (FocusedDrawBoard != null)
+                FocusedDrawBoard.Re();
+        }
+        private void xtraTabControl1_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        {
+            this.FocusedDrawBoard = null;
+        }
 
 
-    //                }
-    //                else
-    //                {
 
-    //                }
-    //            }
-    //        }
-    //    }
-
-    //    private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-    //    {
-    //        int index = this.listBoxControl1.SelectedIndex;
-    //        if (index >= 0&&index<this.listBoxControl1.Items.Count-1)
-    //        {
-    //            var temp = this.listBoxControl1.SelectedItem;
-    //            this.listBoxControl1.Items.Remove(temp);
-    //            this.listBoxControl1.Items.Insert(index + 1, temp);
-    //            this.listBoxControl1.SelectedIndex = index + 1;
-    //        }
-    //    }
     }
 }

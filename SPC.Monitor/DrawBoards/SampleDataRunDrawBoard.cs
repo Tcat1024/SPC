@@ -11,15 +11,13 @@ using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class SampleDataRunDrawBoard : DevExpress.XtraEditors.XtraUserControl, IDrawBoard<DevExpress.XtraCharts.ChartControl>
+    public partial class SampleDataRunDrawBoard : DevChartDrawBoard
     {
         public SampleDataRunDrawBoard()
         {
             InitializeComponent();
-        }
-        public DevExpress.XtraCharts.ChartControl GetChart()
-        {
-            return this.chartControl1;
+            this.mainChart = chartControl1;
+            this.baseSeriesCount = 1;
         }
 
 
@@ -51,12 +49,6 @@ namespace SPC.Monitor.DrawBoards
         {
             e.RightClickPopupMenu.AddItem(this.barEditItem1);
             e.Handle = true;
-        }
-        public bool CheckCanRemove()
-        {
-            if (this.GetChart().Series.Count == 1)
-                return true;
-            return false;
         }
     }
 }

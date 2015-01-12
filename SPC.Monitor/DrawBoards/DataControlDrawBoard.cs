@@ -11,22 +11,13 @@ using SPC.Base.Interface;
 
 namespace SPC.Monitor.DrawBoards
 {
-    public partial class DataControlDrawBoard :DevExpress.XtraEditors.XtraUserControl,IDrawBoard<DevExpress.XtraCharts.ChartControl>
+    public partial class DataControlDrawBoard : DevChartDrawBoard
     {
         public DataControlDrawBoard()
         {
             InitializeComponent();
-        }
-
-        public DevExpress.XtraCharts.ChartControl GetChart()
-        {
-            return this.chartControl1;
-        }
-        public bool CheckCanRemove()
-        {
-            if (this.GetChart().Series.Count == 2)
-                return true;
-            return false;
+            this.mainChart = chartControl1;
+            this.baseSeriesCount = 2;
         }
     }
 }
