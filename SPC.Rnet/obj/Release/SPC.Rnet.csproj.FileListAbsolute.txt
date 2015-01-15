@@ -1,0 +1,13 @@
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\bin\Release\SPC.Rnet.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\bin\Release\SPC.Rnet.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\bin\Release\SPC.Base.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\bin\Release\SPC.Base.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\bin\Release\Interop.StatConnectorCommonLib.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\bin\Release\Interop.STATCONNECTORSRVLib.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\obj\Release\SPC.Rnet.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\obj\Release\Interop.RServerManager.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\obj\Release\Interop.StatConnectorCommonLib.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\obj\Release\Interop.STATCONNECTORSRVLib.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\obj\Release\SPC.Rnet.csproj.ResolveComReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\obj\Release\SPC.Rnet.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Rnet\obj\Release\SPC.Rnet.pdb

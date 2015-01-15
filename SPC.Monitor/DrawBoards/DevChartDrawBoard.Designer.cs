@@ -32,14 +32,19 @@
             // 
             // DevChartDrawBoard
             // 
+            this.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "DevChartDrawBoard";
+            this.Padding = new System.Windows.Forms.Padding(4, 2, 2, 2);
+            this.Size = new System.Drawing.Size(390, 303);
             this.ParentChanged += new System.EventHandler(this.DevChartDrawBoard_ParentChanged);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
     }
 }

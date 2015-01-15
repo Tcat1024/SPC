@@ -16,11 +16,23 @@ namespace SPC.Rnet
         public static List<object> RunScript(string path,List<object> inputs)
         {
             AppDomain domain = AppDomain.CreateDomain(Guid.NewGuid().ToString());
-            var result = (domain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(Basic).FullName) as Basic).runScript(path,inputs);
-            AppDomain.Unload(domain);
+            List<object> result = null;
+            try
+            {
+                result = (domain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(Basic).FullName) as Basic).runScript(path, inputs);             
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                AppDomain.Unload(domain);
+            }
             return result;
+
         }
-        public static Image DrawContourPlot(IDataTable<DataRow> data, string xs, string ys, string zs)
+        public static Image DrawContourPlot(IDataTable<DataRow> data, string xs, string ys, string zs,int width,int height)
         {
             int rowcount = data.RowCount;
             double[] x = new double[rowcount];
@@ -37,13 +49,24 @@ namespace SPC.Rnet
             AppDomain domain = AppDomain.CreateDomain(Guid.NewGuid().ToString());
             string name = Guid.NewGuid() + ".png";
             string root = Environment.CurrentDirectory;
-            (domain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(Graphics).FullName) as Graphics).DrawContourPlot(root,name,xs,ys,zs,x,y,z);
-            AppDomain.Unload(domain);
-            FileStream fs = new FileStream(name, FileMode.Open);
-            byte[] buffer = new byte[fs.Length];
-            fs.Read(buffer, 0, buffer.Length);
-            fs.Close();
-            File.Delete(name);
+            byte[] buffer;
+            try
+            {
+                (domain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(Graphics).FullName) as Graphics).DrawContourPlot(root, name, xs, ys, zs, x, y, z,width,height);
+                FileStream fs = new FileStream(name, FileMode.Open);
+                buffer = new byte[fs.Length];
+                fs.Read(buffer, 0, buffer.Length);
+                fs.Close();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                AppDomain.Unload(domain);
+                File.Delete(name);
+            }
             return Image.FromStream(new MemoryStream(buffer));
         }
     }

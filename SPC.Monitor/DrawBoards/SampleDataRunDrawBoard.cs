@@ -17,7 +17,6 @@ namespace SPC.Monitor.DrawBoards
         {
             InitializeComponent();
             this.mainChart = chartControl1;
-            this.baseSeriesCount = 1;
         }
 
 

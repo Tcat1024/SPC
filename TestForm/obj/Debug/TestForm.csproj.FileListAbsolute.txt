@@ -125,3 +125,13 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Rnet.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\Interop.STATCONNECTORSRVLib.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Rnet.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\Interop.StatConnectorCommonLib.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.Data.v13.2.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.Utils.v13.2.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.XtraBars.v13.2.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.XtraCharts.v13.2.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.XtraCharts.v13.2.UI.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.XtraEditors.v13.2.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.XtraGrid.v13.2.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.XtraLayout.v13.2.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\EAS.MicroKernel.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\EAS.MicroKernel.xml

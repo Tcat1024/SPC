@@ -52,10 +52,12 @@ namespace SPC.Rnet
             }
             catch(FormatException ex)
             {
+                con.Close();
                 throw new Exception("Line:"+(i+1)+" "+ex.Message);
             }
             catch
             {
+                con.Close();
                 throw new Exception("Line:" + (i + 1) + " " + con.GetErrorText());
             }
             return result;
@@ -66,6 +68,23 @@ namespace SPC.Rnet
         public FormatException(string message):base(message)
         {
            
+        }
+    }
+    public class Convert
+    {
+        public static string[] StringToUnicode(string s)
+        {
+            System.Text.Encoding.Unicode.GetBytes(s);
+            char[] charbuffers = s.ToCharArray();
+            byte[] buffer;
+            int length = charbuffers.Length;
+            string[] result = new string[length];
+            for (int i = 0; i < length; i++)
+            {
+                buffer = System.Text.Encoding.Unicode.GetBytes(charbuffers[i].ToString());
+                result[i] = String.Format("0x{0:X2}{1:X2}", buffer[1], buffer[0]);
+            }
+            return result;
         }
     }
 }

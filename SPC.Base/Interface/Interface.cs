@@ -72,7 +72,8 @@ namespace SPC.Base.Interface
     {
         ChartType GetChart();
         System.Windows.Forms.Control Parent { get; }
-        bool CheckCanRemove();
+        bool Selected { get; set; }
+        object Tag { get; set; }
         event EventHandler GotFocus;
         event EventHandler LostFocus;
         event EventHandler Removed;

@@ -1,0 +1,9 @@
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\obj\Release\SPC.Web.Service.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Release\SPC.Web.Service.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Release\SPC.Web.Service.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Release\EAS.MicroKernel.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Release\SPC.Web.Interface.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Release\SPC.Web.Interface.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Release\EAS.MicroKernel.xml
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\obj\Release\SPC.Web.Service.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\obj\Release\SPC.Web.Service.pdb

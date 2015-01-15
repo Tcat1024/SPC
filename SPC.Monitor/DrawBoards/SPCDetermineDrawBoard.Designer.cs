@@ -70,13 +70,15 @@
             secondaryAxisY1.Name = "Secondary AxisY 1";
             secondaryAxisY1.Tickmarks.MinorVisible = false;
             secondaryAxisY1.VisibleInPanesSerializable = "0";
+            secondaryAxisY1.WholeRange.AlwaysShowZeroLevel = false;
+            secondaryAxisY1.WholeRange.AutoSideMargins = true;
             xyDiagram1.SecondaryAxesY.AddRange(new DevExpress.XtraCharts.SecondaryAxisY[] {
             secondaryAxisY1});
             xyDiagram1.ZoomingOptions.UseMouseWheel = false;
             this.chartControl1.Diagram = xyDiagram1;
             this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartControl1.Legend.Visible = false;
-            this.chartControl1.Location = new System.Drawing.Point(0, 0);
+            this.chartControl1.Location = new System.Drawing.Point(4, 2);
             this.chartControl1.Name = "chartControl1";
             series1.Name = "Series 1";
             lineSeriesView1.LineStyle.Thickness = 1;
@@ -91,11 +93,13 @@
         series1,
         series2};
             this.chartControl1.SeriesTemplate.View = lineSeriesView2;
-            this.chartControl1.Size = new System.Drawing.Size(695, 448);
+            this.chartControl1.Size = new System.Drawing.Size(689, 444);
             this.chartControl1.TabIndex = 0;
             // 
             // SPCDetermineDrawBoard
             // 
+            this.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chartControl1);

@@ -43,8 +43,8 @@ namespace TestForm
         {
             this.cpKtoolControl1.DataSource = this.Data;
             (this.cpKtoolControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
-            this.xyRelationControl1.DataSource = this.Data;
-            (this.xyRelationControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
+            //this.xyRelationControl1.DataSource = this.Data;
+            //(this.xyRelationControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
             this.determineControl1.DataSource = this.Data;
             (this.determineControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
         }
@@ -83,7 +83,7 @@ namespace TestForm
                 Form resultform = new Form();
                 var res = new SPC.Analysis.ResultControls.ContourPlotResultControl() { Dock = DockStyle.Fill };
                 resultform.Controls.Add(res);
-                res.Init(SPC.Rnet.Methods.DrawContourPlot(data,con.X,con.Y,con.Z));
+                res.Init(SPC.Rnet.Methods.DrawContourPlot(data,con.X,con.Y,con.Z,con.PicWidth,con.PicHeight),con.X,con.Y,con.Z);
                 resultform.Show();
             }
         }

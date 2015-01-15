@@ -16,12 +16,29 @@ namespace SPC.Analysis.ResultControls
         {
             InitializeComponent();
         }
-        public void Init(Image pic)
+        public void Init(Image pic,string xn,string yn,string zn)
         {
             this.pictureEdit1.Image = pic;
-            this.splitContainerControl2.Panel1.MinSize = pic.Size.Height;
-            this.splitContainerControl1.Panel1.MinSize = pic.Size.Width;
-            this.MinimumSize = pic.Size;
+            this.labelControl1.Text = string.Format("X轴: {0}    Y轴: {1}    Z轴: {2}", xn, yn,zn);
+            this.splitContainerControl2.Panel1.MinSize = pic.Size.Height+panelControl1.Height;
+            this.splitContainerControl1.Panel1.MinSize = Math.Max(pic.Size.Width,labelControl1.Width);
+            this.MinimumSize = new Size(this.splitContainerControl1.Panel1.MinSize,this.splitContainerControl2.Panel1.MinSize);
+            this.labelControl1.Location = new Point((this.panelControl1.Width - this.labelControl1.Width) / 2, this.labelControl1.Location.Y);
+        }
+
+        private void pictureEdit1_Enter(object sender, EventArgs e)
+        {
+            this.splitContainerControl2.Panel1.Focus();
+        }
+
+        private void panelControl1_Enter(object sender, EventArgs e)
+        {
+            this.splitContainerControl2.Panel1.Focus();
+        }
+
+        private void panelControl1_Resize(object sender, EventArgs e)
+        {
+            this.labelControl1.Location = new Point((this.panelControl1.Width - this.labelControl1.Width) / 2, this.labelControl1.Location.Y);
         }
     }
 }

@@ -20,3 +20,5 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Debug\SPC.Web.In
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\obj\Debug\SPC.Web.Service.csprojResolveAssemblyReference.cache
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\obj\Debug\SPC.Web.Service.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\obj\Debug\SPC.Web.Service.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Debug\EAS.MicroKernel.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Service\bin\Debug\EAS.MicroKernel.xml

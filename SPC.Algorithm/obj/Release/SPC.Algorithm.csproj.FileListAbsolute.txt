@@ -1,0 +1,7 @@
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Algorithm\bin\Release\SPC.Algorithm.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Algorithm\bin\Release\SPC.Algorithm.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Algorithm\bin\Release\SPC.Base.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Algorithm\bin\Release\SPC.Base.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Algorithm\obj\Release\SPC.Algorithm.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Algorithm\obj\Release\SPC.Algorithm.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Algorithm\obj\Release\SPC.Algorithm.pdb

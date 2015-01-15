@@ -18,7 +18,6 @@ namespace SPC.Monitor.DrawBoards
             InitializeComponent();
             this.barEditItem1.EditValue = true;
             this.mainChart = chartControl1;
-            this.baseSeriesCount = 3;
         }
         private void repositoryItemCheckEdit1_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
         {

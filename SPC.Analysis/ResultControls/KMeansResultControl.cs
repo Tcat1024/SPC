@@ -54,6 +54,8 @@ namespace SPC.Analysis.ResultControls
                             Data[i, column] = (this.gridView2.DataSource as DataView)[i]["类标号"];
                         Data.SetColumnVisible(column);
                     }
+                    else
+                        return;
                 }
                 else
                 {
@@ -62,6 +64,7 @@ namespace SPC.Analysis.ResultControls
                     for (int i = 0; i < rowcount; i++)
                         Data[i, column] = (this.gridView2.DataSource as DataView)[i]["类标号"];
                 }
+                MessageBox.Show("添加成功");
             }
         }
 

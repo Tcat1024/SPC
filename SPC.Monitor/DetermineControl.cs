@@ -31,24 +31,22 @@ namespace SPC.Monitor
             InitializeComponent();
             this.gridControl1.DataSource = this.DataBind;
             this.bindingNavigator1.BindingSource = this.DataBind;
-            this.bindingNavigator1.Items.Insert(10, new ToolStripControlHost(this.textEdit1));
-            this.bindingNavigator1.Items.Insert(12, new ToolStripControlHost(this.textEdit2));
-            this.bindingNavigator1.Items.Insert(14, new ToolStripControlHost(this.textEdit3));
-            this.bindingNavigator1.Items.Insert(16, new ToolStripControlHost(this.checkedComboBoxEdit1));
+            this.bindingNavigator1.Items.Insert(10, new ToolStripControlHost(this.txtUpT));
+            this.bindingNavigator1.Items.Insert(12, new ToolStripControlHost(this.txtDownT));
+            this.bindingNavigator1.Items.Insert(14, new ToolStripControlHost(this.txtStandard));
+            this.bindingNavigator1.Items.Insert(16, new ToolStripControlHost(this.ccmbRule));
             Colors = this.basicColorChart.GetPaletteEntries(MaxSeriesCount);
-            this.checkedComboBoxEdit1.Properties.Items.AddRange(SPCCommand.GetCommandArray());
+            this.ccmbRule.Properties.Items.AddRange(SPCCommand.GetCommandArray());
             this.InitDrawBoads();
         }
-        private int _SelectedTabPageIndex = 0;
         public int SelectedTabPageIndex
         {
             get
             {
-                return this._SelectedTabPageIndex;
+                return this.xtraTabControl1.SelectedTabPageIndex;
             }
             set
             {
-                this._SelectedTabPageIndex = value;
                 this.xtraTabControl1.SelectedTabPageIndex = value;
             }
         }
@@ -113,66 +111,62 @@ namespace SPC.Monitor
         }
         private void gridView1_DragObjectDrop(object sender, DevExpress.XtraGrid.Views.Base.DragObjectDropEventArgs e)
         {
-            var col = (e.DragObject as DevExpress.XtraGrid.Columns.GridColumn);
-            if (col.FieldName != this.ChooseColumnName && this.Data.Columns[col.FieldName].DataType != typeof(string) && this.Data.Columns[col.FieldName].DataType!=typeof(DateTime))
+            SPCDetermineData data = null;
+            List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> DrawBoards = null;
+            try
             {
-                var mouseposition = this.listBoxControl1.PointToClient(MousePosition);
-                
-                if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
+                var col = (e.DragObject as DevExpress.XtraGrid.Columns.GridColumn);
+                if (col.FieldName != this.ChooseColumnName && this.Data.Columns[col.FieldName].DataType != typeof(string) && this.Data.Columns[col.FieldName].DataType != typeof(DateTime))
                 {
+                    var mouseposition = this.listBoxControl1.PointToClient(MousePosition);
                     var commands = this.getSeletedCommands();
-                    if (this.textEdit1.Text == "" || this.textEdit2.Text == "" || textEdit3.Text == "" || commands.Count < 1)
+                    if (this.txtUpT.Text == "" || this.txtDownT.Text == "" || txtStandard.Text == "" || commands.Count < 1)
                     {
-                        MessageBox.Show("条件输入不完整");
-                        return;
+                        throw new Exception("条件输入不完整");
                     }
-                    try
+                    if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
                     {
-                        var temp = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.textEdit1.Text), Convert.ToDouble(this.textEdit2.Text), Convert.ToDouble(this.textEdit3.Text), commands, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
-                        this.AddListItem(temp);
+                        data = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.txtUpT.Text), Convert.ToDouble(this.txtDownT.Text), Convert.ToDouble(this.txtStandard.Text), commands, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,DrawBoards= this.AddDrawBoards());
+                        this.AddListItem(data);
                     }
-                    catch(Exception ex)
+                    else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
                     {
-                        MessageBox.Show(ex.Message);
-                        return;
-                    }
-                }
-                else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
-                {
-                    var targetlayout = this.xtraTabControl1.SelectedTabPage.Controls[0];
-                    var targetchart = targetlayout.GetChildAtPoint(targetlayout.PointToClient(MousePosition));
-                    int index = targetlayout.Controls.IndexOf(targetchart);
-                    var commands = this.getSeletedCommands();
-                    if (this.textEdit1.Text == "" || this.textEdit2.Text == "" || textEdit3.Text == "" || commands.Count < 1)
-                    {
-                        MessageBox.Show("条件输入不完整");
-                        return;
-                    }
-                    try
-                    {
+                        var targetlayout = this.xtraTabControl1.SelectedTabPage.Controls[0];
+                        int index = targetlayout.Controls.IndexOf(targetlayout.GetChildAtPoint(targetlayout.PointToClient(MousePosition)));
                         if (index >= 0)
                         {
-                            var temp = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.textEdit1.Text), Convert.ToDouble(this.textEdit2.Text), Convert.ToDouble(this.textEdit3.Text), commands, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
-                            this.AddListItem(temp);
+                            data = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.txtUpT.Text), Convert.ToDouble(this.txtDownT.Text), Convert.ToDouble(this.txtStandard.Text), commands, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, DrawBoards = this.GetDrawBoards(index));
+                            this.AddListItem(data);
                         }
                         else
                         {
-                            var temp = new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.textEdit1.Text), Convert.ToDouble(this.textEdit2.Text), Convert.ToDouble(this.textEdit3.Text), commands, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
-                            this.AddListItem(temp);
+                            data =new SPCDetermineData(this.gridView1, col.FieldName, Convert.ToDouble(this.txtUpT.Text), Convert.ToDouble(this.txtDownT.Text), Convert.ToDouble(this.txtStandard.Text), commands, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,DrawBoards= this.AddDrawBoards());
+                            this.AddListItem(data);
                         }
                     }
-                    catch(Exception ex)
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (DrawBoards != null)
+                {
+                    List<SPCDetermineData> templist;
+                    foreach (var drawboard in DrawBoards)
                     {
-                        MessageBox.Show(ex.Message);
-                        return;
+                        if ((templist = drawboard.Tag as List<SPCDetermineData>) == null || templist.Count == 0)
+                        {
+                            drawboard.Parent.Controls.Remove(drawboard as Control);
+                        }
                     }
                 }
+                RemoveListItem(data);
             }
         }
         private List<SPCCommandbase> getSeletedCommands()
         {
             List<SPCCommandbase> result = new List<SPCCommandbase>();
-            foreach(DevExpress.XtraEditors.Controls.CheckedListBoxItem item in this.checkedComboBoxEdit1.Properties.Items)
+            foreach(DevExpress.XtraEditors.Controls.CheckedListBoxItem item in this.ccmbRule.Properties.Items)
             {
                 if (item.CheckState == CheckState.Checked)
                     result.Add(item.Value as SPCCommandbase);
@@ -185,8 +179,17 @@ namespace SPC.Monitor
             this.listBoxControl1.SelectedIndex = 0;
             lt.DrawSerieses();
         }
-
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void RemoveListItem(SPCDetermineData lt)
+        {
+            if (lt != null)
+            {
+                if (SelectedItem == lt)
+                    DSelectDrawBoard(lt);
+                lt.ClearSerieses();
+                this.listBoxControl1.Items.Remove(lt);
+            }
+        }
+        private void btnRemove_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             var temp = this.listBoxControl1.SelectedItem as SPCDetermineData;
             if(temp!=null)
@@ -196,7 +199,7 @@ namespace SPC.Monitor
             }
         }
 
-        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             foreach(var item in this.listBoxControl1.Items)
             {
@@ -213,21 +216,11 @@ namespace SPC.Monitor
         {
             e.Appearance.ForeColor = (e.Item as SPCDetermineData).SeriesColor;
         }
-        private SPCDetermineData currentItem;
-        private SPCDetermineData focusItem;
         private void listBoxControl1_MouseClick(object sender, MouseEventArgs e)
         {
-            int index = this.listBoxControl1.IndexFromPoint(e.Location);
-            if (index >= 0 && e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && this.listBoxControl1.Items[this.listBoxControl1.IndexFromPoint(e.Location)] == this.SelectedItem)
             {
-                currentItem = this.listBoxControl1.Items[index] as SPCDetermineData;
-                if (currentItem != null)
-                    this.popupMenu1.ShowPopup(MousePosition);
-            }
-            else if (focusItem != null)
-            {
-                DFocusSeries(focusItem);
-                focusItem = null;
+                this.popupMenu1.ShowPopup(MousePosition);
             }
         }
         private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> AddDrawBoards()
@@ -240,141 +233,149 @@ namespace SPC.Monitor
                     var temp = Activator.CreateInstance(this.DrawBoardTypes[i], null);
                     this.xtraTabControl1.TabPages[i].Controls[0].Controls.Add(temp as UserControl);
                     (temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>).GotFocus += DrawBoard_GotFocus;
-                    (temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>).Removed += DrawBoard_Removed;
                     drawBoards.Add(temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
                 }
             }
             return drawBoards;
-        }
-
-        void DrawBoard_Removed(object sender, EventArgs e)
-        {
-            if (this.FocusedDrawBoard == sender)
-                this.FocusedDrawBoard = null;
-        }
-        void DrawBoard_GotFocus(object sender, EventArgs e)
-        {
-            this.FocusedDrawBoard = sender as IDrawBoard<DevExpress.XtraCharts.ChartControl>;
-        }
-        private IDrawBoard<DevExpress.XtraCharts.ChartControl> _FocusedDrawBoard = null;
-        private IDrawBoard<DevExpress.XtraCharts.ChartControl> FocusedDrawBoard
-        {
-            get
-            {
-                return this._FocusedDrawBoard;
-            }
-            set
-            {
-                this._FocusedDrawBoard = value;
-                if (value != null)
-                {
-                    this.btnHdown.Enabled = true;
-                    this.btnHup.Enabled = true;
-                    this.btnVdown.Enabled = true;
-                    this.btnVup.Enabled = true;
-                    this.btnRe.Enabled = true;
-                }
-                else
-                {
-                    this.btnHdown.Enabled = false;
-                    this.btnHup.Enabled = false;
-                    this.btnVdown.Enabled = false;
-                    this.btnVup.Enabled = false;
-                    this.btnRe.Enabled = false;
-                }
-            }
         }
         private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> GetDrawBoards(int Index)
         {
             List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards = new List<IDrawBoard<DevExpress.XtraCharts.ChartControl>>();
             for (int i = 0; i < this.xtraTabControl1.TabPages.Count; i++)
             {
-                if (xtraTabControl1.TabPages[i].Controls.Count > 0 && xtraTabControl1.TabPages[i].Controls[0].Controls.Count>0)
+                if (xtraTabControl1.TabPages[i].Controls.Count > 0 && xtraTabControl1.TabPages[i].Controls[0].Controls.Count > 0)
                     drawBoards.Add(xtraTabControl1.TabPages[i].Controls[0].Controls[Index] as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
             }
             return drawBoards;
         }
-        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        void DrawBoard_GotFocus(object sender, EventArgs e)
         {
-            this.buttonEdit1.Text = currentItem.Name;
-            this.buttonEdit1.Visible = true;
-            this.buttonEdit1.Focus();
+            var s = sender as IDrawBoard<DevExpress.XtraCharts.ChartControl>;
+            if (!s.Selected)
+            {
+                this.listBoxControl1.SelectedItem = (s.Tag as List<SPCDetermineData>)[0];
+            }
+        }
+        private SPCDetermineData _SelectedItem = null;
+
+        private SPCDetermineData SelectedItem
+        {
+            get
+            {
+                return this._SelectedItem;
+            }
+            set
+            {
+                this._SelectedItem = value;
+                if (value != null)
+                {
+                    this.txtUpT.Text = value.SourceData.UCL.ToString();
+                    this.txtDownT.Text = value.SourceData.LCL.ToString();
+                    this.txtStandard.Text =value.SourceData.Standard.ToString();
+                    foreach (DevExpress.XtraEditors.Controls.CheckedListBoxItem item in this.ccmbRule.Properties.Items)
+                    {
+                        item.CheckState = CheckState.Unchecked;
+                    }
+                    foreach(var command in value.SourceData.Commands)
+                    {
+                        this.ccmbRule.Properties.Items[command].CheckState = CheckState.Checked;
+                    }
+                    setAxisControlItemEnable(true);
+                }
+                else
+                {
+                    setAxisControlItemEnable(false);
+                }
+            }
+        }
+        private void btnRenameItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.bteRenameItem.Text = SelectedItem.Name;
+            this.bteRenameItem.Visible = true;
+            this.bteRenameItem.Focus();
         }
 
-        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnDeleteItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            currentItem.ClearSerieses();
-            this.listBoxControl1.Items.Remove(currentItem);
+            SelectedItem.ClearSerieses();
+            this.listBoxControl1.Items.Remove(SelectedItem);
         }
 
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            currentItem.Name = this.buttonEdit1.Text;
-            this.buttonEdit1.Visible = false;
+            SelectedItem.Name = this.bteRenameItem.Text;
+            this.bteRenameItem.Visible = false;
         }
 
-        private void buttonEdit1_Leave(object sender, EventArgs e)
+        private void bteRenameItem_Leave(object sender, EventArgs e)
         {
-            if (this.buttonEdit1.Visible)
-                this.buttonEdit1.Visible = false;
+            if (this.bteRenameItem.Visible)
+                this.bteRenameItem.Visible = false;
         }
 
-        private void buttonEdit1_KeyDown(object sender, KeyEventArgs e)
+        private void bteRenameItem_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                currentItem.Name = this.buttonEdit1.Text;
-                this.buttonEdit1.Visible = false;
+                SelectedItem.Name = this.bteRenameItem.Text;
+                this.bteRenameItem.Visible = false;
             }
         }
-        private void FocusSeries(SPCDetermineData target)
+        private void SelectDrawBoard(SPCDetermineData target)
         {
-            foreach (var drawboard in target.DrawBoards)
+            DSelectDrawBoard(SelectedItem);
+            this.SelectedItem = target;
+            foreach (var DrawBoard in target.DrawBoards)
             {
-                drawboard.GetChart().Focus();
-                drawboard.GetChart().BackColor = SystemColors.ActiveCaption;
+                DrawBoard.Selected = true;
             }
         }
-        private void DFocusSeries(SPCDetermineData target)
+        private void DSelectDrawBoard(SPCDetermineData target)
         {
-            foreach (var drawboard in target.DrawBoards)
-                drawboard.GetChart().BackColor = default(Color);
-        }
-
-        private void listBoxControl1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            int index = this.listBoxControl1.IndexFromPoint(e.Location);
-            if (index >= 0)
-                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (target != null)
+                foreach (var DrawBoard in target.DrawBoards)
                 {
-                    if (focusItem != null)
-                        DFocusSeries(focusItem);
-                    focusItem = (this.listBoxControl1.Items[index] as SPCDetermineData);
-                    FocusSeries(focusItem);
+                    DrawBoard.Selected = false;
                 }
         }
+
         public class SPCDetermineData
         {
             private List<SingleSeriesManager<SPCDetermineDataType, DevExpress.XtraCharts.ChartControl>> SeriesManagers = new List<SingleSeriesManager<SPCDetermineDataType, DevExpress.XtraCharts.ChartControl>>();
             public List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> DrawBoards;
-            private SPCDetermineDataType SourceData;
+            public SPCDetermineDataType SourceData;
             public string Name;
             public System.Drawing.Color SeriesColor;
-            private void InitSerieses()
-            {
-                foreach (var seriesManager in SeriesManagers)
-                {
-                    seriesManager.InitData(this.SourceData);
-                }
-            }
             public SPCDetermineData(SPC.Base.Control.CanChooseDataGridView view, string param, double ucl, double lcl, double standard, List<SPCCommandbase> commands, System.Drawing.Color color, List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards)
             {
                 SourceData = new SPCDetermineDataType(view, param, ucl,lcl,standard,commands);
                 this.Name =param + "_" + DateTime.Now.ToBinary();
                 this.SeriesColor = color;
                 this.DrawBoards = drawBoards;
+                List<SPCDetermineData> templist;
+                foreach (var drawboard in drawBoards)
+                {
+                    if (drawboard.Tag == null || (templist = drawboard.Tag as List<SPCDetermineData>) == null)
+                        drawboard.Tag = new List<SPCDetermineData>() { this };
+                    else
+                        templist.Add(this);
+                }
                 InitSeriesManagers();
-                InitSerieses();
+                InitData();
+            }
+            public void InitData()
+            {
+                foreach (var seriesManager in SeriesManagers)
+                {
+                    seriesManager.InitData(this.SourceData);
+                }
+            }
+            public void RemoveSerieses()
+            {
+                foreach (var seriesManager in SeriesManagers)
+                {
+                    seriesManager.RemoveSeries();
+                }
             }
             public void DrawSerieses()
             {
@@ -385,13 +386,15 @@ namespace SPC.Monitor
             }
             public void ClearSerieses()
             {
-                for (int i = SeriesManagers.Count - 1; i >= 0; i--)
+                RemoveSerieses();
+                this.SeriesManagers.Clear();
+                foreach (var drawboard in DrawBoards)
                 {
-                    var seriesManager = SeriesManagers[i];
-                    seriesManager.RemoveSeries();
-                    if (seriesManager.DrawBoard.CheckCanRemove())
+                    var templist = drawboard.Tag as List<SPCDetermineData>;
+                    templist.Remove(this);
+                    if (templist.Count == 0)
                     {
-                        seriesManager.DrawBoard.Parent.Controls.Remove(seriesManager.DrawBoard as Control);
+                        drawboard.Parent.Controls.Remove(drawboard as Control);
                     }
                 }
             }
@@ -428,34 +431,70 @@ namespace SPC.Monitor
         {
             this.panelControl1.Height = (int)(this.Size.Height * 0.5);
         }
+        private void setAxisControlItemEnable(bool target)
+        {
+            this.btnHdown.Enabled = target;
+            this.btnHup.Enabled = target;
+            this.btnVdown.Enabled = target;
+            this.btnVup.Enabled = target;
+            this.btnRe.Enabled = target;
+        }
         private void btnHup_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Hup();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Hup();
         }
 
         private void btnHdown_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Hdown();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Hdown();
         }
 
         private void btnVup_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Vup();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Vup();
         }
 
         private void btnVdown_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Vdown();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Vdown();
         }
-
         private void btnRe_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Re();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Re();
+        }
+
+        private void listBoxControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i;
+            if ((i = listBoxControl1.SelectedIndex) >= 0)
+                this.SelectDrawBoard(listBoxControl1.Items[i] as SPCDetermineData);
+            else
+                this.DSelectDrawBoard(this.SelectedItem);
+        }
+
+        private void btnReDraw_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.SelectedItem != null)
+            {
+                var commands = this.getSeletedCommands();
+                if (this.txtUpT.Text == "" || this.txtDownT.Text == "" || txtStandard.Text == "" || commands.Count < 1)
+                {
+                    MessageBox.Show("条件输入不完整");
+                    return;
+                }
+                SelectedItem.SourceData.Commands = commands;
+                SelectedItem.SourceData.LCL = Convert.ToDouble(this.txtDownT.Text);
+                SelectedItem.SourceData.UCL = Convert.ToDouble(this.txtUpT.Text);
+                SelectedItem.SourceData.Standard = Convert.ToDouble(this.txtStandard.Text);
+                SelectedItem.InitData();
+                SelectedItem.RemoveSerieses();
+                SelectedItem.DrawSerieses();
+            }
         }
     }
 }

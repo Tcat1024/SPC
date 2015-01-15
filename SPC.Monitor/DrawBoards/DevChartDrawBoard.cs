@@ -26,17 +26,19 @@ namespace SPC.Monitor.DrawBoards
                 {
                     _mainChart.GotFocus += mainChart_GotFocus;
                     _mainChart.LostFocus += _mainChart_LostFocus;
+                    _mainChart.BorderOptions.Visible = false;
+                    oraginalBackColr = _mainChart.BackColor;
+                    this.BackColor = oraginalBackColr;
                     (_mainChart.Diagram as DevExpress.XtraCharts.XYDiagram2D).EnableAxisXScrolling = true;
                     (_mainChart.Diagram as DevExpress.XtraCharts.XYDiagram2D).EnableAxisYScrolling = true;
                 }
             }
         }
-
+        private Color oraginalBackColr = Color.Transparent;
         void _mainChart_LostFocus(object sender, EventArgs e)
         {
             InvokeLostFocus(this, e);
         }
-        protected int baseSeriesCount;
         public DevChartDrawBoard()
         {
             InitializeComponent();
@@ -50,15 +52,6 @@ namespace SPC.Monitor.DrawBoards
         {
             return mainChart;
         }
-
-        public bool CheckCanRemove()
-        {
-            if (this.mainChart.Series.Count == baseSeriesCount)
-                return true;
-            return false;
-        }
-
-
         public void Hup()
         {
             foreach (var ax in (this._mainChart.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesX())
@@ -113,10 +106,22 @@ namespace SPC.Monitor.DrawBoards
         {
             if (this.Parent == null && this.Removed != null)
                 this.Removed(this, new EventArgs());
-
         }
-
-
-
+        private bool _Selected = false;
+        public bool Selected
+        {
+            get
+            {
+                return _Selected;
+            }
+            set
+            {
+                _Selected = value;
+                if (value)
+                    this.BackColor = Color.CornflowerBlue;
+                else
+                    this.BackColor = oraginalBackColr;
+            }
+        }
     }
 }

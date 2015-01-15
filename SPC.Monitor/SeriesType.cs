@@ -1224,6 +1224,8 @@ namespace SPC.Monitor
     {
         private DevExpress.XtraCharts.Series[] Series;
         private DevExpress.XtraCharts.ChartControl DrawBoard;
+        private DevExpress.XtraCharts.ConstantLine[] ConstantLines;
+        private DevExpress.XtraCharts.Axis2D AxisY;
         public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             DrawBoard = drawBoard;
@@ -1240,10 +1242,12 @@ namespace SPC.Monitor
                 Series[i].Points.BeginUpdate();
                 Series[i].Points.Clear();
             }
-             (drawBoard.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[0].ConstantLines.Add(new DevExpress.XtraCharts.ConstantLine("UCL", data.Y[0]) { Color = color });
-             (drawBoard.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[0].ConstantLines.Add(new DevExpress.XtraCharts.ConstantLine("STD", data.Y[1]) { Color = color });
-             (drawBoard.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[0].ConstantLines.Add(new DevExpress.XtraCharts.ConstantLine("LCL", data.Y[2]) { Color = color });
-
+            AxisY =(drawBoard.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[0];
+            ConstantLines = new DevExpress.XtraCharts.ConstantLine[3] { new DevExpress.XtraCharts.ConstantLine("UCL", data.Y[0]) { Color = color },
+            new DevExpress.XtraCharts.ConstantLine("STD", data.Y[1]) { Color = color },
+            new DevExpress.XtraCharts.ConstantLine("LCL", data.Y[2]) { Color = color }};
+            foreach(var constantline in ConstantLines)
+                AxisY.ConstantLines.Add(constantline);
             for (int i = 3; i < data.X.Count; i ++)
             {
                 var x = data.X[i];
@@ -1261,6 +1265,10 @@ namespace SPC.Monitor
             {
                 Series[i].Points.EndUpdate();
             }
+            if (AxisY.WholeRange.MaxValue.ConvertToDouble() < data.Y[0])
+                AxisY.WholeRange.MaxValue = data.Y[0];
+            if (AxisY.WholeRange.MinValue.ConvertToDouble() > data.Y[2])
+                AxisY.WholeRange.MinValue = data.Y[2];
         }
 
         public void Clear()
@@ -1270,6 +1278,9 @@ namespace SPC.Monitor
                 for (int i = Series.Length - 1; i >= 0; i--)
                     this.DrawBoard.Series.Remove(Series[i]);
             }
+            if (ConstantLines != null && AxisY != null)
+                foreach (var constantline in ConstantLines)
+                    AxisY.ConstantLines.Remove(constantline);
         }
         public void Dispose()
         {

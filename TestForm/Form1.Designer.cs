@@ -45,17 +45,15 @@
             this.monitorControl1 = new SPC.Monitor.MonitorControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
-            this.xyRelationControl1 = new SPC.Monitor.XYRelationControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
-            this.determineControl1 = new SPC.Monitor.DetermineControl();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.determineControl1 = new SPC.Monitor.DetermineControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
-            this.xtraTabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // cpKtoolControl1
@@ -207,28 +205,20 @@
             // 
             // xtraTabPage3
             // 
-            this.xtraTabPage3.Controls.Add(this.xyRelationControl1);
+            this.xtraTabPage3.Controls.Add(this.determineControl1);
             this.xtraTabPage3.Name = "xtraTabPage3";
             this.xtraTabPage3.Size = new System.Drawing.Size(1261, 621);
             this.xtraTabPage3.Text = "xtraTabPage3";
             // 
-            // xyRelationControl1
-            // 
-            this.xyRelationControl1.DataMember = null;
-            this.xyRelationControl1.DataSource = null;
-            this.xyRelationControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xyRelationControl1.Location = new System.Drawing.Point(0, 0);
-            this.xyRelationControl1.Name = "xyRelationControl1";
-            this.xyRelationControl1.SelectedTabPageIndex = 0;
-            this.xyRelationControl1.Size = new System.Drawing.Size(1261, 621);
-            this.xyRelationControl1.TabIndex = 0;
-            // 
             // xtraTabPage4
             // 
-            this.xtraTabPage4.Controls.Add(this.determineControl1);
             this.xtraTabPage4.Name = "xtraTabPage4";
             this.xtraTabPage4.Size = new System.Drawing.Size(1261, 621);
             this.xtraTabPage4.Text = "xtraTabPage4";
+            // 
+            // defaultLookAndFeel1
+            // 
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             // 
             // determineControl1
             // 
@@ -240,10 +230,6 @@
             this.determineControl1.SelectedTabPageIndex = 0;
             this.determineControl1.Size = new System.Drawing.Size(1261, 621);
             this.determineControl1.TabIndex = 0;
-            // 
-            // defaultLookAndFeel1
-            // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             // 
             // Form1
             // 
@@ -263,7 +249,6 @@
             this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
-            this.xtraTabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -283,14 +268,13 @@
         private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
         private SPC.Monitor.MonitorControl monitorControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage3;
-        private SPC.Monitor.XYRelationControl xyRelationControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage4;
-        private SPC.Monitor.DetermineControl determineControl1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
+        private SPC.Monitor.DetermineControl determineControl1;
     }
 }
 

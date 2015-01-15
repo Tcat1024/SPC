@@ -34,21 +34,22 @@
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
-            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnReDraw = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRemove = new DevExpress.XtraBars.BarButtonItem();
+            this.btnClear = new DevExpress.XtraBars.BarButtonItem();
             this.standaloneBarDockControl2 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRenameItem = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDeleteItem = new DevExpress.XtraBars.BarButtonItem();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.checkedComboBoxEdit1 = new DevExpress.XtraEditors.CheckedComboBoxEdit();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.ccmbRule = new DevExpress.XtraEditors.CheckedComboBoxEdit();
+            this.txtStandard = new DevExpress.XtraEditors.TextEdit();
+            this.txtDownT = new DevExpress.XtraEditors.TextEdit();
+            this.txtUpT = new DevExpress.XtraEditors.TextEdit();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -76,7 +77,7 @@
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.multiControlsVerticalLayout1 = new SPC.Base.Control.MultiControlsVerticalLayout();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.buttonEdit1 = new DevExpress.XtraEditors.ButtonEdit();
+            this.bteRenameItem = new DevExpress.XtraEditors.ButtonEdit();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu();
             this.toolTipController1 = new DevExpress.Utils.ToolTipController();
@@ -85,10 +86,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ccmbRule.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStandard.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDownT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUpT.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
@@ -98,7 +99,7 @@
             this.xtraTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteRenameItem.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.SuspendLayout();
@@ -158,11 +159,12 @@
             this.barManager1.DockControls.Add(this.standaloneBarDockControl2);
             this.barManager1.Form = this;
             this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.barButtonItem2,
-            this.barButtonItem3,
-            this.barButtonItem4,
-            this.barButtonItem1});
-            this.barManager1.MaxItemId = 20;
+            this.btnClear,
+            this.btnRenameItem,
+            this.btnDeleteItem,
+            this.btnRemove,
+            this.btnReDraw});
+            this.barManager1.MaxItemId = 21;
             // 
             // bar2
             // 
@@ -171,30 +173,39 @@
             this.bar2.DockRow = 0;
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Standalone;
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2)});
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnReDraw, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRemove),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnClear)});
             this.bar2.Offset = 1;
             this.bar2.OptionsBar.AllowQuickCustomization = false;
             this.bar2.OptionsBar.DrawBorder = false;
             this.bar2.StandaloneBarDockControl = this.standaloneBarDockControl2;
             this.bar2.Text = "Custom 3";
             // 
-            // barButtonItem1
+            // btnReDraw
             // 
-            this.barButtonItem1.Caption = "barButtonItem1";
-            this.barButtonItem1.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.Glyph")));
-            this.barButtonItem1.Id = 17;
-            this.barButtonItem1.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.LargeGlyph")));
-            this.barButtonItem1.Name = "barButtonItem1";
-            this.barButtonItem1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem1_ItemClick);
+            this.btnReDraw.Glyph = ((System.Drawing.Image)(resources.GetObject("btnReDraw.Glyph")));
+            this.btnReDraw.Id = 20;
+            this.btnReDraw.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnReDraw.LargeGlyph")));
+            this.btnReDraw.Name = "btnReDraw";
+            this.btnReDraw.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReDraw_ItemClick);
             // 
-            // barButtonItem2
+            // btnRemove
             // 
-            this.barButtonItem2.Glyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.Glyph")));
-            this.barButtonItem2.Id = 7;
-            this.barButtonItem2.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("barButtonItem2.LargeGlyph")));
-            this.barButtonItem2.Name = "barButtonItem2";
-            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
+            this.btnRemove.Caption = "barButtonItem1";
+            this.btnRemove.Glyph = ((System.Drawing.Image)(resources.GetObject("btnRemove.Glyph")));
+            this.btnRemove.Id = 17;
+            this.btnRemove.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnRemove.LargeGlyph")));
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRemove_ItemClick);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Glyph = ((System.Drawing.Image)(resources.GetObject("btnClear.Glyph")));
+            this.btnClear.Id = 7;
+            this.btnClear.LargeGlyph = ((System.Drawing.Image)(resources.GetObject("btnClear.LargeGlyph")));
+            this.btnClear.Name = "btnClear";
+            this.btnClear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnClear_ItemClick);
             // 
             // standaloneBarDockControl2
             // 
@@ -203,7 +214,7 @@
             this.standaloneBarDockControl2.Dock = System.Windows.Forms.DockStyle.Top;
             this.standaloneBarDockControl2.Location = new System.Drawing.Point(2, 2);
             this.standaloneBarDockControl2.Name = "standaloneBarDockControl2";
-            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 29);
+            this.standaloneBarDockControl2.Size = new System.Drawing.Size(153, 30);
             this.standaloneBarDockControl2.Text = "standaloneBarDockControl2";
             // 
             // barDockControlTop
@@ -234,19 +245,19 @@
             this.barDockControlRight.Location = new System.Drawing.Point(935, 0);
             this.barDockControlRight.Size = new System.Drawing.Size(0, 566);
             // 
-            // barButtonItem3
+            // btnRenameItem
             // 
-            this.barButtonItem3.Caption = "重命名";
-            this.barButtonItem3.Id = 10;
-            this.barButtonItem3.Name = "barButtonItem3";
-            this.barButtonItem3.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem3_ItemClick);
+            this.btnRenameItem.Caption = "重命名";
+            this.btnRenameItem.Id = 10;
+            this.btnRenameItem.Name = "btnRenameItem";
+            this.btnRenameItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRenameItem_ItemClick);
             // 
-            // barButtonItem4
+            // btnDeleteItem
             // 
-            this.barButtonItem4.Caption = "删除";
-            this.barButtonItem4.Id = 11;
-            this.barButtonItem4.Name = "barButtonItem4";
-            this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
+            this.btnDeleteItem.Caption = "删除";
+            this.btnDeleteItem.Id = 11;
+            this.btnDeleteItem.Name = "btnDeleteItem";
+            this.btnDeleteItem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDeleteItem_ItemClick);
             // 
             // splitter1
             // 
@@ -259,10 +270,10 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.checkedComboBoxEdit1);
-            this.panelControl1.Controls.Add(this.textEdit3);
-            this.panelControl1.Controls.Add(this.textEdit2);
-            this.panelControl1.Controls.Add(this.textEdit1);
+            this.panelControl1.Controls.Add(this.ccmbRule);
+            this.panelControl1.Controls.Add(this.txtStandard);
+            this.panelControl1.Controls.Add(this.txtDownT);
+            this.panelControl1.Controls.Add(this.txtUpT);
             this.panelControl1.Controls.Add(this.gridControl1);
             this.panelControl1.Controls.Add(this.standaloneBarDockControl1);
             this.panelControl1.Controls.Add(this.bindingNavigator1);
@@ -272,48 +283,48 @@
             this.panelControl1.Size = new System.Drawing.Size(935, 249);
             this.panelControl1.TabIndex = 0;
             // 
-            // checkedComboBoxEdit1
+            // ccmbRule
             // 
-            this.checkedComboBoxEdit1.Location = new System.Drawing.Point(647, 3);
-            this.checkedComboBoxEdit1.MenuManager = this.barManager1;
-            this.checkedComboBoxEdit1.Name = "checkedComboBoxEdit1";
-            this.checkedComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.ccmbRule.Location = new System.Drawing.Point(647, 3);
+            this.ccmbRule.MenuManager = this.barManager1;
+            this.ccmbRule.Name = "ccmbRule";
+            this.ccmbRule.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.checkedComboBoxEdit1.Size = new System.Drawing.Size(90, 22);
-            this.checkedComboBoxEdit1.TabIndex = 10;
+            this.ccmbRule.Size = new System.Drawing.Size(90, 22);
+            this.ccmbRule.TabIndex = 10;
             // 
-            // textEdit3
+            // txtStandard
             // 
-            this.textEdit3.Location = new System.Drawing.Point(556, 3);
-            this.textEdit3.MenuManager = this.barManager1;
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Properties.Mask.EditMask = "(-?[0-9]+(.([0-9]+))?)";
-            this.textEdit3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.textEdit3.Properties.Mask.ShowPlaceHolders = false;
-            this.textEdit3.Size = new System.Drawing.Size(75, 22);
-            this.textEdit3.TabIndex = 9;
+            this.txtStandard.Location = new System.Drawing.Point(556, 3);
+            this.txtStandard.MenuManager = this.barManager1;
+            this.txtStandard.Name = "txtStandard";
+            this.txtStandard.Properties.Mask.EditMask = "(-?[0-9]+(.([0-9]+))?)";
+            this.txtStandard.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtStandard.Properties.Mask.ShowPlaceHolders = false;
+            this.txtStandard.Size = new System.Drawing.Size(75, 22);
+            this.txtStandard.TabIndex = 9;
             // 
-            // textEdit2
+            // txtDownT
             // 
-            this.textEdit2.Location = new System.Drawing.Point(477, 3);
-            this.textEdit2.MenuManager = this.barManager1;
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Mask.EditMask = "0|(-[0-9]+(.([0-9]+))?)";
-            this.textEdit2.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.textEdit2.Properties.Mask.ShowPlaceHolders = false;
-            this.textEdit2.Size = new System.Drawing.Size(73, 22);
-            this.textEdit2.TabIndex = 8;
+            this.txtDownT.Location = new System.Drawing.Point(477, 3);
+            this.txtDownT.MenuManager = this.barManager1;
+            this.txtDownT.Name = "txtDownT";
+            this.txtDownT.Properties.Mask.EditMask = "0|(-[0-9]+(.([0-9]+))?)";
+            this.txtDownT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtDownT.Properties.Mask.ShowPlaceHolders = false;
+            this.txtDownT.Size = new System.Drawing.Size(73, 22);
+            this.txtDownT.TabIndex = 8;
             // 
-            // textEdit1
+            // txtUpT
             // 
-            this.textEdit1.Location = new System.Drawing.Point(407, 3);
-            this.textEdit1.MenuManager = this.barManager1;
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Mask.EditMask = "([0-9]+(.([0-9]+))?)";
-            this.textEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
-            this.textEdit1.Properties.Mask.ShowPlaceHolders = false;
-            this.textEdit1.Size = new System.Drawing.Size(64, 22);
-            this.textEdit1.TabIndex = 7;
+            this.txtUpT.Location = new System.Drawing.Point(407, 3);
+            this.txtUpT.MenuManager = this.barManager1;
+            this.txtUpT.Name = "txtUpT";
+            this.txtUpT.Properties.Mask.EditMask = "([0-9]+(.([0-9]+))?)";
+            this.txtUpT.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.RegEx;
+            this.txtUpT.Properties.Mask.ShowPlaceHolders = false;
+            this.txtUpT.Size = new System.Drawing.Size(64, 22);
+            this.txtUpT.TabIndex = 7;
             // 
             // bindingNavigator1
             // 
@@ -568,7 +579,7 @@
             // 
             // panelControl3
             // 
-            this.panelControl3.Controls.Add(this.buttonEdit1);
+            this.panelControl3.Controls.Add(this.bteRenameItem);
             this.panelControl3.Controls.Add(this.listBoxControl1);
             this.panelControl3.Controls.Add(this.standaloneBarDockControl2);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Left;
@@ -578,37 +589,37 @@
             this.panelControl3.Size = new System.Drawing.Size(157, 310);
             this.panelControl3.TabIndex = 6;
             // 
-            // buttonEdit1
+            // bteRenameItem
             // 
-            this.buttonEdit1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.buttonEdit1.Location = new System.Drawing.Point(2, 286);
-            this.buttonEdit1.MenuManager = this.barManager1;
-            this.buttonEdit1.Name = "buttonEdit1";
-            this.buttonEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.bteRenameItem.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bteRenameItem.Location = new System.Drawing.Point(2, 286);
+            this.bteRenameItem.MenuManager = this.barManager1;
+            this.bteRenameItem.Name = "bteRenameItem";
+            this.bteRenameItem.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK)});
-            this.buttonEdit1.Size = new System.Drawing.Size(153, 22);
-            this.buttonEdit1.TabIndex = 5;
-            this.buttonEdit1.Visible = false;
-            this.buttonEdit1.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.buttonEdit1_ButtonClick);
-            this.buttonEdit1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.buttonEdit1_KeyDown);
-            this.buttonEdit1.Leave += new System.EventHandler(this.buttonEdit1_Leave);
+            this.bteRenameItem.Size = new System.Drawing.Size(153, 22);
+            this.bteRenameItem.TabIndex = 5;
+            this.bteRenameItem.Visible = false;
+            this.bteRenameItem.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.buttonEdit1_ButtonClick);
+            this.bteRenameItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.bteRenameItem_KeyDown);
+            this.bteRenameItem.Leave += new System.EventHandler(this.bteRenameItem_Leave);
             // 
             // listBoxControl1
             // 
             this.listBoxControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxControl1.Location = new System.Drawing.Point(2, 31);
+            this.listBoxControl1.Location = new System.Drawing.Point(2, 32);
             this.listBoxControl1.Name = "listBoxControl1";
-            this.listBoxControl1.Size = new System.Drawing.Size(153, 277);
+            this.listBoxControl1.Size = new System.Drawing.Size(153, 276);
             this.listBoxControl1.TabIndex = 3;
+            this.listBoxControl1.SelectedIndexChanged += new System.EventHandler(this.listBoxControl1_SelectedIndexChanged);
             this.listBoxControl1.DrawItem += new DevExpress.XtraEditors.ListBoxDrawItemEventHandler(this.listBoxControl1_DrawItem);
             this.listBoxControl1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listBoxControl1_MouseClick);
-            this.listBoxControl1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBoxControl1_MouseDoubleClick);
             // 
             // popupMenu1
             // 
             this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRenameItem),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnDeleteItem)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
@@ -632,10 +643,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkedComboBoxEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ccmbRule.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStandard.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDownT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUpT.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -647,7 +658,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bteRenameItem.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             this.ResumeLayout(false);
@@ -667,15 +678,15 @@
         private System.Windows.Forms.Splitter splitter1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraBars.Bar bar2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem btnClear;
         private DevExpress.XtraBars.StandaloneBarDockControl standaloneBarDockControl2;
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.Windows.Forms.Splitter splitter2;
         private DevExpress.XtraEditors.PanelControl panelControl3;
         private DevExpress.XtraEditors.ListBoxControl listBoxControl1;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
-        private DevExpress.XtraEditors.ButtonEdit buttonEdit1;
+        private DevExpress.XtraBars.BarButtonItem btnRenameItem;
+        private DevExpress.XtraBars.BarButtonItem btnDeleteItem;
+        private DevExpress.XtraEditors.ButtonEdit bteRenameItem;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
@@ -686,7 +697,7 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarButtonItem btnRemove;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
         private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout1;
@@ -694,10 +705,10 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
-        private DevExpress.XtraEditors.CheckedComboBoxEdit checkedComboBoxEdit1;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.CheckedComboBoxEdit ccmbRule;
+        private DevExpress.XtraEditors.TextEdit txtStandard;
+        private DevExpress.XtraEditors.TextEdit txtDownT;
+        private DevExpress.XtraEditors.TextEdit txtUpT;
         private DevExpress.XtraBars.PopupMenu popupMenu1;
         private DevExpress.Utils.ToolTipController toolTipController1;
         private System.Windows.Forms.ToolStripButton btnVdown;
@@ -707,6 +718,7 @@
         private System.Windows.Forms.ToolStripButton btnHup;
         private System.Windows.Forms.ToolStripSeparator toolStripButton5;
         private System.Windows.Forms.ToolStripButton btnRe;
+        private DevExpress.XtraBars.BarButtonItem btnReDraw;
 
 
     }

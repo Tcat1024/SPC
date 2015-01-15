@@ -31,7 +31,7 @@ namespace SPC.Monitor
             InitializeComponent();
             this.gridControl1.DataSource = this.DataBind;
             this.bindingNavigator1.BindingSource = this.DataBind;
-            this.bindingNavigator1.Items.Insert(10,new ToolStripControlHost(this.comboBoxEdit1));
+            this.bindingNavigator1.Items.Insert(10,new ToolStripControlHost(this.cmbXAxis));
             Colors = this.basicColorChart.GetPaletteEntries(MaxSeriesCount);
             this.InitDrawBoads();
         }
@@ -116,45 +116,63 @@ namespace SPC.Monitor
             //}
             this.gridView1.Columns.Clear();
             this.DataBind.DataSource = this.Data;
-            this.comboBoxEdit1.Properties.Items.Clear();
-            this.comboBoxEdit1.Properties.Items.Add("Default");
+            this.cmbXAxis.Properties.Items.Clear();
+            this.cmbXAxis.Properties.Items.Add("Default");
             for(int i = 0;i<this.gridView1.Columns.Count;i++)
             {
                 if (this.gridView1.Columns[i].ColumnType != typeof(string) && this.gridView1.Columns[i].ColumnType != typeof(bool)&&this.gridView1.Columns[i].ColumnType != typeof(DateTime))
-                    this.comboBoxEdit1.Properties.Items.Add(this.gridView1.Columns[i].FieldName);
+                    this.cmbXAxis.Properties.Items.Add(this.gridView1.Columns[i].FieldName);
             }
         }
         private void gridView1_DragObjectDrop(object sender, DevExpress.XtraGrid.Views.Base.DragObjectDropEventArgs e)
         {
-            if (this.comboBoxEdit1.SelectedIndex < 0)
-                this.comboBoxEdit1.SelectedIndex = 0;
-            var col = (e.DragObject as DevExpress.XtraGrid.Columns.GridColumn);
-            if (col.FieldName != this.ChooseColumnName && this.Data.Columns[col.FieldName].DataType != typeof(string) && this.Data.Columns[col.FieldName].DataType!=typeof(DateTime))
+            XYRelationData data = null;
+            List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> DrawBoards = null;
+            try
             {
-                var mouseposition = this.listBoxControl1.PointToClient(MousePosition);
-
-                
-                if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
+                var col = (e.DragObject as DevExpress.XtraGrid.Columns.GridColumn);
+                if (col.FieldName != this.ChooseColumnName && this.Data.Columns[col.FieldName].DataType != typeof(string) && this.Data.Columns[col.FieldName].DataType != typeof(DateTime))
                 {
-                    var temp = new XYRelationData(this.gridView1, col.FieldName,this.comboBoxEdit1.Text, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
-                    this.AddListItem(temp);
+                    var mouseposition = this.listBoxControl1.PointToClient(MousePosition);
+                    if (this.cmbXAxis.SelectedIndex < 0)
+                        this.cmbXAxis.SelectedIndex = 0;
+                    if (mouseposition.X > 0 && mouseposition.X < this.listBoxControl1.Width && mouseposition.Y > 0 && mouseposition.Y < this.listBoxControl1.Height)
+                    {
+                        data = new XYRelationData(this.gridView1, col.FieldName,this.cmbXAxis.Text, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,DrawBoards = this.AddDrawBoards());
+                        this.AddListItem(data);
+                    }
+                    else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
+                    {
+                        var targetlayout = this.xtraTabControl1.SelectedTabPage.Controls[0];
+                        int index = targetlayout.Controls.IndexOf(targetlayout.GetChildAtPoint(targetlayout.PointToClient(MousePosition)));
+                        if (index >= 0)
+                        {
+                            data = new XYRelationData(this.gridView1, col.FieldName, this.cmbXAxis.Text, this.Colors[historySeriesCount++ % MaxSeriesCount].Color,DrawBoards = this.GetDrawBoards(index));
+                            this.AddListItem(data);
+                        }
+                        else
+                        {
+                            data = new XYRelationData(this.gridView1, col.FieldName, this.cmbXAxis.Text, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, DrawBoards = this.AddDrawBoards());
+                            this.AddListItem(data);
+                        }
+                    }
                 }
-                else if (this.xtraTabControl1.CalcHitInfo(this.xtraTabControl1.PointToClient(MousePosition)).HitTest == DevExpress.XtraTab.ViewInfo.XtraTabHitTest.PageClient && this.xtraTabControl1.SelectedTabPage.Controls.Count >= 0)
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (DrawBoards != null)
                 {
-                    var targetlayout = this.xtraTabControl1.SelectedTabPage.Controls[0];
-                    var targetchart = targetlayout.GetChildAtPoint(targetlayout.PointToClient(MousePosition));
-                    int index = targetlayout.Controls.IndexOf(targetchart);
-                    if (index >= 0)
+                    List<XYRelationData> templist;
+                    foreach (var drawboard in DrawBoards)
                     {
-                        var temp = new XYRelationData(this.gridView1, col.FieldName, this.comboBoxEdit1.Text, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.GetDrawBoards(index));
-                        this.AddListItem(temp);
-                    }
-                    else
-                    {
-                        var temp = new XYRelationData(this.gridView1, col.FieldName, this.comboBoxEdit1.Text, this.Colors[historySeriesCount++ % MaxSeriesCount].Color, this.AddDrawBoards());
-                        this.AddListItem(temp);
+                        if ((templist = drawboard.Tag as List<XYRelationData>) == null || templist.Count == 0)
+                        {
+                            drawboard.Parent.Controls.Remove(drawboard as Control);
+                        }
                     }
                 }
+                RemoveListItem(data);
             }
         }
         private void AddListItem(XYRelationData lt)
@@ -163,8 +181,17 @@ namespace SPC.Monitor
             this.listBoxControl1.SelectedIndex = 0;
             lt.DrawSerieses();
         }
-
-        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void RemoveListItem(XYRelationData lt)
+        {
+            if (lt != null)
+            {
+                if (SelectedItem == lt)
+                    DSelectDrawBoard(lt);
+                lt.ClearSerieses();
+                this.listBoxControl1.Items.Remove(lt);
+            }
+        }
+        private void btnRemove_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             var temp = this.listBoxControl1.SelectedItem as XYRelationData;
             if(temp!=null)
@@ -174,7 +201,7 @@ namespace SPC.Monitor
             }
         }
 
-        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnClear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             foreach(var item in this.listBoxControl1.Items)
             {
@@ -191,21 +218,11 @@ namespace SPC.Monitor
         {
             e.Appearance.ForeColor = (e.Item as XYRelationData).SeriesColor;
         }
-        private XYRelationData currentItem;
-        private XYRelationData focusItem;
         private void listBoxControl1_MouseClick(object sender, MouseEventArgs e)
         {
-            int index = this.listBoxControl1.IndexFromPoint(e.Location);
-            if (index >= 0 && e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == System.Windows.Forms.MouseButtons.Right && this.listBoxControl1.Items[this.listBoxControl1.IndexFromPoint(e.Location)] == this.SelectedItem)
             {
-                currentItem = this.listBoxControl1.Items[index] as XYRelationData;
-                if (currentItem != null)
-                    this.popupMenu1.ShowPopup(MousePosition);
-            }
-            else if (focusItem != null)
-            {
-                DFocusSeries(focusItem);
-                focusItem = null;
+                this.popupMenu1.ShowPopup(MousePosition);
             }
         }
         private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> AddDrawBoards()
@@ -213,128 +230,111 @@ namespace SPC.Monitor
             List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards = new List<IDrawBoard<DevExpress.XtraCharts.ChartControl>>();
             for (int i = 0; i < this.xtraTabControl1.TabPages.Count; i++)
             {
-                if (xtraTabControl1.TabPages[i].Controls.Count > 0&&this.DrawBoardTypes.Count>i)
+                if (xtraTabControl1.TabPages[i].Controls.Count > 0 && this.DrawBoardTypes.Count > i)
                 {
                     var temp = Activator.CreateInstance(this.DrawBoardTypes[i], null);
                     this.xtraTabControl1.TabPages[i].Controls[0].Controls.Add(temp as UserControl);
                     (temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>).GotFocus += DrawBoard_GotFocus;
-                    (temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>).Removed += DrawBoard_Removed;
                     drawBoards.Add(temp as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
                 }
             }
             return drawBoards;
-        }
-        void DrawBoard_Removed(object sender, EventArgs e)
-        {
-            if (this.FocusedDrawBoard == sender)
-                this.FocusedDrawBoard = null;
-        }
-        void DrawBoard_GotFocus(object sender, EventArgs e)
-        {
-            this.FocusedDrawBoard = sender as IDrawBoard<DevExpress.XtraCharts.ChartControl>;
-        }
-        private IDrawBoard<DevExpress.XtraCharts.ChartControl> _FocusedDrawBoard = null;
-        private IDrawBoard<DevExpress.XtraCharts.ChartControl> FocusedDrawBoard
-        {
-            get
-            {
-                return this._FocusedDrawBoard;
-            }
-            set
-            {
-                this._FocusedDrawBoard = value;
-                if (value != null)
-                {
-                    this.btnHdown.Enabled = true;
-                    this.btnHup.Enabled = true;
-                    this.btnVdown.Enabled = true;
-                    this.btnVup.Enabled = true;
-                    this.btnRe.Enabled = true;
-                }
-                else
-                {
-                    this.btnHdown.Enabled = false;
-                    this.btnHup.Enabled = false;
-                    this.btnVdown.Enabled = false;
-                    this.btnVup.Enabled = false;
-                    this.btnRe.Enabled = false;
-                }
-            }
         }
         private List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> GetDrawBoards(int Index)
         {
             List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards = new List<IDrawBoard<DevExpress.XtraCharts.ChartControl>>();
             for (int i = 0; i < this.xtraTabControl1.TabPages.Count; i++)
             {
-                if (xtraTabControl1.TabPages[i].Controls.Count > 0 && xtraTabControl1.TabPages[i].Controls[0].Controls.Count>0)
+                if (xtraTabControl1.TabPages[i].Controls.Count > 0 && xtraTabControl1.TabPages[i].Controls[0].Controls.Count > 0)
                     drawBoards.Add(xtraTabControl1.TabPages[i].Controls[0].Controls[Index] as IDrawBoard<DevExpress.XtraCharts.ChartControl>);
             }
             return drawBoards;
         }
-        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        void DrawBoard_GotFocus(object sender, EventArgs e)
         {
-            this.buttonEdit1.Text = currentItem.Name;
-            this.buttonEdit1.Visible = true;
-            this.buttonEdit1.Focus();
+            var s = sender as IDrawBoard<DevExpress.XtraCharts.ChartControl>;
+            if (!s.Selected)
+            {
+                this.listBoxControl1.SelectedItem = (s.Tag as List<XYRelationData>)[0];
+            }
+        }
+        private XYRelationData _SelectedItem = null;
+
+        private XYRelationData SelectedItem
+        {
+            get
+            {
+                return this._SelectedItem;
+            }
+            set
+            {
+                this._SelectedItem = value;
+                if (value != null)
+                {
+                    this.cmbXAxis.Text = value.SourceData.ParamX;
+                    setAxisControlItemEnable(true);
+                }
+                else
+                {
+                    setAxisControlItemEnable(false);
+                }
+            }
+        }
+        private void btnRenameItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.bteRenameItem.Text = SelectedItem.Name;
+            this.bteRenameItem.Visible = true;
+            this.bteRenameItem.Focus();
         }
 
-        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnDeleteItem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            currentItem.ClearSerieses();
-            this.listBoxControl1.Items.Remove(currentItem);
+            SelectedItem.ClearSerieses();
+            this.listBoxControl1.Items.Remove(SelectedItem);
         }
 
         private void buttonEdit1_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            currentItem.Name = this.buttonEdit1.Text;
-            this.buttonEdit1.Visible = false;
+            SelectedItem.Name = this.bteRenameItem.Text;
+            this.bteRenameItem.Visible = false;
         }
 
-        private void buttonEdit1_Leave(object sender, EventArgs e)
+        private void bteRenameItem_Leave(object sender, EventArgs e)
         {
-            if (this.buttonEdit1.Visible)
-                this.buttonEdit1.Visible = false;
+            if (this.bteRenameItem.Visible)
+                this.bteRenameItem.Visible = false;
         }
 
-        private void buttonEdit1_KeyDown(object sender, KeyEventArgs e)
+        private void bteRenameItem_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                currentItem.Name = this.buttonEdit1.Text;
-                this.buttonEdit1.Visible = false;
+                SelectedItem.Name = this.bteRenameItem.Text;
+                this.bteRenameItem.Visible = false;
             }
         }
-        private void FocusSeries(XYRelationData target)
+        private void SelectDrawBoard(XYRelationData target)
         {
-            foreach (var drawboard in target.DrawBoards)
+            DSelectDrawBoard(SelectedItem);
+            this.SelectedItem = target;
+            foreach (var DrawBoard in target.DrawBoards)
             {
-                drawboard.GetChart().Focus();
-                drawboard.GetChart().BackColor = SystemColors.ActiveCaption;
+                DrawBoard.Selected = true;
             }
         }
-        private void DFocusSeries(XYRelationData target)
+        private void DSelectDrawBoard(XYRelationData target)
         {
-            foreach (var drawboard in target.DrawBoards)
-                drawboard.GetChart().BackColor = default(Color);
-        }
-
-        private void listBoxControl1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            int index = this.listBoxControl1.IndexFromPoint(e.Location);
-            if (index >= 0)
-                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (target != null)
+                foreach (var DrawBoard in target.DrawBoards)
                 {
-                    if (focusItem != null)
-                        DFocusSeries(focusItem);
-                    focusItem = (this.listBoxControl1.Items[index] as XYRelationData);
-                    FocusSeries(focusItem);
+                    DrawBoard.Selected = false;
                 }
         }
         public class XYRelationData
         {
             private List<SingleSeriesManager<XYRelationSourceDataType, DevExpress.XtraCharts.ChartControl>> SeriesManagers = new List<SingleSeriesManager<XYRelationSourceDataType, DevExpress.XtraCharts.ChartControl>>();
             public List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> DrawBoards;
-            private XYRelationSourceDataType SourceData;
+            public XYRelationSourceDataType SourceData;
             public string Name;
             public System.Drawing.Color SeriesColor;
             private void InitSerieses()
@@ -350,8 +350,30 @@ namespace SPC.Monitor
                 this.Name ="X:"+ paramX + "_Y:" + paramY + "_" + DateTime.Now.ToBinary();
                 this.SeriesColor = color;
                 this.DrawBoards = drawBoards;
+                List<XYRelationData> templist;
+                foreach (var drawboard in drawBoards)
+                {
+                    if (drawboard.Tag == null || (templist = drawboard.Tag as List<XYRelationData>) == null)
+                        drawboard.Tag = new List<XYRelationData>() { this };
+                    else
+                        templist.Add(this);
+                }
                 InitSeriesManagers();
-                InitSerieses();
+                InitData();
+            }
+            public void InitData()
+            {
+                foreach (var seriesManager in SeriesManagers)
+                {
+                    seriesManager.InitData(this.SourceData);
+                }
+            }
+            public void RemoveSerieses()
+            {
+                foreach (var seriesManager in SeriesManagers)
+                {
+                    seriesManager.RemoveSeries();
+                }
             }
             public void DrawSerieses()
             {
@@ -362,13 +384,15 @@ namespace SPC.Monitor
             }
             public void ClearSerieses()
             {
-                for (int i = SeriesManagers.Count - 1; i >= 0; i--)
+                RemoveSerieses();
+                this.SeriesManagers.Clear();
+                foreach (var drawboard in DrawBoards)
                 {
-                    var seriesManager = SeriesManagers[i];
-                    seriesManager.RemoveSeries();
-                    if (seriesManager.DrawBoard.CheckCanRemove())
+                    var templist = drawboard.Tag as List<XYRelationData>;
+                    templist.Remove(this);
+                    if (templist.Count == 0)
                     {
-                        seriesManager.DrawBoard.Parent.Controls.Remove(seriesManager.DrawBoard as Control);
+                        drawboard.Parent.Controls.Remove(drawboard as Control);
                     }
                 }
             }
@@ -405,34 +429,63 @@ namespace SPC.Monitor
         {
             this.panelControl1.Height = (int)(this.Size.Height * 0.5);
         }
+        private void setAxisControlItemEnable(bool target)
+        {
+            this.btnHdown.Enabled = target;
+            this.btnHup.Enabled = target;
+            this.btnVdown.Enabled = target;
+            this.btnVup.Enabled = target;
+            this.btnRe.Enabled = target;
+        }
         private void btnHup_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Hup();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Hup();
         }
 
         private void btnHdown_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Hdown();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Hdown();
         }
 
         private void btnVup_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Vup();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Vup();
         }
 
         private void btnVdown_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Vdown();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Vdown();
         }
-
         private void btnRe_Click(object sender, EventArgs e)
         {
-            if (FocusedDrawBoard != null)
-                FocusedDrawBoard.Re();
+            if (SelectedItem != null)
+                SelectedItem.DrawBoards[this.xtraTabControl1.SelectedTabPageIndex].Re();
+        }
+
+        private void listBoxControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i;
+            if ((i = listBoxControl1.SelectedIndex) >= 0)
+                this.SelectDrawBoard(listBoxControl1.Items[i] as XYRelationData);
+            else
+                this.DSelectDrawBoard(this.SelectedItem);
+        }
+
+        private void btnReDraw_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (this.SelectedItem != null)
+            {
+                if (this.cmbXAxis.SelectedIndex < 0)
+                    this.cmbXAxis.SelectedIndex = 0;
+                SelectedItem.SourceData.ParamY = this.cmbXAxis.Text;
+                SelectedItem.InitData();
+                SelectedItem.RemoveSerieses();
+                SelectedItem.DrawSerieses();
+            }
         }
     }
 }

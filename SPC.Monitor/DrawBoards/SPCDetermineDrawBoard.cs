@@ -17,7 +17,6 @@ namespace SPC.Monitor.DrawBoards
         {
             InitializeComponent();
             this.mainChart = chartControl1;
-            this.baseSeriesCount = 2;
             var secondY = (this.chartControl1.Diagram as DevExpress.XtraCharts.XYDiagram2D).GetAllAxesY()[1];
             secondY.CustomLabels.Clear();
             var commands = SPCCommand.GetCommandArray();

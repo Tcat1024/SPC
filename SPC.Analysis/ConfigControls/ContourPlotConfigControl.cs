@@ -15,6 +15,8 @@ namespace SPC.Analysis.ConfigControls
         public string X;
         public string Y;
         public string Z;
+        public int PicWidth;
+        public int PicHeight;
         public ContourPlotConfigControl()
         {
             InitializeComponent();
@@ -47,6 +49,25 @@ namespace SPC.Analysis.ConfigControls
                 MessageBox.Show("未选择有效的Z轴字段");
                 return;
             }
+            if(this.comboBoxEdit4.SelectedIndex==3)
+            {
+                if (this.textEdit1.Text.Trim() == "" || this.textEdit2.Text.Trim() == "")
+                {
+                    MessageBox.Show("未指定正确的大小");
+                    return;
+                }
+                else
+                {
+                    this.PicWidth = Convert.ToInt32(textEdit1.Text.Trim());
+                    this.PicHeight = Convert.ToInt32(textEdit2.Text.Trim());
+                }
+            }
+            else
+            {
+                var re = comboBoxEdit4.Text.Split('*');
+                this.PicWidth = Convert.ToInt32(re[0]);
+                this.PicHeight = Convert.ToInt32(re[1]);
+            }
             this.X = this.comboBoxEdit1.Text;
             this.Y = this.comboBoxEdit2.Text;
             this.Z = this.comboBoxEdit3.Text;
@@ -57,6 +78,14 @@ namespace SPC.Analysis.ConfigControls
         {
             if (CancelEvent != null)
                 CancelEvent(this, new EventArgs());
+        }
+
+        private void comboBoxEdit4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBoxEdit4.SelectedIndex == 3)
+                this.panelControl1.Enabled = true;
+            else
+                this.panelControl1.Enabled = false;
         }
     }
 }
