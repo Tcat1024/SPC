@@ -360,6 +360,47 @@ namespace SPC.Base.Control
 
         public void InitData(object sender)
         {
+            TableTypeData = null;
+            System.Collections.IList list = null;
+            Type rowType = null;
+            object source = this.DataSource;
+            int type = 0;
+            while (true)
+            {
+                if (source is BindingSource)
+                {
+                    var bs = (source as BindingSource);
+                    if (bs.DataSource is DataSet)
+                    {
+                        source = (bs.DataSource as DataSet).Tables[bs.DataMember];
+                    }
+                    else
+                    {
+                        source = bs.DataSource;
+                    }
+                    continue;
+                }
+                else if (source is DataTable)
+                {
+                    TableTypeData = (source as DataTable);
+                    type = 1;
+                    break;
+                }
+                else if (source is DataView)
+                {
+                    TableTypeData = (source as DataView).Table;
+                    type = 1;
+                    break;
+                }
+                else if (source is System.Collections.IList)
+                {
+                    list = source as System.Collections.IList;
+                    type = 2;
+                    break;
+                }
+                else
+                    return;
+            }
             if (this.AutoMode || this.AllowChoose)
             {
                 if ((chooseColumn = this.Columns.ColumnByFieldName(ChooseColumnName)) != null)
@@ -375,47 +416,6 @@ namespace SPC.Base.Control
                 }
                 else if (this.AutoMode)
                 {
-                    TableTypeData = null;
-                    System.Collections.IList list = null;
-                    Type rowType = null;
-                    object source = this.DataSource;
-                    int type = 0;
-                    while (true)
-                    {
-                        if (source is BindingSource)
-                        {
-                            var bs = (source as BindingSource);
-                            if (bs.DataSource is DataSet)
-                            {
-                                source = (bs.DataSource as DataSet).Tables[bs.DataMember];
-                            }
-                            else
-                            {
-                                source = bs.DataSource;
-                            }
-                            continue;
-                        }
-                        else if (source is DataTable)
-                        {
-                            TableTypeData = (source as DataTable);
-                            type = 1;
-                            break;
-                        }
-                        else if (source is DataView)
-                        {
-                            TableTypeData = (source as DataView).Table;
-                            type = 1;
-                            break;
-                        }
-                        else if (source is System.Collections.IList)
-                        {
-                            list = source as System.Collections.IList;
-                            type = 2;
-                            break;
-                        }
-                        else
-                            return;
-                    }
                     if (type == 1)
                     {
                         if (TableTypeData != null)

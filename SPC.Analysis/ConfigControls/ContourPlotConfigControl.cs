@@ -17,6 +17,8 @@ namespace SPC.Analysis.ConfigControls
         public string Z;
         public int PicWidth;
         public int PicHeight;
+        public double[] Levels;
+        public bool IsDrawLine;
         public ContourPlotConfigControl()
         {
             InitializeComponent();
@@ -49,7 +51,7 @@ namespace SPC.Analysis.ConfigControls
                 MessageBox.Show("未选择有效的Z轴字段");
                 return;
             }
-            if(this.comboBoxEdit4.SelectedIndex==3)
+            if (this.comboBoxEdit4.SelectedIndex == 3)
             {
                 if (this.textEdit1.Text.Trim() == "" || this.textEdit2.Text.Trim() == "")
                 {
@@ -71,6 +73,19 @@ namespace SPC.Analysis.ConfigControls
             this.X = this.comboBoxEdit1.Text;
             this.Y = this.comboBoxEdit2.Text;
             this.Z = this.comboBoxEdit3.Text;
+            var temps = this.textEdit3.Text.Split(',');
+            if (temps.Length == 1)
+                this.Levels = new double[] { Convert.ToInt32(temps[0]) };
+            else
+            {
+                this.Levels = temps.Distinct().Select<string, double>((input) => { return Convert.ToDouble(input); }).OrderBy((input) => { return input; }).ToArray();
+                if (this.Levels.Length < 3)
+                {
+                    MessageBox.Show("划分层数过少");
+                    return;
+                }
+            }
+            this.IsDrawLine = this.checkEdit1.Checked;
             if (OKEvent != null)
                 OKEvent(this, new EventArgs());
         }

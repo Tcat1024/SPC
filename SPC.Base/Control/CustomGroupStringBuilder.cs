@@ -12,6 +12,41 @@ namespace SPC.Base.Control
 {
     public partial class CustomGroupStringBuilder : DevExpress.XtraEditors.XtraUserControl
     {
+        public enum GroupBuildType
+        {
+            L,LE,LLE
+        }
+        private GroupBuildType _BuildType = GroupBuildType.LLE;
+        public GroupBuildType BuildType
+        {
+            get
+            {
+                return this._BuildType;
+            }
+            set
+            {
+                if (this._BuildType != value)
+                {
+                    this._BuildType = value;
+                    switch(value)
+                    {
+                        case GroupBuildType.L: 
+                            this.repositoryItemComboBox1.Items.Clear();
+                            this.repositoryItemComboBox1.Items.Add("<");
+                            break;
+                        case GroupBuildType.LE:
+                            this.repositoryItemComboBox1.Items.Clear();
+                            this.repositoryItemComboBox1.Items.Add("<=");
+                            break;
+                        case GroupBuildType.LLE:
+                            this.repositoryItemComboBox1.Items.Clear();
+                            this.repositoryItemComboBox1.Items.Add("<");
+                            this.repositoryItemComboBox1.Items.Add("<=");
+                            break;
+                    }
+                }
+            }
+        }
         public CustomGroupStringBuilder()
         {
             InitializeComponent();

@@ -78,4 +78,3 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\bin\Debug\de\DevExpress.Xtr
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\bin\Debug\es\DevExpress.XtraTreeList.v13.2.resources.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\bin\Debug\ja\DevExpress.XtraTreeList.v13.2.resources.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\bin\Debug\ru\DevExpress.XtraTreeList.v13.2.resources.dll
-C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Base\obj\Debug\SPC.Base.csprojResolveAssemblyReference.cache

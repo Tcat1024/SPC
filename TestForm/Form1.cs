@@ -83,7 +83,7 @@ namespace TestForm
                 Form resultform = new Form();
                 var res = new SPC.Analysis.ResultControls.ContourPlotResultControl() { Dock = DockStyle.Fill };
                 resultform.Controls.Add(res);
-                res.Init(SPC.Rnet.Methods.DrawContourPlot(data,con.X,con.Y,con.Z,con.PicWidth,con.PicHeight),con.X,con.Y,con.Z);
+                res.Init(SPC.Rnet.Methods.DrawContourPlot(data,con.X,con.Y,con.Z,con.PicWidth,con.PicHeight,con.Levels,con.IsDrawLine),con.X,con.Y,con.Z);
                 resultform.Show();
             }
         }

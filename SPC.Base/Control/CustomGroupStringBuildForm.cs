@@ -13,6 +13,17 @@ namespace SPC.Base.Control
     public partial class CustomGroupStringBuildForm : DevExpress.XtraEditors.XtraForm
     {
         public string result = "";
+        public CustomGroupStringBuilder.GroupBuildType BuildType
+        {
+            get
+            {
+                return this.customGroupStringBuilder1.BuildType;
+            }
+            set
+            {
+                this.customGroupStringBuilder1.BuildType = value;
+            }
+        }
         public CustomGroupStringBuildForm()
         {
             InitializeComponent();

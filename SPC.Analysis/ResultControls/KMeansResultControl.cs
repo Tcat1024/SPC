@@ -30,6 +30,8 @@ namespace SPC.Analysis.ResultControls
             this.gridView2.Columns.ColumnByFieldName("序号").Visible = false;
             this.gridView2.GroupSummary.Clear();
             this.gridView2.GroupSummary.Add(new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, this.gridView2.Columns[0].FieldName, null, "Count:{0}"));
+            gridView1.FocusedRowHandle = 0;
+            (this.gridView2.DataSource as DataView).RowFilter = "序号 = " + gridView1.GetDataRow(0)[0].ToString();
         }
 
         private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)

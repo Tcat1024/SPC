@@ -32,7 +32,7 @@ namespace SPC.Rnet
             return result;
 
         }
-        public static Image DrawContourPlot(IDataTable<DataRow> data, string xs, string ys, string zs,int width,int height)
+        public static Image DrawContourPlot(IDataTable<DataRow> data, string xs, string ys, string zs,int width,int height,double[] levels,bool drawline)
         {
             int rowcount = data.RowCount;
             double[] x = new double[rowcount];
@@ -48,12 +48,15 @@ namespace SPC.Rnet
             }
             AppDomain domain = AppDomain.CreateDomain(Guid.NewGuid().ToString());
             string name = Guid.NewGuid() + ".png";
-            string root = Environment.CurrentDirectory;
+            var root = new DirectoryInfo(System.Windows.Forms.Application.StartupPath+"\\..\\Temp");
+            if (!root.Exists)
+                root.Create();
+            string fullpath = root.FullName + "\\" + name;
             byte[] buffer;
             try
             {
-                (domain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(Graphics).FullName) as Graphics).DrawContourPlot(root, name, xs, ys, zs, x, y, z,width,height);
-                FileStream fs = new FileStream(name, FileMode.Open);
+                (domain.CreateInstanceAndUnwrap(Assembly.GetExecutingAssembly().FullName, typeof(Graphics).FullName) as Graphics).DrawContourPlot(root.FullName, name, x, y, z,width,height,levels,drawline);
+                FileStream fs = new FileStream(fullpath, FileMode.Open);
                 buffer = new byte[fs.Length];
                 fs.Read(buffer, 0, buffer.Length);
                 fs.Close();
@@ -65,7 +68,7 @@ namespace SPC.Rnet
             finally
             {
                 AppDomain.Unload(domain);
-                File.Delete(name);
+                File.Delete(fullpath);
             }
             return Image.FromStream(new MemoryStream(buffer));
         }

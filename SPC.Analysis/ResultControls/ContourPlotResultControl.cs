@@ -11,34 +11,147 @@ using DevExpress.XtraEditors;
 namespace SPC.Analysis.ResultControls
 {
     public partial class ContourPlotResultControl : DevExpress.XtraEditors.XtraUserControl
-    {
+    {        
+        GlobalMouseHandler handler = new GlobalMouseHandler();
+        enum ResizeMode
+        {
+            H,V,B,N
+        }
+        ResizeMode resizeMode = ResizeMode.N;
         public ContourPlotResultControl()
         {
             InitializeComponent();
+            
+            handler.MouseMoveGlobal += handler_MouseMoveGlobal;
+            handler.MouseLeftDownGlobal += handler_MouseLeftDownGlobal;
+            handler.MouseLeftUpGlobal += handler_MouseLeftUpGlobal;
+        }
+        void handler_MouseLeftUpGlobal(object sender, MouseEventArgGlobal e)
+        {
+            if (!this.ContainsFocus)
+                return;
+            this.resizeMode = ResizeMode.N;
+        }
+
+        void handler_MouseLeftDownGlobal(object sender, MouseEventArgGlobal e)
+        {
+            if (!this.ContainsFocus)
+                return;
+            if (this.Cursor == Cursors.SizeWE)
+                this.resizeMode = ResizeMode.H;
+            else if (this.Cursor == Cursors.SizeNS)
+                this.resizeMode = ResizeMode.V;
+            else if (this.Cursor == Cursors.SizeNWSE)
+                this.resizeMode = ResizeMode.B;
+            else
+                this.resizeMode = ResizeMode.N;
+        }
+
+        void handler_MouseMoveGlobal(object sender, MouseEventArgGlobal e)
+        {
+            if (!this.ContainsFocus)
+                return;
+            var point = PointToClient(MousePosition);
+            switch (this.resizeMode)
+            {
+                case ResizeMode.N:
+                    int i = 0;
+                    var cur = Cursors.Arrow;
+                    if (Math.Abs(point.X - (this.ChildPanelControl.Location.X + this.ChildPanelControl.Width)) < 5)
+                    {
+                        cur = Cursors.SizeWE;
+                        i++;
+                    }
+                    if (Math.Abs(point.Y - (this.ChildPanelControl.Location.Y + this.ChildPanelControl.Height)) < 5)
+                    {
+                        cur = Cursors.SizeNS;
+                        i++;
+                    }
+                    if (i == 2)
+                        cur = Cursors.SizeNWSE;
+                    this.Cursor = cur;
+                    break;
+                case ResizeMode.H:
+                    int newWidth = point.X - this.ChildPanelControl.Location.X;
+                    this.ChildPanelControl.Width = newWidth > 10 ? newWidth : 10;
+                    break;
+                case ResizeMode.V:
+                    int newHeight = point.Y - this.ChildPanelControl.Location.Y;
+                    this.ChildPanelControl.Height = newHeight > 10 ? newHeight : 10;
+                    break;
+                case ResizeMode.B:
+                    newWidth = point.X - this.ChildPanelControl.Location.X;
+                    this.ChildPanelControl.Width = newWidth > 10 ? newWidth : 10;
+                    newHeight = point.Y - this.ChildPanelControl.Location.Y;
+                    this.ChildPanelControl.Height = newHeight > 10 ? newHeight : 10;
+                    break;
+            }
         }
         public void Init(Image pic,string xn,string yn,string zn)
         {
             this.pictureEdit1.Image = pic;
             this.labelControl1.Text = string.Format("X轴: {0}    Y轴: {1}    Z轴: {2}", xn, yn,zn);
-            this.splitContainerControl2.Panel1.MinSize = pic.Size.Height+panelControl1.Height;
-            this.splitContainerControl1.Panel1.MinSize = Math.Max(pic.Size.Width,labelControl1.Width);
-            this.MinimumSize = new Size(this.splitContainerControl1.Panel1.MinSize,this.splitContainerControl2.Panel1.MinSize);
-            this.labelControl1.Location = new Point((this.panelControl1.Width - this.labelControl1.Width) / 2, this.labelControl1.Location.Y);
+            this.ChildPanelControl.Height = pic.Size.Height+labelControl1.Height;
+            this.ChildPanelControl.Width = Math.Max(pic.Size.Width, labelControl1.Width);
+            this.labelControl1.Location = new Point((this.ChildPanelControl.Width - this.labelControl1.Width) / 2, this.labelControl1.Location.Y);
         }
 
         private void pictureEdit1_Enter(object sender, EventArgs e)
         {
-            this.splitContainerControl2.Panel1.Focus();
+            this.ChildPanelControl.Focus();
         }
 
-        private void panelControl1_Enter(object sender, EventArgs e)
+        private void panelControl2_Enter(object sender, EventArgs e)
         {
-            this.splitContainerControl2.Panel1.Focus();
+            this.ChildPanelControl.Focus();
         }
 
-        private void panelControl1_Resize(object sender, EventArgs e)
+        private void panelControl2_Resize(object sender, EventArgs e)
         {
-            this.labelControl1.Location = new Point((this.panelControl1.Width - this.labelControl1.Width) / 2, this.labelControl1.Location.Y);
+            this.labelControl1.Location = new Point((this.ChildPanelControl.Width - this.labelControl1.Width) / 2, this.labelControl1.Location.Y);
+        }
+
+        private void ContourPlotResultControl_Load(object sender, EventArgs e)
+        {
+            Application.AddMessageFilter(handler);
+        }
+
+        private void ContourPlotResultControl_Validated(object sender, EventArgs e)
+        {
+            Application.RemoveMessageFilter(handler);
+        }
+    }
+    public class GlobalMouseHandler : IMessageFilter
+    {
+        public event EventHandler<MouseEventArgGlobal> MouseMoveGlobal;
+        public event EventHandler<MouseEventArgGlobal> MouseLeftDownGlobal;
+        public event EventHandler<MouseEventArgGlobal> MouseLeftUpGlobal;
+        public bool PreFilterMessage(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 512:
+                    if (MouseMoveGlobal != null)
+                        MouseMoveGlobal(this, new MouseEventArgGlobal(m));
+                    break;
+                case 513:
+                    if (MouseLeftDownGlobal != null)
+                        MouseLeftDownGlobal(this, new MouseEventArgGlobal(m));
+                    break;
+                case 514:
+                    if (MouseLeftUpGlobal != null)
+                        MouseLeftUpGlobal(this, new MouseEventArgGlobal(m));
+                    break;
+            }
+            return false;
+        }
+    }
+    public class MouseEventArgGlobal : EventArgs
+    {
+        public Message message;
+        public MouseEventArgGlobal(Message m)
+        {
+            message = m;
         }
     }
 }
