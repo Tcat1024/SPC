@@ -114,8 +114,8 @@
     </Compile>
     <Compile Include="Interface\DataBaseInterface.cs" />
     <Compile Include="Operation\BasicOperation.cs" />
+    <Compile Include="Operation\Calculate.cs" />
     <Compile Include="Operation\Group.cs" />
-    <Compile Include="Operation\Interpolation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interface\Interface.cs" />
     <Compile Include="Interface\Structure.cs" />

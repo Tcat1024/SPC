@@ -10,3 +10,4 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Interface\bin\Debug\SPC.Web.
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Interface\bin\Debug\SPC.Web.Interface.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Interface\obj\Debug\SPC.Web.Interface.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Interface\obj\Debug\SPC.Web.Interface.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Web.Interface\obj\Debug\SPC.Web.Interface.csprojResolveAssemblyReference.cache

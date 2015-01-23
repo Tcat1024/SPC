@@ -10,6 +10,7 @@ using DevExpress.XtraEditors;
 
 namespace SPC.Analysis.ResultControls
 {
+
     public partial class ContourPlotResultControl : DevExpress.XtraEditors.XtraUserControl
     {        
         GlobalMouseHandler handler = new GlobalMouseHandler();
@@ -21,7 +22,6 @@ namespace SPC.Analysis.ResultControls
         public ContourPlotResultControl()
         {
             InitializeComponent();
-            
             handler.MouseMoveGlobal += handler_MouseMoveGlobal;
             handler.MouseLeftDownGlobal += handler_MouseLeftDownGlobal;
             handler.MouseLeftUpGlobal += handler_MouseLeftUpGlobal;
@@ -110,15 +110,15 @@ namespace SPC.Analysis.ResultControls
         {
             this.labelControl1.Location = new Point((this.ChildPanelControl.Width - this.labelControl1.Width) / 2, this.labelControl1.Location.Y);
         }
-
-        private void ContourPlotResultControl_Load(object sender, EventArgs e)
-        {
-            Application.AddMessageFilter(handler);
-        }
-
         private void ContourPlotResultControl_Validated(object sender, EventArgs e)
         {
             Application.RemoveMessageFilter(handler);
+        }
+
+        private void ContourPlotResultControl_Enter(object sender, EventArgs e)
+        {
+            Application.RemoveMessageFilter(handler);
+            Application.AddMessageFilter(handler);
         }
     }
     public class GlobalMouseHandler : IMessageFilter

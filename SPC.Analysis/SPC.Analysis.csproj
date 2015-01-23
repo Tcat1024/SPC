@@ -103,11 +103,35 @@
     <Compile Include="ConfigControls\KMeansConfigControl.designer.cs">
       <DependentUpon>KMeansConfigControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigControls\ColumnCalculateConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigControls\ColumnCalculateConfigControl.Designer.cs">
+      <DependentUpon>ColumnCalculateConfigControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigControls\RowCalculateConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigControls\RowCalculateConfigControl.Designer.cs">
+      <DependentUpon>RowCalculateConfigControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigControls\StandardizationConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigControls\StandardizationConfigControl.Designer.cs">
+      <DependentUpon>StandardizationConfigControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ResultControls\CalculateResultControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResultControls\CalculateResultControl.Designer.cs">
+      <DependentUpon>CalculateResultControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ResultControls\CCTResultControl.cs">
       <SubType>UserControl</SubType>
@@ -132,16 +156,31 @@
     <EmbeddedResource Include="ConfigControls\CCTConfigControl.resx">
       <DependentUpon>CCTConfigControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfigControls\ConfigControlBase.resx">
+      <DependentUpon>ConfigControlBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigControls\ContourPlotConfigControl.resx">
       <DependentUpon>ContourPlotConfigControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConfigControls\KMeansConfigControl.resx">
       <DependentUpon>KMeansConfigControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfigControls\ColumnCalculateConfigControl.resx">
+      <DependentUpon>ColumnCalculateConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigControls\RowCalculateConfigControl.resx">
+      <DependentUpon>RowCalculateConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigControls\StandardizationConfigControl.resx">
+      <DependentUpon>StandardizationConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultControls\CalculateResultControl.resx">
+      <DependentUpon>CalculateResultControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResultControls\CCTResultControl.resx">
       <DependentUpon>CCTResultControl.cs</DependentUpon>

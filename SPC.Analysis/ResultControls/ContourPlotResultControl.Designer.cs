@@ -102,7 +102,7 @@
             this.Controls.Add(this.xtraScrollableControl1);
             this.Name = "ContourPlotResultControl";
             this.Size = new System.Drawing.Size(664, 497);
-            this.Load += new System.EventHandler(this.ContourPlotResultControl_Load);
+            this.Enter += new System.EventHandler(this.ContourPlotResultControl_Enter);
             this.Validated += new System.EventHandler(this.ContourPlotResultControl_Validated);
             this.xtraScrollableControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ChildPanelControl)).EndInit();

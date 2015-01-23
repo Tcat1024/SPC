@@ -13,7 +13,6 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ConfigControls.KMeansConfigControl.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ResultControls.KMeansResultControl.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ConfigControls.ContourPlotConfigControl.resources
-C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ResultControls.ContourPlotResultControl.resources
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Monitor.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\SPC.Monitor.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\DevExpress.Charts.v13.2.Core.dll
@@ -79,3 +78,9 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\de\DevExpress
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\es\DevExpress.XtraPrinting.v13.2.resources.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\ja\DevExpress.XtraPrinting.v13.2.resources.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\bin\Debug\ru\DevExpress.XtraPrinting.v13.2.resources.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ResultControls.ContourPlotResultControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ConfigControls.ColumnCalculateConfigControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ConfigControls.RowCalculateConfigControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ConfigControls.ConfigControlBase.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ResultControls.CalculateResultControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Analysis\obj\Debug\SPC.Analysis.ConfigControls.StandardizationConfigControl.resources

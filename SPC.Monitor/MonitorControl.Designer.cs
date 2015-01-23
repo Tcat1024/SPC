@@ -305,6 +305,7 @@
             // 
             // customGroupStringBuilder1
             // 
+            this.customGroupStringBuilder1.BuildType = SPC.Base.Control.CustomGroupStringBuilder.GroupBuildType.LLE;
             this.customGroupStringBuilder1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.customGroupStringBuilder1.Location = new System.Drawing.Point(0, 0);
             this.customGroupStringBuilder1.Name = "customGroupStringBuilder1";

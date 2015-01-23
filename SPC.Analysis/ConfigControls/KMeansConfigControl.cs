@@ -28,59 +28,24 @@ namespace SPC.Analysis.ConfigControls
         public void Init(string[] columns, int count)
         {
             this.originalColumns = columns;
-            this.listBoxControl1.Items.Clear();
-            this.listBoxControl1.Items.AddRange(columns);
+            this.checkedListBoxControl1.Items.Clear();
+            this.checkedListBoxControl1.Items.AddRange(columns);
             this.textEdit4.Text = ((int)Math.Pow(count, 0.5)).ToString();
-        }
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            foreach (var col in this.listBoxControl1.SelectedItems)
-            {
-                if (!this.listBoxControl2.Items.Contains(col) && this.originalColumns.Contains(col.ToString()))
-                    this.listBoxControl2.Items.Add(col);
-            }
-            checkValidate();
-        }
-
-        private void simpleButton2_Click(object sender, EventArgs e)
-        {
-            var selectitems = this.listBoxControl2.SelectedItems;
-            int count = selectitems.Count;
-            for (int i = count - 1; i >= 0; i--)
-            {
-                this.listBoxControl2.Items.Remove(selectitems[i]);
-            }
-            checkValidate();
-        }
-
-        private void simpleButton5_Click(object sender, EventArgs e)
-        {
-            this.listBoxControl2.Items.Clear();
-            this.listBoxControl2.Items.AddRange(this.originalColumns);
-            checkValidate();
-        }
-
-        private void simpleButton6_Click(object sender, EventArgs e)
-        {
-            this.listBoxControl2.Items.Clear();
-            checkValidate();
-        }
-        private void checkValidate()
-        {
-            if (this.listBoxControl2.Items.Count < 2)
-                this.simpleButton3.Enabled = false;
-            else
-                this.simpleButton3.Enabled = true;
         }
         public override event EventHandler OKEvent;
         public override event EventHandler CancelEvent;
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            int count = this.listBoxControl2.Items.Count;
+            if (this.checkedListBoxControl1.CheckedItems.Count < 2)
+            {
+                MessageBox.Show("选择聚类的字段不能小于两个");
+                return;
+            }
+            int count = this.checkedListBoxControl1.CheckedItems.Count;
             SelectedColumns = new string[count];
             for (int i = 0; i < count; i++)
             {
-                SelectedColumns[i] = this.listBoxControl2.Items[i].ToString();
+                SelectedColumns[i] = this.checkedListBoxControl1.CheckedItems[i].ToString();
             }
             StartClustNum = textEdit3.Text.Trim()==""?-1:Convert.ToInt32(textEdit3.Text.Trim());
             EndClustNum = textEdit4.Text.Trim() == "" ? -1 : Convert.ToInt32(textEdit4.Text.Trim());
@@ -97,11 +62,6 @@ namespace SPC.Analysis.ConfigControls
         {
             if (CancelEvent != null)
                 CancelEvent(this, new EventArgs());
-        }
-
-        private void KMeansConfigControl_SizeChanged(object sender, EventArgs e)
-        {
-            this.panelControl1.Width = simpleButton5.Location.X - 7;
         }
     }
 }
