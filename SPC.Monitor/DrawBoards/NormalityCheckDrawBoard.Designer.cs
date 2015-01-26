@@ -33,7 +33,7 @@
             DevExpress.XtraCharts.PointSeriesView pointSeriesView1 = new DevExpress.XtraCharts.PointSeriesView();
             DevExpress.XtraCharts.RegressionLine regressionLine1 = new DevExpress.XtraCharts.RegressionLine();
             DevExpress.XtraCharts.PointSeriesView pointSeriesView2 = new DevExpress.XtraCharts.PointSeriesView();
-            this.chartControl1 = new SPC.Base.Control.AdvChartControl();
+            this.chartControl1 = new SPC.Controls.Base.AdvChartControl();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
@@ -89,6 +89,6 @@
 
         #endregion
 
-        private Base.Control.AdvChartControl chartControl1;
+        private Controls.Base.AdvChartControl chartControl1;
     }
 }

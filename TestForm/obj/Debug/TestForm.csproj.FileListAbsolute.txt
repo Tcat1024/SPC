@@ -117,8 +117,6 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\obj\Debug\TestForm.csproj.G
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\obj\Debug\TestForm.exe.licenses
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\obj\Debug\TestForm.exe
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\obj\Debug\TestForm.pdb
-C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Analysis.dll
-C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Analysis.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Algorithm.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Algorithm.pdb
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Rnet.dll
@@ -135,3 +133,5 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.XtraGr
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\DevExpress.XtraLayout.v13.2.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\EAS.MicroKernel.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\EAS.MicroKernel.xml
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Controls.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\TestForm\bin\Debug\SPC.Controls.pdb

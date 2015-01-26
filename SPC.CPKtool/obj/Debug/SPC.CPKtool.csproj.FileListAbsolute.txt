@@ -203,3 +203,5 @@ C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\de\DevExpress.
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\es\DevExpress.XtraVerticalGrid.v13.2.resources.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\ja\DevExpress.XtraVerticalGrid.v13.2.resources.dll
 C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\ru\DevExpress.XtraVerticalGrid.v13.2.resources.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\SPC.Controls.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.CPKtool\bin\Debug\SPC.Controls.pdb

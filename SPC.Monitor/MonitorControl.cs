@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using SPC.Base.Interface;
 using SPC.Base.Operation;
-using SPC.Base.Control;
+using SPC.Controls.Base;
 using SPC.Monitor.DrawBoards;
 
 
@@ -337,7 +337,7 @@ namespace SPC.Monitor
             public MonitorSourceDataType SourceData;
             public string Name;
             public System.Drawing.Color SeriesColor;
-            public MonitorSeriesData(SPC.Base.Control.CanChooseDataGridView view, string param, int groupType, string spectrumWith, System.Drawing.Color color, List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards)
+            public MonitorSeriesData(SPC.Controls.Base.CanChooseDataGridView view, string param, int groupType, string spectrumWith, System.Drawing.Color color, List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards)
             {
                 SourceData = new MonitorSourceDataType(view, param, groupType, spectrumWith);
                 this.Name = param + "_" + groupType.ToString() + "_" + DateTime.Now.ToBinary();
@@ -434,7 +434,7 @@ namespace SPC.Monitor
             this.panelControl1.Height = (int)(this.Size.Height * 0.5);
         }
 
-        private void customGroupStringBuilder1_GroupStringDetermined(object sender, Base.Control.CustomGroupStringBuilder.GroupStringDeterminedEventArgs e)
+        private void customGroupStringBuilder1_GroupStringDetermined(object sender, Controls.Base.CustomGroupStringBuilder.GroupStringDeterminedEventArgs e)
         {
             if (e.result.Trim() != "")
                 this.pupFreqWidth.Text = e.result;

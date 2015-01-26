@@ -42,18 +42,18 @@ namespace TestForm
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.cpKtoolControl1.DataSource = this.Data;
-            (this.cpKtoolControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
+            (this.cpKtoolControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
             //this.xyRelationControl1.DataSource = this.Data;
-            //(this.xyRelationControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
+            //(this.xyRelationControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
             this.determineControl1.DataSource = this.Data;
-            (this.determineControl1.DataView as SPC.Base.Control.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
+            (this.determineControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
         }
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var data = new SPC.Base.Interface.ChoosedData(this.Data,(this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView).GetChoosedRowIndexs());
+            var data = new SPC.Base.Interface.ChoosedData(this.Data,(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).GetChoosedRowIndexs());
             var columns =data.GetColumnsList(false,typeof(DateTime),typeof(string),typeof(bool));
             Form configform = new Form();
-            var con = new SPC.Analysis.ConfigControls.CCTConfigControl(){Dock = DockStyle.Fill};
+            var con = new SPC.Controls.ConfigControls.CCTConfigControl(){Dock = DockStyle.Fill};
             configform.Controls.Add(con);
             con.OKEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.OK; };
             con.CancelEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.Cancel; };
@@ -61,7 +61,7 @@ namespace TestForm
             if(configform.ShowDialog()==DialogResult.OK)
             {
                 Form resultform = new Form();
-                var res = new SPC.Analysis.ResultControls.CCTResultControl() { Dock = DockStyle.Fill };
+                var res = new SPC.Controls.ResultControls.CCTResultControl() { Dock = DockStyle.Fill };
                 resultform.Controls.Add(res);
                 res.Init(con.Columns, SPC.Algorithm.Relations.GetCCTs(data, con.TargetColumn, con.Columns, new SPC.Base.Interface.WaitObject()));
                 resultform.Show();
@@ -70,10 +70,10 @@ namespace TestForm
 
         private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            var data = new SPC.Base.Interface.ChoosedData(this.Data, (this.monitorControl1.DataView as SPC.Base.Control.CanChooseDataGridView).GetChoosedRowIndexs());
+            var data = new SPC.Base.Interface.ChoosedData(this.Data, (this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).GetChoosedRowIndexs());
             var columns = data.GetColumnsList(false, typeof(DateTime), typeof(string), typeof(bool));
             Form configform = new Form();
-            var con = new SPC.Analysis.ConfigControls.ContourPlotConfigControl() { Dock = DockStyle.Fill };
+            var con = new SPC.Controls.ConfigControls.ContourPlotConfigControl() { Dock = DockStyle.Fill };
             configform.Controls.Add(con);
             con.OKEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.OK; };
             con.CancelEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.Cancel; };
@@ -81,7 +81,7 @@ namespace TestForm
             if (configform.ShowDialog() == DialogResult.OK)
             {
                 Form resultform = new Form();
-                var res = new SPC.Analysis.ResultControls.ContourPlotResultControl() { Dock = DockStyle.Fill };
+                var res = new SPC.Controls.ResultControls.ContourPlotResultControl() { Dock = DockStyle.Fill };
                 resultform.Controls.Add(res);
                 res.Init(SPC.Rnet.Methods.DrawContourPlot(data,con.X,con.Y,con.Z,con.PicWidth,con.PicHeight,con.Levels,con.IsDrawLine),con.X,con.Y,con.Z);
                 resultform.Show();
@@ -91,6 +91,63 @@ namespace TestForm
         {
             var re = SPC.Rnet.Methods.RunScript("111.txt", new List<object>() {2,10 });
             MessageBox.Show(re[0].ToString());
+        }
+
+        private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+                        var data = new SPC.Base.Interface.ChoosedData(this.Data,(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).GetChoosedRowIndexs());
+            var columns =data.GetColumnsList(false,typeof(DateTime),typeof(string),typeof(bool));
+            var con = new SPC.Controls.ConfigControls.ColumnCalculateConfigControl();
+            Form configform  = new Form();
+configform.Controls.Add(con);
+            con.OKEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.OK; };
+            con.CancelEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.Cancel; };
+            con.Init(columns);
+            double[] result = null;
+            if (configform.ShowDialog() == DialogResult.OK)
+            {
+                switch (con.MethodIndex)
+                {
+                    case 0:
+                        result = SPC.Base.Operation.ColumnCalculate.Sum(data, con.SourceColumns); break;
+                    case 1:
+                        result = SPC.Base.Operation.ColumnCalculate.Avg(data, con.SourceColumns); break;
+                    case 2:
+                        result = SPC.Base.Operation.ColumnCalculate.Stdev(data, con.SourceColumns); break;
+                    case 3:
+                        result = SPC.Base.Operation.ColumnCalculate.Min(data, con.SourceColumns); break;
+                    case 4:
+                        result = SPC.Base.Operation.ColumnCalculate.Max(data, con.SourceColumns); break;
+                    case 5:
+                        result = SPC.Base.Operation.ColumnCalculate.Range(data, con.SourceColumns); break;
+                    case 6:
+                        result = SPC.Base.Operation.ColumnCalculate.Mid(data, con.SourceColumns); break;
+                    case 7:
+                        result = SPC.Base.Operation.ColumnCalculate.QuadraticSum(data, con.SourceColumns); break;
+                    case 8:
+                        result = SPC.Base.Operation.ColumnCalculate.Count(data, con.SourceColumns); break;
+                    case 9:
+                        result = SPC.Base.Operation.ColumnCalculate.IsNotNull(data, con.SourceColumns); break;
+                    case 10:
+                        result = SPC.Base.Operation.ColumnCalculate.IsNull(data, con.SourceColumns); break;
+                    default:
+                        MessageBox.Show("不支持的方法");
+                        return;
+                }
+                DataTable resulttable = new DataTable();
+                resulttable.Columns.Add("列名", typeof(string));
+                resulttable.Columns.Add(con.MethodString, typeof(double));
+                int count = result.Length;
+                for (int i = 0; i < count; i++)
+                {
+                    resulttable.Rows.Add(con.SourceColumns[i], result[i]);
+                }
+                Form resultform = new Form();
+                var res = new SPC.Controls.ResultControls.CalculateResultControl() { Dock = DockStyle.Fill };
+                resultform.Controls.Add(res);
+                res.Init(resulttable);
+                resultform.Show();
+            }
         }
     }
 }

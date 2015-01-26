@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using SPC.Base.Operation;
-using SPC.Base.Control;
 
 namespace SPC.Base.Interface
 {

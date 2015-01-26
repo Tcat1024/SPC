@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using SPC.Base.Interface;
 using SPC.Base.Operation;
-using SPC.Base.Control;
+using SPC.Controls.Base;
 using SPC.Monitor.DrawBoards;
 
 
@@ -346,7 +346,7 @@ namespace SPC.Monitor
             public SPCDetermineDataType SourceData;
             public string Name;
             public System.Drawing.Color SeriesColor;
-            public SPCDetermineData(SPC.Base.Control.CanChooseDataGridView view, string param, double ucl, double lcl, double standard, List<SPCCommandbase> commands, System.Drawing.Color color, List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards)
+            public SPCDetermineData(SPC.Controls.Base.CanChooseDataGridView view, string param, double ucl, double lcl, double standard, List<SPCCommandbase> commands, System.Drawing.Color color, List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards)
             {
                 SourceData = new SPCDetermineDataType(view, param, ucl,lcl,standard,commands);
                 this.Name =param + "_" + DateTime.Now.ToBinary();

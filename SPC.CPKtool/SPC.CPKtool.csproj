@@ -154,6 +154,10 @@
       <Project>{b8a9423b-8443-439b-ab89-f3a2ddd1d036}</Project>
       <Name>SPC.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SPC.Controls\SPC.Controls.csproj">
+      <Project>{535b6be8-5b13-4fc8-9073-c16cb9785e1c}</Project>
+      <Name>SPC.Controls</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\CheckMark.Glyph.png" />

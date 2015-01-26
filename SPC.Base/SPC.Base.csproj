@@ -32,39 +32,6 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevExpress.Charts.v13.2.Core, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Data.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Printing.v13.2.Core, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.Utils.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraBars.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraCharts.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraCharts.v13.2.UI, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraCharts.v13.2.Wizard, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraEditors.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraGrid.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="DevExpress.XtraTreeList.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
@@ -77,41 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control\AdvChartControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Control\AdvChartControl.Designer.cs">
-      <DependentUpon>AdvChartControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\CanChooseDataGridView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Control\CustomGroupStringBuilder.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\CustomGroupStringBuilder.Designer.cs">
-      <DependentUpon>CustomGroupStringBuilder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\CustomGroupStringBuildForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Control\CustomGroupStringBuildForm.Designer.cs">
-      <DependentUpon>CustomGroupStringBuildForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Control\MultiControlsVerticalLayout.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Control\Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Control\TriStateTreeView.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Control\TriStateTreeView.designer.cs">
-      <DependentUpon>TriStateTreeView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Interface\DataBaseInterface.cs" />
     <Compile Include="Operation\BasicOperation.cs" />
     <Compile Include="Operation\Calculate.cs" />
@@ -119,38 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interface\Interface.cs" />
     <Compile Include="Interface\Structure.cs" />
-    <Compile Include="Control\WaitPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Control\WaitPanel.designer.cs">
-      <DependentUpon>WaitPanel.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Control\CustomGroupStringBuilder.resx">
-      <DependentUpon>CustomGroupStringBuilder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\CustomGroupStringBuildForm.resx">
-      <DependentUpon>CustomGroupStringBuildForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\Resource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Control\TriStateTreeView.resx">
-      <DependentUpon>TriStateTreeView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Control\WaitPanel.resx">
-      <DependentUpon>WaitPanel.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CheckMark.Glyph.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CrossMark.Glyph.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

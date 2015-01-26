@@ -39,7 +39,7 @@
             DevExpress.XtraCharts.Series series66 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SplineSeriesView splineSeriesView44 = new DevExpress.XtraCharts.SplineSeriesView();
             DevExpress.XtraCharts.StepAreaSeriesView stepAreaSeriesView44 = new DevExpress.XtraCharts.StepAreaSeriesView();
-            this.chartControl1 = new SPC.Base.Control.AdvChartControl();
+            this.chartControl1 = new SPC.Controls.Base.AdvChartControl();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
@@ -131,7 +131,7 @@
             this.chartControl1.SideBySideEqualBarWidth = false;
             this.chartControl1.Size = new System.Drawing.Size(724, 377);
             this.chartControl1.TabIndex = 0;
-            this.chartControl1.CustomShowRightClickPopupMenu += new System.EventHandler<SPC.Base.Control.AdvChartControl.ShowRightClickPopupMenuEventArgs>(this.chartControl1_CustomShowRightClickPopupMenu);
+            this.chartControl1.CustomShowRightClickPopupMenu += new System.EventHandler<SPC.Controls.Base.AdvChartControl.ShowRightClickPopupMenuEventArgs>(this.chartControl1_CustomShowRightClickPopupMenu);
             // 
             // repositoryItemCheckEdit1
             // 
@@ -244,7 +244,7 @@
 
         #endregion
 
-        private Base.Control.AdvChartControl chartControl1;
+        private Controls.Base.AdvChartControl chartControl1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
         private DevExpress.XtraBars.BarEditItem barEditItem1;

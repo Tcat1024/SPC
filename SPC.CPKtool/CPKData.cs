@@ -8,7 +8,7 @@ using SPC.Base.Operation;
 namespace SPC.CPKtool
 {
 
-    public class CPKCanChooseViewData : CPKData<SPC.Base.Control.CanChooseDataGridView>
+    public class CPKCanChooseViewData : CPKData<SPC.Controls.Base.CanChooseDataGridView>
     {
         public string ChooseColumnName = "choose";
         public override int ChooseCount

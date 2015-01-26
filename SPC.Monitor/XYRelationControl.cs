@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using SPC.Base.Interface;
 using SPC.Base.Operation;
-using SPC.Base.Control;
+using SPC.Controls.Base;
 using SPC.Monitor.DrawBoards;
 
 
@@ -344,7 +344,7 @@ namespace SPC.Monitor
                     seriesManager.InitData(this.SourceData);
                 }
             }
-            public XYRelationData(SPC.Base.Control.CanChooseDataGridView view, string paramY, string paramX, System.Drawing.Color color, List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards)
+            public XYRelationData(SPC.Controls.Base.CanChooseDataGridView view, string paramY, string paramX, System.Drawing.Color color, List<IDrawBoard<DevExpress.XtraCharts.ChartControl>> drawBoards)
             {
                 SourceData = new XYRelationSourceDataType(view, paramX, paramY);
                 this.Name ="X:"+ paramX + "_Y:" + paramY + "_" + DateTime.Now.ToBinary();

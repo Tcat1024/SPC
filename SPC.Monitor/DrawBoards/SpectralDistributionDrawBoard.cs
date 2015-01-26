@@ -41,7 +41,7 @@ namespace SPC.Monitor.DrawBoards
             }
         }
 
-        private void chartControl1_CustomShowRightClickPopupMenu(object sender, Base.Control.AdvChartControl.ShowRightClickPopupMenuEventArgs e)
+        private void chartControl1_CustomShowRightClickPopupMenu(object sender, Controls.Base.AdvChartControl.ShowRightClickPopupMenuEventArgs e)
         {
             e.RightClickPopupMenu.AddItem(this.barEditItem1);
             e.RightClickPopupMenu.AddItem(this.barEditItem2);

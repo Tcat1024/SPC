@@ -10,11 +10,11 @@ namespace SPC.Monitor
 {
     public class MonitorSourceDataType
     {
-        public SPC.Base.Control.CanChooseDataGridView View;
+        public SPC.Controls.Base.CanChooseDataGridView View;
         public String Param;
         public int GroupType;
         public string SpectrumWith;
-        public MonitorSourceDataType(SPC.Base.Control.CanChooseDataGridView view, string param, int groupType, string spectrumWith)
+        public MonitorSourceDataType(SPC.Controls.Base.CanChooseDataGridView view, string param, int groupType, string spectrumWith)
         {
             this.View = view;
             this.Param = param;
@@ -24,10 +24,10 @@ namespace SPC.Monitor
     }
     public class XYRelationSourceDataType
     {
-        public SPC.Base.Control.CanChooseDataGridView View;
+        public SPC.Controls.Base.CanChooseDataGridView View;
         public String ParamX;
         public String ParamY;
-        public XYRelationSourceDataType(SPC.Base.Control.CanChooseDataGridView view, string paramX, string paramY)
+        public XYRelationSourceDataType(SPC.Controls.Base.CanChooseDataGridView view, string paramX, string paramY)
         {
             this.View = view;
             this.ParamX = paramX;
@@ -36,11 +36,11 @@ namespace SPC.Monitor
     }
     public class XYZRelationSourceDataType
     {
-        public SPC.Base.Control.CanChooseDataGridView View;
+        public SPC.Controls.Base.CanChooseDataGridView View;
         public String ParamX;
         public String ParamY;
         public String ParamZ;
-        public XYZRelationSourceDataType(SPC.Base.Control.CanChooseDataGridView view, string paramX, string paramY, string paramZ)
+        public XYZRelationSourceDataType(SPC.Controls.Base.CanChooseDataGridView view, string paramX, string paramY, string paramZ)
         {
             this.View = view;
             this.ParamX = paramX;
@@ -50,13 +50,13 @@ namespace SPC.Monitor
     }
     public class SPCDetermineDataType
     {
-        public SPC.Base.Control.CanChooseDataGridView View;
+        public SPC.Controls.Base.CanChooseDataGridView View;
         public String Param;
         public double UCL;
         public double LCL;
         public double Standard;
         public List<SPCCommandbase> Commands;
-        public SPCDetermineDataType(SPC.Base.Control.CanChooseDataGridView view, string param, double ucl, double lcl, double standard, List<SPCCommandbase> commands)
+        public SPCDetermineDataType(SPC.Controls.Base.CanChooseDataGridView view, string param, double ucl, double lcl, double standard, List<SPCCommandbase> commands)
         {
             this.View = view;
             this.Param = param;

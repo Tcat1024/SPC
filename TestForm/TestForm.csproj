@@ -117,13 +117,13 @@
       <Project>{141191df-6e20-47a1-9a1e-ed3f3ae86fa6}</Project>
       <Name>SPC.Algorithm</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SPC.Analysis\SPC.Analysis.csproj">
-      <Project>{24313f22-dc40-4a53-b690-154793634bc5}</Project>
-      <Name>SPC.Analysis</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SPC.Base\SPC.Base.csproj">
       <Project>{b8a9423b-8443-439b-ab89-f3a2ddd1d036}</Project>
       <Name>SPC.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SPC.Controls\SPC.Controls.csproj">
+      <Project>{535b6be8-5b13-4fc8-9073-c16cb9785e1c}</Project>
+      <Name>SPC.Controls</Name>
     </ProjectReference>
     <ProjectReference Include="..\SPC.CPKtool\SPC.CPKtool.csproj">
       <Project>{02b6bdb0-c6b5-4b1d-bbdb-1fdceab84cd7}</Project>

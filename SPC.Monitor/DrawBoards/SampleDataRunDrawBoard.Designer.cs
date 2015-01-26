@@ -32,7 +32,7 @@
             DevExpress.XtraCharts.Series series20 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.PointSeriesView pointSeriesView20 = new DevExpress.XtraCharts.PointSeriesView();
             DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView20 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
-            this.chartControl1 = new SPC.Base.Control.AdvChartControl();
+            this.chartControl1 = new SPC.Controls.Base.AdvChartControl();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             this.barManager1 = new DevExpress.XtraBars.BarManager();
@@ -76,7 +76,7 @@
             this.chartControl1.SeriesTemplate.View = swiftPlotSeriesView20;
             this.chartControl1.Size = new System.Drawing.Size(696, 342);
             this.chartControl1.TabIndex = 0;
-            this.chartControl1.CustomShowRightClickPopupMenu += new System.EventHandler<SPC.Base.Control.AdvChartControl.ShowRightClickPopupMenuEventArgs>(this.chartControl1_CustomShowRightClickPopupMenu);
+            this.chartControl1.CustomShowRightClickPopupMenu += new System.EventHandler<SPC.Controls.Base.AdvChartControl.ShowRightClickPopupMenuEventArgs>(this.chartControl1_CustomShowRightClickPopupMenu);
             // 
             // barEditItem1
             // 
@@ -166,6 +166,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private Base.Control.AdvChartControl chartControl1;
+        private Controls.Base.AdvChartControl chartControl1;
     }
 }

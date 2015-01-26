@@ -178,7 +178,7 @@
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gridControl2 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new SPC.Base.Control.CanChooseDataGridView();
+            this.gridView1 = new SPC.Controls.Base.CanChooseDataGridView();
             this.chartPointRightClickPopupMenu = new DevExpress.XtraBars.PopupMenu();
             this.ChartBoundRightClickPopupMenu = new DevExpress.XtraBars.PopupMenu();
             this.gridViewRightClickPopupMenu = new DevExpress.XtraBars.PopupMenu();
@@ -1934,7 +1934,7 @@
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraGrid.GridControl gridControl2;
-        private SPC.Base.Control.CanChooseDataGridView gridView1;
+        private SPC.Controls.Base.CanChooseDataGridView gridView1;
         private DevExpress.XtraBars.BarEditItem barEditItem1;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
         private DevExpress.XtraCharts.ChartControl DataChart;

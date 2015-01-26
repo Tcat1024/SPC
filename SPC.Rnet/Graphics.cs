@@ -41,7 +41,7 @@ namespace SPC.Rnet
                 con.EvaluateNoReturn("leg <- length(lvs)-1");          
                 if (drawline)
                 {
-                    con.EvaluateNoReturn("filled.contour(r$x,r$y,zz,zlim=zl,levels=lvs,color.palette=heat.colors,col=heat.colors(leg)[leg:1],plot.axes = contour(r$x,r$y,zz,drawlabels = FALSE,levels = lvs,col=\"black\",add=T))");
+                    con.EvaluateNoReturn("filled.contour(r$x,r$y,zz,zlim=zl,levels=lvs,color.palette=heat.colors,col=heat.colors(leg)[leg:1],plot.axes = {axis(1);axis(2);contour(r$x,r$y,zz,drawlabels = F,levels = lvs,col=\"black\",add=T)})");
                 }
                 else
                 {

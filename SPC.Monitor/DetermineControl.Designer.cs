@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetermineControl));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new SPC.Base.Control.CanChooseDataGridView();
+            this.gridView1 = new SPC.Controls.Base.CanChooseDataGridView();
             this.standaloneBarDockControl1 = new DevExpress.XtraBars.StandaloneBarDockControl();
             this.barManager1 = new DevExpress.XtraBars.BarManager();
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -75,7 +75,7 @@
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
-            this.multiControlsVerticalLayout1 = new SPC.Base.Control.MultiControlsVerticalLayout();
+            this.multiControlsVerticalLayout1 = new SPC.Controls.Base.MultiControlsVerticalLayout();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.bteRenameItem = new DevExpress.XtraEditors.ButtonEdit();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
@@ -668,7 +668,7 @@
         #endregion
 
         private DevExpress.XtraGrid.GridControl gridControl1;
-        private SPC.Base.Control.CanChooseDataGridView gridView1;
+        private SPC.Controls.Base.CanChooseDataGridView gridView1;
         private DevExpress.XtraBars.StandaloneBarDockControl standaloneBarDockControl1;
         private DevExpress.XtraBars.BarManager barManager1;
         private DevExpress.XtraBars.BarDockControl barDockControlTop;
@@ -700,7 +700,7 @@
         private DevExpress.XtraBars.BarButtonItem btnRemove;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
-        private Base.Control.MultiControlsVerticalLayout multiControlsVerticalLayout1;
+        private Controls.Base.MultiControlsVerticalLayout multiControlsVerticalLayout1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;

@@ -149,7 +149,7 @@
         #endregion
 
         private DevExpress.XtraGrid.GridControl gridControl1;
-        private SPC.Base.Control.CanChooseDataGridView gridView1;
+        private SPC.Controls.Base.CanChooseDataGridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraEditors.PanelControl panelControl1;

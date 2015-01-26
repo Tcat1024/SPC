@@ -45,9 +45,10 @@
             this.monitorControl1 = new SPC.Monitor.MonitorControl();
             this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
+            this.determineControl1 = new SPC.Monitor.DetermineControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
             this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.determineControl1 = new SPC.Monitor.DetermineControl();
+            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -81,9 +82,10 @@
             this.barButtonItem2,
             this.barButtonItem4,
             this.barButtonItem3,
-            this.barButtonItem5});
+            this.barButtonItem5,
+            this.barButtonItem6});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 7;
+            this.barManager1.MaxItemId = 8;
             // 
             // bar2
             // 
@@ -96,7 +98,8 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem6)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -210,16 +213,6 @@
             this.xtraTabPage3.Size = new System.Drawing.Size(1261, 621);
             this.xtraTabPage3.Text = "xtraTabPage3";
             // 
-            // xtraTabPage4
-            // 
-            this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(1261, 621);
-            this.xtraTabPage4.Text = "xtraTabPage4";
-            // 
-            // defaultLookAndFeel1
-            // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
-            // 
             // determineControl1
             // 
             this.determineControl1.DataMember = null;
@@ -230,6 +223,23 @@
             this.determineControl1.SelectedTabPageIndex = 0;
             this.determineControl1.Size = new System.Drawing.Size(1261, 621);
             this.determineControl1.TabIndex = 0;
+            // 
+            // xtraTabPage4
+            // 
+            this.xtraTabPage4.Name = "xtraTabPage4";
+            this.xtraTabPage4.Size = new System.Drawing.Size(1261, 621);
+            this.xtraTabPage4.Text = "xtraTabPage4";
+            // 
+            // defaultLookAndFeel1
+            // 
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
+            // 
+            // barButtonItem6
+            // 
+            this.barButtonItem6.Caption = "测试计算";
+            this.barButtonItem6.Id = 7;
+            this.barButtonItem6.Name = "barButtonItem6";
+            this.barButtonItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem6_ItemClick);
             // 
             // Form1
             // 
@@ -275,6 +285,7 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         private SPC.Monitor.DetermineControl determineControl1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem6;
     }
 }
 
