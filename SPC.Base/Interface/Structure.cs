@@ -260,6 +260,10 @@ namespace SPC.Base.Interface
         {
             this.sourceTable.Columns.Add(name, datatype);
         }
+        public void RemoveColumn(string name)
+        {
+            this.sourceTable.Columns.Remove(name);
+        }
 
         public object Copy()
         {
@@ -313,6 +317,9 @@ namespace SPC.Base.Interface
         {
             index = -1;
         }
+
+
+
     }
     
     public class DoubleCompare : IComparer<double>

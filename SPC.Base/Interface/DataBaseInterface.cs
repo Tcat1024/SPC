@@ -24,6 +24,7 @@ namespace SPC.Base.Interface
         bool ContainsColumn(string name);
         void AddColumn(string name);
         void AddColumn(string name, Type datatype);
+        void RemoveColumn(string name);
         bool SetColumnVisible(string name);
         bool SetColumnUnvisible(string name);
         object Copy();

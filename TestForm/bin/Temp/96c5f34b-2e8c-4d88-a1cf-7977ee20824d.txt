@@ -1,0 +1,32 @@
+
+Call:
+lm(formula = THK_MEAN ~ THK_MAX + THK_MIN + THK_PCNT_ON + THK_PCNT_OVER +     THK_PCNT_UNDER + THK_STD + WID_MEAN + WID_MAX + WID_MIN +     WID_PCNT_ON + WID_PCNT_OVER + WID_PCNT_UNDER + WID_STD +     FDT_MEAN + FDT_MAX + FDT_MIN + FDT_PCNT_ON + FDT_PCNT_OVER +     FDT_PCNT_UNDER + FDT_STD + CT_MEAN + CT_MAX + CT_MIN + CT_PCNT_ON +     CT_PCNT_OVER + CT_PCNT_UNDER + CT_STD + PROF_MEAN + PROF_MAX +     PROF_MIN + PROF_PCNT_ON + PROF_PCNT_OVER + PROF_PCNT_UNDER +     PROF_STD + WDG_MEAN + WDG_MAX + WDG_MIN + WDG_PCNT_ON + WDG_PCNT_OVER +     WDG_PCNT_UNDER + WDG_STD + COIL_LEN + FLAT_MEAN + FLAT_MAX +     FLAT_MIN + FLAT_PCT_ON + FLAT_PCT_OVER + FLAT_PCT_UNDER)
+
+Coefficients:
+    (Intercept)          THK_MAX          THK_MIN      THK_PCNT_ON  
+      3.591e+00        2.673e-01        7.317e-01       -1.244e-03  
+  THK_PCNT_OVER   THK_PCNT_UNDER          THK_STD         WID_MEAN  
+     -1.204e-03        3.721e-03        8.003e-02       -8.534e-04  
+        WID_MAX          WID_MIN      WID_PCNT_ON    WID_PCNT_OVER  
+      1.256e-04        7.329e-04       -1.332e-02       -1.332e-02  
+ WID_PCNT_UNDER          WID_STD         FDT_MEAN          FDT_MAX  
+     -1.326e-02        7.106e-04       -2.566e-04       -9.023e-05  
+        FDT_MIN      FDT_PCNT_ON    FDT_PCNT_OVER   FDT_PCNT_UNDER  
+      3.416e-04       -1.331e-02       -1.325e-02       -1.328e-02  
+        FDT_STD          CT_MEAN           CT_MAX           CT_MIN  
+      1.133e-04       -4.894e-05        9.726e-06        1.453e-05  
+     CT_PCNT_ON     CT_PCNT_OVER    CT_PCNT_UNDER           CT_STD  
+     -5.816e-03       -5.890e-03       -5.904e-03        1.244e-04  
+      PROF_MEAN         PROF_MAX         PROF_MIN     PROF_PCNT_ON  
+      3.407e-02       -1.298e-01        3.856e-02       -8.845e-03  
+ PROF_PCNT_OVER  PROF_PCNT_UNDER         PROF_STD         WDG_MEAN  
+     -8.692e-03       -8.828e-03        1.001e+00       -3.509e-02  
+        WDG_MAX          WDG_MIN      WDG_PCNT_ON    WDG_PCNT_OVER  
+      8.608e-02       -6.897e-02        1.903e-02        1.900e-02  
+ WDG_PCNT_UNDER          WDG_STD         COIL_LEN        FLAT_MEAN  
+      1.910e-02       -4.350e-01       -1.338e-06        1.983e-04  
+       FLAT_MAX         FLAT_MIN      FLAT_PCT_ON    FLAT_PCT_OVER  
+     -1.839e-06       -5.033e-05       -1.200e-02       -1.235e-02  
+ FLAT_PCT_UNDER  
+     -1.234e-02  
+

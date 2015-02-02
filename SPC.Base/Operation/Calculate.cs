@@ -211,7 +211,7 @@ namespace SPC.Base.Operation
                 temprow = input[i];
                 for (j = 0; j < length; j++)
                 {
-                    if (temprow[columns[j]] != null)
+                    if (temprow[columns[j]] != null&&temprow[columns[j]] !=DBNull.Value)
                         result[i]++;
                 }
             }
@@ -229,7 +229,7 @@ namespace SPC.Base.Operation
                 temprow = input[i];
                 for (j = 0; j < length; j++)
                 {
-                    if (temprow[columns[j]] == null)
+                    if (temprow[columns[j]] == null || temprow[columns[j]] == DBNull.Value)
                         result[i]++;
                 }
             }
@@ -498,7 +498,7 @@ namespace SPC.Base.Operation
                 temprow = input[i];
                 for (j = 0; j < length; j++)
                 {
-                    if (temprow[columns[j]] != null)
+                    if (temprow[columns[j]] != null && temprow[columns[j]] != DBNull.Value)
                         result[j]++;
                 }
             }
@@ -516,7 +516,7 @@ namespace SPC.Base.Operation
                 temprow = input[i];
                 for (j = 0; j < length; j++)
                 {
-                    if (temprow[columns[j]] == null)
+                    if (temprow[columns[j]] == null || temprow[columns[j]] == DBNull.Value)
                         result[j]++;
                 }
             }

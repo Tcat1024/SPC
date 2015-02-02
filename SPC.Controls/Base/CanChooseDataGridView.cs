@@ -792,6 +792,8 @@ namespace SPC.Controls.Base
                         columns.Add(this.VisibleColumns[i].FieldName);
                 }
             }
+            if (columns.Contains(ChooseColumnName))
+                columns.Remove(ChooseColumnName);
             return columns.ToArray();
         }
         public SPC.Base.Interface.IDataTable<DataRow> GetIDataTable()
@@ -962,6 +964,10 @@ namespace SPC.Controls.Base
                 this.sourceTable.Columns.Add(name, datatype);
                 this.View.Columns.AddVisible(name);
             }
+            public void RemoveColumn(string name)
+            {
+                this.sourceTable.Columns.Remove(name);
+            }
             public bool SetColumnVisible(string name)
             {
                 DevExpress.XtraGrid.Columns.GridColumn target;
@@ -1028,6 +1034,9 @@ namespace SPC.Controls.Base
             {
                 index = -1;
             }
+
+
+
         }
     }
 

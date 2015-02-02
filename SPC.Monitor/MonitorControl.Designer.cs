@@ -606,7 +606,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.multiControlsVerticalLayout2);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage2.Size = new System.Drawing.Size(772, 279);
             this.xtraTabPage2.Text = "控制图";
             // 
             // multiControlsVerticalLayout2
@@ -615,7 +615,7 @@
             this.multiControlsVerticalLayout2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.multiControlsVerticalLayout2.Location = new System.Drawing.Point(0, 0);
             this.multiControlsVerticalLayout2.Name = "multiControlsVerticalLayout2";
-            this.multiControlsVerticalLayout2.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout2.Size = new System.Drawing.Size(772, 279);
             this.multiControlsVerticalLayout2.SizeChangeStep = 5;
             this.multiControlsVerticalLayout2.TabIndex = 0;
             // 
@@ -623,7 +623,7 @@
             // 
             this.xtraTabPage3.Controls.Add(this.multiControlsVerticalLayout3);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage3.Size = new System.Drawing.Size(772, 279);
             this.xtraTabPage3.Text = "均值运行图";
             // 
             // multiControlsVerticalLayout3
@@ -632,7 +632,7 @@
             this.multiControlsVerticalLayout3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.multiControlsVerticalLayout3.Location = new System.Drawing.Point(0, 0);
             this.multiControlsVerticalLayout3.Name = "multiControlsVerticalLayout3";
-            this.multiControlsVerticalLayout3.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout3.Size = new System.Drawing.Size(772, 279);
             this.multiControlsVerticalLayout3.SizeChangeStep = 10;
             this.multiControlsVerticalLayout3.TabIndex = 0;
             // 
@@ -640,7 +640,7 @@
             // 
             this.xtraTabPage4.Controls.Add(this.multiControlsVerticalLayout4);
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage4.Size = new System.Drawing.Size(772, 279);
             this.xtraTabPage4.Text = "正态校验";
             // 
             // multiControlsVerticalLayout4
@@ -649,7 +649,7 @@
             this.multiControlsVerticalLayout4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.multiControlsVerticalLayout4.Location = new System.Drawing.Point(0, 0);
             this.multiControlsVerticalLayout4.Name = "multiControlsVerticalLayout4";
-            this.multiControlsVerticalLayout4.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout4.Size = new System.Drawing.Size(772, 279);
             this.multiControlsVerticalLayout4.SizeChangeStep = 10;
             this.multiControlsVerticalLayout4.TabIndex = 0;
             // 
@@ -657,7 +657,7 @@
             // 
             this.xtraTabPage5.Controls.Add(this.multiControlsVerticalLayout5);
             this.xtraTabPage5.Name = "xtraTabPage5";
-            this.xtraTabPage5.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage5.Size = new System.Drawing.Size(772, 279);
             this.xtraTabPage5.Text = "频度分布";
             // 
             // multiControlsVerticalLayout5
@@ -666,7 +666,7 @@
             this.multiControlsVerticalLayout5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.multiControlsVerticalLayout5.Location = new System.Drawing.Point(0, 0);
             this.multiControlsVerticalLayout5.Name = "multiControlsVerticalLayout5";
-            this.multiControlsVerticalLayout5.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout5.Size = new System.Drawing.Size(772, 279);
             this.multiControlsVerticalLayout5.SizeChangeStep = 50;
             this.multiControlsVerticalLayout5.TabIndex = 0;
             // 
@@ -674,7 +674,7 @@
             // 
             this.xtraTabPage6.Controls.Add(this.multiControlsVerticalLayout6);
             this.xtraTabPage6.Name = "xtraTabPage6";
-            this.xtraTabPage6.Size = new System.Drawing.Size(768, 278);
+            this.xtraTabPage6.Size = new System.Drawing.Size(772, 279);
             this.xtraTabPage6.Text = "箱型图";
             // 
             // multiControlsVerticalLayout6
@@ -683,7 +683,7 @@
             this.multiControlsVerticalLayout6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.multiControlsVerticalLayout6.Location = new System.Drawing.Point(0, 0);
             this.multiControlsVerticalLayout6.Name = "multiControlsVerticalLayout6";
-            this.multiControlsVerticalLayout6.Size = new System.Drawing.Size(768, 278);
+            this.multiControlsVerticalLayout6.Size = new System.Drawing.Size(772, 279);
             this.multiControlsVerticalLayout6.SizeChangeStep = 50;
             this.multiControlsVerticalLayout6.TabIndex = 0;
             // 

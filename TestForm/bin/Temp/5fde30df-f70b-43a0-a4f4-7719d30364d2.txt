@@ -1,0 +1,8 @@
+
+Call:
+lm(formula = THK_PCNT_ON ~ THK_PCNT_OVER)
+
+Coefficients:
+  (Intercept)  THK_PCNT_OVER  
+       99.383         -1.020  
+

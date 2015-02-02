@@ -273,6 +273,7 @@
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.textEdit5);
+            this.MinimumSize = new System.Drawing.Size(396, 279);
             this.Name = "KMeansConfigControl";
             this.Size = new System.Drawing.Size(396, 279);
             ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();

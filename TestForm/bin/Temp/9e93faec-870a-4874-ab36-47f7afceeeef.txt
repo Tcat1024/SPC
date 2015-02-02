@@ -1,0 +1,10 @@
+
+Call:
+lm(formula = THK_PCNT_ON ~ THK_PCNT_OVER + THK_PCNT_UNDER + THK_STD +     WID_MEAN + WID_MAX + WID_MIN + WID_PCNT_ON)
+
+Coefficients:
+   (Intercept)   THK_PCNT_OVER  THK_PCNT_UNDER         THK_STD        WID_MEAN  
+     9.986e+01      -1.001e+00      -1.019e+00       1.028e-01      -3.035e-03  
+       WID_MAX         WID_MIN     WID_PCNT_ON  
+    -9.521e-05       3.183e-03      -1.916e-04  
+

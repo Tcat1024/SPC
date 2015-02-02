@@ -1,0 +1,75 @@
+
+Call:
+lm(formula = THK_MEAN ~ THK_MAX + THK_MIN + THK_PCNT_ON + THK_PCNT_OVER + 
+    THK_PCNT_UNDER + THK_STD + WID_MEAN + WID_MAX + WID_MIN + 
+    WID_PCNT_ON + WID_PCNT_OVER + WID_PCNT_UNDER + WID_STD + 
+    FDT_MEAN + FDT_MAX + FDT_MIN + FDT_PCNT_ON + FDT_PCNT_OVER + 
+    FDT_PCNT_UNDER + FDT_STD + CT_MEAN + CT_MAX + CT_MIN + CT_PCNT_ON + 
+    CT_PCNT_OVER + CT_PCNT_UNDER + CT_STD + PROF_MEAN + PROF_MAX + 
+    PROF_MIN + PROF_PCNT_ON + PROF_PCNT_OVER + PROF_PCNT_UNDER + 
+    PROF_STD + WDG_MEAN + WDG_MAX + WDG_MIN + WDG_PCNT_ON + WDG_PCNT_OVER + 
+    WDG_PCNT_UNDER + WDG_STD + COIL_LEN + FLAT_MEAN + FLAT_MAX + 
+    FLAT_MIN + FLAT_PCT_ON + FLAT_PCT_OVER + FLAT_PCT_UNDER)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-0.0909871 -0.0049029 -0.0007644  0.0035774  0.0720727 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      3.591e+00  3.843e+00   0.934  0.35066    
+THK_MAX          2.673e-01  2.384e-02  11.210  < 2e-16 ***
+THK_MIN          7.317e-01  2.391e-02  30.603  < 2e-16 ***
+THK_PCNT_ON     -1.244e-03  8.856e-03  -0.140  0.88835    
+THK_PCNT_OVER   -1.204e-03  8.855e-03  -0.136  0.89186    
+THK_PCNT_UNDER   3.721e-03  8.996e-03   0.414  0.67935    
+THK_STD          8.003e-02  1.481e-01   0.540  0.58933    
+WID_MEAN        -8.534e-04  3.864e-04  -2.209  0.02771 *  
+WID_MAX          1.256e-04  2.567e-04   0.489  0.62483    
+WID_MIN          7.329e-04  4.264e-04   1.719  0.08635 .  
+WID_PCNT_ON     -1.332e-02  1.467e-02  -0.908  0.36452    
+WID_PCNT_OVER   -1.332e-02  1.468e-02  -0.907  0.36467    
+WID_PCNT_UNDER  -1.326e-02  1.492e-02  -0.889  0.37462    
+WID_STD          7.106e-04  2.036e-03   0.349  0.72719    
+FDT_MEAN        -2.566e-04  1.953e-04  -1.314  0.18963    
+FDT_MAX         -9.023e-05  1.551e-04  -0.582  0.56101    
+FDT_MIN          3.416e-04  1.778e-04   1.922  0.05526 .  
+FDT_PCNT_ON     -1.331e-02  1.243e-02  -1.071  0.28492    
+FDT_PCNT_OVER   -1.325e-02  1.244e-02  -1.065  0.28724    
+FDT_PCNT_UNDER  -1.328e-02  1.244e-02  -1.067  0.28646    
+FDT_STD          1.133e-04  5.595e-04   0.203  0.83957    
+CT_MEAN         -4.894e-05  1.021e-04  -0.479  0.63206    
+CT_MAX           9.726e-06  1.084e-04   0.090  0.92853    
+CT_MIN           1.453e-05  3.466e-05   0.419  0.67521    
+CT_PCNT_ON      -5.816e-03  1.054e-02  -0.552  0.58150    
+CT_PCNT_OVER    -5.890e-03  1.055e-02  -0.558  0.57696    
+CT_PCNT_UNDER   -5.904e-03  1.055e-02  -0.560  0.57593    
+CT_STD           1.244e-04  3.135e-04   0.397  0.69174    
+PROF_MEAN        3.407e-02  9.038e-02   0.377  0.70641    
+PROF_MAX        -1.298e-01  6.716e-02  -1.933  0.05384 .  
+PROF_MIN         3.856e-02  6.881e-02   0.560  0.57546    
+PROF_PCNT_ON    -8.845e-03  1.306e-02  -0.677  0.49872    
+PROF_PCNT_OVER  -8.692e-03  1.308e-02  -0.665  0.50661    
+PROF_PCNT_UNDER -8.828e-03  1.307e-02  -0.675  0.49982    
+PROF_STD         1.001e+00  3.779e-01   2.649  0.00837 ** 
+WDG_MEAN        -3.509e-02  4.469e-02  -0.785  0.43274    
+WDG_MAX          8.608e-02  4.062e-02   2.119  0.03461 *  
+WDG_MIN         -6.897e-02  3.700e-02  -1.864  0.06294 .  
+WDG_PCNT_ON      1.903e-02  1.173e-02   1.622  0.10554    
+WDG_PCNT_OVER    1.900e-02  1.174e-02   1.618  0.10636    
+WDG_PCNT_UNDER   1.910e-02  1.174e-02   1.626  0.10455    
+WDG_STD         -4.350e-01  2.273e-01  -1.914  0.05624 .  
+COIL_LEN        -1.338e-06  6.712e-06  -0.199  0.84208    
+FLAT_MEAN        1.983e-04  1.926e-04   1.030  0.30377    
+FLAT_MAX        -1.839e-06  3.849e-05  -0.048  0.96192    
+FLAT_MIN        -5.033e-05  4.272e-05  -1.178  0.23932    
+FLAT_PCT_ON     -1.200e-02  2.512e-02  -0.478  0.63307    
+FLAT_PCT_OVER   -1.235e-02  2.509e-02  -0.492  0.62271    
+FLAT_PCT_UNDER  -1.234e-02  2.524e-02  -0.489  0.62526    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.01032 on 450 degrees of freedom
+Multiple R-squared:     1,	Adjusted R-squared:     1 
+F-statistic: 1.209e+06 on 48 and 450 DF,  p-value: < 2.2e-16 
+

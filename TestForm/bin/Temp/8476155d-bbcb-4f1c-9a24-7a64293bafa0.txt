@@ -1,0 +1,75 @@
+
+Call:
+lm(formula = THK_PCNT_ON ~ THK_MEAN + THK_MAX + THK_MIN + THK_PCNT_OVER + 
+    THK_PCNT_UNDER + THK_STD + WID_MEAN + WID_MAX + WID_MIN + 
+    WID_PCNT_ON + WID_PCNT_OVER + WID_PCNT_UNDER + WID_STD + 
+    FDT_MEAN + FDT_MAX + FDT_MIN + FDT_PCNT_ON + FDT_PCNT_OVER + 
+    FDT_PCNT_UNDER + FDT_STD + CT_MEAN + CT_MAX + CT_MIN + CT_PCNT_ON + 
+    CT_PCNT_OVER + CT_PCNT_UNDER + CT_STD + PROF_MEAN + PROF_MAX + 
+    PROF_MIN + PROF_PCNT_ON + PROF_PCNT_OVER + PROF_PCNT_UNDER + 
+    PROF_STD + WDG_MEAN + WDG_MAX + WDG_MIN + WDG_PCNT_ON + WDG_PCNT_OVER + 
+    WDG_PCNT_UNDER + WDG_STD + COIL_LEN + FLAT_MEAN + FLAT_MAX + 
+    FLAT_MIN + FLAT_PCT_ON + FLAT_PCT_OVER + FLAT_PCT_UNDER)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.132615 -0.032124  0.006272  0.037545  0.134693 
+
+Coefficients:
+                  Estimate Std. Error   t value Pr(>|t|)    
+(Intercept)      8.675e+01  2.006e+01     4.324 1.89e-05 ***
+THK_MEAN        -3.524e-02  2.509e-01    -0.140 0.888353    
+THK_MAX         -5.702e-01  1.410e-01    -4.044 6.18e-05 ***
+THK_MIN          6.096e-01  2.215e-01     2.752 0.006172 ** 
+THK_PCNT_OVER   -9.996e-01  8.496e-04 -1176.579  < 2e-16 ***
+THK_PCNT_UNDER  -1.013e+00  3.426e-03  -295.757  < 2e-16 ***
+THK_STD         -1.992e-02  7.888e-01    -0.025 0.979865    
+WID_MEAN        -2.916e-03  2.063e-03    -1.413 0.158247    
+WID_MAX          3.418e-04  1.366e-03     0.250 0.802584    
+WID_MIN          2.571e-03  2.274e-03     1.131 0.258841    
+WID_PCNT_ON      1.136e-01  7.799e-02     1.456 0.146046    
+WID_PCNT_OVER    1.137e-01  7.801e-02     1.457 0.145761    
+WID_PCNT_UNDER   1.245e-01  7.927e-02     1.571 0.116942    
+WID_STD          1.109e-02  1.082e-02     1.024 0.306247    
+FDT_MEAN        -2.259e-04  1.042e-03    -0.217 0.828411    
+FDT_MAX          1.672e-04  8.258e-04     0.202 0.839664    
+FDT_MIN          1.804e-04  9.500e-04     0.190 0.849448    
+FDT_PCNT_ON      4.628e-02  6.621e-02     0.699 0.484897    
+FDT_PCNT_OVER    4.694e-02  6.625e-02     0.709 0.478980    
+FDT_PCNT_UNDER   4.752e-02  6.626e-02     0.717 0.473632    
+FDT_STD         -1.872e-03  2.977e-03    -0.629 0.529870    
+CT_MEAN          1.856e-03  5.367e-04     3.458 0.000596 ***
+CT_MAX          -1.856e-03  5.701e-04    -3.255 0.001220 ** 
+CT_MIN          -7.137e-05  1.845e-04    -0.387 0.699012    
+CT_PCNT_ON      -1.972e-02  5.613e-02    -0.351 0.725494    
+CT_PCNT_OVER    -1.919e-02  5.617e-02    -0.342 0.732772    
+CT_PCNT_UNDER   -2.043e-02  5.616e-02    -0.364 0.716220    
+CT_STD           3.461e-03  1.661e-03     2.084 0.037753 *  
+PROF_MEAN       -6.295e-02  4.811e-01    -0.131 0.895958    
+PROF_MAX        -7.514e-02  3.589e-01    -0.209 0.834265    
+PROF_MIN        -7.966e-02  3.664e-01    -0.217 0.827964    
+PROF_PCNT_ON    -5.885e-02  6.952e-02    -0.847 0.397719    
+PROF_PCNT_OVER  -5.833e-02  6.959e-02    -0.838 0.402338    
+PROF_PCNT_UNDER -5.914e-02  6.956e-02    -0.850 0.395667    
+PROF_STD         6.057e-01  2.027e+00     0.299 0.765201    
+WDG_MEAN         2.868e-01  2.376e-01     1.207 0.228061    
+WDG_MAX          1.276e-01  2.172e-01     0.588 0.557043    
+WDG_MIN         -6.331e-02  1.977e-01    -0.320 0.748873    
+WDG_PCNT_ON      2.248e-02  6.263e-02     0.359 0.719878    
+WDG_PCNT_OVER    2.202e-02  6.268e-02     0.351 0.725534    
+WDG_PCNT_UNDER   2.257e-02  6.267e-02     0.360 0.718927    
+WDG_STD         -9.003e-01  1.214e+00    -0.742 0.458668    
+COIL_LEN        -3.415e-05  3.569e-05    -0.957 0.339113    
+FLAT_MEAN       -7.865e-04  1.026e-03    -0.767 0.443591    
+FLAT_MAX         8.030e-05  2.048e-04     0.392 0.695214    
+FLAT_MIN        -1.403e-04  2.276e-04    -0.616 0.537924    
+FLAT_PCT_ON      2.790e-02  1.337e-01     0.209 0.834814    
+FLAT_PCT_OVER    2.856e-02  1.336e-01     0.214 0.830788    
+FLAT_PCT_UNDER   2.587e-02  1.344e-01     0.193 0.847389    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+
+Residual standard error: 0.05494 on 450 degrees of freedom
+Multiple R-squared: 0.9999,	Adjusted R-squared: 0.9999 
+F-statistic: 9.22e+04 on 48 and 450 DF,  p-value: < 2.2e-16 
+

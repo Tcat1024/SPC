@@ -51,18 +51,18 @@ namespace SPC.Controls.ResultControls
         {
             if (!this.ContainsFocus)
                 return;
-            var point = PointToClient(MousePosition);
+            var point = this.ChildPanelControl.PointToClient(MousePosition);
             switch (this.resizeMode)
             {
                 case ResizeMode.N:
                     int i = 0;
                     var cur = Cursors.Arrow;
-                    if (Math.Abs(point.X - (this.ChildPanelControl.Location.X + this.ChildPanelControl.Width)) < 5)
+                    if (Math.Abs(point.X - this.ChildPanelControl.Width) < 5 && point.Y < this.ChildPanelControl.Height+5&&point.Y>0)
                     {
                         cur = Cursors.SizeWE;
                         i++;
                     }
-                    if (Math.Abs(point.Y - (this.ChildPanelControl.Location.Y + this.ChildPanelControl.Height)) < 5)
+                    if (Math.Abs(point.Y - this.ChildPanelControl.Height) < 5&&point.X<this.ChildPanelControl.Width+5&&point.X>0)
                     {
                         cur = Cursors.SizeNS;
                         i++;
@@ -72,17 +72,17 @@ namespace SPC.Controls.ResultControls
                     this.Cursor = cur;
                     break;
                 case ResizeMode.H:
-                    int newWidth = point.X - this.ChildPanelControl.Location.X;
+                    int newWidth = point.X;
                     this.ChildPanelControl.Width = newWidth > 10 ? newWidth : 10;
                     break;
                 case ResizeMode.V:
-                    int newHeight = point.Y - this.ChildPanelControl.Location.Y;
+                    int newHeight = point.Y;
                     this.ChildPanelControl.Height = newHeight > 10 ? newHeight : 10;
                     break;
                 case ResizeMode.B:
-                    newWidth = point.X - this.ChildPanelControl.Location.X;
+                    newWidth = point.X;
                     this.ChildPanelControl.Width = newWidth > 10 ? newWidth : 10;
-                    newHeight = point.Y - this.ChildPanelControl.Location.Y;
+                    newHeight = point.Y;
                     this.ChildPanelControl.Height = newHeight > 10 ? newHeight : 10;
                     break;
             }

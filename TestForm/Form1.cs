@@ -149,5 +149,62 @@ configform.Controls.Add(con);
                 resultform.Show();
             }
         }
+
+        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var data = new SPC.Base.Interface.ChoosedData(this.Data, (this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).GetChoosedRowIndexs());
+            var columns = data.GetColumnsList(false, typeof(DateTime));
+            Form configform = new Form();
+            var con = new SPC.Controls.ConfigControls.RpartConfigControl() { Dock = DockStyle.Fill };
+            configform.Controls.Add(con);
+            con.OKEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.OK; };
+            con.CancelEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.Cancel; };
+            con.Init(columns);
+            if (configform.ShowDialog() == DialogResult.OK)
+            {
+                Form resultform = new Form();
+                var res = new SPC.Controls.ResultControls.RpartResultControl() { Dock = DockStyle.Fill };
+                resultform.Controls.Add(res);
+                var result = SPC.Rnet.Methods.Rpart(data,con.PicWidth,con.PicHeight, con.TargetColumn, con.Columns,con.Method,con.CP);
+                res.Init(result.Item1,result.Item2,result.Item3);
+                resultform.Show();
+            }
+        }
+
+        private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var data = new SPC.Base.Interface.ChoosedData(this.Data, (this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).GetChoosedRowIndexs());
+            var columns = data.GetColumnsList(false, typeof(DateTime),typeof(bool),typeof(string));
+            Form configform = new Form();
+            var con = new SPC.Controls.ConfigControls.LmregressConfigControl() { Dock = DockStyle.Fill };
+            configform.Controls.Add(con);
+            con.OKEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.OK; };
+            con.CancelEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.Cancel; };
+            con.Init(columns);
+            if (configform.ShowDialog() == DialogResult.OK)
+            {
+                Form resultform = new Form();
+                var res = new SPC.Controls.ResultControls.LmregressResultControl() { Dock = DockStyle.Fill };
+                resultform.Controls.Add(res);
+                var result = SPC.Rnet.Methods.LmGress(data, con.PicWidth, con.PicHeight, con.TargetColumn, con.Columns);
+                res.Init(result.Item1, result.Item2, result.Item3,con.Columns);
+                resultform.Show();
+            }
+        }
+
+        private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            var data = new SPC.Base.Interface.ChoosedData(this.Data, (this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).GetChoosedRowIndexs());
+            Form configform = new Form();
+            var con = new SPC.Controls.ConfigControls.EngineConfigControl() { Dock = DockStyle.Fill };
+            configform.Controls.Add(con);
+            con.OKEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.OK; };
+            con.CancelEvent += (ss, ee) => { configform.DialogResult = System.Windows.Forms.DialogResult.Cancel; };
+            con.Init(data);
+            if (configform.ShowDialog() == DialogResult.OK)
+            {
+                con.doMethod();
+            }
+        }
     }
 }

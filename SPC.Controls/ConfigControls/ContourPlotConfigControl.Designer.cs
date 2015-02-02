@@ -211,6 +211,7 @@
             // 
             // checkEdit1
             // 
+            this.checkEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkEdit1.EditValue = true;
             this.checkEdit1.Location = new System.Drawing.Point(98, 182);
             this.checkEdit1.Name = "checkEdit1";
@@ -265,6 +266,8 @@
             // 
             // textEdit3
             // 
+            this.textEdit3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textEdit3.EditValue = "0";
             this.textEdit3.Location = new System.Drawing.Point(85, 98);
             this.textEdit3.MenuManager = this.barManager1;

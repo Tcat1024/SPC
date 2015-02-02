@@ -18,7 +18,7 @@ namespace SPC.Rnet
             {
                 con.Init("R");
                 con.EvaluateNoReturn("setwd(\"" + path.Replace("\\", "/") + "/\")");
-                con.EvaluateNoReturn("png(file=\"" + name + "\", bg=\"transparent\",width=" + width + ",height=" + height + ")");
+                con.EvaluateNoReturn("png(file=\"" + name + ".png\", bg=\"transparent\",width=" + width + ",height=" + height + ")");
                 con.EvaluateNoReturn("library(akima)");
                 con.SetSymbol("x", x);
                 con.SetSymbol("y", y);
@@ -47,7 +47,7 @@ namespace SPC.Rnet
                 {
                     con.EvaluateNoReturn("filled.contour(r$x,r$y,zz,zlim=zl,levels=lvs,color.palette=heat.colors,col=heat.colors(leg)[leg:1])");
                 }
-                con.EvaluateNoReturn("dev.off()");
+                con.EvaluateNoReturn("dev.off()");           
             }
             catch
             {  

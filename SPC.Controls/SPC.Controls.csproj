@@ -96,6 +96,24 @@
     <Compile Include="Base\WaitPanel.Designer.cs">
       <DependentUpon>WaitPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigControls\EngineConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigControls\EngineConfigControl.Designer.cs">
+      <DependentUpon>EngineConfigControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigControls\LmregressConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigControls\LmregressConfigControl.Designer.cs">
+      <DependentUpon>LmregressConfigControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigControls\RpartConfigControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConfigControls\RpartConfigControl.Designer.cs">
+      <DependentUpon>RpartConfigControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConfigControls\CCTConfigControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,6 +169,18 @@
     <Compile Include="ResultControls\CCTResultControl.Designer.cs">
       <DependentUpon>CCTResultControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResultControls\LmregressResultControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResultControls\LmregressResultControl.Designer.cs">
+      <DependentUpon>LmregressResultControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResultControls\RpartResultControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ResultControls\RpartResultControl.Designer.cs">
+      <DependentUpon>RpartResultControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ResultControls\ContourPlotResultControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -182,6 +212,15 @@
     <EmbeddedResource Include="Base\WaitPanel.resx">
       <DependentUpon>WaitPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConfigControls\EngineConfigControl.resx">
+      <DependentUpon>EngineConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigControls\LmregressConfigControl.resx">
+      <DependentUpon>LmregressConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigControls\RpartConfigControl.resx">
+      <DependentUpon>RpartConfigControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConfigControls\CCTConfigControl.resx">
       <DependentUpon>CCTConfigControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -209,6 +248,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResultControls\CCTResultControl.resx">
       <DependentUpon>CCTResultControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultControls\LmregressResultControl.resx">
+      <DependentUpon>LmregressResultControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultControls\RpartResultControl.resx">
+      <DependentUpon>RpartResultControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ResultControls\ContourPlotResultControl.resx">
       <DependentUpon>ContourPlotResultControl.cs</DependentUpon>

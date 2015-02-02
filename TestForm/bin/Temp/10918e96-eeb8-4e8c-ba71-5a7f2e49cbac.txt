@@ -1,0 +1,8 @@
+
+Call:
+lm(formula = THK_PCNT_ON ~ WID_PCNT_ON)
+
+Coefficients:
+(Intercept)  WID_PCNT_ON  
+  98.426889    -0.001964  
+

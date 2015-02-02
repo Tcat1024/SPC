@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraCharts.XYDiagram xyDiagram22 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.SecondaryAxisY secondaryAxisY22 = new DevExpress.XtraCharts.SecondaryAxisY();
-            DevExpress.XtraCharts.Series series64 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel22 = new DevExpress.XtraCharts.PointSeriesLabel();
-            DevExpress.XtraCharts.PointOptions pointOptions22 = new DevExpress.XtraCharts.PointOptions();
-            DevExpress.XtraCharts.StepAreaSeriesView stepAreaSeriesView43 = new DevExpress.XtraCharts.StepAreaSeriesView();
-            DevExpress.XtraCharts.Series series65 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SplineSeriesView splineSeriesView43 = new DevExpress.XtraCharts.SplineSeriesView();
-            DevExpress.XtraCharts.Series series66 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SplineSeriesView splineSeriesView44 = new DevExpress.XtraCharts.SplineSeriesView();
-            DevExpress.XtraCharts.StepAreaSeriesView stepAreaSeriesView44 = new DevExpress.XtraCharts.StepAreaSeriesView();
+            DevExpress.XtraCharts.XYDiagram xyDiagram6 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.SecondaryAxisY secondaryAxisY6 = new DevExpress.XtraCharts.SecondaryAxisY();
+            DevExpress.XtraCharts.Series series16 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PointSeriesLabel pointSeriesLabel6 = new DevExpress.XtraCharts.PointSeriesLabel();
+            DevExpress.XtraCharts.PointOptions pointOptions6 = new DevExpress.XtraCharts.PointOptions();
+            DevExpress.XtraCharts.StepAreaSeriesView stepAreaSeriesView11 = new DevExpress.XtraCharts.StepAreaSeriesView();
+            DevExpress.XtraCharts.Series series17 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SplineSeriesView splineSeriesView11 = new DevExpress.XtraCharts.SplineSeriesView();
+            DevExpress.XtraCharts.Series series18 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SplineSeriesView splineSeriesView12 = new DevExpress.XtraCharts.SplineSeriesView();
+            DevExpress.XtraCharts.StepAreaSeriesView stepAreaSeriesView12 = new DevExpress.XtraCharts.StepAreaSeriesView();
             this.chartControl1 = new SPC.Controls.Base.AdvChartControl();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -51,16 +51,16 @@
             this.barEditItem2 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series64)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel22)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(stepAreaSeriesView43)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series65)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView43)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series66)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView44)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(stepAreaSeriesView44)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(stepAreaSeriesView11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(splineSeriesView11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(splineSeriesView12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(stepAreaSeriesView12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -70,66 +70,66 @@
             // chartControl1
             // 
             this.chartControl1.CrosshairOptions.HighlightPoints = false;
-            xyDiagram22.AxisX.Tickmarks.MinorVisible = false;
-            xyDiagram22.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram22.AxisX.WholeRange.AutoSideMargins = false;
-            xyDiagram22.AxisX.WholeRange.SideMarginsValue = 0D;
-            xyDiagram22.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram22.EnableAxisXScrolling = true;
-            xyDiagram22.ScrollingOptions.UseKeyboard = false;
-            xyDiagram22.ScrollingOptions.UseMouse = false;
-            xyDiagram22.ScrollingOptions.UseTouchDevice = false;
-            secondaryAxisY22.AxisID = 0;
-            secondaryAxisY22.Name = "Secondary AxisY 1";
-            secondaryAxisY22.VisibleInPanesSerializable = "-1";
-            secondaryAxisY22.VisualRange.Auto = false;
-            secondaryAxisY22.VisualRange.AutoSideMargins = false;
-            secondaryAxisY22.VisualRange.MaxValueSerializable = "100";
-            secondaryAxisY22.VisualRange.MinValueSerializable = "0";
-            secondaryAxisY22.VisualRange.SideMarginsValue = 0D;
-            secondaryAxisY22.WholeRange.Auto = false;
-            secondaryAxisY22.WholeRange.AutoSideMargins = false;
-            secondaryAxisY22.WholeRange.MaxValueSerializable = "100";
-            secondaryAxisY22.WholeRange.MinValueSerializable = "0";
-            secondaryAxisY22.WholeRange.SideMarginsValue = 0D;
-            xyDiagram22.SecondaryAxesY.AddRange(new DevExpress.XtraCharts.SecondaryAxisY[] {
-            secondaryAxisY22});
-            xyDiagram22.ZoomingOptions.UseMouseWheel = false;
-            this.chartControl1.Diagram = xyDiagram22;
+            xyDiagram6.AxisX.Tickmarks.MinorVisible = false;
+            xyDiagram6.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram6.AxisX.WholeRange.AutoSideMargins = false;
+            xyDiagram6.AxisX.WholeRange.SideMarginsValue = 0D;
+            xyDiagram6.AxisY.VisibleInPanesSerializable = "-1";
+            xyDiagram6.EnableAxisXScrolling = true;
+            xyDiagram6.ScrollingOptions.UseKeyboard = false;
+            xyDiagram6.ScrollingOptions.UseMouse = false;
+            xyDiagram6.ScrollingOptions.UseTouchDevice = false;
+            secondaryAxisY6.AxisID = 0;
+            secondaryAxisY6.Name = "Secondary AxisY 1";
+            secondaryAxisY6.VisibleInPanesSerializable = "-1";
+            secondaryAxisY6.VisualRange.Auto = false;
+            secondaryAxisY6.VisualRange.AutoSideMargins = false;
+            secondaryAxisY6.VisualRange.MaxValueSerializable = "100";
+            secondaryAxisY6.VisualRange.MinValueSerializable = "0";
+            secondaryAxisY6.VisualRange.SideMarginsValue = 0D;
+            secondaryAxisY6.WholeRange.Auto = false;
+            secondaryAxisY6.WholeRange.AutoSideMargins = false;
+            secondaryAxisY6.WholeRange.MaxValueSerializable = "100";
+            secondaryAxisY6.WholeRange.MinValueSerializable = "0";
+            secondaryAxisY6.WholeRange.SideMarginsValue = 0D;
+            xyDiagram6.SecondaryAxesY.AddRange(new DevExpress.XtraCharts.SecondaryAxisY[] {
+            secondaryAxisY6});
+            xyDiagram6.ZoomingOptions.UseMouseWheel = false;
+            this.chartControl1.Diagram = xyDiagram6;
             this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartControl1.Legend.Visible = false;
-            this.chartControl1.Location = new System.Drawing.Point(0, 0);
+            this.chartControl1.Location = new System.Drawing.Point(4, 2);
             this.chartControl1.Name = "chartControl1";
             this.chartControl1.RuntimeHitTesting = true;
-            series64.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
-            pointSeriesLabel22.Angle = 42;
-            pointSeriesLabel22.Antialiasing = true;
-            pointOptions22.ArgumentNumericOptions.Format = DevExpress.XtraCharts.NumericFormat.Number;
-            pointOptions22.PointView = DevExpress.XtraCharts.PointView.Argument;
-            pointSeriesLabel22.PointOptions = pointOptions22;
-            pointSeriesLabel22.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.JustifyAroundPoint;
-            pointSeriesLabel22.TextOrientation = DevExpress.XtraCharts.TextOrientation.TopToBottom;
-            series64.Label = pointSeriesLabel22;
-            series64.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
-            series64.Name = "Series 1";
-            stepAreaSeriesView43.Transparency = ((byte)(0));
-            series64.View = stepAreaSeriesView43;
-            series65.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
-            series65.Name = "Series 2";
-            splineSeriesView43.AxisYName = "Secondary AxisY 1";
-            series65.View = splineSeriesView43;
-            series66.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
-            series66.Name = "Series 3";
-            splineSeriesView44.AxisYName = "Secondary AxisY 1";
-            series66.View = splineSeriesView44;
+            series16.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
+            pointSeriesLabel6.Angle = 42;
+            pointSeriesLabel6.Antialiasing = true;
+            pointOptions6.ArgumentNumericOptions.Format = DevExpress.XtraCharts.NumericFormat.Number;
+            pointOptions6.PointView = DevExpress.XtraCharts.PointView.Argument;
+            pointSeriesLabel6.PointOptions = pointOptions6;
+            pointSeriesLabel6.ResolveOverlappingMode = DevExpress.XtraCharts.ResolveOverlappingMode.JustifyAroundPoint;
+            pointSeriesLabel6.TextOrientation = DevExpress.XtraCharts.TextOrientation.TopToBottom;
+            series16.Label = pointSeriesLabel6;
+            series16.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
+            series16.Name = "Series 1";
+            stepAreaSeriesView11.Transparency = ((byte)(0));
+            series16.View = stepAreaSeriesView11;
+            series17.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
+            series17.Name = "Series 2";
+            splineSeriesView11.AxisYName = "Secondary AxisY 1";
+            series17.View = splineSeriesView11;
+            series18.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
+            series18.Name = "Series 3";
+            splineSeriesView12.AxisYName = "Secondary AxisY 1";
+            series18.View = splineSeriesView12;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series64,
-        series65,
-        series66};
-            stepAreaSeriesView44.MarkerOptions.Size = 8;
-            this.chartControl1.SeriesTemplate.View = stepAreaSeriesView44;
+        series16,
+        series17,
+        series18};
+            stepAreaSeriesView12.MarkerOptions.Size = 8;
+            this.chartControl1.SeriesTemplate.View = stepAreaSeriesView12;
             this.chartControl1.SideBySideEqualBarWidth = false;
-            this.chartControl1.Size = new System.Drawing.Size(724, 377);
+            this.chartControl1.Size = new System.Drawing.Size(718, 373);
             this.chartControl1.TabIndex = 0;
             this.chartControl1.CustomShowRightClickPopupMenu += new System.EventHandler<SPC.Controls.Base.AdvChartControl.ShowRightClickPopupMenuEventArgs>(this.chartControl1_CustomShowRightClickPopupMenu);
             // 
@@ -157,29 +157,29 @@
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(724, 0);
+            this.barDockControlTop.Location = new System.Drawing.Point(4, 2);
+            this.barDockControlTop.Size = new System.Drawing.Size(718, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 377);
-            this.barDockControlBottom.Size = new System.Drawing.Size(724, 0);
+            this.barDockControlBottom.Location = new System.Drawing.Point(4, 375);
+            this.barDockControlBottom.Size = new System.Drawing.Size(718, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 377);
+            this.barDockControlLeft.Location = new System.Drawing.Point(4, 2);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 373);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(724, 0);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 377);
+            this.barDockControlRight.Location = new System.Drawing.Point(722, 2);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 373);
             // 
             // barManager1
             // 
@@ -214,6 +214,8 @@
             // 
             // SpectralDistributionDrawBoard
             // 
+            this.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chartControl1);
@@ -223,16 +225,16 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "SpectralDistributionDrawBoard";
             this.Size = new System.Drawing.Size(724, 377);
-            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel22)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(stepAreaSeriesView43)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series64)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView43)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series65)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(splineSeriesView44)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series66)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(stepAreaSeriesView44)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(secondaryAxisY6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesLabel6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(stepAreaSeriesView11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(splineSeriesView11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(splineSeriesView12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(stepAreaSeriesView12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();

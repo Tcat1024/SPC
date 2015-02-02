@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraCharts.XYDiagram xyDiagram20 = new DevExpress.XtraCharts.XYDiagram();
-            DevExpress.XtraCharts.Series series20 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.PointSeriesView pointSeriesView20 = new DevExpress.XtraCharts.PointSeriesView();
-            DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView20 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
+            DevExpress.XtraCharts.XYDiagram xyDiagram6 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.Series series6 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.PointSeriesView pointSeriesView6 = new DevExpress.XtraCharts.PointSeriesView();
+            DevExpress.XtraCharts.SwiftPlotSeriesView swiftPlotSeriesView6 = new DevExpress.XtraCharts.SwiftPlotSeriesView();
             this.chartControl1 = new SPC.Controls.Base.AdvChartControl();
             this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
             this.repositoryItemToggleSwitch1 = new DevExpress.XtraEditors.Repository.RepositoryItemToggleSwitch();
@@ -41,10 +41,10 @@
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesView20)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView20)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             this.SuspendLayout();
@@ -53,28 +53,28 @@
             // 
             this.chartControl1.CrosshairOptions.HighlightPoints = false;
             this.chartControl1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            xyDiagram20.AxisX.VisibleInPanesSerializable = "-1";
-            xyDiagram20.AxisY.VisibleInPanesSerializable = "-1";
-            xyDiagram20.AxisY.WholeRange.AlwaysShowZeroLevel = false;
-            xyDiagram20.EnableAxisXScrolling = true;
-            xyDiagram20.ScrollingOptions.UseKeyboard = false;
-            xyDiagram20.ScrollingOptions.UseMouse = false;
-            xyDiagram20.ScrollingOptions.UseTouchDevice = false;
-            xyDiagram20.ZoomingOptions.UseMouseWheel = false;
-            this.chartControl1.Diagram = xyDiagram20;
+            xyDiagram6.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram6.AxisY.VisibleInPanesSerializable = "-1";
+            xyDiagram6.AxisY.WholeRange.AlwaysShowZeroLevel = false;
+            xyDiagram6.EnableAxisXScrolling = true;
+            xyDiagram6.ScrollingOptions.UseKeyboard = false;
+            xyDiagram6.ScrollingOptions.UseMouse = false;
+            xyDiagram6.ScrollingOptions.UseTouchDevice = false;
+            xyDiagram6.ZoomingOptions.UseMouseWheel = false;
+            this.chartControl1.Diagram = xyDiagram6;
             this.chartControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chartControl1.Legend.Visible = false;
-            this.chartControl1.Location = new System.Drawing.Point(0, 0);
+            this.chartControl1.Location = new System.Drawing.Point(4, 2);
             this.chartControl1.Name = "chartControl1";
             this.chartControl1.RuntimeHitTesting = true;
-            series20.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
-            series20.Name = "Series 1";
-            pointSeriesView20.PointMarkerOptions.Size = 4;
-            series20.View = pointSeriesView20;
+            series6.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            series6.Name = "Series 1";
+            pointSeriesView6.PointMarkerOptions.Size = 4;
+            series6.View = pointSeriesView6;
             this.chartControl1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series20};
-            this.chartControl1.SeriesTemplate.View = swiftPlotSeriesView20;
-            this.chartControl1.Size = new System.Drawing.Size(696, 342);
+        series6};
+            this.chartControl1.SeriesTemplate.View = swiftPlotSeriesView6;
+            this.chartControl1.Size = new System.Drawing.Size(690, 338);
             this.chartControl1.TabIndex = 0;
             this.chartControl1.CustomShowRightClickPopupMenu += new System.EventHandler<SPC.Controls.Base.AdvChartControl.ShowRightClickPopupMenuEventArgs>(this.chartControl1_CustomShowRightClickPopupMenu);
             // 
@@ -111,32 +111,34 @@
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(696, 0);
+            this.barDockControlTop.Location = new System.Drawing.Point(4, 2);
+            this.barDockControlTop.Size = new System.Drawing.Size(690, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 342);
-            this.barDockControlBottom.Size = new System.Drawing.Size(696, 0);
+            this.barDockControlBottom.Location = new System.Drawing.Point(4, 340);
+            this.barDockControlBottom.Size = new System.Drawing.Size(690, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 342);
+            this.barDockControlLeft.Location = new System.Drawing.Point(4, 2);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 338);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(696, 0);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 342);
+            this.barDockControlRight.Location = new System.Drawing.Point(694, 2);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 338);
             // 
             // SampleDataRunDrawBoard
             // 
+            this.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.chartControl1);
@@ -146,10 +148,10 @@
             this.Controls.Add(this.barDockControlTop);
             this.Name = "SampleDataRunDrawBoard";
             this.Size = new System.Drawing.Size(696, 342);
-            ((System.ComponentModel.ISupportInitialize)(xyDiagram20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pointSeriesView20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series20)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView20)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(xyDiagram6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pointSeriesView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(swiftPlotSeriesView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemToggleSwitch1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();

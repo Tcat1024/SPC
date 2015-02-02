@@ -21,10 +21,27 @@ namespace SPC.Controls.ConfigControls
         }
         public void Init(string[] columns)
         {
+            bool same = false;
+            int length;
+            if (this.sourceColumns != null && (length = columns.Length) == this.sourceColumns.Length)
+            {
+                same = true;
+                for(int i=0;i<length;i++)
+                {
+                    if(this.sourceColumns[i]!=columns[i])
+                    {
+                        same = false;
+                        break;
+                    }
+                }
+            }
             this.sourceColumns = columns;
-            this.checkedListBoxControl1.DataSource = sourceColumns;
-            this.comboBoxEdit1.Properties.Items.Clear();
-            this.comboBoxEdit1.Properties.Items.AddRange(sourceColumns);
+            if (!same)
+            {
+                this.checkedListBoxControl1.DataSource = sourceColumns;
+                this.comboBoxEdit1.Properties.Items.Clear();
+                this.comboBoxEdit1.Properties.Items.AddRange(sourceColumns);
+            }
         }
         public override event EventHandler OKEvent;
         public override event EventHandler CancelEvent;

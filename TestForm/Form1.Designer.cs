@@ -36,6 +36,9 @@
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem5 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -47,8 +50,7 @@
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.determineControl1 = new SPC.Monitor.DetermineControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
-            this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -65,7 +67,7 @@
             this.cpKtoolControl1.Location = new System.Drawing.Point(0, 0);
             this.cpKtoolControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cpKtoolControl1.Name = "cpKtoolControl1";
-            this.cpKtoolControl1.Size = new System.Drawing.Size(1261, 621);
+            this.cpKtoolControl1.Size = new System.Drawing.Size(1257, 622);
             this.cpKtoolControl1.TabIndex = 0;
             // 
             // barManager1
@@ -83,9 +85,12 @@
             this.barButtonItem4,
             this.barButtonItem3,
             this.barButtonItem5,
-            this.barButtonItem6});
+            this.barButtonItem6,
+            this.barButtonItem7,
+            this.barButtonItem8,
+            this.barButtonItem9});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 8;
+            this.barManager1.MaxItemId = 11;
             // 
             // bar2
             // 
@@ -99,7 +104,10 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem6)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem6),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem7),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -139,12 +147,33 @@
             this.barButtonItem5.Name = "barButtonItem5";
             this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
             // 
+            // barButtonItem6
+            // 
+            this.barButtonItem6.Caption = "测试计算";
+            this.barButtonItem6.Id = 7;
+            this.barButtonItem6.Name = "barButtonItem6";
+            this.barButtonItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem6_ItemClick);
+            // 
+            // barButtonItem7
+            // 
+            this.barButtonItem7.Caption = "测试分类";
+            this.barButtonItem7.Id = 8;
+            this.barButtonItem7.Name = "barButtonItem7";
+            this.barButtonItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem7_ItemClick);
+            // 
+            // barButtonItem8
+            // 
+            this.barButtonItem8.Caption = "测试回归";
+            this.barButtonItem8.Id = 9;
+            this.barButtonItem8.Name = "barButtonItem8";
+            this.barButtonItem8.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem8_ItemClick);
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Size = new System.Drawing.Size(1263, 29);
+            this.barDockControlTop.Size = new System.Drawing.Size(1263, 27);
             // 
             // barDockControlBottom
             // 
@@ -157,23 +186,23 @@
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 29);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 651);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 27);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 653);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1263, 29);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 651);
+            this.barDockControlRight.Location = new System.Drawing.Point(1263, 27);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 653);
             // 
             // xtraTabControl1
             // 
             this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 29);
+            this.xtraTabControl1.Location = new System.Drawing.Point(0, 27);
             this.xtraTabControl1.Name = "xtraTabControl1";
             this.xtraTabControl1.SelectedTabPage = this.xtraTabPage2;
-            this.xtraTabControl1.Size = new System.Drawing.Size(1263, 651);
+            this.xtraTabControl1.Size = new System.Drawing.Size(1263, 653);
             this.xtraTabControl1.TabIndex = 5;
             this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtraTabPage1,
@@ -185,7 +214,7 @@
             // 
             this.xtraTabPage2.Controls.Add(this.monitorControl1);
             this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(1261, 621);
+            this.xtraTabPage2.Size = new System.Drawing.Size(1257, 622);
             this.xtraTabPage2.Text = "xtraTabPage2";
             // 
             // monitorControl1
@@ -196,21 +225,21 @@
             this.monitorControl1.Location = new System.Drawing.Point(0, 0);
             this.monitorControl1.Name = "monitorControl1";
             this.monitorControl1.SelectedTabPageIndex = 0;
-            this.monitorControl1.Size = new System.Drawing.Size(1261, 621);
+            this.monitorControl1.Size = new System.Drawing.Size(1257, 622);
             this.monitorControl1.TabIndex = 0;
             // 
             // xtraTabPage1
             // 
             this.xtraTabPage1.Controls.Add(this.cpKtoolControl1);
             this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(1261, 621);
+            this.xtraTabPage1.Size = new System.Drawing.Size(1257, 622);
             this.xtraTabPage1.Text = "xtraTabPage1";
             // 
             // xtraTabPage3
             // 
             this.xtraTabPage3.Controls.Add(this.determineControl1);
             this.xtraTabPage3.Name = "xtraTabPage3";
-            this.xtraTabPage3.Size = new System.Drawing.Size(1261, 621);
+            this.xtraTabPage3.Size = new System.Drawing.Size(1257, 622);
             this.xtraTabPage3.Text = "xtraTabPage3";
             // 
             // determineControl1
@@ -221,25 +250,21 @@
             this.determineControl1.Location = new System.Drawing.Point(0, 0);
             this.determineControl1.Name = "determineControl1";
             this.determineControl1.SelectedTabPageIndex = 0;
-            this.determineControl1.Size = new System.Drawing.Size(1261, 621);
+            this.determineControl1.Size = new System.Drawing.Size(1257, 622);
             this.determineControl1.TabIndex = 0;
             // 
             // xtraTabPage4
             // 
             this.xtraTabPage4.Name = "xtraTabPage4";
-            this.xtraTabPage4.Size = new System.Drawing.Size(1261, 621);
+            this.xtraTabPage4.Size = new System.Drawing.Size(1257, 622);
             this.xtraTabPage4.Text = "xtraTabPage4";
             // 
-            // defaultLookAndFeel1
+            // barButtonItem9
             // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
-            // 
-            // barButtonItem6
-            // 
-            this.barButtonItem6.Caption = "测试计算";
-            this.barButtonItem6.Id = 7;
-            this.barButtonItem6.Name = "barButtonItem6";
-            this.barButtonItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem6_ItemClick);
+            this.barButtonItem9.Caption = "测试规则";
+            this.barButtonItem9.Id = 10;
+            this.barButtonItem9.Name = "barButtonItem9";
+            this.barButtonItem9.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem9_ItemClick);
             // 
             // Form1
             // 
@@ -283,9 +308,11 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
-        private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         private SPC.Monitor.DetermineControl determineControl1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem6;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem8;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem9;
     }
 }
 

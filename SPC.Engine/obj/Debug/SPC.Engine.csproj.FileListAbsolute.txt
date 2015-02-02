@@ -1,0 +1,8 @@
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Engine\obj\Debug\SPC.Engine.csprojResolveAssemblyReference.cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Engine\obj\Debug\SPC.Engine.ConfigControl.resources
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Engine\obj\Debug\SPC.Engine.csproj.GenerateResource.Cache
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Engine\obj\Debug\SPC.Engine.dll.licenses
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Engine\bin\Debug\SPC.Engine.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Engine\bin\Debug\SPC.Engine.pdb
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Engine\obj\Debug\SPC.Engine.dll
+C:\Users\Tcat\Desktop\WorkSpace\Program\SPC\SPC.Engine\obj\Debug\SPC.Engine.pdb

@@ -47,7 +47,9 @@
     <Compile Include="Basic.cs" />
     <Compile Include="Graphics.cs" />
     <Compile Include="Access.cs" />
+    <Compile Include="Lmregress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rpart.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="RServerManager">
