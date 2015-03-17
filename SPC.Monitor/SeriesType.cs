@@ -7,6 +7,27 @@ using SPC.Base.Interface;
 
 namespace SPC.Monitor
 {
+    public abstract class DevSeriesDrawer:ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    {
+        protected DevExpress.XtraCharts.ChartControl DrawBoard;
+        protected DevExpress.XtraCharts.Series[] Series;
+        public virtual void Clear()
+        {
+            if (Series != null && DrawBoard != null)
+            {
+                for (int i = Series.Length - 1; i >= 0; i--)
+                    this.DrawBoard.Series.Remove(Series[i]);
+            }
+        }
+
+        public virtual void Dispose()
+        {
+            for (int i = Series.Length - 1; i >= 0; i--)
+                Series[i].Dispose();
+        }
+
+        public abstract void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard);
+    }
 
     #region GroupAvgSeries
     public class GroupAvgSeriesMaker : ISeriesMaker<MonitorSourceDataType>
@@ -44,7 +65,6 @@ namespace SPC.Monitor
             BasicSeriesData result = new BasicSeriesData();
             if (groupType < 2)
             {
-                int x = 0;
                 int start = view.GetDataRowHandleByGroupRowHandle(-1);
                 int end = 0;
                 if (start >= 0)
@@ -56,8 +76,7 @@ namespace SPC.Monitor
                         var y = doOpreation(start, end, sourcedata);
                         if (y != null)
                         {
-                            x++;
-                            result.X.Add(x.ToString());
+                            result.X.Add(view.GetGroupRowText(i+1));
                             result.Y.Add((double)y);
                         }
                         if (flag < 0)
@@ -95,36 +114,22 @@ namespace SPC.Monitor
             return result;
         }
     }
-    public class GroupAvgSeriesDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class GroupAvgSeriesDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             DrawBoard = drawBoard;
-            Series = new DevExpress.XtraCharts.Series();
-            Series.View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
-            Series.View.Color = color;
-            Series.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
-            DrawBoard.Series.Add(Series);
-            Series.Points.BeginUpdate();
-            Series.Points.Clear();
+            Series = new DevExpress.XtraCharts.Series[1];
+            Series[0] = new DevExpress.XtraCharts.Series();
+            Series[0].View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+            Series[0].View.Color = color;
+            Series[0].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            DrawBoard.Series.Add(Series[0]);
+            Series[0].Points.BeginUpdate();
+            Series[0].Points.Clear();
             for (int i = 0; i < data.Y.Count; i++)
-                Series.Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
-            Series.Points.EndUpdate();
-        }
-
-        public void Clear()
-        {
-            if (Series != null && DrawBoard != null)
-            {
-                this.DrawBoard.Series.Remove(Series);
-            }
-        }
-
-        public void Dispose()
-        {
-            Series.Dispose();
+                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
+            Series[0].Points.EndUpdate();
         }
     }
     public class GroupAvgSeriesManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -179,7 +184,6 @@ namespace SPC.Monitor
             BasicSeriesData result = new BasicSeriesData();
             if (groupType < 2)
             {
-                int x = 0;
                 int start = view.GetDataRowHandleByGroupRowHandle(-1);
                 int end = 0;
                 if (start >= 0)
@@ -191,8 +195,7 @@ namespace SPC.Monitor
                         var y = doOpreation(start, end, sourcedata);
                         if (y != null)
                         {
-                            x++;
-                            result.X.Add(x.ToString());
+                            result.X.Add(view.GetGroupRowText(i+1));
                             result.Y.Add((double)y);
                         }
                         if (flag < 0)
@@ -239,36 +242,21 @@ namespace SPC.Monitor
         }
 
     }
-    public class GroupRangeSeriesDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class GroupRangeSeriesDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             DrawBoard = drawBoard;
-            Series = new DevExpress.XtraCharts.Series();
-            Series.View = DrawBoard.Series[1].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
-            Series.View.Color = color;
-            Series.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
-            DrawBoard.Series.Add(Series);
-            Series.Points.BeginUpdate();
-            Series.Points.Clear();
+            Series = new []{new DevExpress.XtraCharts.Series()};
+            Series[0].View = DrawBoard.Series[1].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+            Series[0].View.Color = color;
+            Series[0].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            DrawBoard.Series.Add(Series[0]);
+            Series[0].Points.BeginUpdate();
+            Series[0].Points.Clear();
             for (int i = 0; i < data.Y.Count; i++)
-                Series.Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
-            Series.Points.EndUpdate();
-        }
-
-        public void Clear()
-        {
-            if (Series != null && DrawBoard != null)
-            {
-                this.DrawBoard.Series.Remove(Series);
-            }
-        }
-
-        public void Dispose()
-        {
-            this.Series.Dispose();
+                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
+            Series[0].Points.EndUpdate();
         }
     }
     public class GroupRangeSeriesManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -311,36 +299,21 @@ namespace SPC.Monitor
         }
 
     }
-    public class SampleRunSeriesDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class SampleRunSeriesDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             DrawBoard = drawBoard;
-            Series = new DevExpress.XtraCharts.Series();
-            Series.View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
-            Series.View.Color = color;
-            Series.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
-            DrawBoard.Series.Add(Series);
-            Series.Points.BeginUpdate();
-            Series.Points.Clear();
+            Series = new []{new DevExpress.XtraCharts.Series()};
+            Series[0].View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+            Series[0].View.Color = color;
+            Series[0].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            DrawBoard.Series.Add(Series[0]);
+            Series[0].Points.BeginUpdate();
+            Series[0].Points.Clear();
             for (int i = 0; i < data.Y.Count; i++)
-                Series.Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
-            Series.Points.EndUpdate();
-        }
-
-        public void Clear()
-        {
-            if (Series != null && DrawBoard != null)
-            {
-                this.DrawBoard.Series.Remove(Series);
-            }
-        }
-
-        public void Dispose()
-        {
-            this.Series.Dispose();
+                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
+            Series[0].Points.EndUpdate();
         }
     }
     public class SampleRunSeriesManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -354,36 +327,21 @@ namespace SPC.Monitor
     #endregion
 
     #region GroupAvgDataRunSeries
-    public class GroupAvgDataRunSeriesDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class GroupAvgDataRunSeriesDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             DrawBoard = drawBoard;
-            Series = new DevExpress.XtraCharts.Series();
-            Series.View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
-            Series.View.Color = color;
-            Series.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
-            DrawBoard.Series.Add(Series);
-            Series.Points.BeginUpdate();
-            Series.Points.Clear();
+            Series = new []{new DevExpress.XtraCharts.Series()};
+            Series[0].View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+            Series[0].View.Color = color;
+            Series[0].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            DrawBoard.Series.Add(Series[0]);
+            Series[0].Points.BeginUpdate();
+            Series[0].Points.Clear();
             for (int i = 0; i < data.Y.Count; i++)
-                Series.Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
-            Series.Points.EndUpdate();
-        }
-
-        public void Clear()
-        {
-            if (Series != null && DrawBoard != null)
-            {
-                this.DrawBoard.Series.Remove(Series);
-            }
-        }
-
-        public void Dispose()
-        {
-            this.Series.Dispose();
+                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
+            Series[0].Points.EndUpdate();
         }
     }
     public class GroupAvgDataRunSeriesManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -407,9 +365,10 @@ namespace SPC.Monitor
             BasicSeriesData result = new BasicSeriesData();
             if (groupType < 2)
             {
-                int x = 1;
+                int j;
                 int start = view.GetDataRowHandleByGroupRowHandle(-1);
                 int end = 0;
+                string xs;
                 if (start >= 0)
                 {
                     for (int i = -2; ; i--)
@@ -417,7 +376,8 @@ namespace SPC.Monitor
                         int flag = view.GetDataRowHandleByGroupRowHandle(i);
                         end = flag < 0 ? view.DataRowCount : flag;
                         int count = 0;
-                        for (int j = start; j < end; j++)
+                        xs = view.GetGroupRowText(i+1);
+                        for (j = start; j < end; j++)
                         {
                             var rowtemp = view.GetDataRow(j);
                             if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
@@ -426,12 +386,10 @@ namespace SPC.Monitor
                                 if (!CheckMethod.checkDoubleCanConvert(temp))
                                     result.Y.Add(0);
                                 else result.Y.Add(Convert.ToDouble(temp));
-                                result.X.Add(x.ToString());
+                                result.X.Add(xs);
                                 count++;
                             }
                         }
-                        if (count > 0)
-                            x++;
                         if (flag < 0)
                             break;
                         start = end;
@@ -473,36 +431,21 @@ namespace SPC.Monitor
         }
 
     }
-    public class SampleRunPointsDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class SampleRunPointsDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             DrawBoard = drawBoard;
-            Series = new DevExpress.XtraCharts.Series();
-            Series.View = DrawBoard.Series[1].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
-            Series.View.Color = color;
-            Series.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
-            DrawBoard.Series.Add(Series);
-            Series.Points.BeginUpdate();
-            Series.Points.Clear();
+            Series = new []{new DevExpress.XtraCharts.Series()};
+            Series[0].View = DrawBoard.Series[1].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+            Series[0].View.Color = color;
+            Series[0].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            DrawBoard.Series.Add(Series[0]);
+            Series[0].Points.BeginUpdate();
+            Series[0].Points.Clear();
             for (int i = 0; i < data.Y.Count; i++)
-                Series.Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
-            Series.Points.EndUpdate();
-        }
-
-        public void Clear()
-        {
-            if (Series != null && DrawBoard != null)
-            {
-                this.DrawBoard.Series.Remove(Series);
-            }
-        }
-
-        public void Dispose()
-        {
-            this.Series.Dispose();
+                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
+            Series[0].Points.EndUpdate();
         }
     }
     public class SampleRunGroupPointsManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -548,36 +491,21 @@ namespace SPC.Monitor
         }
 
     }
-    public class NormalityCheckPointsDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class NormalityCheckPointsDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             DrawBoard = drawBoard;
-            Series = new DevExpress.XtraCharts.Series();
-            Series.View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
-            Series.View.Color = color;
-            (Series.View as DevExpress.XtraCharts.PointSeriesView).Indicators[0].Color = color;
-            DrawBoard.Series.Add(Series);
-            Series.Points.BeginUpdate();
-            Series.Points.Clear();
+            Series = new []{new DevExpress.XtraCharts.Series()};
+            Series[0].View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+            Series[0].View.Color = color;
+            (Series[0].View as DevExpress.XtraCharts.PointSeriesView).Indicators[0].Color = color;
+            DrawBoard.Series.Add(Series[0]);
+            Series[0].Points.BeginUpdate();
+            Series[0].Points.Clear();
             for (int i = 0; i < data.Y.Count; i++)
-                Series.Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
-            Series.Points.EndUpdate();
-        }
-
-        public void Clear()
-        {
-            if (Series != null && DrawBoard != null)
-            {
-                this.DrawBoard.Series.Remove(Series);
-            }
-        }
-
-        public void Dispose()
-        {
-            this.Series.Dispose();
+                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
+            Series[0].Points.EndUpdate();
         }
     }
     public class NormalityCheckPointsManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -712,11 +640,9 @@ namespace SPC.Monitor
             return result;
         }
     }
-    public class SpectralDistributionPointsDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class SpectralDistributionPointsDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series[] Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             int i;
             DrawBoard = drawBoard;
@@ -767,20 +693,6 @@ namespace SPC.Monitor
             {
                 Series[i].Points.EndUpdate();
             }
-        }
-        public void Clear()
-        {
-            if (Series != null && DrawBoard != null)
-            {
-                for (int i = Series.Length - 1; i >= 0; i--)
-                    this.DrawBoard.Series.Remove(Series[i]);
-            }
-        }
-
-        public void Dispose()
-        {
-            for (int i = Series.Length - 1; i >= 0; i--)
-                Series[i].Dispose();
         }
     }
     public class SpectralDistributionPointsManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -846,20 +758,18 @@ namespace SPC.Monitor
         }
 
     }
-    public class SampleXYRelationSeriesDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class SampleXYRelationSeriesDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             DrawBoard = drawBoard;
-            Series = new DevExpress.XtraCharts.Series();
-            Series.View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
-            Series.View.Color = color;
-            Series.ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
-            DrawBoard.Series.Add(Series);
-            Series.Points.BeginUpdate();
-            Series.Points.Clear();
+            Series = new []{new DevExpress.XtraCharts.Series()};
+            Series[0].View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+            Series[0].View.Color = color;
+            Series[0].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Numerical;
+            DrawBoard.Series.Add(Series[0]);
+            Series[0].Points.BeginUpdate();
+            Series[0].Points.Clear();
             double xyS = 0;
             double xS = 0;
             double yS = 0;
@@ -870,7 +780,7 @@ namespace SPC.Monitor
             {
                 var x = Convert.ToDouble(data.X[i]);
                 var y = Convert.ToDouble(data.Y[i]);
-                Series.Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
+                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
                 xyS += x * y;
                 xS += x;
                 yS += y;
@@ -878,21 +788,8 @@ namespace SPC.Monitor
                 y2S += y * y;
             }
             double result = (xyS*count - xS*yS)/(Math.Pow((x2S*count-xS*xS),0.5)*Math.Pow((y2S*count-yS*yS),0.5));
-            Series.Name = string.Format("{0:N3}",result);
-            Series.Points.EndUpdate();
-        }
-
-        public void Clear()
-        {
-            if (Series != null && DrawBoard != null)
-            {
-                this.DrawBoard.Series.Remove(Series);
-            }
-        }
-
-        public void Dispose()
-        {
-            this.Series.Dispose();
+            Series[0].Name = string.Format("{0:N3}", result);
+            Series[0].Points.EndUpdate();
         }
     }
     public class SampleXYRelationSeriesManager : SingleSeriesManager<XYRelationSourceDataType, DevExpress.XtraCharts.ChartControl>
@@ -1047,7 +944,6 @@ namespace SPC.Monitor
             BasicSeriesData result = new BasicSeriesData();
             if (groupType < 2)
             {
-                int x = 0;
                 int start = view.GetDataRowHandleByGroupRowHandle(-1);
                 int end = 0;
                 if (start >= 0)
@@ -1057,7 +953,9 @@ namespace SPC.Monitor
                         int flag = view.GetDataRowHandleByGroupRowHandle(i);
                         end = flag < 0 ? view.DataRowCount : flag;
                         if (groupAnalysis(start, end, sourcedata, result))
-                            result.X.Add((++x).ToString());
+                        {
+                            result.X.Add(view.GetGroupRowText(i+1)); 
+                        }                                 
                         if (flag < 0)
                             break;
                         start = end;
@@ -1092,12 +990,10 @@ namespace SPC.Monitor
             return result;
         }
     }
-    public class BoxPlotSeriesDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class BoxPlotSeriesDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series[] Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
         private int index;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             int q;
             DrawBoard = drawBoard;
@@ -1153,21 +1049,6 @@ namespace SPC.Monitor
                 Series[i].Points.EndUpdate();
             }
         }
-
-        public void Clear()
-        {
-            if (Series != null && DrawBoard != null)
-            {
-                for (int i =Series.Length-1; i >=0;i-- )
-                    this.DrawBoard.Series.Remove(Series[i]);
-            }
-        }
-
-        public void Dispose()
-        {
-            for (int i = Series.Length - 1; i >= 0; i--)
-                Series[i].Dispose();
-        }
     }
     public class BoxPlotSeriesManager : SingleSeriesManager<MonitorSourceDataType, DevExpress.XtraCharts.ChartControl>
     {
@@ -1220,13 +1101,11 @@ namespace SPC.Monitor
             return result;
         }
     }
-    public class SPCDetermineSeriesDrawer : ISeriesDrawer<DevExpress.XtraCharts.ChartControl>
+    public class SPCDetermineSeriesDrawer : DevSeriesDrawer
     {
-        private DevExpress.XtraCharts.Series[] Series;
-        private DevExpress.XtraCharts.ChartControl DrawBoard;
         private DevExpress.XtraCharts.ConstantLine[] ConstantLines;
         private DevExpress.XtraCharts.Axis2D AxisY;
-        public void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
         {
             DrawBoard = drawBoard;
             Series = new DevExpress.XtraCharts.Series[2];
@@ -1271,21 +1150,12 @@ namespace SPC.Monitor
                 AxisY.WholeRange.MinValue = data.Y[2];
         }
 
-        public void Clear()
+        public override void Clear()
         {
-            if (Series != null && DrawBoard != null)
-            {
-                for (int i = Series.Length - 1; i >= 0; i--)
-                    this.DrawBoard.Series.Remove(Series[i]);
-            }
             if (ConstantLines != null && AxisY != null)
                 foreach (var constantline in ConstantLines)
                     AxisY.ConstantLines.Remove(constantline);
-        }
-        public void Dispose()
-        {
-            for (int i = Series.Length - 1; i >= 0; i--)
-                Series[i].Dispose();
+            base.Clear();
         }
     }
     public class SPCDetermineSeriesManager : SingleSeriesManager<SPCDetermineDataType, DevExpress.XtraCharts.ChartControl>
@@ -1296,6 +1166,308 @@ namespace SPC.Monitor
             this.SeriesDrawer = new SPCDetermineSeriesDrawer();
         }
     }
+    #endregion
+
+    #region Pareto
+
+    public class ParetoMaker : ISeriesMaker<ParetoDataType>
+    {
+        private BasicSeriesData Count(ParetoDataType sourcedata)
+        {
+            var view = sourcedata.View;
+            var groupType = sourcedata.GroupType;
+            var param = sourcedata.Param;
+            BasicSeriesData result = new BasicSeriesData();
+            int i, j;
+            double count;
+            List<Tuple<double, string>> sortlist = new List<Tuple<double, string>>();
+            if (groupType < 2)
+            {
+                int start = view.GetDataRowHandleByGroupRowHandle(-1);
+                int end = 0;
+                if (start >= 0)
+                {
+                    for (i = -2; ; i--)
+                    {
+                        int flag = view.GetDataRowHandleByGroupRowHandle(i);
+                        end = flag < 0 ? view.DataRowCount : flag;
+                        if (start < end)
+                        {
+                            count = 0;
+                            for (j = start; j < end; j++)
+                            {
+                                var rowtemp = view.GetDataRow(j);
+                                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
+                                {
+                                    count++;
+                                }
+                            }
+                            if(count!=0)
+                                sortlist.Add(new Tuple<double, string>(count, view.GetGroupRowText(i + 1)));
+                        }
+                        if (flag < 0)
+                            break;
+                        start = end;
+                    }
+                }
+                sortlist.Sort(new SCompare());
+                foreach (var item in sortlist)
+                {
+                    result.X.Add(item.Item2);
+                    result.Y.Add(item.Item1);
+                }
+            }
+            else
+            {
+                int x = 0;
+                for (i = 0, j = 0; i < view.DataRowCount; i++)
+                {
+                    var rowtemp = view.GetDataRow(i);
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
+                    {
+                        j++;
+                        if (j == groupType)
+                        {
+                            j = 0;
+                            x++;
+                            result.X.Add(x.ToString());
+                            result.Y.Add(groupType);
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+        private BasicSeriesData Sum(ParetoDataType sourcedata)
+        {
+            var view = sourcedata.View;
+            var groupType = sourcedata.GroupType;
+            var param = sourcedata.Param;
+            BasicSeriesData result = new BasicSeriesData();
+            int i, j;
+            double sum,count;
+            System.Data.DataRow rowtemp;
+            object temp;
+            List<Tuple<double, string>> sortlist = new List<Tuple<double, string>>();
+            if (groupType < 2)
+            {
+                int start = view.GetDataRowHandleByGroupRowHandle(-1);
+                int end = 0;
+                if (start >= 0)
+                {
+                    for (i = -2; ; i--)
+                    {
+                        int flag = view.GetDataRowHandleByGroupRowHandle(i);
+                        end = flag < 0 ? view.DataRowCount : flag;
+                        if (start < end)
+                        {
+                            sum = 0;
+                            count = 0;
+                            for (j = start; j < end; j++)
+                            {
+                                rowtemp = view.GetDataRow(j);
+                                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
+                                {
+                                    if (!CheckMethod.checkDoubleCanConvert(temp = rowtemp[param]))
+                                        sum += 0;
+                                    else sum += Convert.ToDouble(temp);
+                                    count++;
+                                }
+                            }
+                            if (count!=0)
+                                sortlist.Add(new Tuple<double, string>(sum, view.GetGroupRowText(i + 1)));
+                        }
+                        if (flag < 0)
+                            break;
+                        start = end;
+                    }
+                }
+            }
+            else
+            {
+                int x = 0;
+                sum = 0;
+                for (i = 0, j = 0; i < view.DataRowCount; i++)
+                {
+                    rowtemp = view.GetDataRow(i);
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
+                    {
+                        j++;
+                        if (!CheckMethod.checkDoubleCanConvert(temp = rowtemp[param]))
+                            sum += 0;
+                        else sum += Convert.ToDouble(temp);
+                        if (j == groupType)
+                        {
+                            j = 0;
+                            x++;
+                            sortlist.Add(new Tuple<double, string>(sum, x.ToString()));
+                            sum = 0;
+                        }
+                    }
+                }
+            }
+            sortlist.Sort(new SCompare());
+            foreach (var item in sortlist)
+            {
+                result.X.Add(item.Item2);
+                result.Y.Add(item.Item1);
+            }
+            return result;
+        }
+        private BasicSeriesData Avg(ParetoDataType sourcedata)
+        {
+            var view = sourcedata.View;
+            var groupType = sourcedata.GroupType;
+            var param = sourcedata.Param;
+            BasicSeriesData result = new BasicSeriesData();
+            int i, j;
+            double sum,count;
+            System.Data.DataRow rowtemp;
+            object temp;
+            List<Tuple<double, string>> sortlist = new List<Tuple<double, string>>();
+            if (groupType < 2)
+            {
+                int start = view.GetDataRowHandleByGroupRowHandle(-1);
+                int end = 0;
+                if (start >= 0)
+                {
+                    for (i = -2; ; i--)
+                    {
+                        int flag = view.GetDataRowHandleByGroupRowHandle(i);
+                        end = flag < 0 ? view.DataRowCount : flag;
+                        if (start < end)
+                        {
+                            sum = 0;
+                            count = 0;
+                            for (j = start; j < end; j++)
+                            {
+                                rowtemp = view.GetDataRow(j);
+                                if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
+                                {
+                                    if (!CheckMethod.checkDoubleCanConvert(temp = rowtemp[param]))
+                                        sum += 0;
+                                    else sum += Convert.ToDouble(temp);
+                                    count++;
+                                }
+                            }
+                            if(count!=0)
+                                sortlist.Add(new Tuple<double, string>(sum/count, view.GetGroupRowText(i + 1)));
+                        }
+                        if (flag < 0)
+                            break;
+                        start = end;
+                    }
+                }
+            }
+            else
+            {
+                int x = 0;
+                sum = 0;
+                for (i = 0, j = 0; i < view.DataRowCount; i++)
+                {
+                    rowtemp = view.GetDataRow(i);
+                    if (rowtemp[view.ChooseColumnName].ToString() == Boolean.TrueString)
+                    {
+                        j++;
+                        if (!CheckMethod.checkDoubleCanConvert(temp = rowtemp[param]))
+                            sum += 0;
+                        else sum += Convert.ToDouble(temp);
+                        if (j == groupType)
+                        {
+                            j = 0;
+                            x++;
+                            sortlist.Add(new Tuple<double, string>(sum/groupType, x.ToString()));
+                            sum = 0;
+                        }
+                    }
+                }
+            }
+            sortlist.Sort(new SCompare());
+            foreach (var item in sortlist)
+            {
+                result.X.Add(item.Item2);
+                result.Y.Add(item.Item1);
+            }
+            return result;
+        }
+        public BasicSeriesData Make(ParetoDataType sourcedata)
+        {
+            switch(sourcedata.CuType)
+            {
+                case 0:
+                    return Count(sourcedata);
+                case 1:
+                    return Sum(sourcedata);
+                case 2:
+                    return Avg(sourcedata);
+                default:
+                    throw new Exception("No such compute type");
+            }
+        }
+        private class SCompare:IComparer<Tuple<double,string>>
+        {
+            public int Compare(Tuple<double, string> x, Tuple<double, string> y)
+            {
+                if (y.Item1 > x.Item1)
+                    return 1;
+                if (y.Item1 == x.Item1)
+                    return 0;
+                return -1;
+            }
+        }
+    }
+    public class ParetoDrawer : DevSeriesDrawer
+    {
+        public override void Draw(BasicSeriesData data, System.Drawing.Color color, DevExpress.XtraCharts.ChartControl drawBoard)
+        {
+            int i;
+            DrawBoard = drawBoard;
+            Series = new DevExpress.XtraCharts.Series[2];
+            Series[0] = new DevExpress.XtraCharts.Series();
+            Series[0].View = DrawBoard.Series[0].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+            Series[0].View.Color = color;
+            Series[0].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            DrawBoard.Series.Add(Series[0]);
+            Series[0].Points.BeginUpdate();
+            Series[0].Points.Clear();
+            double f = 0.5;
+            var newColor = System.Drawing.Color.FromArgb((int)color.A, (int)(color.R + (255 - color.R) * f), (int)(color.G + (255 - color.G) * f), (int)(color.B + (255 - color.B) * f));
+
+            Series[1] = new DevExpress.XtraCharts.Series();
+            Series[1].View = DrawBoard.Series[1].View.Clone() as DevExpress.XtraCharts.SeriesViewBase;
+            Series[1].View.Color = newColor;
+            Series[1].ArgumentScaleType = DevExpress.XtraCharts.ScaleType.Qualitative;
+            DrawBoard.Series.Add(Series[1]);
+            Series[1].Points.BeginUpdate();
+            Series[1].Points.Clear();
+
+            double sum = 0;
+            for (i = 0; i < data.Y.Count; i++)
+            {
+                Series[0].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], data.Y[i]));
+                sum += data.Y[i];
+            }
+            double y = 0;
+            for (i = 0; i < data.Y.Count; i++)
+            {
+                y += data.Y[i] * 100;
+                Series[1].Points.Add(new DevExpress.XtraCharts.SeriesPoint(data.X[i], y / sum));
+            }
+            for (i = 0; i < 2; i++)
+            {
+                Series[i].Points.EndUpdate();
+            }
+        }
+    }
+    public class ParetoManager : SingleSeriesManager<ParetoDataType, DevExpress.XtraCharts.ChartControl>
+    {
+        protected override void Init()
+        {
+            this.SeriesMaker = new ParetoMaker();
+            this.SeriesDrawer = new ParetoDrawer();
+        }
+    }
+
     #endregion
 
 }

@@ -161,17 +161,6 @@ namespace SPC.Monitor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                if (DrawBoards != null)
-                {
-                    List<XYRelationData> templist;
-                    foreach (var drawboard in DrawBoards)
-                    {
-                        if ((templist = drawboard.Tag as List<XYRelationData>) == null || templist.Count == 0)
-                        {
-                            drawboard.Parent.Controls.Remove(drawboard as Control);
-                        }
-                    }
-                }
                 RemoveListItem(data);
             }
         }
@@ -179,6 +168,7 @@ namespace SPC.Monitor
         {
             this.listBoxControl1.Items.Insert(0,lt);
             this.listBoxControl1.SelectedIndex = 0;
+            lt.InitData();
             lt.DrawSerieses();
         }
         private void RemoveListItem(XYRelationData lt)
@@ -359,7 +349,6 @@ namespace SPC.Monitor
                         templist.Add(this);
                 }
                 InitSeriesManagers();
-                InitData();
             }
             public void InitData()
             {
@@ -479,12 +468,20 @@ namespace SPC.Monitor
         {
             if (this.SelectedItem != null)
             {
-                if (this.cmbXAxis.SelectedIndex < 0)
-                    this.cmbXAxis.SelectedIndex = 0;
-                SelectedItem.SourceData.ParamY = this.cmbXAxis.Text;
-                SelectedItem.InitData();
-                SelectedItem.RemoveSerieses();
-                SelectedItem.DrawSerieses();
+                try
+                {
+                    if (this.cmbXAxis.SelectedIndex < 0)
+                        this.cmbXAxis.SelectedIndex = 0;
+                    SelectedItem.SourceData.ParamY = this.cmbXAxis.Text;
+                    SelectedItem.InitData();
+                    SelectedItem.RemoveSerieses();
+                    SelectedItem.DrawSerieses();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    RemoveListItem(SelectedItem);
+                }
             }
         }
     }

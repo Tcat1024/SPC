@@ -149,17 +149,6 @@ namespace SPC.Monitor
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                if (DrawBoards != null)
-                {
-                    List<SPCDetermineData> templist;
-                    foreach (var drawboard in DrawBoards)
-                    {
-                        if ((templist = drawboard.Tag as List<SPCDetermineData>) == null || templist.Count == 0)
-                        {
-                            drawboard.Parent.Controls.Remove(drawboard as Control);
-                        }
-                    }
-                }
                 RemoveListItem(data);
             }
         }
@@ -177,6 +166,7 @@ namespace SPC.Monitor
         {
             this.listBoxControl1.Items.Insert(0, lt);
             this.listBoxControl1.SelectedIndex = 0;
+            lt.InitData();
             lt.DrawSerieses();
         }
         private void RemoveListItem(SPCDetermineData lt)
@@ -361,7 +351,6 @@ namespace SPC.Monitor
                         templist.Add(this);
                 }
                 InitSeriesManagers();
-                InitData();
             }
             public void InitData()
             {
@@ -481,19 +470,27 @@ namespace SPC.Monitor
         {
             if (this.SelectedItem != null)
             {
-                var commands = this.getSeletedCommands();
-                if (this.txtUpT.Text == "" || this.txtDownT.Text == "" || txtStandard.Text == "" || commands.Count < 1)
+                try
                 {
-                    MessageBox.Show("条件输入不完整");
-                    return;
+                    var commands = this.getSeletedCommands();
+                    if (this.txtUpT.Text == "" || this.txtDownT.Text == "" || txtStandard.Text == "" || commands.Count < 1)
+                    {
+                        MessageBox.Show("条件输入不完整");
+                        return;
+                    }
+                    SelectedItem.SourceData.Commands = commands;
+                    SelectedItem.SourceData.LCL = Convert.ToDouble(this.txtDownT.Text);
+                    SelectedItem.SourceData.UCL = Convert.ToDouble(this.txtUpT.Text);
+                    SelectedItem.SourceData.Standard = Convert.ToDouble(this.txtStandard.Text);
+                    SelectedItem.InitData();
+                    SelectedItem.RemoveSerieses();
+                    SelectedItem.DrawSerieses();
                 }
-                SelectedItem.SourceData.Commands = commands;
-                SelectedItem.SourceData.LCL = Convert.ToDouble(this.txtDownT.Text);
-                SelectedItem.SourceData.UCL = Convert.ToDouble(this.txtUpT.Text);
-                SelectedItem.SourceData.Standard = Convert.ToDouble(this.txtStandard.Text);
-                SelectedItem.InitData();
-                SelectedItem.RemoveSerieses();
-                SelectedItem.DrawSerieses();
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    RemoveListItem(SelectedItem);
+                }
             }
         }
     }

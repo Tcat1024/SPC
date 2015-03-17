@@ -154,11 +154,23 @@
     <Compile Include="DrawBoards\SPCDetermineDrawBoard.Designer.cs">
       <DependentUpon>SPCDetermineDrawBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="DrawBoards\ParetoDrawBoard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DrawBoards\ParetoDrawBoard.Designer.cs">
+      <DependentUpon>ParetoDrawBoard.cs</DependentUpon>
+    </Compile>
     <Compile Include="DrawBoards\SpectralDistributionDrawBoard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DrawBoards\SpectralDistributionDrawBoard.Designer.cs">
       <DependentUpon>SpectralDistributionDrawBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParetoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ParetoControl.Designer.cs">
+      <DependentUpon>ParetoControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MonitorControl.cs">
       <SubType>UserControl</SubType>
@@ -216,8 +228,14 @@
     <EmbeddedResource Include="DrawBoards\SPCDetermineDrawBoard.resx">
       <DependentUpon>SPCDetermineDrawBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DrawBoards\ParetoDrawBoard.resx">
+      <DependentUpon>ParetoDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DrawBoards\SpectralDistributionDrawBoard.resx">
       <DependentUpon>SpectralDistributionDrawBoard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ParetoControl.resx">
+      <DependentUpon>ParetoControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MonitorControl.resx">
       <DependentUpon>MonitorControl.cs</DependentUpon>

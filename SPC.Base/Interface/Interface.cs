@@ -41,21 +41,49 @@ namespace SPC.Base.Interface
         private BasicSeriesData SeriesData;
         public IDrawBoard<DrawBoardType> DrawBoard;
         protected abstract void Init();
+        public byte FalseHandle = 0;
         public SingleSeriesManager()
         {
             Init();
         }
         public void InitData(SourceDataType sourceData)
         {
-            this.SeriesData = this.SeriesMaker.Make(sourceData);
+            try
+            {
+                this.SeriesData = this.SeriesMaker.Make(sourceData);
+                FalseHandle &= 6;
+            }
+            catch(Exception ex)
+            {
+                FalseHandle |=1;
+                throw ex;
+            }
         }
         public void DrawSeries(System.Drawing.Color color)
         {
-            this.SeriesDrawer.Draw(SeriesData, color, this.DrawBoard.GetChart());
+            try
+            {
+                this.SeriesDrawer.Draw(SeriesData, color, this.DrawBoard.GetChart());
+                FalseHandle &= 5;
+            }
+            catch(Exception ex)
+            {
+                FalseHandle |= 2;
+                throw ex;
+            }
         }
         public void RemoveSeries()
         {
-            this.SeriesDrawer.Clear();
+            try
+            {
+                this.SeriesDrawer.Clear();
+                FalseHandle &= 3;
+            }
+            catch(Exception ex)
+            {
+                FalseHandle |= 4;
+                throw ex;
+            }
         }
     }
     public interface ISeriesMaker<SourceDataType>

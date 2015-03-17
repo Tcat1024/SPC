@@ -43,10 +43,12 @@ namespace TestForm
         {
             this.cpKtoolControl1.DataSource = this.Data;
             (this.cpKtoolControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
-            //this.xyRelationControl1.DataSource = this.Data;
-            //(this.xyRelationControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
+            this.xyRelationControl1.DataSource = this.Data;
+            (this.xyRelationControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
             this.determineControl1.DataSource = this.Data;
             (this.determineControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
+            this.paretoControl1.DataSource = this.Data;
+            (this.paretoControl1.DataView as SPC.Controls.Base.CanChooseDataGridView).Synchronize(this.monitorControl1.DataView as SPC.Controls.Base.CanChooseDataGridView, DevExpress.XtraGrid.Views.Base.SynchronizationMode.Full);
         }
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {

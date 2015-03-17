@@ -1038,6 +1038,55 @@ namespace SPC.Controls.Base
 
 
         }
+        private List<Tuple<int, string, int>> groupInfoTree;
+        protected override void OnAfterGrouping()
+        {
+            base.OnAfterGrouping();
+            groupInfoTree = new List<Tuple<int, string, int>>();
+            int temp,level;
+            if(this.GetDataRowHandleByGroupRowHandle(-1)>=0)
+            {
+                groupInfoTree.Add(new Tuple<int,string,int>(-1,EncodeGoupString(this.GetGroupRowPrintValue(-1).ToString()),0));
+                for (int i = -2; ; i--)
+                {
+                    if ((temp = this.GetDataRowHandleByGroupRowHandle(i)) < 0)
+                        break;
+                    level = this.GetRowLevel(i);
+                    if (level > this.GetRowLevel(i + 1))
+                        groupInfoTree.Add(new Tuple<int, string, int>(i, EncodeGoupString(this.GetGroupRowPrintValue(i).ToString()), groupInfoTree[-i - 2].Item1));
+                    else if (level == this.GetRowLevel(i + 1))
+                        groupInfoTree.Add(new Tuple<int, string, int>(i, EncodeGoupString(this.GetGroupRowPrintValue(i).ToString()), groupInfoTree[-i - 2].Item3));
+                    else
+                    {
+                        int j = i + 1;
+                        while (j != 0 && this.GetRowLevel(j = groupInfoTree[-j - 1].Item3) != level) ;
+                        groupInfoTree.Add(new Tuple<int, string, int>(i, EncodeGoupString(this.GetGroupRowPrintValue(i).ToString()), groupInfoTree[-j - 1].Item3));
+                    }
+                }
+            }
+        }
+        protected string EncodeGoupString(string orginal)
+        {
+            int s =orginal.IndexOf(":");
+            int e = orginal.IndexOf("Count:");           
+            string result = orginal.Substring(s+1, e-s-1);
+            return result.Trim();
+        }
+        public string GetGroupRowText(int index)
+        {
+            int t = -index-1;
+            if (groupInfoTree == null || t < 0 || t >= groupInfoTree.Count)
+                return null;
+            string result = groupInfoTree[t].Item2;
+            t = groupInfoTree[t].Item3;
+            while(t<0)
+            {
+                t = -t - 1;
+                result = groupInfoTree[t].Item2 +"+"+ result;
+                t = groupInfoTree[t].Item3;
+            }
+            return result;
+        }
     }
 
 }

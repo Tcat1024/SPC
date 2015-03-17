@@ -66,7 +66,20 @@ namespace SPC.Monitor
             this.Commands = commands;
         }
     }
-
+    public class ParetoDataType
+    {
+        public SPC.Controls.Base.CanChooseDataGridView View;
+        public String Param;
+        public int GroupType;
+        public int CuType;
+        public ParetoDataType(SPC.Controls.Base.CanChooseDataGridView view, string param, int groupType, int cuType)
+        {
+            this.View = view;
+            this.Param = param;
+            this.GroupType = groupType;
+            this.CuType = cuType;
+        }
+    }
     //public static class CanGetChartMethod
     //{
     //    public static DevExpress.XtraCharts.ChartControl getChart(this object input)

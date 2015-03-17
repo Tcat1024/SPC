@@ -153,17 +153,6 @@ namespace SPC.Monitor
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                if (DrawBoards != null)
-                {
-                    List<MonitorSeriesData> templist;
-                    foreach (var drawboard in DrawBoards)
-                    {
-                        if ((templist = drawboard.Tag as List<MonitorSeriesData>) == null || templist.Count == 0)
-                        {
-                            drawboard.Parent.Controls.Remove(drawboard as Control);
-                        }
-                    }
-                }
                 RemoveListItem(data);
             }
         }
@@ -171,6 +160,7 @@ namespace SPC.Monitor
         {
             this.listBoxControl1.Items.Insert(0, lt);
             this.listBoxControl1.SelectedIndex = 0;
+            lt.InitData();
             lt.DrawSerieses();
         }
         private void RemoveListItem(MonitorSeriesData lt)
@@ -352,7 +342,6 @@ namespace SPC.Monitor
                         templist.Add(this);
                 }
                 InitSeriesManagers();
-                InitData();
             }
             public void InitData()
             {
@@ -497,22 +486,30 @@ namespace SPC.Monitor
         {
             if (this.SelectedItem != null)
             {
-                int grouptype = Convert.ToInt32(this.txtGroupType.EditValue);
-                string spectrumwith = this.pupFreqWidth.Text.Trim() == "" ? "0" : this.pupFreqWidth.Text.Trim();
-                if (this.cmbGroupType.SelectedIndex == 1)
+                try
                 {
-                    if (this.gridView1.GroupCount < 1)
+                    int grouptype = Convert.ToInt32(this.txtGroupType.EditValue);
+                    string spectrumwith = this.pupFreqWidth.Text.Trim() == "" ? "0" : this.pupFreqWidth.Text.Trim();
+                    if (this.cmbGroupType.SelectedIndex == 1)
                     {
-                        MessageBox.Show("Group模式下请先对数据进行分组");
-                        return;
+                        if (this.gridView1.GroupCount < 1)
+                        {
+                            MessageBox.Show("Group模式下请先对数据进行分组");
+                            return;
+                        }
+                        grouptype = 0;
                     }
-                    grouptype = 0;
+                    SelectedItem.SourceData.GroupType = grouptype;
+                    SelectedItem.SourceData.SpectrumWith = spectrumwith;
+                    SelectedItem.InitData();
+                    SelectedItem.RemoveSerieses();
+                    SelectedItem.DrawSerieses();
                 }
-                SelectedItem.SourceData.GroupType = grouptype;
-                SelectedItem.SourceData.SpectrumWith = spectrumwith;
-                SelectedItem.InitData();
-                SelectedItem.RemoveSerieses();
-                SelectedItem.DrawSerieses();
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    RemoveListItem(SelectedItem);
+                }
             }
         }
 

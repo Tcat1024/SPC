@@ -39,6 +39,7 @@
             this.barButtonItem6 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
@@ -50,13 +51,17 @@
             this.xtraTabPage3 = new DevExpress.XtraTab.XtraTabPage();
             this.determineControl1 = new SPC.Monitor.DetermineControl();
             this.xtraTabPage4 = new DevExpress.XtraTab.XtraTabPage();
-            this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
+            this.paretoControl1 = new SPC.Monitor.ParetoControl();
+            this.xtraTabPage5 = new DevExpress.XtraTab.XtraTabPage();
+            this.xyRelationControl1 = new SPC.Monitor.XYRelationControl();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtraTabPage2.SuspendLayout();
             this.xtraTabPage1.SuspendLayout();
             this.xtraTabPage3.SuspendLayout();
+            this.xtraTabPage4.SuspendLayout();
+            this.xtraTabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // cpKtoolControl1
@@ -168,6 +173,13 @@
             this.barButtonItem8.Name = "barButtonItem8";
             this.barButtonItem8.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem8_ItemClick);
             // 
+            // barButtonItem9
+            // 
+            this.barButtonItem9.Caption = "测试规则";
+            this.barButtonItem9.Id = 10;
+            this.barButtonItem9.Name = "barButtonItem9";
+            this.barButtonItem9.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem9_ItemClick);
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
@@ -208,7 +220,8 @@
             this.xtraTabPage1,
             this.xtraTabPage2,
             this.xtraTabPage3,
-            this.xtraTabPage4});
+            this.xtraTabPage4,
+            this.xtraTabPage5});
             // 
             // xtraTabPage2
             // 
@@ -255,16 +268,39 @@
             // 
             // xtraTabPage4
             // 
+            this.xtraTabPage4.Controls.Add(this.paretoControl1);
             this.xtraTabPage4.Name = "xtraTabPage4";
             this.xtraTabPage4.Size = new System.Drawing.Size(1257, 622);
             this.xtraTabPage4.Text = "xtraTabPage4";
             // 
-            // barButtonItem9
+            // paretoControl1
             // 
-            this.barButtonItem9.Caption = "测试规则";
-            this.barButtonItem9.Id = 10;
-            this.barButtonItem9.Name = "barButtonItem9";
-            this.barButtonItem9.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem9_ItemClick);
+            this.paretoControl1.DataMember = null;
+            this.paretoControl1.DataSource = null;
+            this.paretoControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.paretoControl1.Location = new System.Drawing.Point(0, 0);
+            this.paretoControl1.Name = "paretoControl1";
+            this.paretoControl1.SelectedTabPageIndex = 0;
+            this.paretoControl1.Size = new System.Drawing.Size(1257, 622);
+            this.paretoControl1.TabIndex = 0;
+            // 
+            // xtraTabPage5
+            // 
+            this.xtraTabPage5.Controls.Add(this.xyRelationControl1);
+            this.xtraTabPage5.Name = "xtraTabPage5";
+            this.xtraTabPage5.Size = new System.Drawing.Size(1257, 622);
+            this.xtraTabPage5.Text = "xtraTabPage5";
+            // 
+            // xyRelationControl1
+            // 
+            this.xyRelationControl1.DataMember = null;
+            this.xyRelationControl1.DataSource = null;
+            this.xyRelationControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xyRelationControl1.Location = new System.Drawing.Point(0, 0);
+            this.xyRelationControl1.Name = "xyRelationControl1";
+            this.xyRelationControl1.SelectedTabPageIndex = 0;
+            this.xyRelationControl1.Size = new System.Drawing.Size(1257, 622);
+            this.xyRelationControl1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -284,6 +320,8 @@
             this.xtraTabPage2.ResumeLayout(false);
             this.xtraTabPage1.ResumeLayout(false);
             this.xtraTabPage3.ResumeLayout(false);
+            this.xtraTabPage4.ResumeLayout(false);
+            this.xtraTabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -313,6 +351,9 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem7;
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
+        private SPC.Monitor.ParetoControl paretoControl1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage5;
+        private SPC.Monitor.XYRelationControl xyRelationControl1;
     }
 }
 
